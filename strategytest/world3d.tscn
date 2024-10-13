@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=20 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="PackedScene" uid="uid://0lf8y4ljp5j1" path="res://unit2.tscn" id="1_augcd"]
 [ext_resource type="Script" path="res://Node3D.gd" id="1_ayjtb"]
@@ -46,8 +46,6 @@ shader = ExtResource("6_keq46")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hw102"]
 size = Vector3(4.9989, 5.05823, 5.10894)
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_wpbtw"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_wfjai")
@@ -139,4 +137,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000671387, 0.0808716, 0.044
 shape = SubResource("BoxShape3D_hw102")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_wpbtw")

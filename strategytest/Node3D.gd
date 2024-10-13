@@ -22,7 +22,23 @@ var sideBarMouseEntered = false
 
 
 func _physics_process(delta):
-	
+	var mousePos = get_viewport().get_mouse_position()
+	var window_size = get_viewport().get_visible_rect().size
+		
+	if mousePos.x < 10:
+		$".".position.x -= 0.5
+	elif mousePos.x > window_size.x - 10:
+		$".".position.x += 0.5
+	if mousePos.y < 10:
+		$".".position.z -= 0.5
+	elif mousePos.y > window_size.y - 10:
+		$".".position.z += 0.5
+
+
+
+
+
+
 	if Input.is_action_pressed("front"):
 		$".".position.z -= 0.5
 	if Input.is_action_pressed("back"):
