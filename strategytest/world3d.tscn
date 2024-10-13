@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=21 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="PackedScene" uid="uid://0lf8y4ljp5j1" path="res://unit2.tscn" id="1_augcd"]
 [ext_resource type="Script" path="res://Node3D.gd" id="1_ayjtb"]
@@ -47,6 +47,8 @@ shader = ExtResource("6_keq46")
 [sub_resource type="BoxShape3D" id="BoxShape3D_hw102"]
 size = Vector3(4.9989, 5.05823, 5.10894)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_wpbtw"]
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_wfjai")
 
@@ -55,6 +57,7 @@ script = ExtResource("1_ayjtb")
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 0.508876, 0.86084, 0, -0.86084, 0.508876, 0, 37.7224, 46.5763)
+fov = 37.8493
 
 [node name="SelectionBox" type="Control" parent="Node3D"]
 layout_mode = 3
@@ -95,7 +98,7 @@ collision_mask = 3
 shape = SubResource("ConcavePolygonShape3D_dxerr")
 
 [node name="unit" parent="." groups=["MouseRaycast", "Selectable"] instance=ExtResource("1_augcd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28483, 14.8576, 1.70637)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28483, -0.113351, 1.70637)
 
 [node name="unit2" parent="." groups=["MouseRaycast", "Selectable"] instance=ExtResource("1_augcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97206, 1.31549, 1.70637)
@@ -134,3 +137,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77398, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interface/placer/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000671387, 0.0808716, 0.0443764)
 shape = SubResource("BoxShape3D_hw102")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_wpbtw")

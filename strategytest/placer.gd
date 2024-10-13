@@ -45,16 +45,16 @@ func placement_check() -> bool:
 			y_distances.append(y_distance)
 			
 		else:
-			print("raycast falied")
+			print("error")
 			return false
 		i += 1
 	
 	
 	for y_distance in y_distances:
 		if y_distance > 2.0:
-			print("not plannar enough")
+			print("nicht eben genug")
 			return false
-	print("Everything is good")
+	print("passt")
 	model_green()
 	return true
 # Called when the node enters the scene tree for the first time.

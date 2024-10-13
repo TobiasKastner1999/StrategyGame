@@ -22,6 +22,19 @@ var sideBarMouseEntered = false
 
 
 func _physics_process(delta):
+	
+	if Input.is_action_pressed("front"):
+		$".".position.z -= 0.5
+	if Input.is_action_pressed("back"):
+		$".".position.z += 0.5
+	if Input.is_action_pressed("left"):
+		$".".position.x -= 0.5
+	if Input.is_action_pressed("right"):
+		$".".position.x += 0.5
+
+
+
+
 	mousePosition = get_viewport().get_mouse_position()
 	if Input.is_action_just_pressed("LeftClick"):
 		selectionBox2D.startSelectionPosition = mousePosition
@@ -44,7 +57,6 @@ func _physics_process(delta):
 			if selected.SR == false:
 				return
 			else:
-				print("yes")
 				RaycastMouseClick()
 				#selected.SPEED = 600
 				selected.set_target_position(raycastMouseClick3DResult)
@@ -60,7 +72,15 @@ func _physics_process(delta):
 				#else:
 					#selected.beanSoldier.combatRange.focusFireTarget = null
 
-
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				$".".position.y -= 2
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				$".".position.y += 2
 
 func SelectUnits():
 	newSelection = []
