@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://cd55jchj02hn4"]
+
+[ext_resource type="PackedScene" uid="uid://0lf8y4ljp5j1" path="res://unit2.tscn" id="1_augcd"]
+[ext_resource type="Script" path="res://Node3D.gd" id="1_ayjtb"]
+[ext_resource type="Script" path="res://SelectionBox.gd" id="1_c30hi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wjwa7"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_dyptq"]
+sky_material = SubResource("ProceduralSkyMaterial_wjwa7")
+
+[sub_resource type="Environment" id="Environment_nd0ob"]
+background_mode = 2
+sky = SubResource("Sky_dyptq")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f0tgl"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xy2ro"]
+albedo_color = Color(0.270588, 0.105882, 0.592157, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_oep7d"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("1_ayjtb")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.508876, 0.86084, 0, -0.86084, 0.508876, 0, 7.5943, 5.6547)
+
+[node name="SelectionBox" type="Control" parent="Node3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_c30hi")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nd0ob")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_f0tgl")
+surface_material_override/0 = SubResource("StandardMaterial3D_xy2ro")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_oep7d")
+
+[node name="unit" parent="." groups=["MouseRaycast", "Selectable"] instance=ExtResource("1_augcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28483, 1.31549, 1.70637)
+
+[node name="unit2" parent="." groups=["MouseRaycast", "Selectable"] instance=ExtResource("1_augcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97206, 1.31549, 1.70637)
