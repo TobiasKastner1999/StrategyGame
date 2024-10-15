@@ -14,10 +14,6 @@ config/name="strategytest"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
-
-window/size/mode=4
-
 [input]
 
 LeftClick={

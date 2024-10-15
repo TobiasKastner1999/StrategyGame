@@ -66,7 +66,7 @@ func _input(event:InputEvent) -> void:
 		#print(shift)
 		if _interface_input_mode == 1:
 			if _building_placer_can_place and _building_placer_location != Vector3.ZERO:
-				var building_packed_scene:PackedScene = load("res://building.tscn")
+				var building_packed_scene:PackedScene = load("res://GLB format/building-archery.glb")
 				var building_node:Node3D = building_packed_scene.instantiate()
 				get_parent().add_child(building_node)
 				building_node.transform.origin = _building_placer_location
