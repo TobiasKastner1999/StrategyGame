@@ -122,13 +122,13 @@ mesh = SubResource("BoxMesh_ghh82")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ashod")
 
-[node name="unit" parent="." groups=["MouseRaycast"] instance=ExtResource("1_augcd")]
+[node name="unit" parent="." groups=["MouseRaycast", "Selectable"] instance=ExtResource("1_augcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28483, 7.78302, 1.70637)
 
-[node name="unit2" parent="." groups=["MouseRaycast"] instance=ExtResource("1_augcd")]
+[node name="unit2" parent="." groups=["MouseRaycast", "Selectable"] instance=ExtResource("1_augcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97206, 1.31549, 1.70637)
 
-[node name="unit3" parent="." groups=["MouseRaycast", "Team2"] instance=ExtResource("1_augcd")]
+[node name="unit3" parent="." groups=["MouseRaycast", "Selectable", "Team2"] instance=ExtResource("1_augcd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3372, 1.31549, 1.70637)
 
 [node name="Interface" type="Node2D" parent="."]
@@ -207,7 +207,8 @@ text = "Kristalle:"
 [node name="spawner" type="Node3D" parent="."]
 script = ExtResource("14_j7nof")
 
-[node name="Timer" type="Timer" parent="spawner"]
-wait_time = 0.01
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
 
-[connection signal="timeout" from="spawner/Timer" to="spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="spawner" method="_on_timer_timeout"]
