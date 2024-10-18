@@ -20,6 +20,7 @@ mesh = SubResource("BoxMesh_pe21x")
 shape = SubResource("ConcavePolygonShape3D_uttco")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_left = 26.0
 offset_top = 472.0
 offset_right = 535.0
