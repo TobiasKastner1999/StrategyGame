@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://0lf8y4ljp5j1"]
+
+[ext_resource type="Script" path="res://units/unit.gd" id="1_y82sj"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2qd66"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_o03a0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2l5jy"]
+bg_color = Color(1, 0.337255, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3n23"]
+bg_color = Color(0, 0.713726, 0.443137, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_45oj3"]
+viewport_path = NodePath("HealthbarContainer")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1d8ig"]
+radius = 5.53547
+
+[node name="Unit" type="CharacterBody3D" groups=["Selectable", "selectable"]]
+script = ExtResource("1_y82sj")
+
+[node name="Coll" type="Node3D" parent="."]
+
+[node name="UnitBody" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03345, 0)
+mesh = SubResource("CylinderMesh_2qd66")
+
+[node name="UnitColl" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03345, 0)
+shape = SubResource("CylinderShape3D_o03a0")
+
+[node name="NavAgent" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="HealthbarContainer" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="HealthBar" type="ProgressBar" parent="HealthbarContainer"]
+offset_left = -1.0
+offset_right = 353.0
+offset_bottom = 27.0
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_2l5jy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_j3n23")
+value = 100.0
+show_percentage = false
+
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889443, 0.901891, 0)
+texture = SubResource("ViewportTexture_45oj3")
+
+[node name="RangeArea" type="Area3D" parent="."]
+
+[node name="RangeColl" type="CollisionShape3D" parent="RangeArea"]
+shape = SubResource("SphereShape3D_1d8ig")
+
+[node name="DamageTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="RangeArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="RangeArea" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="DamageTimer" to="." method="_on_timer_timeout"]

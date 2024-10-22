@@ -1,15 +1,18 @@
 extends Node3D
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
+	pass 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
+func _physics_process(delta):
+	pass
 
+#spawn worker when needed
 func _on_button_pressed():
-	pass # Replace with function body.
+	var worker = load("res://units/worker.tscn").instantiate()
+	get_parent().add_child(worker)
+	worker.global_position = $SpawnPoint.global_position

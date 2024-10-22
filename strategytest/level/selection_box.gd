@@ -9,7 +9,7 @@ var selectionBoxColor = Color(0, 1, 0)
 var selectionBoxLineWidth = 1
 
 
-
+#draws the selectionbox when dragged with mouse
 func _draw():
 
 	if isVisible and startSelectionPosition != mousePosition:

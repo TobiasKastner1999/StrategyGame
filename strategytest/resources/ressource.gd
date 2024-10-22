@@ -1,11 +1,13 @@
 extends Node3D
 
+var resource = 3
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
+	pass 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+#deletes the resource once empty
 func _process(delta):
-	pass
+	if resource == 0:
+		queue_free()

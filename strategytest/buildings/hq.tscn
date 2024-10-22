@@ -11,23 +11,22 @@ data = PackedVector3Array(-2.5, 2.5, 2.5, 2.5, 2.5, 2.5, -2.5, -2.5, 2.5, 2.5, 2
 [node name="HQ" type="Node3D"]
 script = ExtResource("1_1sosf")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="HqBody" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_pe21x")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="HqStaticBody" type="StaticBody3D" parent="HqBody"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="HqColl" type="CollisionShape3D" parent="HqBody/HqStaticBody"]
 shape = SubResource("ConcavePolygonShape3D_uttco")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
+[node name="HqMenu" type="ColorRect" parent="."]
 offset_left = 26.0
 offset_top = 472.0
 offset_right = 535.0
 offset_bottom = 630.0
 color = Color(0.2, 0.2, 0.2, 1)
 
-[node name="Button" type="Button" parent="ColorRect"]
+[node name="WorkerSpawnButton" type="Button" parent="HqMenu"]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 102.0
@@ -36,4 +35,7 @@ offset_bottom = 141.0
 text = "spawn worker
 "
 
-[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221885, -1.38918, 4.10481)
+
+[connection signal="pressed" from="HqMenu/WorkerSpawnButton" to="." method="_on_button_pressed"]

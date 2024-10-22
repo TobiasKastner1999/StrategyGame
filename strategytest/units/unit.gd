@@ -1,18 +1,15 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 12
 const JUMP_VELOCITY = 4.5
-var SR
-var dir = Vector3()
+var SR 
 var path = []
 var path_ind = 0
+var HP = 4
 var go_to = Vector3.ZERO
-var crystal = 0
-var done = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var navi: NavigationAgent3D = $NavAgent
-@onready var hq = $"../HQ"
 
 
 
@@ -21,9 +18,6 @@ func _ready():
 
 func _process(delta):
 	pass
-
-
-
 
 
 func _physics_process(delta):
@@ -36,34 +30,13 @@ func _physics_process(delta):
 	navi.target_position = go_to
 	var dir = navi.get_next_path_position() - global_position
 	dir = dir.normalized()
-	
 	velocity = velocity.lerp(dir *SPEED, 10 * delta)
-	if position.distance_to(go_to) < 2:
+	if position.distance_to(go_to) < 1:
 		velocity = Vector3.ZERO
 
-#area checks all bodies inside coll and puts them into a array
-#array is checked for bodies in group resource and moves the unit automatically to the resource
-#resource is then collected and unit delivers the resource to the base
-	var list = $RangeArea.get_overlapping_bodies()
-	for n in list:
-		if (n.is_in_group("resource")):
-			go_to = n.global_position
-			if global_position.distance_to(n.global_position) <= 3 and done == false:
-				done = true
-				n.get_parent().get_parent().resource -=1
-				crystal = 1
-
-	if crystal != 0:
-		go_to = hq.global_position
-		if position.distance_to(hq.position) < 4:
-			crystal = 0
-			$"..".crystals += 1
-			done = false
-
 	move_and_slide()
-
-
-
+	
+	
 #receives the path from NavAgent
 func move_to(target_pos):
 	path = navi.get_simple_path(global_transform.origin, target_pos)
@@ -72,16 +45,27 @@ func move_to(target_pos):
 #changes the color of the unit when selected or deselected
 func select():
 	print("selected")
-	$WorkerBody.material_override = load("res://units/new_standard_material_3d_gelb.tres")
+	$UnitBody.material_override = load("res://units/new_standard_material_3d_gelb.tres")
 func deselect():
 	print("deselected")
-	$WorkerBody.material_override = load("res://units/new_standard_material_3d_weiß.tres")
-
+	$UnitBody.material_override = load("res://units/new_standard_material_3d_weiß.tres")
+	
 #sets the position the NavAgent will move to
 func set_target_position(target):
 	go_to = target
 
+#combat funtions when enemy unit enters range the timer starts and ticks damage to the unit 
+#when HP is 0 the unit is deleted
+func _on_area_3d_body_entered(body):
+	if body.is_in_group("Team2"):
+		$DamageTimer.start()
+
+func _on_area_3d_body_exited(body):
+	$DamageTimer.stop()
 
 
-
-
+func _on_timer_timeout():
+	HP -= 1
+	$HealthbarContainer/HealthBar.value -= 25
+	if HP == 1:
+		queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=31 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="PackedScene" uid="uid://0lf8y4ljp5j1" path="res://units/unit2.tscn" id="1_augcd"]
 [ext_resource type="Script" path="res://level/Node3D.gd" id="1_ayjtb"]
@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://level/CanvasLayer.gd" id="10_bewas"]
 [ext_resource type="Texture2D" uid="uid://bjfpwbrp2nv1k" path="res://icon.svg" id="11_nus00"]
 [ext_resource type="PackedScene" uid="uid://7012rhjv4u2g" path="res://buildings/hq.tscn" id="12_pwsdv"]
+[ext_resource type="Script" path="res://resources/ressource.gd" id="13_6kfm3"]
 [ext_resource type="PackedScene" uid="uid://c1nki85rv3ir5" path="res://units/worker.tscn" id="13_m7qll"]
-[ext_resource type="PackedScene" uid="uid://kfr5nk4l557f" path="res://resources/ressource.tscn" id="14_3f8f1"]
 [ext_resource type="Script" path="res://level/spawnscript.gd" id="14_j7nof"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wjwa7"]
@@ -63,10 +63,16 @@ shader = ExtResource("6_keq46")
 [sub_resource type="BoxShape3D" id="BoxShape3D_hw102"]
 size = Vector3(4.9989, 5.05823, 5.10894)
 
+[sub_resource type="PrismMesh" id="PrismMesh_clumh"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o0r4b"]
+data = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_wfjai")
 
 [node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 47.8387)
 script = ExtResource("1_ayjtb")
 
 [node name="Camera3D" type="Camera3D" parent="Node3D"]
@@ -191,13 +197,22 @@ texture = ExtResource("11_nus00")
 centered = false
 
 [node name="HQ" parent="." instance=ExtResource("12_pwsdv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3115, 5.93621, 54.7843)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3115, 5.80779, 54.7843)
 
 [node name="worker" parent="." instance=ExtResource("13_m7qll")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.69661, 5.18694, 51.3466)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.69661, 5.18694, 66.2142)
 
-[node name="Ressource" parent="." instance=ExtResource("14_3f8f1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.97493, 3.88746, 68.4264)
+[node name="Ressource" type="Node3D" parent="." groups=["resource"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.42873, 3.94904, 62.0561)
+script = ExtResource("13_6kfm3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ressource"]
+mesh = SubResource("PrismMesh_clumh")
+
+[node name="resource" type="StaticBody3D" parent="Ressource/MeshInstance3D" groups=["resource"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ressource/MeshInstance3D/resource"]
+shape = SubResource("ConcavePolygonShape3D_o0r4b")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 145.0

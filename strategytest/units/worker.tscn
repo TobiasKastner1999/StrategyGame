@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1nki85rv3ir5"]
+[gd_scene load_steps=5 format=3 uid="uid://c1nki85rv3ir5"]
 
 [ext_resource type="Script" path="res://units/worker.gd" id="1_ple0k"]
 
@@ -6,11 +6,34 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_plo4n"]
 
-[node name="worker" type="CharacterBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_b7yh8"]
+radius = 16.2939
+
+[node name="Worker" type="CharacterBody3D" groups=["Selectable"]]
 script = ExtResource("1_ple0k")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="WorkerBody" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_k5l20")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="WorkerColl" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_plo4n")
+
+[node name="RangeArea" type="Area3D" parent="."]
+
+[node name="RangeColl" type="CollisionShape3D" parent="RangeArea"]
+shape = SubResource("SphereShape3D_b7yh8")
+
+[node name="NavAgent" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 2.0
+path_height_offset = 1.0
+avoidance_enabled = true
+height = 10.0
+radius = 100.0
+neighbor_distance = 10000.0
+max_neighbors = 100
+time_horizon_agents = 16.6
+time_horizon_obstacles = 10.0
+use_3d_avoidance = true
+avoidance_mask = 2
+debug_enabled = true
