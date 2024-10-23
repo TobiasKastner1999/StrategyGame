@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var unit_sprite = $MiniMapContainer/MiniMapViewPort/UnitSprite
 @onready var main_cam := $"../Camera"
-@onready var unit = $"../Unit"
+@onready var unit = $"../Units/Unit"
 @onready var cam_sprite = $MiniMapContainer/MiniMapViewPort/CamSprite
 
 # sets the position of the unit on the minimap

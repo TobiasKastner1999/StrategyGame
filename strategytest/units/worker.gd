@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal deposit_crystal()
+
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var SR
@@ -11,7 +13,10 @@ var crystal = 0
 var done = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var navi: NavigationAgent3D = $NavAgent
-@onready var hq = $"../HQ"
+@onready var hq = $".."
+
+func _ready():
+	print(hq.name)
 
 func _physics_process(delta):
 # gravity
@@ -30,21 +35,22 @@ func _physics_process(delta):
 # area checks all bodies inside coll and puts them into a array
 # array is checked for bodies in group resource and moves the unit automatically to the resource
 # resource is then collected and unit delivers the resource to the base
-	var list = $RangeArea.get_overlapping_bodies()
-	for n in list:
-		if (n.is_in_group("resource")):
-			go_to = n.global_position
-			if global_position.distance_to(n.global_position) <= 3 and done == false:
-				done = true
-				n.get_parent().get_parent().resource -=1
-				crystal = 1
-
 	if crystal != 0:
 		go_to = hq.global_position
-		if position.distance_to(hq.position) < 4:
+		if global_position.distance_to(hq.global_position) < 4:
 			crystal = 0
-			$"..".crystals += 1
+			deposit_crystal.emit()
 			done = false
+	
+	else:
+		var list = $RangeArea.get_overlapping_bodies()
+		for n in list:
+			if (n.is_in_group("resource")):
+				go_to = n.global_position
+				if global_position.distance_to(n.global_position) <= 3 and done == false:
+					done = true
+					n.get_parent().get_parent().resource -=1
+					crystal = 1
 
 	move_and_slide()
 

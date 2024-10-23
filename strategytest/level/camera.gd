@@ -8,6 +8,7 @@ var selection = []
 var new_selection = []
 var focus_fire_target_collider
 var side_bar_mouse_entered = false
+var double_click = false
 @onready var camera = $Camera
 @onready var selection_box_2d = $SelectionBox
 @onready var mouse_raycast_group = get_tree().get_nodes_in_group("MouseRaycast")
@@ -39,6 +40,9 @@ func _physics_process(delta):
 # deselects the units on click that are not in dragged box
 	mouse_position = get_viewport().get_mouse_position()
 	if Input.is_action_just_pressed("LeftClick") and Input.is_action_pressed("LeftClick"):
+		if $DoubleClickTimer.time_left > 0:
+			double_click = true
+		$DoubleClickTimer.start()
 		selection_box_2d.start_selection_position = mouse_position
 		start_selection_position = mouse_position
 		for selected in selection:
@@ -53,7 +57,10 @@ func _physics_process(delta):
 		selection_box_2d.is_visible = false
 	
 	if Input.is_action_just_released("LeftClick"):
-		selectUnits()
+		if double_click and $DoubleClickTimer.time_left > 0:
+			selectType()
+		else:
+			selectUnits()
 
 # gives values to the unit scripts like targetposition
 	if Input.is_action_just_pressed("Rightclick") && selection.size() != 0:
@@ -87,6 +94,15 @@ func selectUnits():
 	if new_selection.size() != 0:
 		for selected in new_selection:
 			selected.select()
+		selection = new_selection
+
+func selectType():
+	selectUnits()
+	if selection.size() == 1:
+		new_selection = []
+		for unit in selection[0].get_parent().get_children():
+			new_selection.append(unit)
+			unit.select()
 		selection = new_selection
 
 # call the units that are under the mouse that are selectable
