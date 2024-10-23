@@ -36,9 +36,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("right"):
 		$".".position.x += 0.5
 
-#deselects the units on click that are not in dragged box
+# deselects the units on click that are not in dragged box
 	mouse_position = get_viewport().get_mouse_position()
-	if Input.is_action_just_pressed("LeftClick"):
+	if Input.is_action_just_pressed("LeftClick") and Input.is_action_pressed("LeftClick"):
 		selection_box_2d.start_selection_position = mouse_position
 		start_selection_position = mouse_position
 		for selected in selection:
@@ -51,6 +51,7 @@ func _physics_process(delta):
 		selection_box_2d.is_visible = true
 	else:
 		selection_box_2d.is_visible = false
+	
 	if Input.is_action_just_released("LeftClick"):
 		selectUnits()
 
@@ -90,9 +91,10 @@ func selectUnits():
 
 # call the units that are under the mouse that are selectable
 func getUnitUnderMouse():
+	raycastFromMouse()
 	var result = mouse_click_collider_3d_result
 	if result != null && result.is_in_group("Selectable"):
-		return result.collider
+		return result
 
 # makes a 3d box to select units inside
 func getUnitsInBox(top_left, bottom_right):

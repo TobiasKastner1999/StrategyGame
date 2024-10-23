@@ -63,8 +63,3 @@ func deselect():
 # sets the position the NavAgent will move to
 func set_target_position(target):
 	go_to = target
-
-
-
-
-
