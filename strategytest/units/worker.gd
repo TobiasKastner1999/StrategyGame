@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var SR
@@ -14,25 +13,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var navi: NavigationAgent3D = $NavAgent
 @onready var hq = $"../HQ"
 
-
-
-func _ready():
-	pass
-
-func _process(delta):
-	pass
-
-
-
-
-
 func _physics_process(delta):
-
-#gravity
+# gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-#sets the movement of the unit and stops when close to goal
+# sets the movement of the unit and stops when close to goal
 	navi.target_position = go_to
 	var dir = navi.get_next_path_position() - global_position
 	dir = dir.normalized()
@@ -41,9 +27,9 @@ func _physics_process(delta):
 	if position.distance_to(go_to) < 2:
 		velocity = Vector3.ZERO
 
-#area checks all bodies inside coll and puts them into a array
-#array is checked for bodies in group resource and moves the unit automatically to the resource
-#resource is then collected and unit delivers the resource to the base
+# area checks all bodies inside coll and puts them into a array
+# array is checked for bodies in group resource and moves the unit automatically to the resource
+# resource is then collected and unit delivers the resource to the base
 	var list = $RangeArea.get_overlapping_bodies()
 	for n in list:
 		if (n.is_in_group("resource")):
@@ -62,22 +48,19 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-
-
-#receives the path from NavAgent
+# receives the path from NavAgent
 func move_to(target_pos):
 	path = navi.get_simple_path(global_transform.origin, target_pos)
 	path_ind = 0
 
-#changes the color of the unit when selected or deselected
+# changes the color of the unit when selected or deselected
 func select():
-	print("selected")
 	$WorkerBody.material_override = load("res://units/new_standard_material_3d_gelb.tres")
+
 func deselect():
-	print("deselected")
 	$WorkerBody.material_override = load("res://units/new_standard_material_3d_weiß.tres")
 
-#sets the position the NavAgent will move to
+# sets the position the NavAgent will move to
 func set_target_position(target):
 	go_to = target
 
