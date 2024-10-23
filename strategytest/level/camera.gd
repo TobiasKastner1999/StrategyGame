@@ -47,10 +47,10 @@ func _physics_process(delta):
 
 # selects the units inside the box
 	if Input.is_action_pressed("LeftClick"):
-		selection_box_2d.mousePosition = mouse_position
-		selection_box_2d.isVisible = true
+		selection_box_2d.mouse_position = mouse_position
+		selection_box_2d.is_visible = true
 	else:
-		selection_box_2d.isVisible = false
+		selection_box_2d.is_visible = false
 	if Input.is_action_just_released("LeftClick"):
 		selectUnits()
 
