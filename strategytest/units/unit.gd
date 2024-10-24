@@ -26,6 +26,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	if faction == 1:
 		$UnitBody/EnemyIdentifier.visible = true
+	$HealthbarContainer/HealthBar.max_value = MAX_HP
+	$HealthbarContainer/HealthBar.value = hp
 
 func _physics_process(delta):
 	# gravity
@@ -83,7 +85,7 @@ func attackTarget():
 
 func takeDamage(damage):
 	hp -= damage
-	$HealthbarContainer/HealthBar.value -= 25
+	$HealthbarContainer/HealthBar.value = hp
 	if hp == 0:
 		deleted.emit(self)
 		queue_free()
