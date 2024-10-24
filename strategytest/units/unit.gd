@@ -2,13 +2,14 @@ extends CharacterBody3D
 
 signal deleted(unit)
 
-const MAX_HP = 4
+const MAX_HP = 10
 const DAMAGE_VALUE = 1
 const ATTACK_RANGE = 2
 const ATTACK_SPEED = 2.0
 var can_attack = true
 var nearby_enemies = []
 var current_target : CharacterBody3D
+var priority_movement = false
 
 const SPEED = 12
 var SR 
@@ -31,30 +32,30 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
-	if current_target != null:
-		if global_position.distance_to(current_target.global_position) <= ATTACK_RANGE:
-			if can_attack:
-				attackTarget()
-		else:
-			go_to = current_target.global_position
-	
-	else:
-		if nearby_enemies.size() > 0:
-			var min_distance
-			var intend_target
-			for enemy in nearby_enemies:
-				var distance = global_position.distance_to(enemy.global_position)
-				if (min_distance == null) or (distance < min_distance):
-					min_distance = distance
-					intend_target = enemy
-			if min_distance <= ATTACK_RANGE:
-				current_target = intend_target
+	if priority_movement == false:
+		if current_target != null:
+			if global_position.distance_to(current_target.global_position) <= ATTACK_RANGE:
 				if can_attack:
 					attackTarget()
 			else:
-				go_to = intend_target.global_position
+				go_to = current_target.global_position
 	
-	# player command takes prescedence
+		else:
+			if nearby_enemies.size() > 0:
+				var min_distance
+				var intend_target
+				for enemy in nearby_enemies:
+					var distance = global_position.distance_to(enemy.global_position)
+					if (min_distance == null) or (distance < min_distance):
+						min_distance = distance
+						intend_target = enemy
+				if min_distance <= ATTACK_RANGE:
+					current_target = intend_target
+					if can_attack:
+						attackTarget()
+				else:
+					go_to = intend_target.global_position
+	
 	# attack priority target
 	
 	# sets the movement of the unit and stops when close to goal
@@ -64,7 +65,9 @@ func _physics_process(delta):
 		dir = dir.normalized()
 		velocity = velocity.lerp(dir *SPEED, 10 * delta)
 		if position.distance_to(go_to) < 1:
+			go_to = global_position
 			velocity = Vector3.ZERO
+			priority_movement = false
 		move_and_slide()
 
 # receives the path from NavAgent
@@ -99,7 +102,8 @@ func getFaction():
 	return faction
 
 # sets the position the NavAgent will move to
-func set_target_position(target):
+func setTargetPosition(target):
+	priority_movement = true
 	go_to = target
 
 # combat funtions when enemy unit enters range the timer starts and ticks damage to the unit 

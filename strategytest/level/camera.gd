@@ -69,7 +69,7 @@ func _physics_process(delta):
 				return
 			else:
 				raycastMouseClick()
-				selected.set_target_position(raycast_mouse_click_3d_result)
+				selected.setTargetPosition(raycast_mouse_click_3d_result)
 
 # zoom in or out with mousewheel
 func _unhandled_input(event):
