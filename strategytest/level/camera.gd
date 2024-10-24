@@ -59,6 +59,7 @@ func _physics_process(delta):
 	if Input.is_action_just_released("LeftClick"):
 		if double_click and $DoubleClickTimer.time_left > 0:
 			selectType()
+			double_click = false
 		else:
 			selectUnits()
 	
