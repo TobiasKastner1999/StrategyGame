@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://0lf8y4ljp5j1"]
+[gd_scene load_steps=15 format=3 uid="uid://0lf8y4ljp5j1"]
 
 [ext_resource type="Script" path="res://units/unit.gd" id="1_y82sj"]
 
@@ -26,6 +26,74 @@ viewport_path = NodePath("HealthbarContainer")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1d8ig"]
 radius = 7.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsm7b"]
+albedo_color = Color(0.54814, 0.648472, 0.951631, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n0iul"]
+material = SubResource("StandardMaterial3D_hsm7b")
+height = 0.05
+
+[sub_resource type="Animation" id="Animation_77cqm"]
+resource_name = "attack"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:top_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.49, 1.25, 0.49]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:mesh:bottom_radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.49, 1.25, 0.49]
+}
+
+[sub_resource type="Animation" id="Animation_cfdcc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:top_radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:mesh:bottom_radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nby7g"]
+_data = {
+"RESET": SubResource("Animation_cfdcc"),
+"attack": SubResource("Animation_77cqm")
+}
 
 [node name="Unit" type="CharacterBody3D" groups=["CombatTarget", "MouseRaycast", "Selectable", "selectable"]]
 script = ExtResource("1_y82sj")
@@ -74,6 +142,16 @@ shape = SubResource("SphereShape3D_1d8ig")
 
 [node name="AttackCooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="AttackAnim" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_n0iul")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AttackAnim"]
+libraries = {
+"": SubResource("AnimationLibrary_nby7g")
+}
+autoplay = "attack"
 
 [connection signal="body_entered" from="RangeArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="RangeArea" to="." method="_on_area_3d_body_exited"]

@@ -2,24 +2,25 @@ extends CharacterBody3D
 
 signal deleted(unit) # to tell the system the unit has been defeated
 
-const MAX_HP = 10 # the units maximum hit points
-const DAMAGE_VALUE = 1 # the damage the unit deals with each attack
-const ATTACK_RANGE = 2 # the distance at which the unit can attack enemy targets
-const ATTACK_SPEED = 2.0 # the rate at which the unit attacks
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
 var current_target : CharacterBody3D # the enemy target the unit is currently attacking
 var priority_movement = false # is the unit's movement overridden by a player command
 
-const SPEED = 12 # the unit's movement speed
 var path = [] # the path the unit is navigating on
 var path_ind = 0 # the id of the unit's current path position
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the strength of the gravity affecting the unit
 var SR 
 
 @export var faction : int # which faction does this unit belong to?
+@export var max_hp = 10.0 # the units maximum hit points
+@export var damage_value = 1.0 # the damage the unit deals with each attack
+@export var attack_range = 2 # the distance at which the unit can attack enemy targets
+@export var attack_speed = 2.0 # the rate at which the unit attacks
+@export var detection_range = 7.5 # the distance at which the unit can detect other units
+@export var speed = 12 # the unit's movement speed
 
-@onready var hp = MAX_HP # the unit's current hp, starting as its maximum hp
+@onready var hp = max_hp # the unit's current hp, starting as its maximum hp
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the unit's movement
 @onready var go_to = global_position # the global position the agent wants to navigate to
 
@@ -27,8 +28,11 @@ var SR
 func _ready():
 	if faction == 1:
 		$UnitBody/EnemyIdentifier.visible = true # visually displays a ring denoting the unit as a member of the enemy faction
-	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
+	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
+	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
+	$RangeArea/RangeColl.shape.radius = detection_range
+	$AttackAnim.mesh = $AttackAnim.mesh.duplicate()
 
 # controls the unit's movement and other actions
 func _physics_process(delta):
@@ -40,7 +44,7 @@ func _physics_process(delta):
 	if priority_movement == false:
 		# if the unit is already fighting an enemy target
 		if current_target != null:
-			if global_position.distance_to(current_target.global_position) <= ATTACK_RANGE:
+			if global_position.distance_to(current_target.global_position) <= attack_range:
 				if can_attack:
 					attackTarget() # attacks the target if it is within attack range, and the unit's attack is available
 			else:
@@ -57,7 +61,7 @@ func _physics_process(delta):
 						min_distance = distance
 						intend_target = enemy # if the distance is the shortest, designates that enemy as the first target
 				# if the intented target is within attack range, attempts to attack
-				if min_distance <= ATTACK_RANGE:
+				if min_distance <= attack_range:
 					current_target = intend_target # sets the target
 					if can_attack:
 						attackTarget() # attacks the target if the unit's attack is available
@@ -69,7 +73,7 @@ func _physics_process(delta):
 		navi.target_position = go_to
 		var dir = navi.get_next_path_position() - global_position
 		dir = dir.normalized()
-		velocity = velocity.lerp(dir *SPEED, 10 * delta)
+		velocity = velocity.lerp(dir * speed, 10 * delta)
 		if position.distance_to(go_to) < 2:
 			go_to = global_position
 			velocity = Vector3.ZERO
@@ -84,9 +88,10 @@ func move_to(target_pos):
 # attack the unit's current target
 func attackTarget():
 	go_to = global_position # stops the unit's movement
-	current_target.takeDamage(DAMAGE_VALUE) # causes target to take the unit's attack damage
+	current_target.takeDamage(damage_value) # causes target to take the unit's attack damage
 	can_attack = false # disables the unit's attack
-	$AttackCooldown.start(ATTACK_SPEED) # starts the attack cooldown
+	$AttackCooldown.start(attack_speed) # starts the attack cooldown
+	$AttackAnim/AnimationPlayer.play("attack")
 
 # causes the unit to take a given amount of damage
 func takeDamage(damage):
