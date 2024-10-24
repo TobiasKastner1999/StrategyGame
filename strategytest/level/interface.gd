@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @onready var node_building_placer: Node3D = $Placer
 @onready var interface_btn_building:Button = $BuildingButton

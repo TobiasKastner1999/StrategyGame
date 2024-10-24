@@ -22,10 +22,12 @@ mesh = SubResource("BoxMesh_pe21x")
 shape = SubResource("ConcavePolygonShape3D_uttco")
 
 [node name="HqMenu" type="ColorRect" parent="."]
-offset_left = 26.0
-offset_top = 472.0
-offset_right = 535.0
-offset_bottom = 630.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -158.0
+offset_right = 509.0
+grow_vertical = 0
 color = Color(0.2, 0.2, 0.2, 1)
 
 [node name="WorkerSpawnButton" type="Button" parent="HqMenu"]

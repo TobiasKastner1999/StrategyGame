@@ -67,5 +67,5 @@ func deselect():
 	$WorkerBody.material_override = load("res://units/new_standard_material_3d_weiß.tres")
 
 # sets the position the NavAgent will move to
-func set_target_position(target):
+func setTargetPosition(target):
 	go_to = target

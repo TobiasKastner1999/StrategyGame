@@ -70,7 +70,7 @@ func _physics_process(delta):
 		var dir = navi.get_next_path_position() - global_position
 		dir = dir.normalized()
 		velocity = velocity.lerp(dir *SPEED, 10 * delta)
-		if position.distance_to(go_to) < 1:
+		if position.distance_to(go_to) < 2:
 			go_to = global_position
 			velocity = Vector3.ZERO
 			priority_movement = false

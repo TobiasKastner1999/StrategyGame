@@ -132,30 +132,81 @@ shape = SubResource("ConcavePolygonShape3D_dxerr")
 script = ExtResource("4_wqgya")
 
 [node name="Unit" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.285, 0, 1.706)
-
-[node name="Unit4" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7758, 0, 1.706)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0224, 0, -25.4273)
 
 [node name="Unit2" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.972, 0, 1.706)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.8944, 0, -30.1637)
 
 [node name="Unit3" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9445, 0, 1.706)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.8685, 0, -26.6677)
+
+[node name="Unit4" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.8947, 0, -20.688)
+
+[node name="Unit5" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.3917, 0, -19.9701)
+
+[node name="Unit6" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.8173, 0, -31.7294)
+
+[node name="Unit7" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.7278, 0, -40.2282)
 faction = 1
 
-[node name="Interface" type="Node2D" parent="."]
+[node name="Unit8" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.7986, -0.462612, -28.5091)
+faction = 1
+
+[node name="Unit9" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.5415, 0, -31.7294)
+faction = 1
+
+[node name="Unit10" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.6735, 0, -35.8135)
+faction = 1
+
+[node name="Unit11" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.5415, 0, -27.2275)
+faction = 1
+
+[node name="Unit12" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.122, 0, -44.7632)
+faction = 1
+
+[node name="Interface" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("5_gt0qk")
 
 [node name="Indicator" type="Label" parent="Interface"]
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="BuildingButton" type="Button" parent="Interface"]
-offset_left = 989.0
-offset_top = 569.0
-offset_right = 1114.0
-offset_bottom = 621.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -135.0
+offset_top = -65.0
+offset_right = -10.0
+offset_bottom = -13.0
+grow_horizontal = 0
+grow_vertical = 0
 text = "building"
 
 [node name="Placer" type="Node3D" parent="Interface"]
@@ -180,10 +231,12 @@ shape = SubResource("BoxShape3D_hw102")
 script = ExtResource("9_wqmes")
 
 [node name="MiniMapContainer" type="SubViewportContainer" parent="MiniMap"]
-offset_left = 930.0
-offset_top = 15.0
-offset_right = 1130.0
-offset_bottom = 215.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
 
 [node name="MiniMapViewPort" type="SubViewport" parent="MiniMap/MiniMapContainer"]
 handle_input_locally = false
@@ -227,7 +280,15 @@ wait_time = 0.01
 
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
 [connection signal="deleted" from="Units/Unit" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit4" to="Units" method="_on_unit_delete"]
 [connection signal="deleted" from="Units/Unit2" to="Units" method="_on_unit_delete"]
 [connection signal="deleted" from="Units/Unit3" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit4" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit5" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit6" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit7" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit8" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit9" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit10" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit11" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit12" to="Units" method="_on_unit_delete"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]
