@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=29 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://level/main_scene.gd" id="1_knc78"]
 [ext_resource type="Script" path="res://level/camera.gd" id="2_on5d0"]
 [ext_resource type="Script" path="res://level/selection_box.gd" id="3_0vhmm"]
 [ext_resource type="PackedScene" uid="uid://0lf8y4ljp5j1" path="res://units/unit.tscn" id="4_hy2ph"]
+[ext_resource type="Script" path="res://units/unit_manager.gd" id="4_wqgya"]
 [ext_resource type="Script" path="res://level/interface.gd" id="5_gt0qk"]
 [ext_resource type="Script" path="res://level/placer.gd" id="6_02ggq"]
 [ext_resource type="Shader" path="res://level/world3d.gdshader" id="7_btwve"]
@@ -128,15 +129,17 @@ collision_mask = 3
 shape = SubResource("ConcavePolygonShape3D_dxerr")
 
 [node name="Units" type="Node3D" parent="."]
+script = ExtResource("4_wqgya")
 
-[node name="Unit" parent="Units" groups=["MouseRaycast"] instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.28483, 7.78302, 1.70637)
+[node name="Unit" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.285, 0, 1.706)
 
-[node name="Unit2" parent="Units" groups=["MouseRaycast"] instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97206, 1.31549, 1.70637)
+[node name="Unit2" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.972, 0, 1.706)
 
-[node name="Unit3" parent="Units" groups=["MouseRaycast", "Team2"] instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3372, 1.31549, 1.70637)
+[node name="Unit3" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9445, 0, 1.706)
+faction = 1
 
 [node name="Interface" type="Node2D" parent="."]
 script = ExtResource("5_gt0qk")
@@ -219,4 +222,8 @@ script = ExtResource("14_cbwvj")
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
 wait_time = 0.01
 
+[connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
+[connection signal="deleted" from="Units/Unit" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit2" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit3" to="Units" method="_on_unit_delete"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]

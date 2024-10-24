@@ -1,8 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://0lf8y4ljp5j1"]
+[gd_scene load_steps=10 format=3 uid="uid://0lf8y4ljp5j1"]
 
 [ext_resource type="Script" path="res://units/unit.gd" id="1_y82sj"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2qd66"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vny8o"]
+albedo_color = Color(0.574765, 0.110881, 0.183568, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5o3gb"]
+material = SubResource("StandardMaterial3D_vny8o")
+top_radius = 0.65
+bottom_radius = 0.65
+height = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_o03a0"]
 
@@ -16,9 +25,9 @@ bg_color = Color(0, 0.713726, 0.443137, 1)
 viewport_path = NodePath("HealthbarContainer")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1d8ig"]
-radius = 5.53547
+radius = 7.5
 
-[node name="Unit" type="CharacterBody3D" groups=["Selectable", "selectable"]]
+[node name="Unit" type="CharacterBody3D" groups=["CombatTarget", "MouseRaycast", "Selectable", "selectable"]]
 script = ExtResource("1_y82sj")
 
 [node name="Coll" type="Node3D" parent="."]
@@ -26,6 +35,11 @@ script = ExtResource("1_y82sj")
 [node name="UnitBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03345, 0)
 mesh = SubResource("CylinderMesh_2qd66")
+
+[node name="EnemyIdentifier" type="MeshInstance3D" parent="UnitBody"]
+visible = false
+mesh = SubResource("CylinderMesh_5o3gb")
+skeleton = NodePath("../..")
 
 [node name="UnitColl" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03345, 0)
@@ -57,8 +71,9 @@ texture = SubResource("ViewportTexture_45oj3")
 [node name="RangeColl" type="CollisionShape3D" parent="RangeArea"]
 shape = SubResource("SphereShape3D_1d8ig")
 
-[node name="DamageTimer" type="Timer" parent="."]
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="RangeArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="RangeArea" to="." method="_on_area_3d_body_exited"]
-[connection signal="timeout" from="DamageTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_timer_timeout"]

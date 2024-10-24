@@ -7,4 +7,6 @@ var unit_counter = 0
 func _process(delta):
 	$Counter.set_text("kristalle: " + str(crystals)+ "   " + "FPS: " + str(Engine.get_frames_per_second()) + "   " + "Unitzahl: "+ str(unit_counter))
 
-
+func _on_units_delete_selection(unit):
+	if $Camera.selection.has(unit):
+		$Camera.selection.erase(unit)
