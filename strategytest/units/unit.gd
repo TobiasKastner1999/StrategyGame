@@ -108,6 +108,10 @@ func setTargetPosition(target):
 	priority_movement = true
 	go_to = target
 
+func setAttackTarget(target):
+	if target.is_in_group("CombatTarget") and target.getFaction() != faction:
+		current_target = target
+
 # combat funtions when enemy unit enters range the timer starts and ticks damage to the unit 
 # when HP is 0 the unit is deleted
 func _on_area_3d_body_entered(body):

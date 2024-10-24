@@ -134,6 +134,9 @@ script = ExtResource("4_wqgya")
 [node name="Unit" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.285, 0, 1.706)
 
+[node name="Unit4" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.7758, 0, 1.706)
+
 [node name="Unit2" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.972, 0, 1.706)
 
@@ -224,6 +227,7 @@ wait_time = 0.01
 
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
 [connection signal="deleted" from="Units/Unit" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/Unit4" to="Units" method="_on_unit_delete"]
 [connection signal="deleted" from="Units/Unit2" to="Units" method="_on_unit_delete"]
 [connection signal="deleted" from="Units/Unit3" to="Units" method="_on_unit_delete"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]

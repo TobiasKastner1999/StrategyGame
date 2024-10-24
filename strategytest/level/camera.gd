@@ -64,11 +64,14 @@ func _physics_process(delta):
 
 # gives values to the unit scripts like targetposition
 	if Input.is_action_just_pressed("Rightclick") && selection.size() != 0:
+		raycastMouseClick()
+		var unit = getUnitUnderMouse()
 		for selected in selection:
 			if selected.SR == false:
 				return
+			elif unit != null:
+				selected.setAttackTarget(unit)
 			else:
-				raycastMouseClick()
 				selected.setTargetPosition(raycast_mouse_click_3d_result)
 
 # zoom in or out with mousewheel
