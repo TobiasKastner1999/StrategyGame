@@ -58,11 +58,11 @@ data = PackedVector3Array(-50, 5, 50, 50, 5, 50, -50, -5, 50, 50, 5, 50, 50, -5,
 
 [sub_resource type="BoxMesh" id="BoxMesh_r4t5y"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xbfbl"]
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_0tyga"]
 top_radius = 0.1
 bottom_radius = 0.75
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_xbfbl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_samg3"]
 render_priority = 0
@@ -139,108 +139,151 @@ shape = SubResource("ConcavePolygonShape3D_dxerr")
 [node name="Units" type="Node3D" parent="."]
 script = ExtResource("4_wqgya")
 
-[node name="Unit" parent="Units" instance=ExtResource("4_hy2ph")]
+[node name="FriendlyTank" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0224, 0, -25.4273)
+max_hp = 20.0
 damage_value = 0.5
+attack_range = 2
 attack_speed = 5.0
-speed = 10
+detection_range = 10.0
+speed = 10.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/Unit"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/FriendlyTank"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 mesh = SubResource("BoxMesh_r4t5y")
 
-[node name="Unit2" parent="Units" instance=ExtResource("4_hy2ph")]
+[node name="FriendlyMelee1" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.8944, 0, -30.1637)
+max_hp = 10.0
+damage_value = 1.0
+attack_range = 2
+attack_speed = 2.0
+detection_range = 10.0
+speed = 12.0
 
-[node name="Unit3" parent="Units" instance=ExtResource("4_hy2ph")]
+[node name="FriendlyMelee2" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1398, 0.973846, -21.4172)
+max_hp = 10.0
+damage_value = 1.0
+attack_range = 2
+attack_speed = 2.0
+detection_range = 10.0
+speed = 12.0
+
+[node name="FriendlyRanged1" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.3917, 0, -19.9701)
+max_hp = 10.0
+damage_value = 0.5
+attack_range = 5
+attack_speed = 1.0
+detection_range = 15.0
+speed = 12.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/FriendlyRanged1"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
+mesh = SubResource("CapsuleMesh_xbfbl")
+
+[node name="FriendlyRanged2" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.8173, 0, -31.7294)
+max_hp = 10.0
+damage_value = 0.5
+attack_range = 5
+attack_speed = 1.0
+detection_range = 15.0
+speed = 12.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/FriendlyRanged2"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
+mesh = SubResource("CapsuleMesh_xbfbl")
+
+[node name="FriendlySniper" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.8685, 0, -26.6677)
 max_hp = 4.0
 damage_value = 4.0
 attack_range = 10
 attack_speed = 5.0
 detection_range = 20.0
-speed = 8
+speed = 8.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/Unit3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/FriendlySniper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 mesh = SubResource("CylinderMesh_0tyga")
 
-[node name="Unit4" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1398, 0.973846, -21.4172)
-
-[node name="Unit5" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.3917, 0, -19.9701)
-damage_value = 0.5
-attack_range = 5
-attack_speed = 1.5
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/Unit5"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
-mesh = SubResource("CapsuleMesh_xbfbl")
-
-[node name="Unit6" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.8173, 0, -31.7294)
-damage_value = 0.5
-attack_range = 5
-attack_speed = 1.5
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/Unit6"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
-mesh = SubResource("CapsuleMesh_xbfbl")
-
-[node name="Unit7" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.7065, 0, -43.8012)
+[node name="EnemyTank" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3984, 0, -35.8135)
 faction = 1
+max_hp = 20.0
 damage_value = 0.5
-attack_range = 5
-attack_speed = 1.5
+attack_range = 2
+attack_speed = 5.0
+detection_range = 10.0
+speed = 10.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/Unit7"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
-mesh = SubResource("CapsuleMesh_xbfbl")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/EnemyTank"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+mesh = SubResource("BoxMesh_r4t5y")
 
-[node name="Unit8" parent="Units" instance=ExtResource("4_hy2ph")]
+[node name="EnemyMelee1" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7836, -0.462612, -24.8821)
 faction = 1
+max_hp = 10.0
+damage_value = 1.0
+attack_range = 2
+attack_speed = 2.0
+detection_range = 10.0
+speed = 12.0
 
-[node name="Unit9" parent="Units" instance=ExtResource("4_hy2ph")]
+[node name="EnemyMelee2" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5106, 0, -44.7632)
+faction = 1
+max_hp = 10.0
+damage_value = 1.0
+attack_range = 2
+attack_speed = 2.0
+detection_range = 10.0
+speed = 12.0
+
+[node name="EnemyRanged1" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.7065, 0, -43.8012)
+faction = 1
+max_hp = 10.0
+damage_value = 0.5
+attack_range = 5
+attack_speed = 1.0
+detection_range = 15.0
+speed = 12.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/EnemyRanged1"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
+mesh = SubResource("CapsuleMesh_xbfbl")
+
+[node name="EnemyRanged2" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6749, 0, -24.3849)
+faction = 1
+max_hp = 10.0
+damage_value = 0.5
+attack_range = 5
+attack_speed = 1.0
+detection_range = 15.0
+speed = 12.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/EnemyRanged2"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
+mesh = SubResource("CapsuleMesh_xbfbl")
+
+[node name="EnemySniper" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.7111, 0, -31.7294)
 faction = 1
+max_hp = 4.0
 damage_value = 4.0
 attack_range = 10
 attack_speed = 5.0
 detection_range = 20.0
-speed = 8
+speed = 8.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/Unit9"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/EnemySniper"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 mesh = SubResource("CylinderMesh_0tyga")
-
-[node name="Unit10" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3984, 0, -35.8135)
-faction = 1
-damage_value = 0.5
-attack_speed = 5.0
-speed = 10
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/Unit10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-mesh = SubResource("BoxMesh_r4t5y")
-
-[node name="Unit11" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6749, 0, -24.3849)
-faction = 1
-damage_value = 0.5
-attack_range = 5
-attack_speed = 1.5
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Units/Unit11"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
-mesh = SubResource("CapsuleMesh_xbfbl")
-
-[node name="Unit12" parent="Units" instance=ExtResource("4_hy2ph")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5106, 0, -44.7632)
-faction = 1
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
@@ -348,16 +391,16 @@ script = ExtResource("14_cbwvj")
 wait_time = 0.01
 
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
-[connection signal="deleted" from="Units/Unit" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit2" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit3" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit4" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit5" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit6" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit7" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit8" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit9" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit10" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit11" to="Units" method="_on_unit_delete"]
-[connection signal="deleted" from="Units/Unit12" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/FriendlyTank" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/FriendlyMelee1" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/FriendlyMelee2" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/FriendlyRanged1" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/FriendlyRanged2" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/FriendlySniper" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/EnemyTank" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/EnemyMelee1" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/EnemyMelee2" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/EnemyRanged1" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/EnemyRanged2" to="Units" method="_on_unit_delete"]
+[connection signal="deleted" from="Units/EnemySniper" to="Units" method="_on_unit_delete"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]

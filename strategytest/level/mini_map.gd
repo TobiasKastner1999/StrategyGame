@@ -7,7 +7,8 @@ extends CanvasLayer
 
 # sets the position of the unit on the minimap
 func _ready():
-	unit_sprite.position = Vector2(unit.position.x,unit.position.z )
+	pass
+	#unit_sprite.position = Vector2(unit.position.x,unit.position.z )
 
 # when unit/camera move the minimap sprites follow
 func _process(delta):

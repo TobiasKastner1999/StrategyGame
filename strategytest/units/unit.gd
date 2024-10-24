@@ -13,12 +13,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the st
 var SR 
 
 @export var faction : int # which faction does this unit belong to?
-@export var max_hp = 10.0 # the units maximum hit points
-@export var damage_value = 1.0 # the damage the unit deals with each attack
-@export var attack_range = 2 # the distance at which the unit can attack enemy targets
-@export var attack_speed = 2.0 # the rate at which the unit attacks
-@export var detection_range = 7.5 # the distance at which the unit can detect other units
-@export var speed = 12 # the unit's movement speed
+@export var max_hp : float # the units maximum hit points
+@export var damage_value : float # the damage the unit deals with each attack
+@export var attack_range : int # the distance at which the unit can attack enemy targets
+@export var attack_speed : float # the rate at which the unit attacks
+@export var detection_range : float # the distance at which the unit can detect other units
+@export var speed : float # the unit's movement speed
 
 @onready var hp = max_hp # the unit's current hp, starting as its maximum hp
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the unit's movement
@@ -88,18 +88,20 @@ func move_to(target_pos):
 # attack the unit's current target
 func attackTarget():
 	go_to = global_position # stops the unit's movement
-	current_target.takeDamage(damage_value) # causes target to take the unit's attack damage
+	current_target.takeDamage(damage_value, self) # causes target to take the unit's attack damage
 	can_attack = false # disables the unit's attack
 	$AttackCooldown.start(attack_speed) # starts the attack cooldown
 	$AttackAnim/AnimationPlayer.play("attack")
 
 # causes the unit to take a given amount of damage
-func takeDamage(damage):
+func takeDamage(damage, attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the unit if it's remaining hp is 0 or less
 		deleted.emit(self) # tells the system to clear remaining references to the unit
 		queue_free() # then deletes the unit
+	elif current_target == null and nearby_enemies.size() == 0:
+		current_target = attacker
 
 # changes the color of the unit when selected or deselected
 func select():
