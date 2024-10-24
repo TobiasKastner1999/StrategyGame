@@ -120,7 +120,9 @@ func getFaction():
 
 # sets the position the NavAgent will move to
 func setTargetPosition(target):
-	priority_movement = true
+	if nearby_enemies.size() != 0 or current_target != null:
+		current_target = null
+		priority_movement = true
 	go_to = target
 
 # attempts to set a given target as the unit's target
