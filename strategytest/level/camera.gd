@@ -61,18 +61,18 @@ func _physics_process(delta):
 			selectType()
 		else:
 			selectUnits()
-
-# gives values to the unit scripts like targetposition
+	
+	# instructs the selected units to move to a given position
 	if Input.is_action_just_pressed("Rightclick") && selection.size() != 0:
-		raycastMouseClick()
-		var unit = getUnitUnderMouse()
+		raycastMouseClick() # checks for the map position the player clicked on
+		var unit = getUnitUnderMouse() # checks if the player clicked on a unit
 		for selected in selection:
 			if selected.SR == false:
 				return
-			elif unit != null:
-				selected.setAttackTarget(unit)
+			elif unit != null: 
+				selected.setAttackTarget(unit) # if the player clicked on a unit, instructs the selection to attack it
 			else:
-				selected.setTargetPosition(raycast_mouse_click_3d_result)
+				selected.setTargetPosition(raycast_mouse_click_3d_result) # otherwise, instructs the selection to move to the clicked position
 
 # zoom in or out with mousewheel
 func _unhandled_input(event):
