@@ -5,7 +5,7 @@ var unit_counter = 0
 
 # displays the amount of crystals, fps and units
 func _process(delta):
-	$Counter.set_text("kristalle: " + str(crystals)+ "   " + "FPS: " + str(Engine.get_frames_per_second()) + "   " + "Unitzahl: "+ str(unit_counter))
+	$Counter.set_text("kristalle: " + str(Global.crystals)+ "   " + "FPS: " + str(Engine.get_frames_per_second()) + "   " + "Unitzahl: "+ str(unit_counter))
 
 # attempts to remove a deleted unit from the camera's selection
 func _on_units_delete_selection(unit):

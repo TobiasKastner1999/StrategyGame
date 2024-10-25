@@ -1,7 +1,5 @@
 extends CharacterBody3D
 
-signal deposit_crystal()
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var SR
@@ -39,7 +37,7 @@ func _physics_process(delta):
 		go_to = hq.global_position
 		if global_position.distance_to(hq.global_position) < 4:
 			crystal = 0
-			deposit_crystal.emit()
+			Global.crystals += 1
 			done = false
 	
 	else:
