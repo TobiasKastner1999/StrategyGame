@@ -64,6 +64,10 @@ func _input(event : InputEvent) -> void:
 				var building_node : Node3D = building_packed_scene.instantiate()
 				get_parent().add_child(building_node)
 				building_node.transform.origin = building_placer_location
+				Global.crystals -= Global.BUILDING_COST
 				
 				if !shift:
 					interface_input_mode = 0
+	
+	if Input.is_action_just_pressed("Rightclick") and interface_input_mode == 1:
+		interface_input_mode = 0

@@ -13,9 +13,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var navi: NavigationAgent3D = $NavAgent
 @onready var hq = $".."
 
-func _ready():
-	print(hq.name)
-
 func _physics_process(delta):
 # gravity
 	if not is_on_floor():
@@ -26,7 +23,7 @@ func _physics_process(delta):
 	var dir = navi.get_next_path_position() - global_position
 	dir = dir.normalized()
 	
-	velocity = velocity.lerp(dir *SPEED, 10 * delta)
+	velocity = velocity.lerp(dir * SPEED, 10 * delta)
 	if position.distance_to(go_to) < 2:
 		velocity = Vector3.ZERO
 

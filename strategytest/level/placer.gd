@@ -32,7 +32,7 @@ func placement_check() -> bool:
 	model_red()
 	
 	# cant place when obstacles are in the way
-	if area.has_overlapping_bodies():
+	if area.has_overlapping_bodies() or Global.crystals < Global.BUILDING_COST:
 		return false
 
 # sets the check area to be the same size as the building
