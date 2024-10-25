@@ -13,6 +13,9 @@ script = ExtResource("1_1sosf")
 
 [node name="Workers" type="Node3D" parent="."]
 
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221885, -1.38918, 4.10481)
+
 [node name="HqBody" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_pe21x")
 
@@ -21,25 +24,6 @@ mesh = SubResource("BoxMesh_pe21x")
 [node name="HqColl" type="CollisionShape3D" parent="HqBody/HqStaticBody"]
 shape = SubResource("ConcavePolygonShape3D_uttco")
 
-[node name="HqMenu" type="ColorRect" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -158.0
-offset_right = 509.0
-grow_vertical = 0
-color = Color(0.2, 0.2, 0.2, 1)
+[node name="SpawnTimer" type="Timer" parent="."]
 
-[node name="WorkerSpawnButton" type="Button" parent="HqMenu"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 102.0
-offset_right = 85.0
-offset_bottom = 141.0
-text = "spawn worker
-"
-
-[node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221885, -1.38918, 4.10481)
-
-[connection signal="pressed" from="HqMenu/WorkerSpawnButton" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
