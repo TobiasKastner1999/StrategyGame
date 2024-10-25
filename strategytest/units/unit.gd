@@ -12,13 +12,13 @@ var path_ind = 0 # the id of the unit's current path position
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the strength of the gravity affecting the unit
 var SR 
 
-@export var faction : int # which faction does this unit belong to?
-@export var max_hp : float # the units maximum hit points
-@export var damage_value : float # the damage the unit deals with each attack
-@export var attack_range : int # the distance at which the unit can attack enemy targets
-@export var attack_speed : float # the rate at which the unit attacks
-@export var detection_range : float # the distance at which the unit can detect other units
-@export var speed : float # the unit's movement speed
+@export var faction : int = 0 # which faction does this unit belong to?
+@export var max_hp : float = 10.0 # the units maximum hit points
+@export var damage_value : float = 1.0 # the damage the unit deals with each attack
+@export var attack_range : int = 2 # the distance at which the unit can attack enemy targets
+@export var attack_speed : float = 2.0 # the rate at which the unit attacks
+@export var detection_range : float = 10.0 # the distance at which the unit can detect other units
+@export var speed : float = 12.0 # the unit's movement speed
 
 @onready var hp = max_hp # the unit's current hp, starting as its maximum hp
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the unit's movement

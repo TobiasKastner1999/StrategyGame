@@ -1,28 +1,28 @@
 extends Node3D
 
+const UNIT_COST = 1
+const SPAWN_RATE = 5.0
+var can_spawn = false
+
 var hp = 4
 
-# test healthbar for building
+@onready var unit_storage = $"../Units"
+
+func _ready():
+	$SpawnTimer.start(SPAWN_RATE)
+
 func _process(delta):
-	if hp == 4:
-		$TestHealthBar.value = 100
-	if hp == 3:
-		$TestHealthBar.value = 75
-	if hp == 2:
-		$TestHealthBar.value = 50
-	if hp == 1:
-		$TestHealthBar.value = 25
-	if hp == 0:
-		queue_free()
+	if can_spawn and Global.crystals >= UNIT_COST:
+		spawnUnit()
 
-#when enemy enters it starts a timer that deals damage per tick
-func _on_timer_timeout():
-	hp -= 1
+func spawnUnit():
+	can_spawn = false
+	Global.crystals -= UNIT_COST
+	$SpawnTimer.start(SPAWN_RATE)
+	
+	var new_unit = load("res://units/unit.tscn").instantiate()
+	unit_storage.add_child(new_unit)
+	new_unit.global_position = $SpawnPoint.global_position
 
-func _on_area_3d_body_entered(body):
-	if body.is_in_group("Team2"):
-		$Timer.start()
-
-func _on_area_3d_body_exited(body):
-	if body.is_in_group("Team2"):
-		$Timer.stop()
+func _on_spawn_timer_timeout():
+	can_spawn = true

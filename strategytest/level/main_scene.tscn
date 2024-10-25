@@ -143,9 +143,7 @@ script = ExtResource("4_wqgya")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0224, 0, -25.4273)
 max_hp = 20.0
 damage_value = 0.5
-attack_range = 2
 attack_speed = 5.0
-detection_range = 10.0
 speed = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Units/FriendlyTank"]
@@ -154,30 +152,16 @@ mesh = SubResource("BoxMesh_r4t5y")
 
 [node name="FriendlyMelee1" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.8944, 0, -30.1637)
-max_hp = 10.0
-damage_value = 1.0
-attack_range = 2
-attack_speed = 2.0
-detection_range = 10.0
-speed = 12.0
 
 [node name="FriendlyMelee2" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1398, 0.973846, -21.4172)
-max_hp = 10.0
-damage_value = 1.0
-attack_range = 2
-attack_speed = 2.0
-detection_range = 10.0
-speed = 12.0
 
 [node name="FriendlyRanged1" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.3917, 0, -19.9701)
-max_hp = 10.0
 damage_value = 0.5
 attack_range = 5
 attack_speed = 1.0
 detection_range = 15.0
-speed = 12.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Units/FriendlyRanged1"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
@@ -185,12 +169,10 @@ mesh = SubResource("CapsuleMesh_xbfbl")
 
 [node name="FriendlyRanged2" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.8173, 0, -31.7294)
-max_hp = 10.0
 damage_value = 0.5
 attack_range = 5
 attack_speed = 1.0
 detection_range = 15.0
-speed = 12.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Units/FriendlyRanged2"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
@@ -214,9 +196,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.3984, 0, -35.8135)
 faction = 1
 max_hp = 20.0
 damage_value = 0.5
-attack_range = 2
 attack_speed = 5.0
-detection_range = 10.0
 speed = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Units/EnemyTank"]
@@ -226,32 +206,18 @@ mesh = SubResource("BoxMesh_r4t5y")
 [node name="EnemyMelee1" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.7836, -0.462612, -24.8821)
 faction = 1
-max_hp = 10.0
-damage_value = 1.0
-attack_range = 2
-attack_speed = 2.0
-detection_range = 10.0
-speed = 12.0
 
 [node name="EnemyMelee2" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5106, 0, -44.7632)
 faction = 1
-max_hp = 10.0
-damage_value = 1.0
-attack_range = 2
-attack_speed = 2.0
-detection_range = 10.0
-speed = 12.0
 
 [node name="EnemyRanged1" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.7065, 0, -43.8012)
 faction = 1
-max_hp = 10.0
 damage_value = 0.5
 attack_range = 5
 attack_speed = 1.0
 detection_range = 15.0
-speed = 12.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Units/EnemyRanged1"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)
@@ -260,12 +226,10 @@ mesh = SubResource("CapsuleMesh_xbfbl")
 [node name="EnemyRanged2" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.6749, 0, -24.3849)
 faction = 1
-max_hp = 10.0
 damage_value = 0.5
 attack_range = 5
 attack_speed = 1.0
 detection_range = 15.0
-speed = 12.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Units/EnemyRanged2"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 2.5, 0)

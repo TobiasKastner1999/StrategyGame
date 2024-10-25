@@ -16,6 +16,9 @@ radius = 4.31946
 [node name="Building" type="Node3D"]
 script = ExtResource("1_poico")
 
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
 [node name="BuildingBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.523625, 0)
 mesh = SubResource("BoxMesh_c6d8r")
@@ -31,13 +34,14 @@ shape = SubResource("ConcavePolygonShape3D_8n7cg")
 [node name="RangeColl" type="CollisionShape3D" parent="RangeArea"]
 shape = SubResource("SphereShape3D_i5op1")
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="TestHealthBar" type="ProgressBar" parent="."]
 visible = false
 offset_right = 326.0
 offset_bottom = 27.0
 
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="RangeArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="RangeArea" to="." method="_on_area_3d_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
