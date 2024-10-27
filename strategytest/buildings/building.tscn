@@ -1,47 +1,67 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvgxlsv6fcpoe"]
+[gd_scene load_steps=9 format=3 uid="uid://bvgxlsv6fcpoe"]
 
 [ext_resource type="Script" path="res://buildings/building.gd" id="1_poico"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8n7cg"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c6d8r"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0win"]
 albedo_color = Color(1, 0, 1, 1)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8n7cg"]
-data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_i5op1"]
 radius = 4.31946
 
-[node name="Building" type="Node3D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nej64"]
+bg_color = Color(1, 0.337255, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pa52"]
+bg_color = Color(0, 0.713726, 0.443137, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kfgwd"]
+viewport_path = NodePath("HealthbarContainer")
+
+[node name="Building" type="StaticBody3D" groups=["CombatTarget"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.523625, 0)
 script = ExtResource("1_poico")
 
-[node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+[node name="BuildingColl" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_8n7cg")
 
 [node name="BuildingBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.523625, 0)
 mesh = SubResource("BoxMesh_c6d8r")
+skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_n0win")
 
-[node name="BuildingStaticBody" type="StaticBody3D" parent="BuildingBody"]
-
-[node name="BuildingColl" type="CollisionShape3D" parent="BuildingBody/BuildingStaticBody"]
-shape = SubResource("ConcavePolygonShape3D_8n7cg")
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="RangeArea" type="Area3D" parent="."]
 
 [node name="RangeColl" type="CollisionShape3D" parent="RangeArea"]
 shape = SubResource("SphereShape3D_i5op1")
 
-[node name="TestHealthBar" type="ProgressBar" parent="."]
-visible = false
-offset_right = 326.0
+[node name="HealthbarContainer" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="HealthBar" type="ProgressBar" parent="HealthbarContainer"]
+offset_left = -1.0
+offset_right = 353.0
 offset_bottom = 27.0
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_nej64")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0pa52")
+value = 100.0
+show_percentage = false
+
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889443, 0.901891, 0)
+texture = SubResource("ViewportTexture_kfgwd")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="body_entered" from="RangeArea" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="RangeArea" to="." method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

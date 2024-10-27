@@ -4,7 +4,7 @@ signal deleted(unit) # to tell the system the unit has been defeated
 
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
-var current_target : CharacterBody3D # the enemy target the unit is currently attacking
+var current_target : PhysicsBody3D # the enemy target the unit is currently attacking
 var priority_movement = false # is the unit's movement overridden by a player command
 
 var path = [] # the path the unit is navigating on
