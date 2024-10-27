@@ -59,6 +59,7 @@ show_percentage = false
 
 [node name="HealthBarSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889443, 0.901891, 0)
+visible = false
 texture = SubResource("ViewportTexture_kfgwd")
 
 [node name="SpawnTimer" type="Timer" parent="."]

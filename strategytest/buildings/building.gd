@@ -34,6 +34,7 @@ func spawnUnit():
 # causes the building to take a given amount of damage
 func takeDamage(damage, attacker):
 	hp -= damage # subtracts the damage taken from the current hp
+	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the building if it's remaining hp is 0 or less
 		queue_free() # then deletes the building

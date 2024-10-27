@@ -96,6 +96,7 @@ func attackTarget():
 # causes the unit to take a given amount of damage
 func takeDamage(damage, attacker):
 	hp -= damage # subtracts the damage taken from the current hp
+	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the unit if it's remaining hp is 0 or less
 		deleted.emit(self) # tells the system to clear remaining references to the unit
