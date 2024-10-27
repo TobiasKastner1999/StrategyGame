@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=33 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://level/main_scene.gd" id="1_knc78"]
 [ext_resource type="Script" path="res://level/camera.gd" id="2_on5d0"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bjfpwbrp2nv1k" path="res://icon.svg" id="10_el4g1"]
 [ext_resource type="PackedScene" uid="uid://kfr5nk4l557f" path="res://resources/ressource.tscn" id="11_e04ha"]
 [ext_resource type="PackedScene" uid="uid://7012rhjv4u2g" path="res://buildings/hq.tscn" id="11_eb4t3"]
+[ext_resource type="Script" path="res://resources/resource_manager.gd" id="12_15n6g"]
 [ext_resource type="Script" path="res://level/spawn_script.gd" id="14_cbwvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wjwa7"]
@@ -331,22 +332,25 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("10_el4g1")
 centered = false
 
-[node name="Ressource" parent="." instance=ExtResource("11_e04ha")]
+[node name="Resources" type="Node3D" parent="."]
+script = ExtResource("12_15n6g")
+
+[node name="Ressource" parent="Resources" instance=ExtResource("11_e04ha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1739, 3.39775, 73.2089)
 
-[node name="Ressource2" parent="." instance=ExtResource("11_e04ha")]
+[node name="Ressource2" parent="Resources" instance=ExtResource("11_e04ha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30621, 3.39775, 73.2089)
 
-[node name="Ressource3" parent="." instance=ExtResource("11_e04ha")]
+[node name="Ressource3" parent="Resources" instance=ExtResource("11_e04ha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.87345, 3.39775, 73.2089)
 
-[node name="Ressource4" parent="." instance=ExtResource("11_e04ha")]
+[node name="Ressource4" parent="Resources" instance=ExtResource("11_e04ha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0575, 3.39775, 87.343)
 
-[node name="Ressource5" parent="." instance=ExtResource("11_e04ha")]
+[node name="Ressource5" parent="Resources" instance=ExtResource("11_e04ha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77619, 3.39775, 87.343)
 
-[node name="Ressource6" parent="." instance=ExtResource("11_e04ha")]
+[node name="Ressource6" parent="Resources" instance=ExtResource("11_e04ha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.55093, 3.39775, 96.5742)
 
 [node name="HQ" parent="." instance=ExtResource("11_eb4t3")]
@@ -376,4 +380,10 @@ wait_time = 0.01
 [connection signal="deleted" from="Units/EnemyRanged1" to="Units" method="_on_unit_delete"]
 [connection signal="deleted" from="Units/EnemyRanged2" to="Units" method="_on_unit_delete"]
 [connection signal="deleted" from="Units/EnemySniper" to="Units" method="_on_unit_delete"]
+[connection signal="expended" from="Resources/Ressource" to="Resources" method="_on_ressource_expended"]
+[connection signal="expended" from="Resources/Ressource2" to="Resources" method="_on_ressource_expended"]
+[connection signal="expended" from="Resources/Ressource3" to="Resources" method="_on_ressource_expended"]
+[connection signal="expended" from="Resources/Ressource4" to="Resources" method="_on_ressource_expended"]
+[connection signal="expended" from="Resources/Ressource5" to="Resources" method="_on_ressource_expended"]
+[connection signal="expended" from="Resources/Ressource6" to="Resources" method="_on_ressource_expended"]
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_timer_timeout"]

@@ -64,3 +64,6 @@ show_percentage = false
 [node name="HealthBarSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889443, 0.901891, 0)
 texture = SubResource("ViewportTexture_3mjsh")
+
+[connection signal="body_entered" from="RangeArea" to="." method="_on_range_area_body_entered"]
+[connection signal="body_exited" from="RangeArea" to="." method="_on_range_area_body_exited"]
