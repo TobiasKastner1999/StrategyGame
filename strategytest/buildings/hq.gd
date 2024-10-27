@@ -28,9 +28,10 @@ func spawnWorker():
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
 
+# removes references to an expended resource from the workers
 func excludeResource(node):
 	for worker in $Workers.get_children():
-		worker.removeResourceKnowledge(node)
+		worker.removeResourceKnowledge(node) # calls the requisite function on each worker
 
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):
