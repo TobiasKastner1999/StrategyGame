@@ -7,7 +7,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_plo4n"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_b7yh8"]
-radius = 16.2939
+radius = 25.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8awu"]
 bg_color = Color(1, 0.337255, 0.337255, 1)
