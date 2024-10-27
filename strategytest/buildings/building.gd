@@ -26,6 +26,7 @@ func spawnUnit():
 	var new_unit = load("res://units/unit.tscn").instantiate() # instantiates the unit
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = $SpawnPoint.global_position # moves the unit to the correct spawn position
+	unit_storage.connectDeletion(new_unit) # calls for the storage to connect to its new child
 
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():

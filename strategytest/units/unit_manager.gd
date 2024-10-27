@@ -2,6 +2,10 @@ extends Node3D
 
 signal delete_selection(unit) # to tell camera to remove a deleted unit from the selection
 
+# calls to connect a newly attached unit's deletion signal
+func connectDeletion(unit):
+	unit.deleted.connect(_on_unit_delete)
+
 # called when a unit is deleted
 func _on_unit_delete(deleted):
 	# checks for each other unit of they have the deleted unit as their current target

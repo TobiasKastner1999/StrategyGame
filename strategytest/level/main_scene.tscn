@@ -139,6 +139,10 @@ shape = SubResource("ConcavePolygonShape3D_dxerr")
 [node name="Units" type="Node3D" parent="."]
 script = ExtResource("4_wqgya")
 
+[node name="Unit" parent="Units" instance=ExtResource("4_hy2ph")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 74.9534)
+faction = 1
+
 [node name="FriendlyTank" parent="Units" instance=ExtResource("4_hy2ph")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0224, 0, -25.4273)
 max_hp = 20.0
