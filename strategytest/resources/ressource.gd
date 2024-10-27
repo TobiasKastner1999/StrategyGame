@@ -8,6 +8,5 @@ var resource = 3
 func takeResource():
 	resource -= 1
 	if resource <= 0:
-		print("deleted!")
 		expended.emit($ResourceBody/ResourceStaticBody)
 		queue_free()

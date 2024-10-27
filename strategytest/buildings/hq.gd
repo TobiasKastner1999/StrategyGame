@@ -29,9 +29,7 @@ func spawnWorker():
 	worker.deleted.connect(_on_worker_deleted)
 
 func excludeResource(node):
-	print("checking workers...")
 	for worker in $Workers.get_children():
-		print("check!")
 		worker.removeResourceKnowledge(node)
 
 # clears remaining references to a deleted worker

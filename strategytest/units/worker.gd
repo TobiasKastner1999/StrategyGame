@@ -33,7 +33,7 @@ func _physics_process(delta):
 	
 	if !priority_movement:
 		if crystal != 0:
-			if global_position.distance_to(hq.global_position) < 4:
+			if global_position.distance_to(hq.global_position) < 6:
 				crystal = 0
 				Global.crystals += 1
 				done = false
@@ -111,11 +111,7 @@ func setTargetPosition(target):
 	go_to = target
 
 func removeResourceKnowledge(resource):
-	print("check received!")
-	print(known_resources)
 	if known_resources.has(resource):
-		print("removed!")
-		print(known_resources)
 		known_resources.erase(resource)
 
 func _on_range_area_body_entered(body):
