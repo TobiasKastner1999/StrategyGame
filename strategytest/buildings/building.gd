@@ -1,5 +1,6 @@
 extends Node3D
 
+const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
 const UNIT_COST = 1 # how many crystals does each unit from this building cost to produce?
 const SPAWN_RATE = 5.0 # how often can the building produce new units?
@@ -46,6 +47,10 @@ func setFaction(f : int):
 # returns the building's current faction
 func getFaction():
 	return faction
+
+# returns the target type (building)
+func getType():
+	return TARGET_TYPE
 
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():

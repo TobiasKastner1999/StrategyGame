@@ -2,6 +2,9 @@ extends CharacterBody3D
 
 signal deleted(unit) # to tell the system the unit has been defeated
 
+const TARGET_TYPE = "combat" # the unit's target type
+const TARGET_PRIORITY = ["combat", "building", "worker"] # the unit's targeting priority based on types
+
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
 var current_target : PhysicsBody3D # the enemy target the unit is currently attacking
@@ -57,9 +60,13 @@ func _physics_process(delta):
 				var intend_target
 				for enemy in nearby_enemies:
 					var distance = global_position.distance_to(enemy.global_position) # checks the distance to each enemy
-					if (min_distance == null) or (distance < min_distance):
+					# chooses a new intended target, if the following is true:
+					# no intended target has been chosen yet OR
+					# the new target is of a higher target priority then the previous intended target OR
+					# the new target is of the same target priority as the previous intended target, but closer to the unit
+					if (min_distance == null) or (checkTargetPriority(enemy.getType()) < checkTargetPriority(intend_target.getType())) or ((distance < min_distance) and (checkTargetPriority(enemy.getType()) == checkTargetPriority(intend_target.getType()))):
 						min_distance = distance
-						intend_target = enemy # if the distance is the shortest, designates that enemy as the first target
+						intend_target = enemy # designates that enemy as the first target
 				# if the intented target is within attack range, attempts to attack
 				if min_distance <= attack_range:
 					current_target = intend_target # sets the target
@@ -84,6 +91,10 @@ func _physics_process(delta):
 func move_to(target_pos):
 	path = navi.get_simple_path(global_transform.origin, target_pos)
 	path_ind = 0
+
+# returns the priority index of a given entry in the priority array
+func checkTargetPriority(type : String):
+	return TARGET_PRIORITY.find(type)
 
 # attack the unit's current target
 func attackTarget():
@@ -118,6 +129,10 @@ func setFaction(f : int):
 # returns the unit's current faction
 func getFaction():
 	return faction
+
+# returns the unit's target type (combat)
+func getType():
+	return TARGET_TYPE
 
 # sets the position the NavAgent will move to
 func setTargetPosition(target):
