@@ -3,14 +3,13 @@ extends CharacterBody3D
 signal deleted(worker) # to tell the system that the worker has been removed
 
 const TARGET_TYPE = "worker" # the worker's combat type
-const SPEED = 5.0 # the worker's movement speed
+const SPEED = 10.0 # the worker's movement speed
 const MAX_HP = 2.0 # the worker's maximum hit points
 
 var SR
 var faction = 0 # which faction does the worker belong to?
 var path = [] # the navigation path the worker is traveling on
 var path_ind = 0 # the index of the worker's current path node
-var go_to = Vector3.ZERO # the worker's current navigation destination
 var crystal = 0 # how many crystals the worker is holding
 var known_resources = [] # an array of all resource nodes the worker has discovered
 var target_resource # the resource the worker is currently moving towards
@@ -18,6 +17,7 @@ var priority_movement = false # is the worker's currently overwritten by a playe
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gravity affecting the worker
 
 @onready var hp = MAX_HP # the worker's current hit points, set to the maximum on instantiation
+@onready var go_to = global_position # the worker's current navigation destination
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the worker's movement
 @onready var hq = $".." # the hq the worker belongs to
 
@@ -115,7 +115,7 @@ func getType():
 
 # changes the color of the unit when selected or deselected
 func select():
-	$WorkerBody.material_override = load("res://units/new_standard_material_3d_gelb.tres")
+	$WorkerBody.material_override = load("res://units/material_friendly_selected.tres")
 
 func deselect():
 	$WorkerBody.material_override = load("res://units/new_standard_material_3d_weiß.tres")

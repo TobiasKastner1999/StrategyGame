@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://0lf8y4ljp5j1"]
+[gd_scene load_steps=16 format=3 uid="uid://0lf8y4ljp5j1"]
 
 [ext_resource type="Script" path="res://units/unit.gd" id="1_y82sj"]
+[ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://units/material_friendly.tres" id="2_6xgls"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2qd66"]
 
@@ -103,6 +104,7 @@ script = ExtResource("1_y82sj")
 [node name="UnitBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03345, 0)
 mesh = SubResource("CylinderMesh_2qd66")
+surface_material_override/0 = ExtResource("2_6xgls")
 
 [node name="EnemyIdentifier" type="MeshInstance3D" parent="UnitBody"]
 visible = false

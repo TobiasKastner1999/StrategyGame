@@ -11,8 +11,8 @@ var side_bar_mouse_entered = false
 var double_click = false
 @onready var camera = $Camera
 @onready var selection_box_2d = $SelectionBox
-@onready var mouse_raycast_group = get_tree().get_nodes_in_group("MouseRaycast")
-@onready var mouse_raycast = mouse_raycast_group[0]
+@onready var mouse_raycast_group
+@onready var mouse_raycast
 
 func _physics_process(delta):
 	var mouse_pos = get_viewport().get_mouse_position()

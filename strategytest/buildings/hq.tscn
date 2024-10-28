@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://7012rhjv4u2g"]
+[gd_scene load_steps=5 format=3 uid="uid://7012rhjv4u2g"]
 
 [ext_resource type="Script" path="res://buildings/hq.gd" id="1_1sosf"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_pe21x"]
-size = Vector3(5, 5, 5)
+[ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://units/material_friendly.tres" id="2_stdo8"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_uttco"]
 data = PackedVector3Array(-2.5, 2.5, 2.5, 2.5, 2.5, 2.5, -2.5, -2.5, 2.5, 2.5, 2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, 2.5, 2.5, 2.5, -2.5, -2.5, 2.5, -2.5, 2.5, -2.5, -2.5, -2.5, 2.5, -2.5, -2.5, -2.5, -2.5, 2.5, -2.5, -2.5, 2.5, 2.5, 2.5, 2.5, 2.5, -2.5, 2.5, -2.5, 2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, 2.5, -2.5, 2.5, -2.5, 2.5, -2.5, -2.5, 2.5, 2.5, -2.5, -2.5, -2.5, -2.5, 2.5, 2.5, -2.5, -2.5, 2.5, -2.5, -2.5, -2.5, 2.5, 2.5, 2.5, -2.5, 2.5, 2.5, 2.5, 2.5, -2.5, -2.5, 2.5, 2.5, -2.5, 2.5, -2.5, 2.5, 2.5, -2.5, -2.5, -2.5, 2.5, 2.5, -2.5, 2.5, -2.5, -2.5, -2.5, 2.5, -2.5, 2.5, 2.5, -2.5, -2.5, -2.5, -2.5, -2.5)
 
-[node name="HQ" type="Node3D"]
+[sub_resource type="BoxMesh" id="BoxMesh_pe21x"]
+size = Vector3(5, 5, 5)
+
+[node name="HQ" type="StaticBody3D"]
 script = ExtResource("1_1sosf")
 
 [node name="Workers" type="Node3D" parent="."]
@@ -16,13 +17,13 @@ script = ExtResource("1_1sosf")
 [node name="SpawnPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.221885, -1.38918, 4.10481)
 
+[node name="HqColl" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_uttco")
+
 [node name="HqBody" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_pe21x")
-
-[node name="HqStaticBody" type="StaticBody3D" parent="HqBody"]
-
-[node name="HqColl" type="CollisionShape3D" parent="HqBody/HqStaticBody"]
-shape = SubResource("ConcavePolygonShape3D_uttco")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("2_stdo8")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 

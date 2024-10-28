@@ -14,6 +14,7 @@ var path = [] # the path the unit is navigating on
 var path_ind = 0 # the id of the unit's current path position
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the strength of the gravity affecting the unit
 var SR 
+var go_to
 
 @export var faction : int = 0 # which faction does this unit belong to?
 @export var max_hp : float = 10.0 # the units maximum hit points
@@ -21,11 +22,10 @@ var SR
 @export var attack_range : int = 2 # the distance at which the unit can attack enemy targets
 @export var attack_speed : float = 2.0 # the rate at which the unit attacks
 @export var detection_range : float = 10.0 # the distance at which the unit can detect other units
-@export var speed : float = 12.0 # the unit's movement speed
+@export var speed : float = 25.0 # the unit's movement speed
 
 @onready var hp = max_hp # the unit's current hp, starting as its maximum hp
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the unit's movement
-@onready var go_to = global_position # the global position the agent wants to navigate to
 
 # called when the unit is first loaded
 func _ready():
@@ -36,6 +36,9 @@ func _ready():
 	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
 	$RangeArea/RangeColl.shape.radius = detection_range
 	$AttackAnim.mesh = $AttackAnim.mesh.duplicate()
+	
+	await get_tree().physics_frame
+	go_to = global_position
 
 # controls the unit's movement and other actions
 func _physics_process(delta):
@@ -120,7 +123,7 @@ func select():
 	$UnitBody.material_override = load("res://units/new_standard_material_3d_gelb.tres")
 
 func deselect():
-	$UnitBody.material_override = load("res://units/new_standard_material_3d_weiß.tres")
+	$UnitBody.material_override = load("res://units/material_friendly.tres")
 
 # sets the unit's faction to a given value
 func setFaction(f : int):

@@ -4,8 +4,7 @@ const SPAWN_DELAY = 10.0 # how often will new workers spawn?
 const MAX_WORKERS = 4 # how many workers can spawn at most?
 var current_workers = 0 # how many workers are currently alive?
 var can_spawn = false # can the hq spawn a new worker?
-
-@onready var unit_manager = $".."/Units
+var unit_manager
 
 # called at the start of the game
 func _ready():
