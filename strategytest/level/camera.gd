@@ -66,12 +66,12 @@ func _physics_process(delta):
 	# instructs the selected units to move to a given position
 	if Input.is_action_just_pressed("Rightclick") && selection.size() != 0:
 		raycastMouseClick() # checks for the map position the player clicked on
-		var unit = getUnitUnderMouse() # checks if the player clicked on a unit
+		var target = getTargetUnderMouse() # checks if the player clicked on a target
 		for selected in selection:
 			if selected.SR == false:
 				return
-			elif unit != null: 
-				selected.setAttackTarget(unit) # if the player clicked on a unit, instructs the selection to attack it
+			elif target != null: 
+				selected.setAttackTarget(target) # if the player clicked on a unit, instructs the selection to attack it
 			else:
 				selected.setTargetPosition(raycast_mouse_click_3d_result) # otherwise, instructs the selection to move to the clicked position
 
@@ -114,6 +114,13 @@ func getUnitUnderMouse():
 	raycastFromMouse()
 	var result = mouse_click_collider_3d_result
 	if result != null && result.is_in_group("Selectable"):
+		return result
+
+# call the combat target that is under the mouse
+func getTargetUnderMouse():
+	raycastFromMouse()
+	var result = mouse_click_collider_3d_result
+	if result != null && result.is_in_group("CombatTarget"):
 		return result
 
 # makes a 3d box to select units inside
