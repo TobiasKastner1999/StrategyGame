@@ -104,6 +104,7 @@ func setAttackTarget(unit):
 # sets the worker's faction to a given value
 func setFaction(f : int):
 	faction = f
+	$WorkerBody.material_override = load(Global.getFactionColor(faction))
 
 # returns the worker's current faction
 func getFaction():

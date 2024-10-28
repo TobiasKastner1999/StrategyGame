@@ -32,7 +32,6 @@ func spawnUnit(spawn_point):
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
 	unit_storage.connectDeletion(new_unit) # calls for the storage to connect to its new child
-	print("unit spawned!")
 
 func getEmptySpawn():
 	for point in $SpawnPoints.get_children():

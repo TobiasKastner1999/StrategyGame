@@ -89,7 +89,7 @@ transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Camera" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.791443, 0, 174.383)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 174.383)
 script = ExtResource("2_on5d0")
 
 [node name="Camera" type="Camera3D" parent="Camera"]
@@ -110,8 +110,12 @@ one_shot = true
 [node name="Nav" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_upq6f")
 
-[node name="HQ" parent="Nav" instance=ExtResource("11_eb4t3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.312, 5.808, 200)
+[node name="HQFriendly" parent="Nav" instance=ExtResource("11_eb4t3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, 200)
+
+[node name="HQEnemy" parent="Nav" instance=ExtResource("11_eb4t3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, -200)
+faction = 1
 
 [node name="Floor" type="StaticBody3D" parent="Nav"]
 

@@ -6,8 +6,11 @@ var current_workers = 0 # how many workers are currently alive?
 var can_spawn = false # can the hq spawn a new worker?
 var unit_manager
 
+@export var faction = 0
+
 # called at the start of the game
 func _ready():
+	$HqBody.material_override = load(Global.getFactionColor(faction))
 	$SpawnTimer.start(SPAWN_DELAY) # prepares to spawn the first worker
 
 # checks repeatedly to spawn new workers
@@ -24,6 +27,7 @@ func spawnWorker():
 	var worker = load("res://units/worker.tscn").instantiate() # instantiates a new worker object
 	$Workers.add_child(worker) # adds the worker to the correct node
 	worker.global_position = $SpawnPoint.global_position # moves the worker to the correct spawn location
+	worker.setFaction(faction)
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
 
