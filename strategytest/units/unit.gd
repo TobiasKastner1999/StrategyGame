@@ -3,7 +3,7 @@ extends CharacterBody3D
 signal deleted(unit) # to tell the system the unit has been defeated
 
 const TARGET_TYPE = "combat" # the unit's target type
-const TARGET_PRIORITY = ["combat", "building", "worker"] # the unit's targeting priority based on types
+const TARGET_PRIORITY = ["combat", "hq", "building", "worker"] # the unit's targeting priority based on types
 
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
@@ -50,7 +50,7 @@ func _physics_process(delta):
 	if priority_movement == false:
 		# if the unit is already fighting an enemy target
 		if current_target != null:
-			if global_position.distance_to(current_target.global_position) <= attack_range:
+			if global_position.distance_to(current_target.global_position) <= (attack_range + current_target.getSize()):
 				if can_attack:
 					attackTarget() # attacks the target if it is within attack range, and the unit's attack is available
 			else:
@@ -136,6 +136,9 @@ func getFaction():
 # returns the unit's target type (combat)
 func getType():
 	return TARGET_TYPE
+
+func getSize():
+	return $UnitColl.shape.radius
 
 # sets the position the NavAgent will move to
 func setTargetPosition(target):

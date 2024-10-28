@@ -59,6 +59,9 @@ func getFaction():
 func getType():
 	return TARGET_TYPE
 
+func getSize():
+	return ($BuildingBody.mesh.size.x / 2)
+
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():
 	can_spawn = true

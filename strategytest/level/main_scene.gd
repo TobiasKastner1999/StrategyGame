@@ -5,6 +5,7 @@ var unit_counter = 0
 
 func _ready():
 	$Nav/HQFriendly.unit_manager = $Units
+	$Nav/HQEnemy.unit_manager = $Units
 
 # displays the amount of crystals, fps and units
 func _process(delta):

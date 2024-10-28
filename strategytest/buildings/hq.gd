@@ -1,16 +1,23 @@
 extends Node3D
 
+const TARGET_TYPE = "hq" # the hq's target type
 const SPAWN_DELAY = 10.0 # how often will new workers spawn?
 const MAX_WORKERS = 4 # how many workers can spawn at most?
+const MAX_HP = 20.0 # the hq's maximum hp
+
 var current_workers = 0 # how many workers are currently alive?
 var can_spawn = false # can the hq spawn a new worker?
 var unit_manager
+
+@onready var hp = MAX_HP # the hq's current hp, initially set to the maximum
 
 @export var faction = 0
 
 # called at the start of the game
 func _ready():
 	$HqBody.material_override = load(Global.getFactionColor(faction))
+	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
+	$HealthbarContainer/HealthBar.value = hp
 	$SpawnTimer.start(SPAWN_DELAY) # prepares to spawn the first worker
 
 # checks repeatedly to spawn new workers
@@ -35,6 +42,25 @@ func spawnWorker():
 func excludeResource(node):
 	for worker in $Workers.get_children():
 		worker.removeResourceKnowledge(node) # calls the requisite function on each worker
+
+# causes the hq to take a given amount of damage
+func takeDamage(damage, attacker):
+	hp -= damage # subtracts the damage taken from the current hp
+	$HealthBarSprite.visible = true
+	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
+	if hp <= 0: # removes the hq if it's remaining hp is 0 or less
+		queue_free() # then deletes the hq
+
+# returns the faction the HQ belongs to
+func getFaction():
+	return faction
+
+# returns the target type (hq)
+func getType():
+	return TARGET_TYPE
+
+func getSize():
+	return ($HqBody.mesh.size.x / 2)
 
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):

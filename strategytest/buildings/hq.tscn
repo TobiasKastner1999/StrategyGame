@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://7012rhjv4u2g"]
+[gd_scene load_steps=8 format=3 uid="uid://7012rhjv4u2g"]
 
 [ext_resource type="Script" path="res://buildings/hq.gd" id="1_1sosf"]
 [ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://units/material_friendly.tres" id="2_stdo8"]
@@ -9,7 +9,16 @@ data = PackedVector3Array(-2.5, 2.5, 2.5, 2.5, 2.5, 2.5, -2.5, -2.5, 2.5, 2.5, 2
 [sub_resource type="BoxMesh" id="BoxMesh_pe21x"]
 size = Vector3(5, 5, 5)
 
-[node name="HQ" type="StaticBody3D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dau50"]
+bg_color = Color(1, 0.337255, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvi4s"]
+bg_color = Color(0, 0.713726, 0.443137, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kgrps"]
+viewport_path = NodePath("HealthbarContainer")
+
+[node name="HQ" type="StaticBody3D" groups=["CombatTarget"]]
 script = ExtResource("1_1sosf")
 
 [node name="Workers" type="Node3D" parent="."]
@@ -24,6 +33,25 @@ shape = SubResource("ConcavePolygonShape3D_uttco")
 mesh = SubResource("BoxMesh_pe21x")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_stdo8")
+
+[node name="HealthbarContainer" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="HealthBar" type="ProgressBar" parent="HealthbarContainer"]
+offset_left = -1.0
+offset_right = 353.0
+offset_bottom = 27.0
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_dau50")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jvi4s")
+value = 100.0
+show_percentage = false
+
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889443, 0.901891, 0)
+visible = false
+texture = SubResource("ViewportTexture_kgrps")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 

@@ -145,7 +145,6 @@ shape = SubResource("SphereShape3D_1d8ig")
 one_shot = true
 
 [node name="AttackAnim" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CylinderMesh_n0iul")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AttackAnim"]

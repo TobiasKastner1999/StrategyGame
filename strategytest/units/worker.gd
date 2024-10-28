@@ -114,6 +114,9 @@ func getFaction():
 func getType():
 	return TARGET_TYPE
 
+func getSize():
+	return $WorkerColl.shape.radius
+
 # changes the color of the unit when selected or deselected
 func select():
 	$WorkerBody.material_override = load("res://units/material_friendly_selected.tres")
