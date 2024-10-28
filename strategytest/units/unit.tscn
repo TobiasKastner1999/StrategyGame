@@ -102,7 +102,6 @@ script = ExtResource("1_y82sj")
 [node name="Coll" type="Node3D" parent="."]
 
 [node name="UnitBody" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03345, 0)
 mesh = SubResource("CylinderMesh_2qd66")
 surface_material_override/0 = ExtResource("2_6xgls")
 
@@ -112,7 +111,6 @@ mesh = SubResource("CylinderMesh_5o3gb")
 skeleton = NodePath("../..")
 
 [node name="UnitColl" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03345, 0)
 shape = SubResource("CylinderShape3D_o03a0")
 
 [node name="NavAgent" type="NavigationAgent3D" parent="."]

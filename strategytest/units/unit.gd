@@ -120,7 +120,7 @@ func takeDamage(damage, attacker):
 
 # changes the color of the unit when selected or deselected
 func select():
-	$UnitBody.material_override = load("res://units/new_standard_material_3d_gelb.tres")
+	$UnitBody.material_override = load("res://units/material_friendly_selected.tres")
 
 func deselect():
 	$UnitBody.material_override = load("res://units/material_friendly.tres")

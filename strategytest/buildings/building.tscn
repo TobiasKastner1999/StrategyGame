@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvgxlsv6fcpoe"]
+[gd_scene load_steps=10 format=3 uid="uid://bvgxlsv6fcpoe"]
 
 [ext_resource type="Script" path="res://buildings/building.gd" id="1_poico"]
 
@@ -9,6 +9,8 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0win"]
 albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xny63"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i5op1"]
 radius = 4.31946
@@ -23,20 +25,65 @@ bg_color = Color(0, 0.713726, 0.443137, 1)
 viewport_path = NodePath("HealthbarContainer")
 
 [node name="Building" type="StaticBody3D" groups=["CombatTarget"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.523625, 0)
 script = ExtResource("1_poico")
 
 [node name="BuildingColl" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_8n7cg")
 
 [node name="BuildingBody" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.523625, 0)
 mesh = SubResource("BoxMesh_c6d8r")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_n0win")
 
-[node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="SpawnPointNorth" type="Area3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPoints/SpawnPointNorth"]
+shape = SubResource("CylinderShape3D_xny63")
+
+[node name="SpawnPointNortheast" type="Area3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPoints/SpawnPointNortheast"]
+shape = SubResource("CylinderShape3D_xny63")
+
+[node name="SpawnPointEast" type="Area3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPoints/SpawnPointEast"]
+shape = SubResource("CylinderShape3D_xny63")
+
+[node name="SpawnPointSoutheast" type="Area3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPoints/SpawnPointSoutheast"]
+shape = SubResource("CylinderShape3D_xny63")
+
+[node name="SpawnPointSouth" type="Area3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPoints/SpawnPointSouth"]
+shape = SubResource("CylinderShape3D_xny63")
+
+[node name="SpawnPointSouthwest" type="Area3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPoints/SpawnPointSouthwest"]
+shape = SubResource("CylinderShape3D_xny63")
+
+[node name="SpawnPointWest" type="Area3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPoints/SpawnPointWest"]
+shape = SubResource("CylinderShape3D_xny63")
+
+[node name="SpawnPointNorthwest" type="Area3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, -1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpawnPoints/SpawnPointNorthwest"]
+shape = SubResource("CylinderShape3D_xny63")
 
 [node name="RangeArea" type="Area3D" parent="."]
 

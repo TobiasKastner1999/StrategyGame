@@ -39,7 +39,7 @@ func _physics_process(delta):
 
 # deselects the units on click that are not in dragged box
 	mouse_position = get_viewport().get_mouse_position()
-	if Input.is_action_just_pressed("LeftClick") and Input.is_action_pressed("LeftClick"):
+	if Input.is_action_just_pressed("LeftClick"):
 		if $DoubleClickTimer.time_left > 0:
 			double_click = true
 		$DoubleClickTimer.start()
@@ -48,6 +48,7 @@ func _physics_process(delta):
 		for selected in selection:
 			if selected != null:
 				selected.deselect()
+		selection.clear()
 
 # selects the units inside the box
 	if Input.is_action_pressed("LeftClick"):
