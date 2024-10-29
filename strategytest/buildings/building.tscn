@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bvgxlsv6fcpoe"]
+[gd_scene load_steps=15 format=3 uid="uid://bvgxlsv6fcpoe"]
 
 [ext_resource type="Script" path="res://buildings/building.gd" id="1_poico"]
 
@@ -9,6 +9,50 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0win"]
 albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p8wuu"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bf4h5"]
+albedo_color = Color(0.869146, 0.666209, 0.113049, 1)
+
+[sub_resource type="Animation" id="Animation_ywg0b"]
+resource_name = "rotate"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0), Vector3(0, 3.14159, 0), Vector3(0, 4.71239, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u40vk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nyg2k"]
+_data = {
+"RESET": SubResource("Animation_u40vk"),
+"rotate": SubResource("Animation_ywg0b")
+}
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xny63"]
 
@@ -24,7 +68,7 @@ bg_color = Color(0, 0.713726, 0.443137, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_kfgwd"]
 viewport_path = NodePath("HealthbarContainer")
 
-[node name="Building" type="StaticBody3D" groups=["CombatTarget"]]
+[node name="Building" type="StaticBody3D" groups=["Building", "CombatTarget", "MouseRaycast"]]
 script = ExtResource("1_poico")
 
 [node name="BuildingColl" type="CollisionShape3D" parent="."]
@@ -34,6 +78,17 @@ shape = SubResource("ConcavePolygonShape3D_8n7cg")
 mesh = SubResource("BoxMesh_c6d8r")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_n0win")
+
+[node name="BuildingPause" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_p8wuu")
+surface_material_override/0 = SubResource("StandardMaterial3D_bf4h5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BuildingPause"]
+libraries = {
+"": SubResource("AnimationLibrary_nyg2k")
+}
+autoplay = "rotate"
 
 [node name="SpawnPoints" type="Node3D" parent="."]
 

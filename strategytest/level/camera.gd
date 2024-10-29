@@ -94,6 +94,10 @@ func selectUnits():
 		var u = getUnitUnderMouse()
 		if u != null:
 			new_selection.append(u)
+		else:
+			var b = getStructureUnderMouse()
+			if b != null:
+				b.accessStructure()
 	else:
 		new_selection = getUnitsInBox(start_selection_position, mouse_position)
 	if new_selection.size() != 0:
@@ -115,6 +119,13 @@ func getUnitUnderMouse():
 	raycastFromMouse()
 	var result = mouse_click_collider_3d_result
 	if result != null && result.is_in_group("Selectable"):
+		return result
+
+# calls the building (or other structure) that is under the mouse
+func getStructureUnderMouse():
+	raycastFromMouse()
+	var result = mouse_click_collider_3d_result
+	if result != null && result.is_in_group("Building"):
 		return result
 
 # call the combat target that is under the mouse
