@@ -64,6 +64,7 @@ func _input(event : InputEvent) -> void:
 				var building_node : Node3D = building_packed_scene.instantiate()
 				get_parent().add_child(building_node)
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
+				building_node.setFaction(0)
 				Global.crystals -= Global.BUILDING_COST
 				
 				if !shift:

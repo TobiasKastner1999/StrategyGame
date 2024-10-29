@@ -29,8 +29,6 @@ var go_to
 
 # called when the unit is first loaded
 func _ready():
-	if faction == 1:
-		$UnitBody/EnemyIdentifier.visible = true # visually displays a ring denoting the unit as a member of the enemy faction
 	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
@@ -128,6 +126,7 @@ func deselect():
 # sets the unit's faction to a given value
 func setFaction(f : int):
 	faction = f
+	$UnitBody.material_override = load(Global.getFactionColor(faction))
 
 # returns the unit's current faction
 func getFaction():

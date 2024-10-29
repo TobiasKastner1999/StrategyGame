@@ -31,6 +31,7 @@ func spawnUnit(spawn_point):
 	var new_unit = load("res://units/unit.tscn").instantiate() # instantiates the unit
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
+	new_unit.setFaction(faction)
 	unit_storage.connectDeletion(new_unit) # calls for the storage to connect to its new child
 
 func getEmptySpawn():
@@ -50,6 +51,7 @@ func takeDamage(damage, attacker):
 # sets the building's faction to a given value
 func setFaction(f : int):
 	faction = f
+	$BuildingBody.material_override = load(Global.getFactionColor(faction))
 
 # returns the building's current faction
 func getFaction():
