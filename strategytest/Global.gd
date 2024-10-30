@@ -17,3 +17,10 @@ func addCrystals(amount, faction):
 			crystals += amount
 		1:
 			enemy_crystals += amount
+
+func getCrystals(faction):
+	match faction:
+		0:
+			return crystals
+		1:
+			return enemy_crystals

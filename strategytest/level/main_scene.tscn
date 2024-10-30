@@ -433,4 +433,5 @@ text = "Kristalle:"
 [connection signal="expended" from="Resources/Ressource26" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource27" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource28" to="Resources" method="_on_ressource_expended"]
+[connection signal="rebake" from="EnemyController" to="." method="_on_interface_rebake"]
 [connection signal="rebake" from="Interface" to="." method="_on_interface_rebake"]
