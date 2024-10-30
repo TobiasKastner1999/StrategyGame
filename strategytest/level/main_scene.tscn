@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=39 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://level/main_scene.gd" id="1_knc78"]
 [ext_resource type="Script" path="res://level/camera.gd" id="2_on5d0"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://77woe7bbd6bk" path="res://assets/red_dot.png" id="14_m5rn8"]
 [ext_resource type="Script" path="res://level/MiniMapRegion.gd" id="15_517av"]
 [ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://assets/blue_dot.png" id="16_elcrs"]
+[ext_resource type="PackedScene" uid="uid://0lf8y4ljp5j1" path="res://units/unit.tscn" id="18_3l351"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wjwa7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -105,7 +106,7 @@ scale = Vector2(0.999479, 1)
 texture = ExtResource("3_c10ew")
 
 [node name="Camera" type="Camera3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.508876, 0.86084, 0, -0.86084, 0.508876, 0, 37.7224, 46.5763)
+transform = Transform3D(1, 0, 0, 0, 0.508876, 0.86084, 0, -0.86084, 0.508876, 0, 37.7224, 248.617)
 fov = 37.8493
 
 [node name="SelectionBox" type="Control" parent="Camera"]
@@ -434,6 +435,9 @@ centered = false
 offset_right = 145.0
 offset_bottom = 40.0
 text = "Kristalle:"
+
+[node name="Unit" parent="." instance=ExtResource("18_3l351")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8954, 5.04144, 185.781)
 
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
 [connection signal="expended" from="Resources/Ressource" to="Resources" method="_on_ressource_expended"]
