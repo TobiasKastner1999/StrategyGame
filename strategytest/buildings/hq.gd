@@ -71,7 +71,8 @@ func getType():
 
 # returns the HQ's physical size
 func getSize():
-	return ($HqBody.mesh.size.x / 2)
+	return ($HqSize.mesh.size.x / 2)
+	#added a Mesh for size measurement because no index on arraymesh
 
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):
