@@ -111,21 +111,22 @@ func selectType():
 		new_selection = []
 		for unit in selection[0].get_parent().get_children():
 			new_selection.append(unit)
-			unit.select()
+			if unit.getFaction() == 0:
+				unit.select()
 		selection = new_selection
 
 # call the units that are under the mouse that are selectable
 func getUnitUnderMouse():
 	raycastFromMouse()
 	var result = mouse_click_collider_3d_result
-	if result != null && result.is_in_group("Selectable"):
+	if result != null && result.is_in_group("Selectable") and result.getFaction() == 0:
 		return result
 
 # calls the building (or other structure) that is under the mouse
 func getStructureUnderMouse():
 	raycastFromMouse()
 	var result = mouse_click_collider_3d_result
-	if result != null && result.is_in_group("Building"):
+	if result != null && result.is_in_group("Building") and result.getFaction() == 0:
 		return result
 
 # call the combat target that is under the mouse
@@ -148,7 +149,7 @@ func getUnitsInBox(top_left, bottom_right):
 	var box = Rect2(top_left, bottom_right - top_left)
 	selection = []
 	for selected in get_tree().get_nodes_in_group("Selectable"):
-		if box.has_point(camera.unproject_position(selected.global_transform.origin)):
+		if box.has_point(camera.unproject_position(selected.global_transform.origin)) and selected.getFaction() == 0:
 			selection.append(selected)
 	return selection
 
