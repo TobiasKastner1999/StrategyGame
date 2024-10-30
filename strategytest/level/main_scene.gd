@@ -1,4 +1,4 @@
-extends Node3D
+extends NavigationRegion3D
 
 var crystals = 0
 var unit_counter = 0
@@ -15,3 +15,6 @@ func _process(delta):
 func _on_units_delete_selection(unit):
 	if $Camera.selection.has(unit):
 		$Camera.selection.erase(unit) # removes the unit if it is in the camera's current selection
+
+func _on_interface_rebake():
+	bake_navigation_mesh()

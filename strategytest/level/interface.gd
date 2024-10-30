@@ -1,5 +1,7 @@
 extends Control
 
+signal rebake()
+
 @onready var node_building_placer: Node3D = $Placer
 @onready var interface_btn_building:Button = $BuildingButton
 @onready var interface_label_building: Label = $Indicator
@@ -65,6 +67,7 @@ func _input(event : InputEvent) -> void:
 				get_parent().add_child(building_node)
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
 				building_node.setFaction(0)
+				rebake.emit()
 				Global.crystals -= Global.BUILDING_COST
 				
 				if !shift:
