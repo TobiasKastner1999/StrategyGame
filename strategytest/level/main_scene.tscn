@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://level/main_scene.gd" id="1_knc78"]
 [ext_resource type="Script" path="res://level/camera.gd" id="2_on5d0"]
 [ext_resource type="Script" path="res://level/selection_box.gd" id="3_0vhmm"]
+[ext_resource type="Texture2D" uid="uid://dvdqrkxoca6w" path="res://assets/UIStarcraft2.png.png" id="3_c10ew"]
 [ext_resource type="Script" path="res://units/unit_manager.gd" id="4_wqgya"]
 [ext_resource type="Script" path="res://level/interface.gd" id="5_gt0qk"]
 [ext_resource type="Script" path="res://level/placer.gd" id="6_02ggq"]
@@ -16,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://77woe7bbd6bk" path="res://assets/red_dot.png" id="14_m5rn8"]
 [ext_resource type="Script" path="res://level/MiniMapRegion.gd" id="15_517av"]
 [ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://assets/blue_dot.png" id="16_elcrs"]
-[ext_resource type="Texture2D" uid="uid://ckba3ictahl2e" path="res://assets/ui_borders.png" id="18_yas3w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wjwa7"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -98,6 +98,11 @@ shadow_enabled = true
 [node name="Camera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -33.617)
 script = ExtResource("2_on5d0")
+
+[node name="UiSprite" type="Sprite2D" parent="Camera"]
+position = Vector2(959.5, 540)
+scale = Vector2(0.999479, 1)
+texture = ExtResource("3_c10ew")
 
 [node name="Camera" type="Camera3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 0.508876, 0.86084, 0, -0.86084, 0.508876, 0, 37.7224, 46.5763)
@@ -323,6 +328,7 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_gt0qk")
@@ -338,14 +344,6 @@ offset_left = -90.0
 offset_top = -61.0
 grow_horizontal = 0
 grow_vertical = 0
-
-[node name="Background3" type="ColorRect" parent="Interface"]
-layout_mode = 0
-offset_left = 1548.0
-offset_top = 837.0
-offset_right = 1905.0
-offset_bottom = 1057.0
-color = Color(0.392157, 0.392157, 0.392157, 1)
 
 [node name="BuildingButton" type="Button" parent="Interface"]
 layout_mode = 1
@@ -391,14 +389,14 @@ anchor_right = 1.0
 offset_left = -1898.0
 offset_top = 807.0
 offset_right = -1603.0
-offset_bottom = 1057.0
+offset_bottom = 1058.0
 grow_horizontal = 0
 mouse_filter = 2
 
 [node name="MiniMapViewPort" type="SubViewport" parent="MiniMap/MiniMapContainer"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(295, 250)
+size = Vector2i(295, 255)
 render_target_update_mode = 4
 
 [node name="Area2D" type="Area2D" parent="MiniMap/MiniMapContainer/MiniMapViewPort"]
@@ -432,29 +430,10 @@ position = Vector2(280, 240)
 texture = ExtResource("16_elcrs")
 centered = false
 
-[node name="Background1" type="ColorRect" parent="MiniMap"]
-offset_left = 366.0
-offset_top = 890.0
-offset_right = 1365.0
-offset_bottom = 1059.0
-color = Color(0.392157, 0.392157, 0.392157, 1)
-
-[node name="Background2" type="ColorRect" parent="MiniMap"]
-offset_left = 1397.0
-offset_top = 890.0
-offset_right = 1522.0
-offset_bottom = 1061.0
-color = Color(0.392157, 0.392157, 0.392157, 1)
-
 [node name="Counter" type="Label" parent="."]
 offset_right = 145.0
 offset_bottom = 40.0
 text = "Kristalle:"
-
-[node name="UiBorders" type="Sprite2D" parent="."]
-position = Vector2(964, 538)
-scale = Vector2(1.00208, 1)
-texture = ExtResource("18_yas3w")
 
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
 [connection signal="expended" from="Resources/Ressource" to="Resources" method="_on_ressource_expended"]
