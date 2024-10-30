@@ -51,6 +51,14 @@ func takeDamage(damage, attacker):
 	if hp <= 0: # removes the hq if it's remaining hp is 0 or less
 		queue_free() # then deletes the hq
 
+func getResources():
+	var nearby = $DetectionArea.get_overlapping_bodies()
+	var resources = []
+	for body in nearby:
+		if body.is_in_group("resource"):
+			resources.append(body)
+	return resources
+
 # returns the faction the HQ belongs to
 func getFaction():
 	return faction

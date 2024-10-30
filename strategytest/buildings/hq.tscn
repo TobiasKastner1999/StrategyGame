@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7012rhjv4u2g"]
+[gd_scene load_steps=9 format=3 uid="uid://7012rhjv4u2g"]
 
 [ext_resource type="Script" path="res://buildings/hq.gd" id="1_1sosf"]
 [ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://units/material_friendly.tres" id="2_stdo8"]
@@ -8,6 +8,10 @@ data = PackedVector3Array(-2.5, 2.5, 2.5, 2.5, 2.5, 2.5, -2.5, -2.5, 2.5, 2.5, 2
 
 [sub_resource type="BoxMesh" id="BoxMesh_pe21x"]
 size = Vector3(5, 5, 5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yp0ar"]
+height = 20.0
+radius = 250.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dau50"]
 bg_color = Color(1, 0.337255, 0.337255, 1)
@@ -33,6 +37,11 @@ shape = SubResource("ConcavePolygonShape3D_uttco")
 mesh = SubResource("BoxMesh_pe21x")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_stdo8")
+
+[node name="DetectionArea" type="Area3D" parent="."]
+
+[node name="DetectionAreaShape" type="CollisionShape3D" parent="DetectionArea"]
+shape = SubResource("CylinderShape3D_yp0ar")
 
 [node name="HealthbarContainer" type="SubViewport" parent="."]
 disable_3d = true

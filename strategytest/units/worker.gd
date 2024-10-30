@@ -38,8 +38,8 @@ func _physics_process(delta):
 		if crystal != 0:
 			# if the worker is near the hq
 			if global_position.distance_to(hq.global_position) < 6:
+				Global.addCrystals(crystal, faction) # adds crystal to player's resources
 				crystal = 0
-				Global.crystals += 1 # adds crystal to player's resources
 			# if the worker is further away from the hq
 			else:
 				go_to = hq.global_position # sets hq as movement destination
@@ -116,6 +116,12 @@ func getType():
 
 func getSize():
 	return $WorkerColl.shape.radius
+
+func isWorking():
+	if known_resources.size() > 0 or crystal > 0 or priority_movement:
+		return true
+	else:
+		return false
 
 # changes the color of the unit when selected or deselected
 func select():
