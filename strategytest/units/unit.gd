@@ -146,6 +146,19 @@ func setTargetPosition(target):
 		priority_movement = true
 	go_to = target
 
+func isActive():
+	if current_target != null:
+		return true
+	else:
+		return false
+
+func isNearBody(node):
+	print($RangeArea.get_overlapping_bodies())
+	if $RangeArea.overlaps_body(node):
+		return true
+	else:
+		return false
+
 # attempts to set a given target as the unit's target
 func setAttackTarget(target):
 	if target.is_in_group("CombatTarget") and target.getFaction() != faction:
@@ -153,6 +166,8 @@ func setAttackTarget(target):
 
 # when a new object enters the unit's detection range
 func _on_area_3d_body_entered(body):
+	if body.name == "HQFriendly":
+		print("HQ!")
 	if body.is_in_group("CombatTarget") and body.getFaction() != faction:
 		nearby_enemies.append(body) # adds the object to the list of nearby enemies if it is a valid t arget and belongs to an enemy faction
 
