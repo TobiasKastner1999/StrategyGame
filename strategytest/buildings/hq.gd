@@ -15,7 +15,7 @@ var unit_manager
 
 # called at the start of the game
 func _ready():
-	$HqBody.material_override = load(Global.getFactionColor(faction))
+	$HqBody.set_surface_override_material(3, load(Global.getFactionColor(faction))) 
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	$SpawnTimer.start(SPAWN_DELAY) # prepares to spawn the first worker
@@ -37,6 +37,7 @@ func spawnWorker():
 	worker.setFaction(faction) # assigns the worker to the hq's faction
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
+	
 
 # removes references to an expended resource from the workers
 func excludeResource(node):

@@ -118,16 +118,16 @@ func takeDamage(damage, attacker):
 
 # changes the color of the unit when selected
 func select():
-	$UnitBody.material_override = load("res://units/material_friendly_selected.tres")
+	$UnitBody.set_surface_override_material(1, load("res://units/material_friendly_selected.tres"))
 
 # changes the color of the unit when it is deselected
 func deselect():
-	$UnitBody.material_override = load("res://units/material_friendly.tres")
+	$UnitBody.set_surface_override_material(1,load("res://units/material_friendly.tres") )
 
 # sets the unit's faction to a given value
 func setFaction(f : int):
 	faction = f
-	$UnitBody.material_override = load(Global.getFactionColor(faction))
+	$UnitBody.set_surface_override_material(1, load(Global.getFactionColor(faction)))
 
 # returns the unit's current faction
 func getFaction():
@@ -147,6 +147,7 @@ func setTargetPosition(target):
 		current_target = null
 		priority_movement = true
 	go_to = target
+	$".".look_at(go_to)
 
 # checks if the unit is active
 func isActive():
