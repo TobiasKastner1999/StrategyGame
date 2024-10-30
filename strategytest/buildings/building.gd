@@ -32,14 +32,15 @@ func spawnUnit(spawn_point):
 	var new_unit = load("res://units/unit.tscn").instantiate() # instantiates the unit
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
-	new_unit.setFaction(faction)
+	new_unit.setFaction(faction) # assigns the spawned unit to the building's faction
 	unit_storage.connectDeletion(new_unit) # calls for the storage to connect to its new child
 
+# checks for an empty spawn point
 func getEmptySpawn():
 	for point in $SpawnPoints.get_children():
 		if !point.has_overlapping_bodies():
-			return point.global_position
-	return null
+			return point.global_position # if a spawn point is empty (no other unit is occupying it), return that spawn point
+	return null # if there are no empty spawn points, returns null instead
 
 # causes the building to take a given amount of damage
 func takeDamage(damage, attacker):
@@ -49,14 +50,15 @@ func takeDamage(damage, attacker):
 	if hp <= 0: # removes the building if it's remaining hp is 0 or less
 		queue_free() # then deletes the building
 
+# accesses the building's function
 func accessStructure():
-	spawn_active = !spawn_active
-	$BuildingPause.visible = !spawn_active
+	spawn_active = !spawn_active # toggle's spawn from this building
+	$BuildingPause.visible = !spawn_active # sets the visibility of the pause animation appropriately
 
 # sets the building's faction to a given value
 func setFaction(f : int):
-	faction = f
-	$BuildingBody.material_override = load(Global.getFactionColor(faction))
+	faction = f # sets the faction
+	$BuildingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
 
 # returns the building's current faction
 func getFaction():
@@ -66,6 +68,7 @@ func getFaction():
 func getType():
 	return TARGET_TYPE
 
+# returns the physical size of the building
 func getSize():
 	return ($BuildingBody.mesh.size.x / 2)
 

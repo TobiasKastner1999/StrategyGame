@@ -13,8 +13,8 @@ var priority_movement = false # is the unit's movement overridden by a player co
 var path = [] # the path the unit is navigating on
 var path_ind = 0 # the id of the unit's current path position
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the strength of the gravity affecting the unit
+var go_to # the unit's current navigation target
 var SR 
-var go_to
 
 @export var faction : int = 0 # which faction does this unit belong to?
 @export var max_hp : float = 10.0 # the units maximum hit points
@@ -36,7 +36,7 @@ func _ready():
 	$AttackAnim.mesh = $AttackAnim.mesh.duplicate()
 	
 	await get_tree().physics_frame
-	go_to = global_position
+	go_to = global_position # sets the initial navigation target to the unit's own position
 
 # controls the unit's movement and other actions
 func _physics_process(delta):
@@ -116,10 +116,11 @@ func takeDamage(damage, attacker):
 	elif current_target == null and nearby_enemies.size() == 0:
 		current_target = attacker
 
-# changes the color of the unit when selected or deselected
+# changes the color of the unit when selected
 func select():
 	$UnitBody.material_override = load("res://units/material_friendly_selected.tres")
 
+# changes the color of the unit when it is deselected
 func deselect():
 	$UnitBody.material_override = load("res://units/material_friendly.tres")
 
@@ -136,6 +137,7 @@ func getFaction():
 func getType():
 	return TARGET_TYPE
 
+# returns the unit's physical size
 func getSize():
 	return $UnitColl.shape.radius
 
@@ -146,14 +148,15 @@ func setTargetPosition(target):
 		priority_movement = true
 	go_to = target
 
+# checks if the unit is active
 func isActive():
 	if current_target != null:
-		return true
+		return true # returns true if the unit has a target
 	else:
 		return false
 
+# checks if the unit is near a given body
 func isNearBody(node):
-	print($RangeArea.get_overlapping_bodies())
 	if $RangeArea.overlaps_body(node):
 		return true
 	else:
@@ -166,8 +169,6 @@ func setAttackTarget(target):
 
 # when a new object enters the unit's detection range
 func _on_area_3d_body_entered(body):
-	if body.name == "HQFriendly":
-		print("HQ!")
 	if body.is_in_group("CombatTarget") and body.getFaction() != faction:
 		nearby_enemies.append(body) # adds the object to the list of nearby enemies if it is a valid t arget and belongs to an enemy faction
 

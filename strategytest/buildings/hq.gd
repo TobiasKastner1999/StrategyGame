@@ -11,7 +11,7 @@ var unit_manager
 
 @onready var hp = MAX_HP # the hq's current hp, initially set to the maximum
 
-@export var faction = 0
+@export var faction = 0 # the hq's faction
 
 # called at the start of the game
 func _ready():
@@ -34,7 +34,7 @@ func spawnWorker():
 	var worker = load("res://units/worker.tscn").instantiate() # instantiates a new worker object
 	$Workers.add_child(worker) # adds the worker to the correct node
 	worker.global_position = $SpawnPoint.global_position # moves the worker to the correct spawn location
-	worker.setFaction(faction)
+	worker.setFaction(faction) # assigns the worker to the hq's faction
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
 
@@ -51,13 +51,14 @@ func takeDamage(damage, attacker):
 	if hp <= 0: # removes the hq if it's remaining hp is 0 or less
 		queue_free() # then deletes the hq
 
+# returns an array of the ressources near the HQ
 func getResources():
-	var nearby = $DetectionArea.get_overlapping_bodies()
+	var nearby = $DetectionArea.get_overlapping_bodies() # checks for all nearby bodies
 	var resources = []
 	for body in nearby:
 		if body.is_in_group("resource"):
-			resources.append(body)
-	return resources
+			resources.append(body) # adds all ressources in that list to an array
+	return resources # returns the array
 
 # returns the faction the HQ belongs to
 func getFaction():
@@ -67,6 +68,7 @@ func getFaction():
 func getType():
 	return TARGET_TYPE
 
+# returns the HQ's physical size
 func getSize():
 	return ($HqBody.mesh.size.x / 2)
 

@@ -114,19 +114,22 @@ func getFaction():
 func getType():
 	return TARGET_TYPE
 
+# returns the worker's physical size
 func getSize():
 	return $WorkerColl.shape.radius
 
+# checks if the worker is currently doing anything
 func isWorking():
 	if known_resources.size() > 0 or crystal > 0 or priority_movement:
-		return true
+		return true # returns true if the worker is delivering a crystal or knows of any remaining resource nodes
 	else:
 		return false
 
-# changes the color of the unit when selected or deselected
+# changes the color of the worker when selected
 func select():
 	$WorkerBody.material_override = load("res://units/material_friendly_selected.tres")
 
+# changes the color of the worker when it is deselected
 func deselect():
 	$WorkerBody.material_override = load("res://units/material_friendly.tres")
 

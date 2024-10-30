@@ -9,6 +9,7 @@ var new_selection = []
 var focus_fire_target_collider
 var side_bar_mouse_entered = false
 var double_click = false
+
 @onready var camera = $Camera
 @onready var selection_box_2d = $SelectionBox
 @onready var mouse_raycast_group
@@ -105,6 +106,7 @@ func selectUnits():
 			selected.select()
 		selection = new_selection
 
+# selects all units of the same type
 func selectType():
 	selectUnits()
 	if selection.size() == 1:

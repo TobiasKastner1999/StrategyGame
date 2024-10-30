@@ -6,4 +6,4 @@ signal rebake()
 func _on_ressource_expended(node):
 	$".."/HQFriendly.excludeResource(node)
 	$".."/HQEnemy.excludeResource(node)
-	rebake.emit()
+	rebake.emit() # also calls to re-bake the navmesh to account for the removed object
