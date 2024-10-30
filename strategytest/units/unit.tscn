@@ -274,7 +274,7 @@ script = ExtResource("1_y82sj")
 [node name="Coll" type="Node3D" parent="."]
 
 [node name="UnitBody" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.464431, 0, -7.65173e-08, 0, 0.248896, 0, 4.06018e-08, 0, -0.875256, 0.135654, -0.512695, 0.0777812)
+transform = Transform3D(0.464085, 0, 0.0337671, 0, 0.248896, 0, -0.0179176, 0, 0.874604, 0.135654, -0.512695, 0.0777812)
 mesh = SubResource("ArrayMesh_bve3e")
 skeleton = NodePath("")
 surface_material_override/1 = ExtResource("2_6xgls")

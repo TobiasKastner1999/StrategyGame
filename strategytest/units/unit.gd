@@ -147,7 +147,9 @@ func setTargetPosition(target):
 		current_target = null
 		priority_movement = true
 	go_to = target
-	$".".look_at(go_to)
+	
+	$UnitBody.look_at(go_to)
+	$UnitBody.rotate_object_local(Vector3.UP, PI)
 
 # checks if the unit is active
 func isActive():
