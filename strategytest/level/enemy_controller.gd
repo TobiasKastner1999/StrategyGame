@@ -50,4 +50,4 @@ func constructBuilding():
 	building.setFaction(1) # assigns the building's faction
 	building.accessStructure() # enables unit production from the building
 	rebake.emit() # calls the re-bake the navmesh
-	Global.addCrystals(Global.BUILDING_COST, 1) # subtracts the required crystals from the AI's resources
+	Global.addCrystals(-Global.BUILDING_COST, 1) # subtracts the required crystals from the AI's resources

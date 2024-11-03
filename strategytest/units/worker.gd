@@ -72,16 +72,19 @@ func _physics_process(delta):
 	
 	# controls the unit's actual movement
 	if go_to != global_position:
-		navi.target_position = go_to
+		if navi.target_position != go_to:
+			navi.target_position = go_to
+		
 		var dir = navi.get_next_path_position() - global_position
 		dir = dir.normalized()
 	
-		velocity = velocity.lerp(dir * SPEED, 10 * delta)
-		if global_position.distance_to(go_to) < 2:
+		if global_position.distance_to(go_to) < 3:
 			velocity = Vector3.ZERO
 			go_to = global_position
 			priority_movement = false
-		move_and_slide()
+		else:
+			var intended_velocity = velocity.lerp(dir * SPEED, 10 * delta)
+			navi.set_velocity(intended_velocity) # passes the intended movement velocity on to the navigation agent
 
 # receives the path from NavAgent
 func move_to(target_pos):
@@ -148,3 +151,8 @@ func removeResourceKnowledge(resource):
 func _on_range_area_body_entered(body):
 	if body.is_in_group("resource") and !known_resources.has(body):
 		known_resources.append(body)
+
+# moves the agent on the computed safe velocity
+func _on_nav_agent_velocity_computed(safe_velocity):
+	velocity = safe_velocity
+	move_and_slide()

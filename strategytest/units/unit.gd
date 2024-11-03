@@ -19,10 +19,10 @@ var SR
 @export var faction : int = 0 # which faction does this unit belong to?
 @export var max_hp : float = 10.0 # the units maximum hit points
 @export var damage_value : float = 1.0 # the damage the unit deals with each attack
-@export var attack_range : int = 2 # the distance at which the unit can attack enemy targets
+@export var attack_range : int = 10.0 # the distance at which the unit can attack enemy targets
 @export var attack_speed : float = 2.0 # the rate at which the unit attacks
-@export var detection_range : float = 10.0 # the distance at which the unit can detect other units
-@export var speed : float = 25.0 # the unit's movement speed
+@export var detection_range : float = 20.0 # the distance at which the unit can detect other units
+@export var speed : float = 20.0 # the unit's movement speed
 
 @onready var hp = max_hp # the unit's current hp, starting as its maximum hp
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the unit's movement
@@ -78,7 +78,8 @@ func _physics_process(delta):
 	
 	# sets the movement of the unit and stops when close to goal
 	if go_to != global_position:
-		navi.target_position = go_to
+		if navi.target_position != go_to:
+			navi.target_position = go_to
 		var dir = navi.get_next_path_position() - global_position
 		dir = dir.normalized()
 		velocity = velocity.lerp(dir * speed, 10 * delta)
@@ -113,8 +114,9 @@ func takeDamage(damage, attacker):
 	if hp <= 0: # removes the unit if it's remaining hp is 0 or less
 		deleted.emit(self) # tells the system to clear remaining references to the unit
 		queue_free() # then deletes the unit
-	elif current_target == null and nearby_enemies.size() == 0:
-		current_target = attacker
+	elif current_target == null:
+		priority_movement = false
+		current_target = attacker # causes the unit to fight back if it does not yet have a target
 
 # changes the color of the unit when selected
 func select():
@@ -174,6 +176,9 @@ func setAttackTarget(target):
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("CombatTarget") and body.getFaction() != faction:
 		nearby_enemies.append(body) # adds the object to the list of nearby enemies if it is a valid t arget and belongs to an enemy faction
+		if priority_movement:
+			priority_movement = false
+			setAttackTarget(body)
 
 # when an object leaves the unit's detection range
 func _on_area_3d_body_exited(body):
