@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://y2mcvu1ulqhc"]
+
+[ext_resource type="Script" path="res://level/mini_map.gd" id="1_7gn6r"]
+[ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://assets/cam.png" id="2_r4k7g"]
+[ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://assets/blue_dot.png" id="3_qkhaj"]
+[ext_resource type="Texture2D" uid="uid://77woe7bbd6bk" path="res://assets/red_dot.png" id="4_s4qvu"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hqdpq"]
+size = Vector2(500, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1hf4k"]
+size = Vector2(499, 499)
+
+[node name="MiniMap" type="CanvasLayer"]
+script = ExtResource("1_7gn6r")
+
+[node name="MapContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(500, 500)
+layout_direction = 1
+anchors_preset = -1
+offset_right = 500.0
+offset_bottom = 500.0
+
+[node name="Background" type="Sprite2D" parent="MapContainer"]
+modulate = Color(0.380392, 0.380392, 0.380392, 1)
+position = Vector2(-1, -1.00001)
+texture = SubResource("PlaceholderTexture2D_hqdpq")
+
+[node name="Tank" type="Sprite2D" parent="MapContainer"]
+modulate = Color(0, 0.466667, 0.466667, 1)
+position = Vector2(-86, 155)
+texture = ExtResource("3_qkhaj")
+
+[node name="Cam" type="Sprite2D" parent="MapContainer"]
+position = Vector2(116.495, 99.0748)
+scale = Vector2(1, 1)
+texture = ExtResource("2_r4k7g")
+
+[node name="BaseFriendly" type="Sprite2D" parent="MapContainer"]
+position = Vector2(128, 204)
+texture = ExtResource("3_qkhaj")
+
+[node name="BaseEnemy" type="Sprite2D" parent="MapContainer"]
+position = Vector2(58, -156)
+texture = ExtResource("4_s4qvu")
+
+[node name="Area2D" type="Area2D" parent="MapContainer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapContainer/Area2D"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_1hf4k")
+
+[connection signal="mouse_entered" from="MapContainer/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="MapContainer/Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -2,6 +2,7 @@ extends NavigationRegion3D
 
 # assings the unit manager to the two HQ buildings at the start of the game
 func _ready():
+	
 	$HQFriendly.unit_manager = $Units
 	$HQEnemy.unit_manager = $Units
 
