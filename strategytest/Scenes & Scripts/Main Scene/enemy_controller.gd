@@ -10,7 +10,7 @@ var build_locations = [Vector3(0.0, 3.9, -175.0), Vector3(-25.0, 3.9, -175.0), V
 @onready var resources = $".."/Resources # the resources
 
 # issues AI commands
-func _physics_process(delta):
+func _physics_process(_delta):
 	# checks if any workers need new instructions
 	for worker in worker_storage.get_children():
 		if !worker.isWorking():
@@ -27,7 +27,6 @@ func _physics_process(delta):
 
 # sets a new destination for a worker
 func setWorkerDestination(worker):
-	var destination
 	var resource_list = hq.getResources() # gets all resources that are near the HQ
 	if resource_list.size() == 0:
 		resource_list = resources.get_children() # if there are no resources left near the HQ, gets all resources on the map instead

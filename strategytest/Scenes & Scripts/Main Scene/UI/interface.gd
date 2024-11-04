@@ -28,7 +28,7 @@ func _ready() -> void:
 	interface_btn_building.pressed.connect(func() -> void: interface_input_mode = 1)
 	interface_input_mode = 0
 
-func _physics_process(delta:float) -> void:
+func _physics_process(_delta):
 	if interface_input_mode == 1:
 		#raycast to place preview under mouse
 		var mouse_pos : Vector2 = get_global_mouse_position()
@@ -39,7 +39,7 @@ func _physics_process(delta:float) -> void:
 		var ray_param : PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(ray_form, ray_to)
 		ray_param.collision_mask = 0b10
 
-#checks the ground for placing
+# checks the ground for placing
 		var raycast_result : Variant = camera.get_world_3d().get_direct_space_state().intersect_ray(ray_param)
 		if raycast_result:
 			if node_building_placer.transform.origin != raycast_result.position:
@@ -56,7 +56,7 @@ func _physics_process(delta:float) -> void:
 		building_placer_location = Vector3.ZERO
 
 # places the building with click and keeps building mode on when shift is pressed
-func _input(event : InputEvent) -> void:
+func _input(_event):
 	if Input.is_action_just_released("LeftClick"):
 		var shift : bool = Input.is_action_pressed("shift")
 

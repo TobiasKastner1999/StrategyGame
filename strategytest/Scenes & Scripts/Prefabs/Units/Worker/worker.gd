@@ -92,7 +92,7 @@ func move_to(target_pos):
 	path_ind = 0
 
 # causes the worker to take a given amount of damage
-func takeDamage(damage, attacker):
+func takeDamage(damage, _attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
@@ -101,7 +101,7 @@ func takeDamage(damage, attacker):
 		queue_free() # then deletes the worker
 
 # sets attack target (has no effect for the worker)
-func setAttackTarget(unit):
+func setAttackTarget(_unit):
 	pass
 
 # sets the worker's faction to a given value

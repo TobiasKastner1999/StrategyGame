@@ -19,7 +19,7 @@ var SR
 @export var faction : int = 0 # which faction does this unit belong to?
 @export var max_hp : float = 10.0 # the units maximum hit points
 @export var damage_value : float = 1.0 # the damage the unit deals with each attack
-@export var attack_range : int = 10.0 # the distance at which the unit can attack enemy targets
+@export var attack_range : float = 10.0 # the distance at which the unit can attack enemy targets
 @export var attack_speed : float = 2.0 # the rate at which the unit attacks
 @export var detection_range : float = 20.0 # the distance at which the unit can detect other units
 @export var speed : float = 20.0 # the unit's movement speed
@@ -83,7 +83,7 @@ func _physics_process(delta):
 		var dir = navi.get_next_path_position() - global_position
 		dir = dir.normalized()
 		velocity = velocity.lerp(dir * speed, 10 * delta)
-		if position.distance_to(go_to) < (attack_range / 2):
+		if position.distance_to(go_to) < (attack_range / 2.0):
 			go_to = global_position
 			velocity = Vector3.ZERO
 			priority_movement = false

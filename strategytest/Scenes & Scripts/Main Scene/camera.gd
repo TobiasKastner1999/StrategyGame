@@ -15,7 +15,7 @@ var double_click = false
 @onready var mouse_raycast_group
 @onready var mouse_raycast
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	var window_size = get_viewport().get_visible_rect().size
 
@@ -54,9 +54,9 @@ func _physics_process(delta):
 # selects the units inside the box
 	if Input.is_action_pressed("LeftClick"):
 		selection_box_2d.mouse_position = mouse_position
-		selection_box_2d.is_visible = true
+		selection_box_2d.box_visible = true
 	else:
-		selection_box_2d.is_visible = false
+		selection_box_2d.box_visible = false
 	
 	if Input.is_action_just_released("LeftClick"):
 		if double_click and $DoubleClickTimer.time_left > 0:
@@ -179,8 +179,7 @@ func raycastFromMouse():
 		mouse_click_collider_3d_result = raycast_result["collider"]
 
 func raycastNodePosition():
-	var space_state = get_world_3d().direct_space_state 	
-	var mouse_position = get_viewport().get_mouse_position()
+	mouse_position = get_viewport().get_mouse_position()
 	var raycast_origin = camera.project_ray_origin(mouse_position)
 	var raycast_target = raycast_origin + camera.project_ray_normal(mouse_position) * 5000
 	mouse_raycast.target_position = Vector3(raycast_target)

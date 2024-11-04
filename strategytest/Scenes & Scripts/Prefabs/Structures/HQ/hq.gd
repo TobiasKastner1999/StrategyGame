@@ -21,7 +21,7 @@ func _ready():
 	$SpawnTimer.start(SPAWN_DELAY) # prepares to spawn the first worker
 
 # checks repeatedly to spawn new workers
-func _process(delta):
+func _process(_delta):
 	var spawn_point = getEmptySpawn()
 	if spawn_point != null and can_spawn and current_workers < MAX_WORKERS:
 		spawnWorker(spawn_point) # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
@@ -46,7 +46,7 @@ func excludeResource(node):
 		worker.removeResourceKnowledge(node) # calls the requisite function on each worker
 
 # causes the hq to take a given amount of damage
-func takeDamage(damage, attacker):
+func takeDamage(damage, _attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display

@@ -5,6 +5,6 @@ extends CanvasLayer
 @onready var cam_sprite = $MiniMapContainer/MiniMapViewPort/CamSprite
 
 # when unit/camera move the minimap sprites follow
-func _process(delta):
+func _process(_delta):
 	cam_sprite.position = Vector2(main_cam.position.x, main_cam.position.z)
 

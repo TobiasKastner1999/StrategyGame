@@ -4,15 +4,6 @@ extends Node3D
 @onready var area_coll: CollisionShape3D = $PreviewArea/PreviewColl
 @onready var model: MeshInstance3D = $Preview
 
-func _ready():
-	pass
-
-func _process(delta):
-	pass
-
-func _physics_process(delta):
-	pass
-
 # changes colors when building can/cant be placed
 func model_green() -> void:
 	model.set("instance_shader_parameters/instance_color_01", Color("26bf3664"))

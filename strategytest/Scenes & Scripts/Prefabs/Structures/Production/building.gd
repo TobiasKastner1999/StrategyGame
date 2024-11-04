@@ -18,7 +18,7 @@ func _ready():
 	$SpawnTimer.start(SPAWN_RATE)
 
 # checks repeatedly if a new unit can be spawned
-func _process(delta):
+func _physics_process(_delta):
 	var spawn_point = getEmptySpawn()
 	if can_spawn and spawn_active and spawn_point != null and Global.getCrystals(faction) >= UNIT_COST:
 		spawnUnit(spawn_point) # spawns a new unit if the building is able to, and the player has the crystals required
@@ -43,7 +43,7 @@ func getEmptySpawn():
 	return null # if there are no empty spawn points, returns null instead
 
 # causes the building to take a given amount of damage
-func takeDamage(damage, attacker):
+func takeDamage(damage, _attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
