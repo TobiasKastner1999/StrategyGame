@@ -11,13 +11,12 @@ config_version=5
 [application]
 
 config/name="strategytest"
-run/main_scene="res://level/main_scene.tscn"
+run/main_scene="res://Scenes & Scripts/Main Scene/main_scene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://assets/icon.svg"
 
 [autoload]
 
-Global="*res://Global.gd"
+Global="*res://Scenes & Scripts/Global.gd"
 
 [display]
 

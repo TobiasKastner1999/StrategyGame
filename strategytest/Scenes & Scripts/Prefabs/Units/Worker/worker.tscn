@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1nki85rv3ir5"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Units/Worker/worker.gd" id="1_ple0k"]
+[ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://Assets/Materials/material_friendly.tres" id="2_hsmf3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_k5l20"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_plo4n"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b7yh8"]
+radius = 50.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8awu"]
+bg_color = Color(1, 0.337255, 0.337255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1qflp"]
+bg_color = Color(0, 0.713726, 0.443137, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3mjsh"]
+viewport_path = NodePath("HealthbarContainer")
+
+[node name="Worker" type="CharacterBody3D" groups=["CombatTarget", "MouseRaycast", "Selectable", "selectable"]]
+script = ExtResource("1_ple0k")
+
+[node name="WorkerBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_k5l20")
+surface_material_override/0 = ExtResource("2_hsmf3")
+
+[node name="WorkerColl" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_plo4n")
+
+[node name="RangeArea" type="Area3D" parent="."]
+
+[node name="RangeColl" type="CollisionShape3D" parent="RangeArea"]
+shape = SubResource("SphereShape3D_b7yh8")
+
+[node name="NavAgent" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 2.0
+path_height_offset = 1.0
+avoidance_enabled = true
+height = 2.0
+debug_enabled = true
+
+[node name="HealthbarContainer" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="HealthBar" type="ProgressBar" parent="HealthbarContainer"]
+offset_left = -1.0
+offset_right = 353.0
+offset_bottom = 27.0
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_r8awu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1qflp")
+value = 100.0
+show_percentage = false
+
+[node name="HealthBarSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889443, 0.901891, 0)
+visible = false
+texture = SubResource("ViewportTexture_3mjsh")
+
+[connection signal="body_entered" from="RangeArea" to="." method="_on_range_area_body_entered"]
+[connection signal="body_exited" from="RangeArea" to="." method="_on_range_area_body_exited"]
+[connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
