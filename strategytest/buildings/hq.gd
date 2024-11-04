@@ -22,18 +22,19 @@ func _ready():
 
 # checks repeatedly to spawn new workers
 func _process(delta):
-	if can_spawn and current_workers < MAX_WORKERS:
-		spawnWorker() # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
+	var spawn_point = getEmptySpawn()
+	if spawn_point != null and can_spawn and current_workers < MAX_WORKERS:
+		spawnWorker(spawn_point) # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
 
 # spawns a new worker
-func spawnWorker():
+func spawnWorker(spawn_point):
 	can_spawn = false # makes further spawns unavailable
 	$SpawnTimer.start(SPAWN_DELAY) # starts the delay for the next spawn
 	current_workers += 1 # saves the new number of workers
 	
 	var worker = load("res://units/worker.tscn").instantiate() # instantiates a new worker object
 	$Workers.add_child(worker) # adds the worker to the correct node
-	worker.global_position = $SpawnPoint.global_position # moves the worker to the correct spawn location
+	worker.global_position = spawn_point # moves the worker to the correct spawn location
 	worker.setFaction(faction) # assigns the worker to the hq's faction
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
@@ -51,6 +52,13 @@ func takeDamage(damage, attacker):
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the hq if it's remaining hp is 0 or less
 		queue_free() # then deletes the hq
+
+# checks for an empty spawn point
+func getEmptySpawn():
+	for point in $SpawnPoints.get_children():
+		if !point.has_overlapping_bodies():
+			return point.global_position # if a spawn point is empty (no other unit is occupying it), return that spawn point
+	return null # if there are no empty spawn points, returns null instead
 
 # returns an array of the ressources near the HQ
 func getResources():

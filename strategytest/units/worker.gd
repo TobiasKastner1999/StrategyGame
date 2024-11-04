@@ -15,9 +15,9 @@ var known_resources = [] # an array of all resource nodes the worker has discove
 var target_resource # the resource the worker is currently moving towards
 var priority_movement = false # is the worker's currently overwritten by a player input?
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gravity affecting the worker
+@onready var go_to # the worker's current navigation destination
 
 @onready var hp = MAX_HP # the worker's current hit points, set to the maximum on instantiation
-@onready var go_to = global_position # the worker's current navigation destination
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the worker's movement
 @onready var hq = $".." # the hq the worker belongs to
 
@@ -108,6 +108,9 @@ func setAttackTarget(unit):
 func setFaction(f : int):
 	faction = f
 	$WorkerBody.material_override = load(Global.getFactionColor(faction))
+	
+	if go_to == null:
+		go_to = global_position # if the worker is first set up, also sets up the movement variable
 
 # returns the worker's current faction
 func getFaction():
