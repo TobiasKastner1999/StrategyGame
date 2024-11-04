@@ -337,11 +337,6 @@ grow_vertical = 2
 texture = ExtResource("10_aww5s")
 expand_mode = 2
 
-[node name="UiStarcraft2_png" type="Sprite2D" parent="Interface"]
-visible = false
-position = Vector2(961, 538)
-texture = ExtResource("10_aww5s")
-
 [node name="Indicator" type="Label" parent="Interface"]
 layout_mode = 1
 anchors_preset = 3
