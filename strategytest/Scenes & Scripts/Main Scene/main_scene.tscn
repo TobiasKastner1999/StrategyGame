@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=39 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://7012rhjv4u2g" path="res://Scenes & Scripts/Prefabs/Structures/HQ/hq.tscn" id="7_g6gsm"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/enemy_controller.gd" id="8_q8x15"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/interface.gd" id="9_f8ghw"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/end_screen.gd" id="10_7e7ws"]
 [ext_resource type="Texture2D" uid="uid://dvdqrkxoca6w" path="res://Assets/UI/UIStarcraft2.png.png" id="10_aww5s"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/placer.gd" id="11_mo25r"]
 [ext_resource type="Shader" path="res://Assets/world3d.gdshader" id="12_lfui2"]
@@ -75,6 +76,12 @@ albedo_color = Color(0.870827, 0.518907, 0.405892, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47v5a"]
 albedo_color = Color(0.870588, 0.517647, 0.407843, 1)
 
+[sub_resource type="Theme" id="Theme_uvm5n"]
+default_font_size = 40
+
+[sub_resource type="Theme" id="Theme_vhkq3"]
+default_font_size = 40
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_samg3"]
 render_priority = 0
 shader = ExtResource("12_lfui2")
@@ -83,6 +90,7 @@ shader = ExtResource("12_lfui2")
 size = Vector3(4.9989, 5.05823, 5.10894)
 
 [node name="Main" type="NavigationRegion3D"]
+process_mode = 1
 navigation_mesh = SubResource("NavigationMesh_upq6f")
 script = ExtResource("1_i5xym")
 
@@ -327,7 +335,50 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_f8ghw")
 
-[node name="TextureRect" type="TextureRect" parent="Interface"]
+[node name="EndScreen" type="Panel" parent="Interface"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_7e7ws")
+
+[node name="EndScreenText" type="RichTextLabel" parent="Interface/EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -365.0
+offset_right = 300.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_uvm5n")
+text = "Game Over!"
+
+[node name="ButtonQuit" type="Button" parent="Interface/EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_vhkq3")
+text = "Quit"
+
+[node name="UIFrame" type="TextureRect" parent="Interface"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -453,5 +504,8 @@ text = "Kristalle:"
 [connection signal="expended" from="Resources/Ressource26" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource27" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource28" to="Resources" method="_on_ressource_expended"]
+[connection signal="destruction" from="HQFriendly" to="." method="_on_hq_destruction"]
+[connection signal="destruction" from="HQEnemy" to="." method="_on_hq_destruction"]
 [connection signal="rebake" from="EnemyController" to="." method="_on_interface_rebake"]
 [connection signal="rebake" from="Interface" to="." method="_on_interface_rebake"]
+[connection signal="pressed" from="Interface/EndScreen/ButtonQuit" to="Interface/EndScreen" method="_on_button_quit_pressed"]

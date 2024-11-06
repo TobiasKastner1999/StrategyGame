@@ -1,5 +1,7 @@
 extends Node3D
 
+signal destruction(faction) # to trigger the game end screen
+
 const TARGET_TYPE = "hq" # the hq's target type
 const SPAWN_DELAY = 10.0 # how often will new workers spawn?
 const MAX_WORKERS = 4 # how many workers can spawn at most?
@@ -51,6 +53,7 @@ func takeDamage(damage, _attacker):
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the hq if it's remaining hp is 0 or less
+		destruction.emit(faction) # notifies that the game has ended
 		queue_free() # then deletes the hq
 
 # checks for an empty spawn point

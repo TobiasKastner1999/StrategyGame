@@ -12,3 +12,11 @@ func _on_units_delete_selection(unit):
 # rebakes the navmesh
 func _on_interface_rebake():
 	bake_navigation_mesh()
+
+func _on_hq_destruction(faction):
+	gameEnd(faction)
+
+func gameEnd(faction):
+	$MiniMap.visible = false
+	$Interface.gameEnd(faction)
+	get_tree().paused = true

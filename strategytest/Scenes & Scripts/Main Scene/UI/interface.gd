@@ -75,3 +75,8 @@ func _input(_event):
 	
 	if Input.is_action_just_pressed("Rightclick") and interface_input_mode == 1:
 		interface_input_mode = 0
+
+func gameEnd(faction):
+	for c in get_children():
+		c.visible = false
+	$EndScreen.visible = true
