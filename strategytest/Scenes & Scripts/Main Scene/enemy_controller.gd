@@ -54,15 +54,17 @@ func constructBuilding():
 	rebake.emit() # calls the re-bake the navmesh
 	Global.addCrystals(-Global.BUILDING_COST, controlled_faction) # subtracts the required crystals from the AI's resources
 
+# called once the player has selected a faction
 func setUp():
 	if controlled_faction == Global.player_faction:
-		queue_free()
-	findHQs()
+		queue_free() # removes the AI controller if it would control the player's faction
+	findHQs() # otherwise, sets up the AI's reference points
 
+# sets up AI's hq reference points
 func findHQs():
 	for node in get_tree().get_nodes_in_group("HQ"):
-		if node.getFaction() == controlled_faction:
+		if node.getFaction() == controlled_faction: # finds the HQ belonging to the AI's controlled faction
 			hq = node
 			worker_storage = hq.getWorkers()
 		else:
-			enemy_hq = node
+			enemy_hq = node # the other hq then must belong to the enemy

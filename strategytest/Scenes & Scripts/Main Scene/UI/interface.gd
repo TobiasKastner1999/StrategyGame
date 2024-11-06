@@ -1,7 +1,7 @@
 extends Control
 
-signal rebake()
-signal start_game(faction)
+signal rebake() # calls to rebake the navmesh
+signal start_game(faction) # tells the game the player has chosen a faction
 
 @onready var node_building_placer: Node3D = $Placer
 @onready var interface_btn_building:Button = $BuildingButton
@@ -77,17 +77,20 @@ func _input(_event):
 	if Input.is_action_just_pressed("Rightclick") and interface_input_mode == 1:
 		interface_input_mode = 0
 
+# ends the game
 func gameEnd(faction):
 	for c in get_children():
-		c.visible = false
+		c.visible = false # hides all UI elements
 	if faction == Global.player_faction:
-		$EndScreen/EndScreenText.text = "Game Over! You lost..."
+		$EndScreen/EndScreenText.text = "Game Over! You lost..." # sets end screen text if the player was defeated
 	else:
-		$EndScreen/EndScreenText.text = "Victory!"
-	$EndScreen.visible = true
+		$EndScreen/EndScreenText.text = "Victory!" # sets end screen text if the player won the game
+	$EndScreen.visible = true # enables end screen visibility
 
+# when the player starts the game and chooses the blue faction
 func _on_button_blue_pressed():
 	start_game.emit(0)
 
+# when the player starts the game and chooses the red faction
 func _on_button_red_pressed():
 	start_game.emit(1)

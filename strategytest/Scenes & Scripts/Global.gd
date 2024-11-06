@@ -12,6 +12,7 @@ func getFactionColor(faction):
 		1:
 			return "res://Assets/Materials/material_red.tres"
 
+# returns the correct selection color for a given faction
 func getSelectedFactionColor(faction):
 	match faction:
 		0:
