@@ -113,7 +113,7 @@ func selectType():
 		new_selection = []
 		for unit in selection[0].get_parent().get_children():
 			new_selection.append(unit)
-			if unit.getFaction() == 0:
+			if unit.getFaction() == Global.player_faction:
 				unit.select()
 		selection = new_selection
 
@@ -121,14 +121,14 @@ func selectType():
 func getUnitUnderMouse():
 	raycastFromMouse()
 	var result = mouse_click_collider_3d_result
-	if result != null && result.is_in_group("Selectable") and result.getFaction() == 0:
+	if result != null && result.is_in_group("Selectable") and result.getFaction() == Global.player_faction:
 		return result
 
 # calls the building (or other structure) that is under the mouse
 func getStructureUnderMouse():
 	raycastFromMouse()
 	var result = mouse_click_collider_3d_result
-	if result != null && result.is_in_group("Building") and result.getFaction() == 0:
+	if result != null && result.is_in_group("Building") and result.getFaction() == Global.player_faction:
 		return result
 
 # call the combat target that is under the mouse
@@ -151,7 +151,7 @@ func getUnitsInBox(top_left, bottom_right):
 	var box = Rect2(top_left, bottom_right - top_left)
 	selection = []
 	for selected in get_tree().get_nodes_in_group("Selectable"):
-		if box.has_point(camera.unproject_position(selected.global_transform.origin)) and selected.getFaction() == 0:
+		if box.has_point(camera.unproject_position(selected.global_transform.origin)) and selected.getFaction() == Global.player_faction:
 			selection.append(selected)
 	return selection
 

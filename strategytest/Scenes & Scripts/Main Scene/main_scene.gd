@@ -1,14 +1,8 @@
 extends NavigationRegion3D
 
-# assings the unit manager to the two HQ buildings at the start of the game
-func _ready():
-	pass
-	#$HQFriendly.unit_manager = $Units
-	#$HQEnemy.unit_manager = $Units
-
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
-	$Counter.set_text("kristalle: " + str(Global.crystals)+ "   " + "FPS: " + str(Engine.get_frames_per_second()))
+	$Counter.set_text("Crystals: " + str(Global.crystals)+ "   " + "FPS: " + str(Engine.get_frames_per_second()))
 
 # attempts to remove a deleted unit from the camera's selection
 func _on_units_delete_selection(unit):

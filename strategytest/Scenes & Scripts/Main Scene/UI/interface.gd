@@ -66,9 +66,9 @@ func _input(_event):
 				var building_node : Node3D = building_packed_scene.instantiate()
 				get_parent().add_child(building_node)
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
-				building_node.setFaction(0)
+				building_node.setFaction(Global.player_faction)
 				rebake.emit()
-				Global.crystals -= Global.BUILDING_COST
+				Global.addCrystals(-Global.BUILDING_COST, Global.player_faction)
 				
 				if !shift:
 					interface_input_mode = 0

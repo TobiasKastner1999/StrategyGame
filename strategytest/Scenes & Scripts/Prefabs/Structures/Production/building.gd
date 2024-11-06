@@ -6,7 +6,7 @@ const UNIT_COST = 1 # how many crystals does each unit from this building cost t
 const SPAWN_RATE = 5.0 # how often can the building produce new units?
 var can_spawn = false # can the building currently produce a new unit?
 var spawn_active = false # is the building's unit production toggled on?
-var faction = 0 # the faction the building belongs to
+var faction : int # the faction the building belongs to
 
 @onready var hp = MAX_HP # the building's current hit points, initially set to the maximum hit points
 @onready var unit_storage = $"../Units" # the main system node for units
