@@ -79,4 +79,8 @@ func _input(_event):
 func gameEnd(faction):
 	for c in get_children():
 		c.visible = false
+	if faction == Global.player_faction:
+		$EndScreen/EndScreenText.text = "Game Over! You lost..."
+	else:
+		$EndScreen/EndScreenText.text = "Victory!"
 	$EndScreen.visible = true
