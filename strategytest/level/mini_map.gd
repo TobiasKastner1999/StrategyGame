@@ -11,35 +11,34 @@ var zoom
 @onready var cam_sprite = $MapContainer/Cam
 
 func _ready():
+
 	
+	
+	#sets the positions of the hqs on the minimap
 	unit_sprite.position = Vector2($"../HQFriendly".position.x, $"../HQFriendly".position.z)
 	unit_sprite2.position = Vector2($"../HQEnemy".position.x, $"../HQEnemy".position.z)
 	
 	
-	
+	#visualizes the zoom 
 	zoom = main_cam.position.y
-	map_size_x = map.mesh.size.x
-	map_size_y = map.mesh.size.y
 
-	$MapContainer.set_size(Vector2(map_size_x, map_size_y))
-# when unit/camera move the minimap sprites follow
+# when the moise enters the area of minimap the var turns true and if you click the camera moves to the position given
+#via a characterbody2d that is constantly following the mouse
 func _process(delta):
 	
-	if mouse_over_map == true and Input.is_action_just_pressed("LeftClick"):
-		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
-		main_cam.position.x = mouse_pos.x 
-		main_cam.position.z = mouse_pos.y 
-		print(mouse_pos)
-
-		print(main_cam.position)
+	if mouse_over_map == true:
+		if Input.is_action_just_pressed("LeftClick"):
+			var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		
-	
-	
-	
-	
-	$MapContainer/Tank.position = Vector2($"../Unit".position.x, $"../Unit".position.z)
-	
-	
+			main_cam.position.x = $MapContainer/CharacterBody2D.position.x
+			main_cam.position.z = $MapContainer/CharacterBody2D.position.y
+
+
+
+
+
+
+#limitations for the cam sprite so it cant leave the minimap
 	if not cam_sprite.position.x <= -250 and not cam_sprite.position.x >= 250:
 		cam_sprite.position.x = main_cam.position.x
 	if cam_sprite.position.x <= -250:
@@ -70,11 +69,12 @@ func _process(delta):
 func add_unit(faction):
 	pass
 
-
+#activates when mouse is over the minimap
 func _on_area_2d_mouse_entered():
 	mouse_over_map = true
 
 
+#deactivates when mouse is over the minimap
 func _on_area_2d_mouse_exited():
 	mouse_over_map = false
 

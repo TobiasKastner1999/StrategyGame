@@ -3,7 +3,7 @@ extends NavigationRegion3D
 # assings the unit manager to the two HQ buildings at the start of the game
 func _ready():
 	
-	$HQFriendly.unit_manager = $Units
+	$HQFriendly.unit_manager = $Units7
 	$HQEnemy.unit_manager = $Units
 
 # displays the player's amount of crystals, as well as the current fps

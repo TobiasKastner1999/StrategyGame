@@ -50,12 +50,11 @@ position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_1hf4k")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="MapContainer"]
-visible = false
-position = Vector2(-245.793, 228.207)
 script = ExtResource("5_qi0m4")
 
 [node name="corner" type="Sprite2D" parent="MapContainer/CharacterBody2D"]
 modulate = Color(0, 0.466667, 0.466667, 1)
+position = Vector2(-245.09, 244.742)
 texture = ExtResource("3_qkhaj")
 
 [connection signal="mouse_entered" from="MapContainer/Area2D" to="." method="_on_area_2d_mouse_entered"]
