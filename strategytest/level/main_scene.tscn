@@ -391,19 +391,18 @@ offset_right = 145.0
 offset_bottom = 40.0
 text = "Kristalle:"
 
+[node name="Unit" parent="." instance=ExtResource("15_3rn2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5407, 3.89012, 187.957)
+
 [node name="MiniMap" parent="." instance=ExtResource("14_xpbaa")]
 scale = Vector2(0.6, 0.55)
 transform = Transform2D(0.6, 0, 0, 0.55, 0, 0)
 
 [node name="MapContainer" parent="MiniMap" index="0"]
-anchors_preset = 0
-offset_left = 285.0
-offset_top = 1694.55
-offset_right = 785.0
-offset_bottom = 2194.55
-
-[node name="Unit" parent="." instance=ExtResource("15_3rn2p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5407, 3.89012, 187.957)
+offset_left = 281.667
+offset_top = 1690.91
+offset_right = 781.667
+offset_bottom = 2190.91
 
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
 [connection signal="rebake" from="Resources" to="." method="_on_interface_rebake"]

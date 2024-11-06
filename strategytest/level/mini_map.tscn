@@ -17,7 +17,6 @@ script = ExtResource("1_7gn6r")
 [node name="MapContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(500, 500)
 layout_direction = 1
-anchors_preset = -1
 offset_right = 500.0
 offset_bottom = 500.0
 
@@ -33,7 +32,6 @@ texture = ExtResource("3_qkhaj")
 
 [node name="Cam" type="Sprite2D" parent="MapContainer"]
 position = Vector2(116.495, 99.0748)
-scale = Vector2(1, 1)
 texture = ExtResource("2_r4k7g")
 
 [node name="BaseFriendly" type="Sprite2D" parent="MapContainer"]

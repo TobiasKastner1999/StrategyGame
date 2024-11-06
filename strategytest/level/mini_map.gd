@@ -43,18 +43,18 @@ func _process(delta):
 	if not cam_sprite.position.x <= -250 and not cam_sprite.position.x >= 250:
 		cam_sprite.position.x = main_cam.position.x
 	if cam_sprite.position.x <= -250:
-		cam_sprite.position.x +=1
+		cam_sprite.position.x = -249
 	if cam_sprite.position.x >= 250:
-		cam_sprite.position.x -=1
+		cam_sprite.position.x = 249
 
 
 
 	if not cam_sprite.position.y <= -250 and not cam_sprite.position.y >= 250:
 		cam_sprite.position.y = main_cam.position.z
 	if cam_sprite.position.y <= -250:
-		cam_sprite.position.y +=1
+		cam_sprite.position.y = -249
 	if cam_sprite.position.y >= 250:
-		cam_sprite.position.y -=1
+		cam_sprite.position.y = 249
 
 
 	if main_cam.position.y != zoom:
