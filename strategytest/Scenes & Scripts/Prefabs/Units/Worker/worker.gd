@@ -133,11 +133,11 @@ func isWorking():
 
 # changes the color of the worker when selected
 func select():
-	$WorkerBody.material_override = load("res://Assets/Materials/material_friendly_selected.tres")
+	$WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
 
 # changes the color of the worker when it is deselected
 func deselect():
-	$WorkerBody.material_override = load("res://Assets/Materials/material_friendly.tres")
+	$WorkerBody.material_override = load(Global.getFactionColor(faction))
 
 # sets the position the NavAgent will move to
 func setTargetPosition(target):

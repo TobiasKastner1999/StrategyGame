@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=3 uid="uid://0lf8y4ljp5j1"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.gd" id="1_y82sj"]
-[ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://Assets/Materials/material_friendly.tres" id="2_6xgls"]
+[ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://Assets/Materials/material_blue.tres" id="2_6xgls"]
 [ext_resource type="Texture2D" uid="uid://jsqacwpmihlv" path="res://Assets/Models/Units/Panzer_metal_plate_02_diff_2k.jpg" id="2_xiumj"]
 [ext_resource type="Texture2D" uid="uid://des6q6y33wwwi" path="res://Assets/Models/Units/Panzer_metal_plate_02_metal_2k-metal_plate_02_rough_2k.png" id="3_mwmmn"]
 [ext_resource type="Texture2D" uid="uid://ibcnkje4t41i" path="res://Assets/Models/Units/Panzer_metal_plate_02_nor_gl_2k.png" id="4_nr7cd"]

@@ -85,6 +85,9 @@ func getSize():
 	return ($HqSize.mesh.size.x / 2)
 	#added a Mesh for size measurement because no index on arraymesh
 
+func getArea():
+	return $DetectionArea
+
 func getWorkers():
 	return $Workers
 

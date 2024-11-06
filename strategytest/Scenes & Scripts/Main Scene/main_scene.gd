@@ -38,3 +38,6 @@ func _on_interface_start_game(faction):
 	$FactionBlueController.setUp()
 	$FactionRedController.setUp()
 	$Camera.global_position = camera_positions[faction]
+	for hq in get_tree().get_nodes_in_group("HQ"):
+		if hq.getFaction() == faction:
+			$Interface/Placer.hq_zone = hq.getArea()

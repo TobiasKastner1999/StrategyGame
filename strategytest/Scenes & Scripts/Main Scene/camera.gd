@@ -112,8 +112,8 @@ func selectType():
 	if selection.size() == 1:
 		new_selection = []
 		for unit in selection[0].get_parent().get_children():
-			new_selection.append(unit)
 			if unit.getFaction() == Global.player_faction:
+				new_selection.append(unit)
 				unit.select()
 		selection = new_selection
 

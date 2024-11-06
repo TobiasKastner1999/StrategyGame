@@ -8,9 +8,16 @@ var player_faction : int # the faction the player has chosen for the current gam
 func getFactionColor(faction):
 	match faction:
 		0:
-			return "res://Assets/Materials/material_friendly.tres"
+			return "res://Assets/Materials/material_blue.tres"
 		1:
-			return "res://Assets/Materials/material_enemy.tres"
+			return "res://Assets/Materials/material_red.tres"
+
+func getSelectedFactionColor(faction):
+	match faction:
+		0:
+			return "res://Assets/Materials/material_blue_selected.tres"
+		1:
+			return "res://Assets/Materials/material_red_selected.tres"
 
 # adds a given amount of crystals to a faction's stock
 func addCrystals(amount, faction):

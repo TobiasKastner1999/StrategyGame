@@ -120,11 +120,11 @@ func takeDamage(damage, attacker):
 
 # changes the color of the unit when selected
 func select():
-	$UnitBody.set_surface_override_material(1, load("res://Assets/Materials/material_friendly_selected.tres"))
+	$UnitBody.set_surface_override_material(1, load(Global.getSelectedFactionColor(faction)))
 
 # changes the color of the unit when it is deselected
 func deselect():
-	$UnitBody.set_surface_override_material(1, load("res://Assets/Materials/material_friendly.tres") )
+	$UnitBody.set_surface_override_material(1, load(Global.getFactionColor(faction)) )
 
 # sets the unit's faction to a given value
 func setFaction(f : int):

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c1nki85rv3ir5"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Units/Worker/worker.gd" id="1_ple0k"]
-[ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://Assets/Materials/material_friendly.tres" id="2_hsmf3"]
+[ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://Assets/Materials/material_blue.tres" id="2_hsmf3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_k5l20"]
 
