@@ -316,15 +316,19 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -144.959, 1, 233.523)
 [node name="Ressource28" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -109.116, 1, 191.443)
 
-[node name="HQFriendly" parent="." instance=ExtResource("7_g6gsm")]
+[node name="HQBlue" parent="." instance=ExtResource("7_g6gsm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, 200)
 
-[node name="HQEnemy" parent="." instance=ExtResource("7_g6gsm")]
+[node name="HQRed" parent="." instance=ExtResource("7_g6gsm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, -200)
 faction = 1
 
-[node name="EnemyController" type="Node3D" parent="."]
+[node name="FactionBlueController" type="Node3D" parent="."]
 script = ExtResource("8_q8x15")
+
+[node name="FactionRedController" type="Node3D" parent="."]
+script = ExtResource("8_q8x15")
+controlled_faction = 1
 
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
@@ -334,6 +338,63 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_f8ghw")
+
+[node name="StartScreen" type="Panel" parent="Interface"]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartScreenText" type="RichTextLabel" parent="Interface/StartScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -365.0
+offset_right = 300.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_uvm5n")
+text = "Choose a Faction!"
+
+[node name="ButtonBlue" type="Button" parent="Interface/StartScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -50.0
+offset_right = -40.0
+offset_bottom = 50.0001
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_vhkq3")
+text = "Blue"
+
+[node name="ButtonRed" type="Button" parent="Interface/StartScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -50.0
+offset_right = 240.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_vhkq3")
+text = "Red"
 
 [node name="EndScreen" type="Panel" parent="Interface"]
 process_mode = 2
@@ -379,6 +440,7 @@ theme = SubResource("Theme_vhkq3")
 text = "Quit"
 
 [node name="UIFrame" type="TextureRect" parent="Interface"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -401,6 +463,7 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="BuildingButton" type="Button" parent="Interface"]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -434,6 +497,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000671387, 0.0808716, 0.044
 shape = SubResource("BoxShape3D_hw102")
 
 [node name="MiniMap" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("14_qp26c")
 
 [node name="MiniMapContainer" type="SubViewportContainer" parent="MiniMap"]
@@ -449,7 +513,7 @@ grow_vertical = 0
 [node name="MiniMapViewPort" type="SubViewport" parent="MiniMap/MiniMapContainer"]
 handle_input_locally = false
 size = Vector2i(300, 250)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="ColorRect" type="ColorRect" parent="MiniMap/MiniMapContainer/MiniMapViewPort"]
 anchors_preset = 15
@@ -470,6 +534,7 @@ centered = false
 offset = Vector2(150, 200)
 
 [node name="Counter" type="Label" parent="."]
+visible = false
 offset_right = 145.0
 offset_bottom = 40.0
 text = "Kristalle:"
@@ -504,8 +569,12 @@ text = "Kristalle:"
 [connection signal="expended" from="Resources/Ressource26" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource27" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource28" to="Resources" method="_on_ressource_expended"]
-[connection signal="destruction" from="HQFriendly" to="." method="_on_hq_destruction"]
-[connection signal="destruction" from="HQEnemy" to="." method="_on_hq_destruction"]
-[connection signal="rebake" from="EnemyController" to="." method="_on_interface_rebake"]
+[connection signal="destruction" from="HQBlue" to="." method="_on_hq_destruction"]
+[connection signal="destruction" from="HQRed" to="." method="_on_hq_destruction"]
+[connection signal="rebake" from="FactionBlueController" to="." method="_on_interface_rebake"]
+[connection signal="rebake" from="FactionRedController" to="." method="_on_interface_rebake"]
 [connection signal="rebake" from="Interface" to="." method="_on_interface_rebake"]
+[connection signal="start_game" from="Interface" to="." method="_on_interface_start_game"]
+[connection signal="pressed" from="Interface/StartScreen/ButtonBlue" to="Interface" method="_on_button_blue_pressed"]
+[connection signal="pressed" from="Interface/StartScreen/ButtonRed" to="Interface" method="_on_button_red_pressed"]
 [connection signal="pressed" from="Interface/EndScreen/ButtonQuit" to="Interface/EndScreen" method="_on_button_quit_pressed"]

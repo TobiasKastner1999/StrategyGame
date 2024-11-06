@@ -2,7 +2,7 @@ extends Node
 
 const BUILDING_COST = 4 # the crystal cost required to construct a new building
 var crystals = [0, 0] # the different factions' current crystal balances
-var player_faction : int = 0 # the faction the player has chosen for the current game
+var player_faction : int # the faction the player has chosen for the current game
 
 # returns the correct color for a given faction
 func getFactionColor(faction):

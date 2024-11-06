@@ -1,6 +1,7 @@
 extends Control
 
 signal rebake()
+signal start_game(faction)
 
 @onready var node_building_placer: Node3D = $Placer
 @onready var interface_btn_building:Button = $BuildingButton
@@ -84,3 +85,9 @@ func gameEnd(faction):
 	else:
 		$EndScreen/EndScreenText.text = "Victory!"
 	$EndScreen.visible = true
+
+func _on_button_blue_pressed():
+	start_game.emit(0)
+
+func _on_button_red_pressed():
+	start_game.emit(1)

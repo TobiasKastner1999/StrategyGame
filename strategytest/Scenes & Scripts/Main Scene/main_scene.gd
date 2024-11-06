@@ -1,5 +1,8 @@
 extends NavigationRegion3D
 
+func _ready():
+	get_tree().paused = true
+
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
 	$Counter.set_text("Crystals: " + str(Global.crystals)+ "   " + "FPS: " + str(Engine.get_frames_per_second()))
@@ -20,3 +23,15 @@ func gameEnd(faction):
 	$MiniMap.visible = false
 	$Interface.gameEnd(faction)
 	get_tree().paused = true
+
+func _on_interface_start_game(faction):
+	get_tree().paused = false
+	$Interface/StartScreen.visible = false
+	$Interface/UIFrame.visible = true
+	$Interface/BuildingButton.visible = true
+	$MiniMap.visible = true
+	$Counter.visible = true
+	
+	Global.player_faction = faction
+	$FactionBlueController.setUp()
+	$FactionRedController.setUp()

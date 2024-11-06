@@ -85,6 +85,9 @@ func getSize():
 	return ($HqSize.mesh.size.x / 2)
 	#added a Mesh for size measurement because no index on arraymesh
 
+func getWorkers():
+	return $Workers
+
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):
 	current_workers -= 1 # subtracts the removed worker from the current amount
