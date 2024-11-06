@@ -3,12 +3,12 @@ extends Node
 signal rebake() # to rebake the navmesh when a new building is placed
 
 var build_locations = [[Vector3(0.0, 3.9, 175.0), Vector3(-25.0, 3.9, 175.0), Vector3(25.0, 3.9, 175.0)], [Vector3(0.0, 3.9, -175.0), Vector3(-25.0, 3.9, -175.0), Vector3(25.0, 3.9, -175.0)]] # the pre-determined locations where the AI can construct its buildings
+var hq  # the AI's HQ building
+var enemy_hq  # the player's HQ building
+var worker_storage # the AI's workers
 
 @export var controlled_faction : int # the AI-controlled faction
 
-@onready var hq = $".."/HQEnemy # the AI's HQ building
-@onready var enemy_hq = $".."/HQFriendly # the player's HQ building
-@onready var worker_storage = $".."/HQEnemy/Workers # the AI's workers
 @onready var unit_storage = $".."/Units # the combat units
 @onready var resources = $".."/Resources # the resources
 

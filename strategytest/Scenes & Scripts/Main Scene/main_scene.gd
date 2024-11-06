@@ -1,5 +1,7 @@
 extends NavigationRegion3D
 
+var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
+
 func _ready():
 	get_tree().paused = true
 
@@ -35,3 +37,4 @@ func _on_interface_start_game(faction):
 	Global.player_faction = faction
 	$FactionBlueController.setUp()
 	$FactionRedController.setUp()
+	$Camera.global_position = camera_positions[faction]

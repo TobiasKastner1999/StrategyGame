@@ -102,11 +102,10 @@ transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Camera" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 174.383)
 script = ExtResource("2_6i5cw")
 
 [node name="Camera" type="Camera3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.508876, 0.86084, 0, -0.86084, 0.508876, 0, 37.7224, 46.5763)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 40, 45)
 fov = 37.8493
 
 [node name="SelectionBox" type="Control" parent="Camera"]
