@@ -10,7 +10,6 @@ var can_spawn = false # can the hq spawn a new worker?
 var unit_manager
 
 @onready var hp = MAX_HP # the hq's current hp, initially set to the maximum
-
 @export var faction = 0 # the hq's faction
 
 # called at the start of the game
@@ -33,10 +32,19 @@ func spawnWorker():
 	
 	var worker = load("res://units/worker.tscn").instantiate() # instantiates a new worker object
 	$Workers.add_child(worker) # adds the worker to the correct node
+	for i in Global.list.size():
+			Global.list[i+1] = worker.global_position
+	print(Global.list)
+
+
+
+
+	
 	worker.global_position = $SpawnPoint.global_position # moves the worker to the correct spawn location
 	worker.setFaction(faction) # assigns the worker to the hq's faction
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
+	
 	
 
 # removes references to an expended resource from the workers

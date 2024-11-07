@@ -1,7 +1,6 @@
 extends CanvasLayer
 
-var list = {
-}
+
 var mouse_over_map = false
 var map_size_x = null
 var map_size_y = null
@@ -19,8 +18,9 @@ var zoom
 
 
 func _ready():
-
-	print(list)
+	Global.list[0] = Vector2(0,0)
+	Global.list[1] = null
+	Global.list[2] = Vector2(1,3)
 	
 	#sets the positions of the hqs on the minimap
 	unit_sprite.position = Vector2($"../HQFriendly".position.x, $"../HQFriendly".position.z)
