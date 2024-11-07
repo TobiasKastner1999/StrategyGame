@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+var list = {
+}
 var mouse_over_map = false
 var map_size_x = null
 var map_size_y = null
@@ -10,9 +12,15 @@ var zoom
 @onready var unit_sprite2 = $MapContainer/BaseEnemy
 @onready var cam_sprite = $MapContainer/Cam
 
+
+
+
+
+
+
 func _ready():
 
-	
+	print(list)
 	
 	#sets the positions of the hqs on the minimap
 	unit_sprite.position = Vector2($"../HQFriendly".position.x, $"../HQFriendly".position.z)
@@ -26,12 +34,10 @@ func _ready():
 #via a characterbody2d that is constantly following the mouse
 func _process(delta):
 	
-	if mouse_over_map == true:
-		if Input.is_action_just_pressed("LeftClick"):
-			var mouse_pos: Vector2 = get_viewport().get_mouse_position()
-		
-			main_cam.position.x = $MapContainer/CharacterBody2D.position.x
-			main_cam.position.z = $MapContainer/CharacterBody2D.position.y
+	if mouse_over_map == true and Input.is_action_just_pressed("LeftClick"):
+		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+		main_cam.position.x = $MapContainer/CharacterBody2D.position.x
+		main_cam.position.z = $MapContainer/CharacterBody2D.position.y
 
 
 
@@ -47,7 +53,6 @@ func _process(delta):
 		cam_sprite.position.x = 249
 
 
-
 	if not cam_sprite.position.y <= -250 and not cam_sprite.position.y >= 250:
 		cam_sprite.position.y = main_cam.position.z
 	if cam_sprite.position.y <= -250:
@@ -55,7 +60,7 @@ func _process(delta):
 	if cam_sprite.position.y >= 250:
 		cam_sprite.position.y = 249
 
-
+#scale the vision sprite when cam zooms in/oout
 	if main_cam.position.y != zoom:
 		if main_cam.position.y >= zoom:
 			cam_sprite.scale +=Vector2(0.1, 0.1)
