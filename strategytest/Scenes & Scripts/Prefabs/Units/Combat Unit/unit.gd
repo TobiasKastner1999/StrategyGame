@@ -82,12 +82,13 @@ func _physics_process(delta):
 			navi.target_position = go_to
 		var dir = navi.get_next_path_position() - global_position
 		dir = dir.normalized()
-		velocity = velocity.lerp(dir * speed, 10 * delta)
 		if position.distance_to(go_to) < (attack_range / 2.0):
 			go_to = global_position
 			velocity = Vector3.ZERO
 			priority_movement = false
-		move_and_slide()
+		else:
+			var intended_velocity = velocity.lerp(dir * speed, 10 * delta)
+			navi.set_velocity(intended_velocity) # passes the intended movement velocity onto the navigation agent
 
 # receives the path from NavAgent
 func move_to(target_pos):
@@ -188,3 +189,8 @@ func _on_area_3d_body_exited(body):
 # re-enables attack when the attack cooldown ends
 func _on_timer_timeout():
 	can_attack = true
+
+# moves the agent on the computed safe velocity
+func _on_nav_agent_velocity_computed(safe_velocity):
+	velocity = safe_velocity
+	move_and_slide()

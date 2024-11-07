@@ -287,7 +287,9 @@ shape = SubResource("CylinderShape3D_o03a0")
 
 [node name="NavAgent" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
+height = 1.25
 radius = 1.5
+max_speed = 20.0
 debug_enabled = true
 
 [node name="HealthbarContainer" type="SubViewport" parent="."]
@@ -326,6 +328,7 @@ libraries = {
 }
 autoplay = "attack"
 
+[connection signal="velocity_computed" from="NavAgent" to="." method="_on_nav_agent_velocity_computed"]
 [connection signal="body_entered" from="RangeArea" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="RangeArea" to="." method="_on_area_3d_body_exited"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_timer_timeout"]
