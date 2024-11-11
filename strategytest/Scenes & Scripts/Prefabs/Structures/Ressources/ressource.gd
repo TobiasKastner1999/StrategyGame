@@ -7,7 +7,6 @@ var resource = 3 # how many resources does this node still hold?
 @export var resource_type : int
 
 func _ready():
-	print(resource_type)
 	match resource_type:
 		0:
 			$ResourceBody.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
