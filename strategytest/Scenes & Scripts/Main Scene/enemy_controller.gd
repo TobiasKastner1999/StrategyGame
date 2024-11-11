@@ -35,15 +35,15 @@ func setWorkerDestination(worker):
 		resource_list = resources.get_children() # if there are no resources left near the HQ, gets all resources on the map instead
 	if resource_list.size() > 0:
 		if (Global.getResource(controlled_faction, 0) < Global.BUILDING_COST) and (build_locations[controlled_faction].size() == 3):
-			for resource in resource_list:
+			for resource in resource_list: # if the AI still needs to construct a building, and does not have enough resources to do so
 				if resource.getType() != 0:
-					resource_list.erase(resource)
+					resource_list.erase(resource) # ignores all resources for units
 		else:
 			for resource in resource_list:
 				if resource.getType() == 0:
-					resource_list.erase(resource)
+					resource_list.erase(resource) # otherwise, ignores all resources for buildings instead
 		if resource_list.size() == 0:
-			resource_list = resources.get_children()
+			resource_list = resources.get_children() # re-generates the list if ignoring a specific type of resource would cause the list to be empty
 		worker.setTargetPosition(resource_list[randi_range(0, resource_list.size() - 1)].global_position) # sends the worker to a random resource from the list
 
 # issues new commands to a combat unit

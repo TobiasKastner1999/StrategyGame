@@ -10,7 +10,7 @@ var SR
 var faction = 0 # which faction does the worker belong to?
 var path = [] # the navigation path the worker is traveling on
 var path_ind = 0 # the index of the worker's current path node
-var resource = [0, 0] # how many crystals the worker is holding
+var resource = [0, 0] # what type of resource is the worker carrying, and how much of it?
 var known_resources = [] # an array of all resource nodes the worker has discovered
 var target_resource # the resource the worker is currently moving towards
 var priority_movement = false # is the worker's currently overwritten by a player input?
@@ -34,7 +34,7 @@ func _physics_process(delta):
 	
 	# checks where the worker should move if their movement isn't overwritten by the player
 	if !priority_movement:
-		# if the worker has a crystal
+		# if the worker has a resource
 		if resource[1] != 0:
 			# if the worker is near the hq
 			if global_position.distance_to(hq.global_position) < 6:

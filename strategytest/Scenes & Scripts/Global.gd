@@ -1,8 +1,8 @@
 extends Node
 
 const BUILDING_COST = 4 # the crystal cost required to construct a new building
-var faction_zero_resources = [0, 0] # the different factions' current crystal balances
-var faction_one_resources = [0, 0]
+var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
+var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 var player_faction : int # the faction the player has chosen for the current game
 
 # returns the correct color for a given faction
@@ -21,7 +21,7 @@ func getSelectedFactionColor(faction):
 		1:
 			return "res://Assets/Materials/material_red_selected.tres"
 
-# adds a given amount of crystals to a faction's stock
+# adds or removes a given amount of a given resource to a faction's stock
 func updateResource(faction, type, amount):
 	match faction:
 		0:
@@ -29,7 +29,7 @@ func updateResource(faction, type, amount):
 		1:
 			faction_one_resources[type] += amount
 
-# returns the amount of crystals a given faction currently has
+# returns a given faction's current balance of a given resource
 func getResource(faction, type):
 	match faction:
 		0:

@@ -1,8 +1,8 @@
 extends Node3D
 
-signal building_menu(building)
+signal building_menu(building) # to activate the interface when the building is clicked
 
-const DISPLAY_NAME = "Building"
+const DISPLAY_NAME = "Building" # the building's displayed name
 const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
 const UNIT_COST = 1 # how many crystals does each unit from this building cost to produce?
@@ -53,10 +53,11 @@ func takeDamage(damage, _attacker):
 	if hp <= 0: # removes the building if it's remaining hp is 0 or less
 		queue_free() # then deletes the building
 
-# accesses the building's function
+# accesses the building's interface function
 func accessStructure():
 	building_menu.emit(self)
 
+# toggles the building's production status
 func toggleStatus():
 	spawn_active = !spawn_active # toggle's spawn from this building
 	$BuildingPause.visible = !spawn_active # sets the visibility of the pause animation appropriately
