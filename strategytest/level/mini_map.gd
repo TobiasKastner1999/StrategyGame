@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 
+
+
 var mouse_over_map = false
 var map_size_x = null
 var map_size_y = null
@@ -11,6 +13,8 @@ var zoom
 @onready var unit_sprite2 = $MapContainer/BaseEnemy
 @onready var cam_sprite = $MapContainer/Cam
 
+var temp = 1
+
 
 
 
@@ -18,9 +22,19 @@ var zoom
 
 
 func _ready():
-	Global.list[0] = Vector2(0,0)
-	Global.list[1] = null
-	Global.list[2] = Vector2(1,3)
+
+	Global.list[0] = {"positionX" : $MapContainer/Tank.position.x ,"positionY": $MapContainer/Tank.position.y,  "faction" : 0 , "dot" : 0, "worker" : $MapContainer/workers}
+
+	
+	
+	#for i in Global.list.size():
+		#if i != null and Global.list[i]["faction"] == 1:
+			#$MapContainer/workers.add_child(dot)
+			#dot.position = Global.list[i]["position"]
+			
+	#Global.list[0] = {"positionX" : $MapContainer/workers/worker.global_position.x, "positionY" : $MapContainer/workers/worker.global_position.y, "faction" : 1 , "id" : $MapContainer/workers/worker.get_instance_id()}
+
+	
 	
 	#sets the positions of the hqs on the minimap
 	unit_sprite.position = Vector2($"../HQFriendly".position.x, $"../HQFriendly".position.z)
@@ -30,9 +44,22 @@ func _ready():
 	#visualizes the zoom 
 	zoom = main_cam.position.y
 
-# when the moise enters the area of minimap the var turns true and if you click the camera moves to the position given
+# when the mouse enters the area of minimap the var turns true and if you click the camera moves to the position given
 #via a characterbody2d that is constantly following the mouse
 func _process(delta):
+	var dot = load("res://level/dot.tscn").instantiate()
+	dot.texture = load("res://assets/red_dot.png")
+	
+	print(Global.list.size())
+	for i in Global.list.size():
+		temp = i
+		if i != null and Global.list[i]["dot"] == null:
+			$MapContainer/workers.add_child(dot)
+			Global.list[i]["dot"] = dot
+		dot.position = Vector2(Global.list[i]["positionX"], Global.list[i]["positionY"])
+	
+	
+	
 	
 	if mouse_over_map == true and Input.is_action_just_pressed("LeftClick"):
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
@@ -69,8 +96,8 @@ func _process(delta):
 		if main_cam.position.y <= zoom:
 			cam_sprite.scale -=Vector2(0.1, 0.1)
 			zoom = main_cam.position.y
-			
-			
+
+
 func add_unit(faction):
 	pass
 

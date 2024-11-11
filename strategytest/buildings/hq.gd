@@ -5,6 +5,9 @@ const SPAWN_DELAY = 10.0 # how often will new workers spawn?
 const MAX_WORKERS = 4 # how many workers can spawn at most?
 const MAX_HP = 20.0 # the hq's maximum hp
 
+
+
+var temp = 1
 var current_workers = 0 # how many workers are currently alive?
 var can_spawn = false # can the hq spawn a new worker?
 var unit_manager
@@ -23,28 +26,33 @@ func _ready():
 func _process(delta):
 	if can_spawn and current_workers < MAX_WORKERS:
 		spawnWorker() # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
+	#for i in Global.list:
+		#Global.list[i]["positionX"] = $Workers.get_child(Global.list[i]["id"]).global_position.x
+		#Global.list[i]["positionY"] = $Workers.get_child(Global.list[i]["id"]).global_position.z
+
+
 
 # spawns a new worker
 func spawnWorker():
 	can_spawn = false # makes further spawns unavailable
 	$SpawnTimer.start(SPAWN_DELAY) # starts the delay for the next spawn
 	current_workers += 1 # saves the new number of workers
-	
 	var worker = load("res://units/worker.tscn").instantiate() # instantiates a new worker object
 	$Workers.add_child(worker) # adds the worker to the correct node
-	for i in Global.list.size():
-			Global.list[i+1] = worker.global_position
-	print(Global.list)
-
-
-
-
-	
 	worker.global_position = $SpawnPoint.global_position # moves the worker to the correct spawn location
 	worker.setFaction(faction) # assigns the worker to the hq's faction
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
 	
+	
+	if Global.list.size() == temp:
+		temp +=1
+		print("yes")
+	else:
+		Global.list[temp] = {"positionX" : worker.global_position.x, "positionY" : worker.global_position.z, "faction" : faction , "id" : worker.get_instance_id(), "dot": null, "worker" : worker}
+
+
+
 	
 
 # removes references to an expended resource from the workers

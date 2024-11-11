@@ -58,5 +58,7 @@ script = ExtResource("5_qi0m4")
 modulate = Color(0, 0.466667, 0.466667, 1)
 texture = ExtResource("3_qkhaj")
 
+[node name="workers" type="Node2D" parent="MapContainer"]
+
 [connection signal="mouse_entered" from="MapContainer/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="MapContainer/Area2D" to="." method="_on_area_2d_mouse_exited"]

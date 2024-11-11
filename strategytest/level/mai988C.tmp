@@ -309,7 +309,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -109.116, 1, 191.443)
 
 [node name="HQFriendly" parent="." instance=ExtResource("11_eb4t3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, 200)
-faction = 0
 
 [node name="HQEnemy" parent="." instance=ExtResource("11_eb4t3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, -200)
@@ -400,10 +399,10 @@ scale = Vector2(0.6, 0.55)
 transform = Transform2D(0.6, 0, 0, 0.55, 0, 0)
 
 [node name="MapContainer" parent="MiniMap" index="0"]
-offset_left = 278.333
-offset_top = 1703.64
-offset_right = 778.333
-offset_bottom = 2203.64
+offset_left = 281.667
+offset_top = 1690.91
+offset_right = 781.667
+offset_bottom = 2190.91
 
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
 [connection signal="rebake" from="Resources" to="." method="_on_interface_rebake"]

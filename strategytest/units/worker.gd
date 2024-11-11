@@ -23,8 +23,16 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gr
 
 # called when the worker is first instantiated
 func _ready():
+
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
+
+
+func _process(delta):
+	for i in Global.list:
+		if self == Global.list[i]["worker"]:
+			Global.list[i]["positionX"] = self.global_position.x
+			Global.list[i]["positionY"] = self.global_position.z
 
 # controls the worker's movement and other actions
 func _physics_process(delta):
