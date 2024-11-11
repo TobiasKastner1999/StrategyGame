@@ -69,7 +69,7 @@ func _input(_event):
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
 				building_node.setFaction(Global.player_faction)
 				rebake.emit()
-				Global.addCrystals(-Global.BUILDING_COST, Global.player_faction)
+				Global.updateResource(Global.player_faction, 0, -Global.BUILDING_COST)
 				
 				if !shift:
 					interface_input_mode = 0

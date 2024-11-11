@@ -20,13 +20,13 @@ func _ready():
 # checks repeatedly if a new unit can be spawned
 func _physics_process(_delta):
 	var spawn_point = getEmptySpawn()
-	if can_spawn and spawn_active and spawn_point != null and Global.getCrystals(faction) >= UNIT_COST:
+	if can_spawn and spawn_active and spawn_point != null and Global.getResource(faction, 1) >= UNIT_COST:
 		spawnUnit(spawn_point) # spawns a new unit if the building is able to, and the player has the crystals required
 
 # spawns a new unit
 func spawnUnit(spawn_point):
 	can_spawn = false # temporarily disables new spawns
-	Global.addCrystals(-UNIT_COST, faction) # subtracts the unit's crystal cost from the player's balance
+	Global.updateResource(faction, 1, -UNIT_COST) # subtracts the unit's crystal cost from the player's balance
 	$SpawnTimer.start(SPAWN_RATE) # starts spawn delay
 	
 	var new_unit = load("res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.tscn").instantiate() # instantiates the unit

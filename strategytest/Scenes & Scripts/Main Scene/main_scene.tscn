@@ -239,18 +239,23 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 154.231, 1, 198.053)
 
 [node name="Ressource3" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 107.164, 1, 231.037)
+resource_type = 1
 
 [node name="Ressource4" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 199.341, 1, 147.55)
+resource_type = 1
 
 [node name="Ressource5" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 214.283, 1, 230.125)
+resource_type = 1
 
 [node name="Ressource6" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 142.822, 1, 74.058)
+resource_type = 1
 
 [node name="Ressource7" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 203.491, 1, 11.3581)
+resource_type = 1
 
 [node name="Ressource8" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 59.9973, 1, -9.61789)
@@ -266,24 +271,29 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 98.2793, 1, -167.068)
 
 [node name="Ressource12" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 206.747, 1, -143.713)
+resource_type = 1
 
 [node name="Ressource13" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 206.747, 1, -208.565)
 
 [node name="Ressource14" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 135.275, 1, -181.116)
+resource_type = 1
 
 [node name="Ressource15" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -122.731, 1, -225.682)
+resource_type = 1
 
 [node name="Ressource16" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -109.015, 1, -170.754)
+resource_type = 1
 
 [node name="Ressource17" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -169.544, 1, -235.491)
 
 [node name="Ressource18" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -186.905, 1, -162.878)
+resource_type = 1
 
 [node name="Ressource19" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -213.79, 1, -208.554)
@@ -293,12 +303,14 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -229.89, 1, -56.9358)
 
 [node name="Ressource21" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -102.03, 1, -96.8275)
+resource_type = 1
 
 [node name="Ressource22" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -141.143, 1, 32.8123)
 
 [node name="Ressource23" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -219.479, 1, 95.3275)
+resource_type = 1
 
 [node name="Ressource24" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -90.5573, 1, 143.926)
@@ -308,12 +320,14 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -171.541, 1, 166.958)
 
 [node name="Ressource26" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -221.387, 1, 199.616)
+resource_type = 1
 
 [node name="Ressource27" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -144.959, 1, 233.523)
 
 [node name="Ressource28" parent="Resources" instance=ExtResource("6_n2kgi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -109.116, 1, 191.443)
+resource_type = 1
 
 [node name="HQBlue" parent="." instance=ExtResource("7_g6gsm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, 200)

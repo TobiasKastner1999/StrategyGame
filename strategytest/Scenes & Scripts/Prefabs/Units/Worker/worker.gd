@@ -10,7 +10,7 @@ var SR
 var faction = 0 # which faction does the worker belong to?
 var path = [] # the navigation path the worker is traveling on
 var path_ind = 0 # the index of the worker's current path node
-var crystal = 0 # how many crystals the worker is holding
+var resource = [0, 0] # how many crystals the worker is holding
 var known_resources = [] # an array of all resource nodes the worker has discovered
 var target_resource # the resource the worker is currently moving towards
 var priority_movement = false # is the worker's currently overwritten by a player input?
@@ -35,11 +35,11 @@ func _physics_process(delta):
 	# checks where the worker should move if their movement isn't overwritten by the player
 	if !priority_movement:
 		# if the worker has a crystal
-		if crystal != 0:
+		if resource[1] != 0:
 			# if the worker is near the hq
 			if global_position.distance_to(hq.global_position) < 6:
-				Global.addCrystals(crystal, faction) # adds crystal to player's resources
-				crystal = 0
+				Global.updateResource(faction, resource[0], resource[1]) # adds crystal to player's resources
+				resource = [0, 0]
 			# if the worker is further away from the hq
 			else:
 				go_to = hq.global_position # sets hq as movement destination
@@ -48,8 +48,9 @@ func _physics_process(delta):
 		elif target_resource != null:
 			# if the worker is near the destination resource
 			if global_position.distance_to(target_resource.global_position) <= 3:
-				target_resource.get_parent().get_parent().takeResource() # removes a resource from that node
-				crystal = 1 # adds the crystal to the worker
+				resource[0] = target_resource.getType()
+				target_resource.takeResource() # removes a resource from that node
+				resource[1] += 1 # adds the crystal to the worker
 				target_resource = null # clears the worker's target's resource
 			# if the worker is further away from the destination
 			else:
@@ -126,7 +127,7 @@ func getSize():
 
 # checks if the worker is currently doing anything
 func isWorking():
-	if known_resources.size() > 0 or crystal > 0 or priority_movement:
+	if known_resources.size() > 0 or resource != [0, 0] or priority_movement:
 		return true # returns true if the worker is delivering a crystal or knows of any remaining resource nodes
 	else:
 		return false
@@ -146,9 +147,9 @@ func setTargetPosition(target):
 	go_to = target
 
 # removes a cleared resource node from the worker's list if it is on there
-func removeResourceKnowledge(resource):
-	if known_resources.has(resource):
-		known_resources.erase(resource)
+func removeResourceKnowledge(removed_resource):
+	if known_resources.has(removed_resource):
+		known_resources.erase(removed_resource)
 
 # if a new resource entered the worker's detection radius, adds it to its list
 func _on_range_area_body_entered(body):
