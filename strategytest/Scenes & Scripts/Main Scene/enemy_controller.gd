@@ -35,7 +35,6 @@ func setWorkerDestination(worker):
 		resource_list = resources.get_children() # if there are no resources left near the HQ, gets all resources on the map instead
 	if resource_list.size() > 0:
 		if (Global.getResource(controlled_faction, 0) < Global.BUILDING_COST) and (build_locations[controlled_faction].size() == 3):
-			print("getting building resources...")
 			for resource in resource_list:
 				if resource.getType() != 0:
 					resource_list.erase(resource)

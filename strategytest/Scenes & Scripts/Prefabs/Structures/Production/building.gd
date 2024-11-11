@@ -1,11 +1,14 @@
 extends Node3D
 
+signal building_menu(building)
+
+const DISPLAY_NAME = "Building"
 const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
 const UNIT_COST = 1 # how many crystals does each unit from this building cost to produce?
 const SPAWN_RATE = 5.0 # how often can the building produce new units?
 var can_spawn = false # can the building currently produce a new unit?
-var spawn_active = false # is the building's unit production toggled on?
+var spawn_active = true # is the building's unit production toggled on?
 var faction : int # the faction the building belongs to
 
 @onready var hp = MAX_HP # the building's current hit points, initially set to the maximum hit points
@@ -52,6 +55,9 @@ func takeDamage(damage, _attacker):
 
 # accesses the building's function
 func accessStructure():
+	building_menu.emit(self)
+
+func toggleStatus():
 	spawn_active = !spawn_active # toggle's spawn from this building
 	$BuildingPause.visible = !spawn_active # sets the visibility of the pause animation appropriately
 

@@ -68,6 +68,7 @@ func _input(_event):
 				get_parent().add_child(building_node)
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
 				building_node.setFaction(Global.player_faction)
+				building_node.building_menu.connect(get_parent()._on_building_menu)
 				rebake.emit()
 				Global.updateResource(Global.player_faction, 0, -Global.BUILDING_COST)
 				
