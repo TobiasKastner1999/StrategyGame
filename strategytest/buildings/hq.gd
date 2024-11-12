@@ -26,9 +26,11 @@ func _ready():
 func _process(delta):
 	if can_spawn and current_workers < MAX_WORKERS:
 		spawnWorker() # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
-	#for i in Global.list:
-		#Global.list[i]["positionX"] = $Workers.get_child(Global.list[i]["id"]).global_position.x
-		#Global.list[i]["positionY"] = $Workers.get_child(Global.list[i]["id"]).global_position.z
+	
+	for i in Global.list:#iterates through the list
+		var worker_id = Global.list[i]["worker"] #gets the worker node
+		Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
+		Global.list[i]["positionY"] = worker_id.global_position.z#updates the position y in dictionary 
 
 
 
@@ -44,16 +46,9 @@ func spawnWorker():
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
 	
-	
-	if Global.list.size() == temp:
-		temp +=1
-		print("yes")
-	else:
-		Global.list[temp] = {"positionX" : worker.global_position.x, "positionY" : worker.global_position.z, "faction" : faction , "id" : worker.get_instance_id(), "dot": null, "worker" : worker}
+	#add a new entry to the dictionary when a worker spawns
+	Global.add_to_list(worker.global_position.x, worker.global_position.z, faction, worker.get_instance_id(), null, worker)
 
-
-
-	
 
 # removes references to an expended resource from the workers
 func excludeResource(node):

@@ -309,7 +309,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -109.116, 1, 191.443)
 
 [node name="HQFriendly" parent="." instance=ExtResource("11_eb4t3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, 200)
-faction = 0
 
 [node name="HQEnemy" parent="." instance=ExtResource("11_eb4t3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, -200)

@@ -12,7 +12,7 @@ var zoom
 @onready var unit_sprite = $MapContainer/BaseFriendly
 @onready var unit_sprite2 = $MapContainer/BaseEnemy
 @onready var cam_sprite = $MapContainer/Cam
-
+@onready var tank = $"../Unit"
 var temp = 1
 
 
@@ -23,18 +23,8 @@ var temp = 1
 
 func _ready():
 
-	Global.list[0] = {"positionX" : $MapContainer/Tank.position.x ,"positionY": $MapContainer/Tank.position.y,  "faction" : 0 , "dot" : 0, "worker" : $MapContainer/workers}
+	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MapContainer/Tank, "worker" : tank}
 
-	
-	
-	#for i in Global.list.size():
-		#if i != null and Global.list[i]["faction"] == 1:
-			#$MapContainer/workers.add_child(dot)
-			#dot.position = Global.list[i]["position"]
-			
-	#Global.list[0] = {"positionX" : $MapContainer/workers/worker.global_position.x, "positionY" : $MapContainer/workers/worker.global_position.y, "faction" : 1 , "id" : $MapContainer/workers/worker.get_instance_id()}
-
-	
 	
 	#sets the positions of the hqs on the minimap
 	unit_sprite.position = Vector2($"../HQFriendly".position.x, $"../HQFriendly".position.z)
@@ -47,16 +37,21 @@ func _ready():
 # when the mouse enters the area of minimap the var turns true and if you click the camera moves to the position given
 #via a characterbody2d that is constantly following the mouse
 func _process(delta):
+	
+	
+	
 	var dot = load("res://level/dot.tscn").instantiate()
 	dot.texture = load("res://assets/red_dot.png")
-	
-	print(Global.list.size())
+
+
+
+
 	for i in Global.list.size():
 		temp = i
 		if i != null and Global.list[i]["dot"] == null:
 			$MapContainer/workers.add_child(dot)
 			Global.list[i]["dot"] = dot
-		dot.position = Vector2(Global.list[i]["positionX"], Global.list[i]["positionY"])
+		Global.list[i]["dot"].position = Vector2(Global.list[i]["positionX"], Global.list[i]["positionY"])
 	
 	
 	
