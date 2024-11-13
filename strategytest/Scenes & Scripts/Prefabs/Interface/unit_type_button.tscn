@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjfxdqr8rqsal"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Interface/unit_type_button.gd" id="1_8kikr"]
+
+[node name="UnitTypeButton" type="Button"]
+custom_minimum_size = Vector2(100, 50)
+text = "Test"
+script = ExtResource("1_8kikr")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

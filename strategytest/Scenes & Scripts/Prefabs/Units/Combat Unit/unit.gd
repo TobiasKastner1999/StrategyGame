@@ -27,17 +27,6 @@ var SR
 @onready var hp = max_hp # the unit's current hp, starting as its maximum hp
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the unit's movement
 
-# called when the unit is first loaded
-func _ready():
-	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
-	$HealthbarContainer/HealthBar.value = hp
-	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
-	$RangeArea/RangeColl.shape.radius = detection_range
-	$AttackAnim.mesh = $AttackAnim.mesh.duplicate()
-	
-	await get_tree().physics_frame
-	go_to = global_position # sets the initial navigation target to the unit's own position
-
 # controls the unit's movement and other actions
 func _physics_process(delta):
 	# unit is affected by gravity if it is floating
@@ -126,6 +115,38 @@ func select():
 # changes the color of the unit when it is deselected
 func deselect():
 	$UnitBody.set_surface_override_material(1, load(Global.getFactionColor(faction)) )
+
+# sets up the unit and its properties when it is spawned
+func setUp(type):
+	# sets the various properties from the given values for the unit's type
+	max_hp = Global.unit_dict[str(type)]["max_hp"]
+	damage_value = Global.unit_dict[str(type)]["damage_value"]
+	attack_range = Global.unit_dict[str(type)]["attack_range"]
+	attack_speed = Global.unit_dict[str(type)]["attack_speed"]
+	detection_range = Global.unit_dict[str(type)]["detection_range"]
+	speed = Global.unit_dict[str(type)]["speed"]
+	
+	hp = max_hp # sets initial hp to max hp
+	
+	# placeholder display for differentiating different unit types
+	match type:
+		0:
+			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_yellow.tres"))
+		1:
+			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
+		2:
+			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
+		3:
+			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_orange.tres"))
+	
+	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
+	$HealthbarContainer/HealthBar.value = hp
+	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
+	$RangeArea/RangeColl.shape.radius = detection_range
+	$AttackAnim.mesh = $AttackAnim.mesh.duplicate()
+	
+	await get_tree().physics_frame
+	go_to = global_position # sets the initial navigation target to the unit's own position
 
 # sets the unit's faction to a given value
 func setFaction(f : int):

@@ -1,0 +1,46 @@
+{
+  "0": {
+	"name": "Ranged",
+	"max_hp": 10.0,
+	"damage_value": 1.0,
+	"attack_range": 10.0,
+	"attack_speed": 2.0,
+	"detection_range": 20.0,
+	"speed": 20.0,
+	"resource_cost": 1,
+	"production_speed": 10.0
+  },
+  "1": {
+	"name": "Scout",
+	"max_hp": 5.0,
+	"damage_value": 0.5,
+	"attack_range": 7.5,
+	"attack_speed": 3.0,
+	"detection_range": 40.0,
+	"speed": 25.0,
+	"resource_cost": 1,
+	"production_speed": 5.0
+  },
+  "2": {
+	"name": "Sniper",
+	"max_hp": 3.0,
+	"damage_value": 5.0,
+	"attack_range": 20.0,
+	"attack_speed": 5.0,
+	"detection_range": 30.0,
+	"speed": 15.0,
+	"resource_cost": 3,
+	"production_speed": 15.0
+  },
+  "3": {
+	"name": "Melee",
+	"max_hp": 15.0,
+	"damage_value": 2.0,
+	"attack_range": 5.0,
+	"attack_speed": 2.0,
+	"detection_range": 15.0,
+	"speed": 20.0,
+	"resource_cost": 2,
+	"production_speed": 10.0
+  }
+}

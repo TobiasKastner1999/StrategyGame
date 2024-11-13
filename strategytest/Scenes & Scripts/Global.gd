@@ -5,6 +5,8 @@ var faction_zero_resources = [0, 0] # faction 0's balances in the different reso
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 var player_faction : int # the faction the player has chosen for the current game
 
+@onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_types.json")) # a dictionary of the different unit types and their properties
+
 # returns the correct color for a given faction
 func getFactionColor(faction):
 	match faction:
