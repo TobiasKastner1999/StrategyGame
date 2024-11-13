@@ -110,9 +110,10 @@ func selectUnits():
 func selectType():
 	selectUnits()
 	if selection.size() == 1:
+		var match_type = selection[0].getUnitType()
 		new_selection = []
 		for unit in selection[0].get_parent().get_children():
-			if unit.getFaction() == Global.player_faction:
+			if (unit.getFaction() == Global.player_faction) and (unit.getUnitType() == match_type):
 				new_selection.append(unit)
 				unit.select()
 		selection = new_selection
