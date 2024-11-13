@@ -1,11 +1,12 @@
 extends Node
 
-const BUILDING_COST = 4 # the crystal cost required to construct a new building
+const BUILDING_COST = 0 # the crystal cost required to construct a new building
 var crystals = 0 # the player's current crystal balance
 var enemy_crystals = 0 # the enemy's current crystal balance
 var list = {}
 var list_counter = 1
-
+var list_soldiers = {}
+var list_soldiers_counter = 1
 
 
 
@@ -38,4 +39,6 @@ func add_to_list(positionX, positionY, faction, id, dot, worker):
 	Global.list[list_counter] = {"positionX" : positionX, "positionY" : positionY, "faction" : faction , "id" : id, "dot": dot, "worker" : worker}
 	list_counter += 1
 
-
+func add_to_list_soldiers(positionX, positionY, faction, id, dot, worker):
+	Global.list_soldiers[list_soldiers_counter] = {"positionX" : positionX, "positionY" : positionY, "faction" : faction , "id" : id, "dot": dot, "soldier" : worker}
+	list_soldiers_counter += 1

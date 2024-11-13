@@ -47,7 +47,7 @@ func spawnWorker():
 	worker.deleted.connect(_on_worker_deleted)
 	
 	#add a new entry to the dictionary when a worker spawns
-	Global.add_to_list(worker.global_position.x, worker.global_position.z, faction, worker.get_instance_id(), null , worker)
+	Global.add_to_list(worker.global_position.x, worker.global_position.z, faction, worker.get_instance_id(), null, worker)
 
 
 # removes references to an expended resource from the workers

@@ -10,7 +10,7 @@
 size = Vector2(500, 500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hf4k"]
-size = Vector2(499, 499)
+size = Vector2(500, 500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqrqy"]
 size = Vector2(10, 10)
@@ -49,10 +49,11 @@ texture = ExtResource("4_s4qvu")
 [node name="Area2D" type="Area2D" parent="MapContainer"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapContainer/Area2D"]
-position = Vector2(-0.5, -0.5)
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_1hf4k")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="MapContainer"]
+visible = false
 position = Vector2(-245.793, 228.207)
 script = ExtResource("5_qi0m4")
 

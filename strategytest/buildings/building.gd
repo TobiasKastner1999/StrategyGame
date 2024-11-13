@@ -2,7 +2,7 @@ extends Node3D
 
 const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
-const UNIT_COST = 1 # how many crystals does each unit from this building cost to produce?
+const UNIT_COST = 0 # how many crystals does each unit from this building cost to produce?
 const SPAWN_RATE = 5.0 # how often can the building produce new units?
 var can_spawn = false # can the building currently produce a new unit?
 var spawn_active = false # is the building's unit production toggled on?
@@ -22,6 +22,12 @@ func _process(delta):
 	var spawn_point = getEmptySpawn()
 	if can_spawn and spawn_active and spawn_point != null and Global.getCrystals(faction) >= UNIT_COST:
 		spawnUnit(spawn_point) # spawns a new unit if the building is able to, and the player has the crystals required
+	for i in Global.list_soldiers:#iterates through the list
+		var soldier_id = Global.list_soldiers[i]["soldier"] #gets the worker node
+		Global.list_soldiers[i]["positionX"] = soldier_id.global_position.x #updates the position x in dictionary 
+		Global.list_soldiers[i]["positionY"] = soldier_id.global_position.z#updates the position y in dictionary 
+
+
 
 # spawns a new unit
 func spawnUnit(spawn_point):
@@ -29,11 +35,15 @@ func spawnUnit(spawn_point):
 	Global.addCrystals(-UNIT_COST, faction) # subtracts the unit's crystal cost from the player's balance
 	$SpawnTimer.start(SPAWN_RATE) # starts spawn delay
 	
+	
+	
 	var new_unit = load("res://units/unit.tscn").instantiate() # instantiates the unit
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
 	new_unit.setFaction(faction) # assigns the spawned unit to the building's faction
 	unit_storage.connectDeletion(new_unit) # calls for the storage to connect to its new child
+	#add a new entry to the dictionary when a worker spawns
+	Global.add_to_list_soldiers(new_unit.global_position.x, new_unit.global_position.z, faction, new_unit.get_instance_id(), null , new_unit)
 
 # checks for an empty spawn point
 func getEmptySpawn():

@@ -28,11 +28,7 @@ func _ready():
 	$HealthbarContainer/HealthBar.value = hp
 
 
-#func _process(delta):
-	#for i in Global.list:
-		#if self == Global.list[i]["worker"]:
-			#Global.list[i]["positionX"] = self.global_position.x
-			#Global.list[i]["positionY"] = self.global_position.z
+
 
 # controls the worker's movement and other actions
 func _physics_process(delta):
