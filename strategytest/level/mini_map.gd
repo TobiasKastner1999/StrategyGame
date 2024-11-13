@@ -41,22 +41,28 @@ func _process(delta):
 	
 	
 	var dot = load("res://level/dot.tscn").instantiate()
-	dot.texture = load("res://assets/red_dot.png")
+	
 
 
 
 
 	for i in Global.list.size():
-		temp = i
 		if i != null and Global.list[i]["dot"] == null:
-			$MapContainer/workers.add_child(dot)
-			Global.list[i]["dot"] = dot
+			if Global.list[i]["faction"] == 0:
+				add_unit_blue(dot)
+			else:
+				add_unit_red(dot)
+			
+			
 		Global.list[i]["dot"].position = Vector2(Global.list[i]["positionX"], Global.list[i]["positionY"])
+
 	
-	
-	
-	
+	if $MapContainer/CharacterBody2D.position.x >= -250 and  $MapContainer/CharacterBody2D.position.x <= 250 and $MapContainer/CharacterBody2D.position.y >= -250 and $MapContainer/CharacterBody2D.position.y <= 250:
+		mouse_over_map = true
+	else:
+		mouse_over_map = false
 	if mouse_over_map == true and Input.is_action_just_pressed("LeftClick"):
+		
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		main_cam.position.x = $MapContainer/CharacterBody2D.position.x
 		main_cam.position.z = $MapContainer/CharacterBody2D.position.y
@@ -93,16 +99,40 @@ func _process(delta):
 			zoom = main_cam.position.y
 
 
-func add_unit(faction):
-	pass
+func add_unit(dot):
+	
+	for i in Global.list:
+		if Global.list[i]["dot"] == null:
+			Global.list[i]["dot"] = dot
+			
+			print(Global.list[i]["dot"])
+
+func add_unit_blue(dot):
+	
+	for i in Global.list.size():
+		if i != null and Global.list[i]["dot"] == null:
+			if Global.list[i]["faction"] == 0:
+				dot.texture = load("res://assets/blue_dot.png")
+				Global.list[i]["dot"] = dot
+				$MapContainer/workers.add_child(dot)
+
+
+func add_unit_red(dot):
+	for i in Global.list.size():
+		if i != null and Global.list[i]["dot"] == null:
+			if Global.list[i]["faction"] == 1:
+				dot.texture = load("res://assets/red_dot.png")
+				Global.list[i]["dot"] = dot
+				$MapContainer/workers.add_child(dot)
+
 
 #activates when mouse is over the minimap
-func _on_area_2d_mouse_entered():
-	mouse_over_map = true
-
-
+#func _on_area_2d_mouse_entered():
+	#mouse_over_map = true
+#
+#
 #deactivates when mouse is over the minimap
-func _on_area_2d_mouse_exited():
-	mouse_over_map = false
+#func _on_area_2d_mouse_exited():
+	#mouse_over_map = false
 
 

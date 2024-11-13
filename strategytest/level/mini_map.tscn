@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://y2mcvu1ulqhc"]
+[gd_scene load_steps=9 format=3 uid="uid://y2mcvu1ulqhc"]
 
 [ext_resource type="Script" path="res://level/mini_map.gd" id="1_7gn6r"]
 [ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://assets/cam.png" id="2_r4k7g"]
@@ -11,6 +11,9 @@ size = Vector2(500, 500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hf4k"]
 size = Vector2(499, 499)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqrqy"]
+size = Vector2(10, 10)
 
 [node name="MiniMap" type="CanvasLayer"]
 script = ExtResource("1_7gn6r")
@@ -50,7 +53,6 @@ position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_1hf4k")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="MapContainer"]
-visible = false
 position = Vector2(-245.793, 228.207)
 script = ExtResource("5_qi0m4")
 
@@ -58,7 +60,13 @@ script = ExtResource("5_qi0m4")
 modulate = Color(0, 0.466667, 0.466667, 1)
 texture = ExtResource("3_qkhaj")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapContainer/CharacterBody2D"]
+position = Vector2(-0.207001, -0.207001)
+shape = SubResource("RectangleShape2D_uqrqy")
+
 [node name="workers" type="Node2D" parent="MapContainer"]
 
+[connection signal="body_entered" from="MapContainer/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="MapContainer/Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="mouse_entered" from="MapContainer/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="MapContainer/Area2D" to="." method="_on_area_2d_mouse_exited"]

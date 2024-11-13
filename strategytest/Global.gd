@@ -37,3 +37,5 @@ func getCrystals(faction):
 func add_to_list(positionX, positionY, faction, id, dot, worker):
 	Global.list[list_counter] = {"positionX" : positionX, "positionY" : positionY, "faction" : faction , "id" : id, "dot": dot, "worker" : worker}
 	list_counter += 1
+
+

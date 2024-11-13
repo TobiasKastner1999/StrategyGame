@@ -311,7 +311,6 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -109.116, 1, 191.443)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, 200)
 
 [node name="HQEnemy" parent="." instance=ExtResource("11_eb4t3")]
-process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, -200)
 faction = 1
 
@@ -405,11 +404,6 @@ offset_top = 1703.64
 offset_right = 778.333
 offset_bottom = 2203.64
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-autostart = true
-
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
 [connection signal="rebake" from="Resources" to="." method="_on_interface_rebake"]
 [connection signal="expended" from="Resources/Ressource" to="Resources" method="_on_ressource_expended"]
@@ -442,6 +436,5 @@ autostart = true
 [connection signal="expended" from="Resources/Ressource28" to="Resources" method="_on_ressource_expended"]
 [connection signal="rebake" from="EnemyController" to="." method="_on_interface_rebake"]
 [connection signal="rebake" from="Interface" to="." method="_on_interface_rebake"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="MiniMap"]

@@ -18,3 +18,8 @@ func _on_units_delete_selection(unit):
 # rebakes the navmesh
 func _on_interface_rebake():
 	bake_navigation_mesh()
+
+
+
+func _on_timer_timeout():
+	$HQEnemy.process_mode = Node.PROCESS_MODE_INHERIT
