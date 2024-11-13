@@ -18,7 +18,7 @@ var zoom
 func _ready():
 
 	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MapContainer/Tank, "worker" : tank}
-	Global.list_soldiers[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MapContainer/Tank, "soldier" : tank}
+	
 	
 	#sets the positions of the hqs on the minimap
 	unit_sprite.position = Vector2($"../HQFriendly".position.x, $"../HQFriendly".position.z)
@@ -37,11 +37,12 @@ func _process(delta):
 	var dot = load("res://level/dot.tscn").instantiate()
 	
 	dot_for_worker(dot)
-	dot_for_soldier(dot)
+	delete_dot()
 	minimap_zoom()
 	minimap_limits()
 	minimap_clickable()
-
+	#for i in Global.list:
+		#print(Global.list[i])
 
 
 
@@ -53,19 +54,9 @@ func dot_for_worker(dot):
 			else:
 				add_unit_red(dot)
 			
-			
-		Global.list[i]["dot"].position = Vector2(Global.list[i]["positionX"], Global.list[i]["positionY"])
+		if Global.list[i]["dot"] != null:
+			Global.list[i]["dot"].position = Vector2(Global.list[i]["positionX"], Global.list[i]["positionY"])
 
-
-func dot_for_soldier(dot):
-	for i in Global.list_soldiers.size():
-		if i != null and Global.list_soldiers[i]["dot"] == null:
-			if Global.list_soldiers[i]["faction"] == 0:
-				add_unit_blue_soldier(dot)
-			else:
-				add_unit_red_soldier(dot)
-			
-		Global.list_soldiers[i]["dot"].position = Vector2(Global.list_soldiers[i]["positionX"], Global.list_soldiers[i]["positionY"])
 
 
 func add_unit_blue(dot):
@@ -75,31 +66,24 @@ func add_unit_blue(dot):
 				dot.texture = load("res://assets/blue_dot.png")
 				Global.list[i]["dot"] = dot
 				$MapContainer/workers.add_child(dot)
-
-func add_unit_blue_soldier(dot):
-	for i in Global.list_soldiers.size():
-		if i != null and Global.list_soldiers[i]["dot"] == null:
-			if Global.list_soldiers[i]["faction"] == 0:
-				dot.texture = load("res://assets/blue_dot.png")
 				
-				Global.list_soldiers[i]["dot"] = dot
-				$MapContainer/workers.add_child(dot)
+
+
 
 func add_unit_red(dot):
 	for i in Global.list.size():
 		if i != null and Global.list[i]["dot"] == null:
 			if Global.list[i]["faction"] == 1:
-				dot.texture = load("res://assets/red_dot.png")
+				await get_tree().create_timer(0.1).timeout
 				Global.list[i]["dot"] = dot
+				dot.texture = load("res://assets/red_dot.png")
 				$MapContainer/workers.add_child(dot)
 
-func add_unit_red_soldier(dot):
-	for i in Global.list_soldiers.size():
-		if i != null and Global.list_soldiers[i]["dot"] == null:
-			if Global.list_soldiers[i]["faction"] == 1:
-				dot.texture = load("res://assets/red_dot.png")
-				Global.list_soldiers[i]["dot"] = dot
-				$MapContainer/workers.add_child(dot)
+func delete_dot():
+	for i in Global.list:
+		if Global.list[i]["worker"] == null:
+			Global.list[i]["dot"].texture = null
+	
 
 func minimap_limits():
 	#limitations for the cam sprite so it cant leave the minimap

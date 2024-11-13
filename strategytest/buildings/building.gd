@@ -22,11 +22,12 @@ func _process(delta):
 	var spawn_point = getEmptySpawn()
 	if can_spawn and spawn_active and spawn_point != null and Global.getCrystals(faction) >= UNIT_COST:
 		spawnUnit(spawn_point) # spawns a new unit if the building is able to, and the player has the crystals required
-	for i in Global.list_soldiers:#iterates through the list
-		var soldier_id = Global.list_soldiers[i]["soldier"] #gets the worker node
-		Global.list_soldiers[i]["positionX"] = soldier_id.global_position.x #updates the position x in dictionary 
-		Global.list_soldiers[i]["positionY"] = soldier_id.global_position.z#updates the position y in dictionary 
 
+	for i in Global.list:#iterates through the list
+		if Global.list[i]["worker"] != null:
+			var worker_id = Global.list[i]["worker"] #gets the worker node
+			Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
+			Global.list[i]["positionY"] = worker_id.global_position.z#updates the position y in dictionary 
 
 
 # spawns a new unit
@@ -41,9 +42,10 @@ func spawnUnit(spawn_point):
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
 	new_unit.setFaction(faction) # assigns the spawned unit to the building's faction
+	Global.add_to_list(new_unit.global_position.x, new_unit.global_position.z, faction, new_unit.get_instance_id(), null , new_unit)
 	unit_storage.connectDeletion(new_unit) # calls for the storage to connect to its new child
 	#add a new entry to the dictionary when a worker spawns
-	Global.add_to_list_soldiers(new_unit.global_position.x, new_unit.global_position.z, faction, new_unit.get_instance_id(), null , new_unit)
+	#Global.add_to_list(new_unit.global_position.x, new_unit.global_position.z, faction, new_unit.get_instance_id(), null , new_unit)
 
 # checks for an empty spawn point
 func getEmptySpawn():

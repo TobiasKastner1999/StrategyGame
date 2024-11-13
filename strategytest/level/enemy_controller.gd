@@ -23,8 +23,9 @@ func _physics_process(delta):
 	
 	# checks if a new building can be constructed
 	if build_locations.size() > 0 and Global.getCrystals(1) >= Global.BUILDING_COST:
+		
 		constructBuilding() # constructs a new building if the AI has enough crystals and there are construction plots left
-
+		
 # sets a new destination for a worker
 func setWorkerDestination(worker):
 	var destination
@@ -47,8 +48,11 @@ func constructBuilding():
 	
 	get_parent().add_child(building)
 	building.transform.origin = build_locations[0] # places it at the first available location
+	
 	build_locations.remove_at(0) # then removes that location from the list
 	building.setFaction(1) # assigns the building's faction
 	building.accessStructure() # enables unit production from the building
+	
 	rebake.emit() # calls the re-bake the navmesh
 	Global.addCrystals(-Global.BUILDING_COST, 1) # subtracts the required crystals from the AI's resources
+	

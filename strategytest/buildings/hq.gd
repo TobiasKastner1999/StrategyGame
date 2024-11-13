@@ -28,9 +28,10 @@ func _process(delta):
 		spawnWorker() # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
 	
 	for i in Global.list:#iterates through the list
-		var worker_id = Global.list[i]["worker"] #gets the worker node
-		Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
-		Global.list[i]["positionY"] = worker_id.global_position.z#updates the position y in dictionary 
+		if Global.list[i]["worker"] != null:
+			var worker_id = Global.list[i]["worker"] #gets the worker node
+			Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
+			Global.list[i]["positionY"] = worker_id.global_position.z#updates the position y in dictionary 
 
 
 
