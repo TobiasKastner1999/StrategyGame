@@ -81,6 +81,7 @@ func add_unit_blue_soldier(dot):
 		if i != null and Global.list_soldiers[i]["dot"] == null:
 			if Global.list_soldiers[i]["faction"] == 0:
 				dot.texture = load("res://assets/blue_dot.png")
+				
 				Global.list_soldiers[i]["dot"] = dot
 				$MapContainer/workers.add_child(dot)
 

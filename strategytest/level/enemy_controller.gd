@@ -44,6 +44,7 @@ func issueUnitCommand(unit):
 # builds a new building
 func constructBuilding():
 	var building = load("res://buildings/building.tscn").instantiate() # instantiates the building
+	
 	get_parent().add_child(building)
 	building.transform.origin = build_locations[0] # places it at the first available location
 	build_locations.remove_at(0) # then removes that location from the list
