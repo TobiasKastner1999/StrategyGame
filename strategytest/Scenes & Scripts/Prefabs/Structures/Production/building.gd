@@ -88,6 +88,14 @@ func getFaction():
 func getType():
 	return TARGET_TYPE
 
+# returns the building's function status
+func getStatus():
+	return spawn_active
+
+# returns the building's current unit production
+func getProduction():
+	return production_type
+
 # returns the physical size of the building
 func getSize():
 	return ($BuildingBody.mesh.size.x / 2)

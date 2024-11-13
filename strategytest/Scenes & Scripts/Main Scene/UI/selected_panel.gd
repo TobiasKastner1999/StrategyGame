@@ -8,11 +8,12 @@ func activatePanel(selected):
 		unselect() # unselects the currently selected object (if one exists)
 	current_selected = selected # saves the selected object
 	updateSelectedInterface() # updates the changing interface properties
-	for type in Global.unit_dict:
-		var button = load("res://Scenes & Scripts/Prefabs/Interface/unit_type_button.tscn").instantiate()
-		$ButtonContainer.add_child(button) # sets up a button for each unit type in the data
-		button.assignType(type) # assigns the button to the correct unit type
-		button.change_type.connect(_on_type_button_pressed)
+	if selected.has_method("getProduction"):
+		for type in Global.unit_dict:
+			var button = load("res://Scenes & Scripts/Prefabs/Interface/unit_type_button.tscn").instantiate()
+			$ButtonContainer.add_child(button) # sets up a button for each unit type in the data
+			button.assignType(type) # assigns the button to the correct unit type
+			button.change_type.connect(_on_type_button_pressed)
 	self.visible = true
 	selected.interface_update.connect(updateSelectedInterface) # connects object for dynymic updates
 
@@ -28,11 +29,15 @@ func unselect():
 func updateSelectedInterface():
 	$SelectedName.text = "[b]" + current_selected.DISPLAY_NAME + "[/b]" # displays the name
 	$SelectedHP.text = "HP: " + str(current_selected.hp) + "/" + str(current_selected.MAX_HP) # displays the object's current hp out of its maximum hp
-	if current_selected.spawn_active:
+	if current_selected.getStatus():
 		$SelectedStatus.text = "Status: Active" # displays the object's active status
 	else:
 		$SelectedStatus.text = "Status: Inactive" # displays the object's inactive status
-	$SelectedType.text = "Production Type: " + Global.unit_dict[str(current_selected.production_type)]["name"] # displayers the current unit production type
+	if current_selected.has_method("getProduction"):
+		$SelectedType.text = "Production Type: " + Global.unit_dict[str(current_selected.getProduction())]["name"] # displayers the current unit production type
+		$SelectedType.visible = true
+	else:
+		$SelectedType.visible = false
 
 # calls to toggle the selected object's status when the button is pressed
 func _on_button_toggle_pressed():

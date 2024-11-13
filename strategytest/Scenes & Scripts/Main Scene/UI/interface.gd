@@ -5,6 +5,7 @@ signal start_game(faction) # tells the game the player has chosen a faction
 
 @onready var node_building_placer: Node3D = $Placer
 @onready var interface_btn_building:Button = $BuildingButton
+@onready var interface_btn_housing:Button = $HousingButton
 @onready var interface_label_building: Label = $Indicator
 
 # seperation between normal and building mode
@@ -27,10 +28,11 @@ var building_placer_location : Vector3 = Vector3.ZERO
 # switches to buildingmode
 func _ready() -> void:
 	interface_btn_building.pressed.connect(func() -> void: interface_input_mode = 1)
+	interface_btn_housing.pressed.connect(func() -> void: interface_input_mode = 2)
 	interface_input_mode = 0
 
 func _physics_process(_delta):
-	if interface_input_mode == 1:
+	if interface_input_mode != 0:
 		#raycast to place preview under mouse
 		var mouse_pos : Vector2 = get_global_mouse_position()
 		var camera : Camera3D = get_viewport().get_camera_3d()
@@ -61,9 +63,14 @@ func _input(_event):
 	if Input.is_action_just_released("LeftClick"):
 		var shift : bool = Input.is_action_pressed("shift")
 
-		if interface_input_mode == 1:
+		if interface_input_mode != 0:
 			if building_placer_can_place and building_placer_location != Vector3.ZERO:
-				var building_packed_scene : PackedScene = load("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn")
+				var building_packed_scene : PackedScene
+				match interface_input_mode:
+					1:
+						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn")
+					2:
+						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Production/housing.tscn")
 				var building_node : Node3D = building_packed_scene.instantiate()
 				get_parent().add_child(building_node)
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
@@ -75,7 +82,7 @@ func _input(_event):
 				if !shift:
 					interface_input_mode = 0
 	
-	if Input.is_action_just_pressed("Rightclick") and interface_input_mode == 1:
+	if Input.is_action_just_pressed("Rightclick") and interface_input_mode != 0:
 		interface_input_mode = 0
 
 # ends the game

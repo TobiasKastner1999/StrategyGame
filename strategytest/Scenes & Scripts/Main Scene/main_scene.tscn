@@ -556,7 +556,23 @@ offset_right = -226.0
 offset_bottom = -159.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "building"
+text = "Barracks"
+
+[node name="HousingButton" type="Button" parent="Interface"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -142.0
+offset_right = -225.0
+offset_bottom = -90.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Housing"
 
 [node name="Placer" type="Node3D" parent="Interface"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.74601, -6.16637)

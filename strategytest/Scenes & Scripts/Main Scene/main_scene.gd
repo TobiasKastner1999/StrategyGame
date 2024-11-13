@@ -37,6 +37,7 @@ func _on_interface_start_game(faction):
 	$Interface/StartScreen.visible = false
 	$Interface/UIFrame.visible = true
 	$Interface/BuildingButton.visible = true
+	$Interface/HousingButton.visible = true
 	$MiniMap.visible = true
 	$Counter.visible = true
 	
