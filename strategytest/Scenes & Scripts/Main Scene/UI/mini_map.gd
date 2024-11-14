@@ -10,7 +10,7 @@ var zoom
 @onready var unit_sprite = $MarginContainer/BaseFriendly # HQ Blue
 @onready var unit_sprite2 = $MarginContainer/BaseEnemy # HQ Red
 @onready var cam_sprite = $MarginContainer/Cam # Cam indicator sprite
-@onready var tank = $"../Units/Unit" # test unit
+@onready var tank = $"../HQBlue" # test unit
 
 
 func _ready():

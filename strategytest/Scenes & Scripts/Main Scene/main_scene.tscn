@@ -1,11 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=38 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/selection_box.gd" id="3_ue6em"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/unit_manager.gd" id="4_phx1q"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/resource_manager.gd" id="5_de6tf"]
-[ext_resource type="PackedScene" uid="uid://0lf8y4ljp5j1" path="res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.tscn" id="5_p7hyh"]
 [ext_resource type="PackedScene" uid="uid://kfr5nk4l557f" path="res://Scenes & Scripts/Prefabs/Structures/Ressources/ressource.tscn" id="6_n2kgi"]
 [ext_resource type="PackedScene" uid="uid://7012rhjv4u2g" path="res://Scenes & Scripts/Prefabs/Structures/HQ/hq.tscn" id="7_g6gsm"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/enemy_controller.gd" id="8_q8x15"]
@@ -227,10 +226,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_47v5a")
 
 [node name="Units" type="Node3D" parent="."]
 script = ExtResource("4_phx1q")
-
-[node name="Unit" parent="Units" instance=ExtResource("5_p7hyh")]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 130.762, 0, 126.271)
 
 [node name="Resources" type="Node3D" parent="."]
 script = ExtResource("5_de6tf")

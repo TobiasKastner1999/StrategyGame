@@ -13,7 +13,7 @@ var priority_movement = false # is the unit's movement overridden by a player co
 var path = [] # the path the unit is navigating on
 var path_ind = 0 # the id of the unit's current path position
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the strength of the gravity affecting the unit
-var go_to # the unit's current navigation target
+var go_to# the unit's current navigation target
 var SR 
 
 var unit_type : int # the unit's type
