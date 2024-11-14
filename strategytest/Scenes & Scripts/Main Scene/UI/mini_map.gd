@@ -40,8 +40,8 @@ func _process(delta):
 	minimap_zoom()
 	minimap_limits()
 	minimap_clickable()
-	for i in Global.list:
-		print(Global.list[i]["worker"])
+	#for i in Global.list:
+		#print(Global.list[i]["worker"])
 
 
 
