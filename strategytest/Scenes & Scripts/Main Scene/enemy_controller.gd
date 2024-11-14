@@ -25,7 +25,7 @@ func _physics_process(_delta):
 			issueUnitCommand(unit) # issues new commands to units that currently don't have a target
 	
 	# checks if a new building can be constructed
-	if build_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.BUILDING_COST:
+	if build_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.getConstructionCost(1):
 		constructBuilding() # constructs a new building if the AI has enough crystals and there are construction plots left
 
 # sets a new destination for a worker
@@ -34,7 +34,7 @@ func setWorkerDestination(worker):
 	if resource_list.size() == 0:
 		resource_list = resources.get_children() # if there are no resources left near the HQ, gets all resources on the map instead
 	if resource_list.size() > 0:
-		if (Global.getResource(controlled_faction, 0) < Global.BUILDING_COST) and (build_locations[controlled_faction].size() == 3):
+		if (Global.getResource(controlled_faction, 0) < Global.getConstructionCost(1)) and (build_locations[controlled_faction].size() == 3):
 			for resource in resource_list: # if the AI still needs to construct a building, and does not have enough resources to do so
 				if resource.getType() != 0:
 					resource_list.erase(resource) # ignores all resources for units
@@ -62,7 +62,7 @@ func constructBuilding():
 	building.setFaction(controlled_faction) # assigns the building's faction
 	building.accessStructure() # enables unit production from the building
 	rebake.emit() # calls the re-bake the navmesh
-	Global.updateResource(controlled_faction, 0, -Global.BUILDING_COST) # subtracts the required crystals from the AI's resources
+	Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(1)) # subtracts the required crystals from the AI's resources
 
 # called once the player has selected a faction
 func setUp():

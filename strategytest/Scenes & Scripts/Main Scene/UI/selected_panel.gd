@@ -27,17 +27,20 @@ func unselect():
 
 # updates the dynamic interface components
 func updateSelectedInterface():
-	$SelectedName.text = "[b]" + current_selected.DISPLAY_NAME + "[/b]" # displays the name
-	$SelectedHP.text = "HP: " + str(current_selected.hp) + "/" + str(current_selected.MAX_HP) # displays the object's current hp out of its maximum hp
-	if current_selected.getStatus():
-		$SelectedStatus.text = "Status: Active" # displays the object's active status
+	if current_selected.hp <= 0:
+		unselect()
 	else:
-		$SelectedStatus.text = "Status: Inactive" # displays the object's inactive status
-	if current_selected.has_method("getProduction"):
-		$SelectedType.text = "Production Type: " + Global.unit_dict[str(current_selected.getProduction())]["name"] # displayers the current unit production type
-		$SelectedType.visible = true
-	else:
-		$SelectedType.visible = false
+		$SelectedName.text = "[b]" + current_selected.DISPLAY_NAME + "[/b]" # displays the name
+		$SelectedHP.text = "HP: " + str(current_selected.hp) + "/" + str(current_selected.MAX_HP) # displays the object's current hp out of its maximum hp
+		if current_selected.getStatus():
+			$SelectedStatus.text = "Status: Active" # displays the object's active status
+		else:
+			$SelectedStatus.text = "Status: Inactive" # displays the object's inactive status
+		if current_selected.has_method("getProduction"):
+			$SelectedType.text = "Production Type: " + Global.unit_dict[str(current_selected.getProduction())]["name"] # displayers the current unit production type
+			$SelectedType.visible = true
+		else:
+			$SelectedType.visible = false
 
 # calls to toggle the selected object's status when the button is pressed
 func _on_button_toggle_pressed():

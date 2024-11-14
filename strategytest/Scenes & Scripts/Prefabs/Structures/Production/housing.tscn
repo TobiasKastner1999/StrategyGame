@@ -71,11 +71,9 @@ viewport_path = NodePath("HealthbarContainer")
 script = ExtResource("1_wapyf")
 
 [node name="HousingColl" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_rr254")
 
 [node name="HousingBody" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("BoxMesh_4ipiy")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_n0win")

@@ -4,6 +4,7 @@ var hq_zone
 @onready var area: Area3D = $PreviewArea
 @onready var area_coll: CollisionShape3D = $PreviewArea/PreviewColl
 @onready var model: MeshInstance3D = $Preview
+@onready var interface : Control = get_parent()
 
 # changes colors when building can/cant be placed
 func model_green() -> void:
@@ -24,7 +25,7 @@ func placement_check() -> bool:
 	model_red()
 	
 	# cant place when obstacles are in the way
-	if area.has_overlapping_bodies() or Global.getResource(Global.player_faction, 0) < Global.BUILDING_COST or !area.overlaps_area(hq_zone):
+	if area.has_overlapping_bodies() or Global.getResource(Global.player_faction, 0) < Global.getConstructionCost(interface.getInputMode()) or !area.overlaps_area(hq_zone):
 		return false
 
 # sets the check area to be the same size as the building

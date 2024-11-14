@@ -77,7 +77,7 @@ func _input(_event):
 				building_node.setFaction(Global.player_faction)
 				building_node.building_menu.connect(get_parent()._on_building_menu)
 				rebake.emit()
-				Global.updateResource(Global.player_faction, 0, -Global.BUILDING_COST)
+				Global.updateResource(Global.player_faction, 0, -Global.getConstructionCost(interface_input_mode))
 				
 				if !shift:
 					interface_input_mode = 0
@@ -94,6 +94,10 @@ func gameEnd(faction):
 	else:
 		$EndScreen/EndScreenText.text = "Victory!" # sets end screen text if the player won the game
 	$EndScreen.visible = true # enables end screen visibility
+
+# returns the interface's current input mode
+func getInputMode():
+	return interface_input_mode
 
 # when the player starts the game and chooses the blue faction
 func _on_button_blue_pressed():
