@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dwocu2v23qtv2"]
+
+[node name="Dot" type="Sprite2D"]

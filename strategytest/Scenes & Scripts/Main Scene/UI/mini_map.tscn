@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://daovvhsbialq1"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/mini_map.gd" id="1_pkvyj"]
+[ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://Assets/UI/blue_dot.png" id="2_wcwke"]
+[ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://Assets/UI/cam.png" id="3_ao8ji"]
+[ext_resource type="Texture2D" uid="uid://77woe7bbd6bk" path="res://Assets/UI/red_dot.png" id="4_shqqg"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/MouseIndicator.gd" id="5_ojfxw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xhnkx"]
+size = Vector2(500, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
+size = Vector2(501, 500)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1leb5"]
+size = Vector2(10, 10)
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_pkvyj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Sprite2D" parent="MarginContainer"]
+texture = SubResource("PlaceholderTexture2D_xhnkx")
+
+[node name="Tank" type="Sprite2D" parent="MarginContainer"]
+modulate = Color(0.639216, 0.639216, 0.639216, 1)
+position = Vector2(131, 106.5)
+texture = ExtResource("2_wcwke")
+
+[node name="Cam" type="Sprite2D" parent="MarginContainer"]
+texture = ExtResource("3_ao8ji")
+
+[node name="BaseFriendly" type="Sprite2D" parent="MarginContainer"]
+texture = ExtResource("2_wcwke")
+
+[node name="BaseEnemy" type="Sprite2D" parent="MarginContainer"]
+texture = ExtResource("4_shqqg")
+
+[node name="MinimapRegion" type="Area2D" parent="MarginContainer"]
+
+[node name="MinimapColl" type="CollisionShape2D" parent="MarginContainer/MinimapRegion"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_186kj")
+
+[node name="MouseIndicator" type="CharacterBody2D" parent="MarginContainer"]
+visible = false
+script = ExtResource("5_ojfxw")
+
+[node name="MouseDot" type="Sprite2D" parent="MarginContainer/MouseIndicator"]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("2_wcwke")
+
+[node name="MouseColl" type="CollisionShape2D" parent="MarginContainer/MouseIndicator"]
+shape = SubResource("RectangleShape2D_1leb5")
+
+[node name="Dots" type="Node2D" parent="MarginContainer"]
