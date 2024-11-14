@@ -56,6 +56,14 @@ func updateUnitCount(faction, value):
 func getUnitCount(faction):
 	return unit_count[faction]
 
+# updates a faction's maximum number of units
+func updateUnitLimit(faction, value):
+	unit_max[faction] += value
+
+# returns a faction's maximum number of units
+func getUnitLimit(faction):
+	return unit_max[faction]
+
 # adds or removes a constructed or destroyed building from the player's count
 func updateBuildingCount(constructed):
 	if constructed:
