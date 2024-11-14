@@ -30,6 +30,13 @@ func _physics_process(_delta):
 	if can_spawn and spawn_active and spawn_point != null and Global.getResource(faction, 1) >= unit_cost:
 		spawnUnit(spawn_point) # spawns a new unit if the building is able to, and the player has the crystals required
 
+	for i in Global.list:#iterates through the list
+		if Global.list[i]["worker"] != null:
+			var worker_id = Global.list[i]["worker"] #gets the worker node
+			Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
+			Global.list[i]["positionY"] = worker_id.global_position.z#updates the position y in dictionary 
+
+
 # spawns a new unit
 func spawnUnit(spawn_point):
 	can_spawn = false # temporarily disables new spawns
@@ -42,6 +49,7 @@ func spawnUnit(spawn_point):
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
 	new_unit.setUp(production_type) # sets up the unit's properties based on the building's production type
 	new_unit.setFaction(faction) # assigns the spawned unit to the building's faction
+	Global.add_to_list(new_unit.global_position.x, new_unit.global_position.z, faction, new_unit.get_instance_id(), null , new_unit)
 	unit_storage.connectDeletion(new_unit) # calls for the storage to connect to its new child
 
 # checks for an empty spawn point

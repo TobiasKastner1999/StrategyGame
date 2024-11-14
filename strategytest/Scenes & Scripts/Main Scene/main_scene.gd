@@ -55,3 +55,7 @@ func _on_interface_start_game(faction):
 # accesses a clicked building's interface menu
 func _on_building_menu(building):
 	$Interface/SelectedPanel.activatePanel(building)
+
+
+func _on_timer_timeout():
+	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT

@@ -5,6 +5,10 @@ const CONSTRUCTION_COSTS = [0, 4, 2] # the construction costs for different type
 var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 var player_faction : int # the faction the player has chosen for the current game
+var list = {}
+var list_counter = 1
+
+
 
 var unit_max = [0, 0] # how many units can a faction currently have at max?
 var unit_count = [0, 0] # how many units does each faction currently have?
@@ -44,6 +48,7 @@ func getResource(faction, type):
 		1:
 			return faction_one_resources[type]
 
+
 # returns to cost for a specified building type
 func getConstructionCost(building_type):
 	return CONSTRUCTION_COSTS[building_type]
@@ -66,3 +71,9 @@ func updateBuildingCount(constructed):
 # returns the number of the player's current buildings
 func getBuildingCount():
 	return player_building_count
+
+# add a new entry into a free slot in the dictionary
+func add_to_list(positionX, positionY, faction, id, dot, worker):
+	Global.list[list_counter] = {"positionX" : positionX, "positionY" : positionY, "faction" : faction , "id" : id, "dot": dot, "worker" : worker}
+	list_counter += 1
+
