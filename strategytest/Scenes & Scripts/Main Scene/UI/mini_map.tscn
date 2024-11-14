@@ -26,6 +26,7 @@ offset_bottom = 40.0
 texture = SubResource("PlaceholderTexture2D_xhnkx")
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]
+visible = false
 modulate = Color(0.639216, 0.639216, 0.639216, 1)
 position = Vector2(131, 106.5)
 texture = ExtResource("2_wcwke")

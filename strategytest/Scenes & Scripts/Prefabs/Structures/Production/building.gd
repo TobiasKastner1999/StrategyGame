@@ -49,6 +49,7 @@ func spawnUnit(spawn_point):
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
 	new_unit.setUp(production_type) # sets up the unit's properties based on the building's production type
 	new_unit.setFaction(faction) # assigns the spawned unit to the building's faction
+	# add entry to dictionary for combat units
 	Global.add_to_list(new_unit.global_position.x, new_unit.global_position.z, faction, new_unit.get_instance_id(), null , new_unit)
 	unit_storage.connectDeletion(new_unit) # calls for the storage to connect to its new child
 

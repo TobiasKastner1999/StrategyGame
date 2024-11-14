@@ -5,36 +5,36 @@ extends CanvasLayer
 
 var mouse_over_map = false
 var zoom 
-@onready var mouse = $MarginContainer/MouseIndicator
-@onready var map = $"../Map/Floor/FloorMesh"
-@onready var main_cam := $"../Camera"
-@onready var unit_sprite = $MarginContainer/BaseFriendly
-@onready var unit_sprite2 = $MarginContainer/BaseEnemy
-@onready var cam_sprite = $MarginContainer/Cam
-@onready var tank = $"../Units/Unit"
+@onready var mouse = $MarginContainer/MouseIndicator # characterbody that will follow the mouse
+@onready var main_cam := $"../Camera" # camera of main scene
+@onready var unit_sprite = $MarginContainer/BaseFriendly # HQ Blue
+@onready var unit_sprite2 = $MarginContainer/BaseEnemy # HQ Red
+@onready var cam_sprite = $MarginContainer/Cam # Cam indicator sprite
+@onready var tank = $"../Units/Unit" # test unit
 
 
 func _ready():
-
+	# first entry -> test unit
 	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MapContainer/Tank, "worker" : tank}
 	
 	
-	#sets the positions of the hqs on the minimap
+	# sets the positions of the hqs on the minimap
 	unit_sprite.position = Vector2($"../HQBlue".position.x, $"../HQBlue".position.z)
 	unit_sprite2.position = Vector2($"../HQRed".position.x, $"../HQRed".position.z)
 	
 	
-	#visualizes the zoom 
+	# visualizes the zoom 
 	zoom = main_cam.position.y
 
 # when the mouse enters the area of minimap the var turns true and if you click the camera moves to the position given
-#via a characterbody2d that is constantly following the mouse
+# via a characterbody2d that is constantly following the mouse
 func _process(delta):
 	
 	
-	
+	# sprite to add when units spawns
 	var dot = load("res://Scenes & Scripts/Main Scene/UI/dot.tscn").instantiate()
 	
+	# minimap functions
 	dot_for_worker(dot)
 	delete_dot()
 	minimap_zoom()
@@ -44,7 +44,7 @@ func _process(delta):
 		#print(Global.list[i]["worker"])
 
 
-
+# spawns a dot on the minimap based on faction and add the value to the dictionary
 func dot_for_worker(dot):
 	for i in Global.list.size():
 		if i != null and Global.list[i]["dot"] == null:
@@ -57,7 +57,7 @@ func dot_for_worker(dot):
 			Global.list[i]["dot"].position = Vector2(Global.list[i]["positionX"], Global.list[i]["positionY"])
 
 
-
+# sets the texture blue and spawns the dot
 func add_unit_blue(dot):
 	for i in Global.list.size():
 		if i != null and Global.list[i]["dot"] == null:
@@ -68,7 +68,7 @@ func add_unit_blue(dot):
 
 
 
-
+# sets the texture red and spawns the dot
 func add_unit_red(dot):
 	for i in Global.list.size():
 		if i != null and Global.list[i]["dot"] == null:
@@ -78,14 +78,15 @@ func add_unit_red(dot):
 				dot.texture = load("res://Assets/UI/red_dot.png")
 				$MarginContainer/Dots.add_child(dot)
 
+# when unit disappears delete the dot on minimap
 func delete_dot():
 	for i in Global.list:
 		if Global.list[i]["worker"] == null:
 			Global.list[i]["dot"].texture = null
 
-
+# limitations for the cam sprite so it cant leave the minimap
 func minimap_limits():
-	#limitations for the cam sprite so it cant leave the minimap
+	
 	if not cam_sprite.position.x <= -250 and not cam_sprite.position.x >= 250:
 		cam_sprite.position.x = main_cam.position.x
 	if cam_sprite.position.x <= -250:
@@ -100,9 +101,9 @@ func minimap_limits():
 		cam_sprite.position.y = -249
 	if cam_sprite.position.y >= 250:
 		cam_sprite.position.y = 249
-
+# scale the vision sprite when cam zooms in/oout
 func minimap_zoom():
-	#scale the vision sprite when cam zooms in/oout
+	
 	if main_cam.position.y != zoom:
 		if main_cam.position.y >= zoom:
 			cam_sprite.scale +=Vector2(0.1, 0.1)
@@ -114,7 +115,7 @@ func minimap_zoom():
 
 
 
-
+# limit the minimap clickrange and move the cam to the position on the minimap
 func minimap_clickable():
 	if mouse.position.x >= -250 and  mouse.position.x <= 250 and mouse.position.y >= -250 and mouse.position.y <= 250:
 		mouse_over_map = true

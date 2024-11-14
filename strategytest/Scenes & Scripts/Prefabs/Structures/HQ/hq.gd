@@ -31,8 +31,8 @@ func _process(_delta):
 	for i in Global.list:#iterates through the list
 		if Global.list[i]["worker"] != null:
 			var worker_id = Global.list[i]["worker"] #gets the worker node
-			Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
-			Global.list[i]["positionY"] = worker_id.global_position.z#updates the position y in dictionary 
+			Global.list[i]["positionX"] = worker_id.global_position.x # updates the position x in dictionary 
+			Global.list[i]["positionY"] = worker_id.global_position.z # updates the position y in dictionary 
 
 
 
@@ -49,7 +49,7 @@ func spawnWorker(spawn_point):
 	worker.setFaction(faction) # assigns the worker to the hq's faction
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
-	#add a new entry to the dictionary when a worker spawns
+	# add a new entry to the dictionary when a worker spawns
 	Global.add_to_list(worker.global_position.x, worker.global_position.z, faction, worker.get_instance_id(), null, worker)
 
 
