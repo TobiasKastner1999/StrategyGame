@@ -34,6 +34,7 @@ func _physics_process(_delta):
 func spawnUnit(spawn_point):
 	can_spawn = false # temporarily disables new spawns
 	Global.updateResource(faction, 1, -unit_cost) # subtracts the unit's crystal cost from the player's balance
+	Global.updateUnitCount(faction, 1)
 	$SpawnTimer.start(spawn_rate) # starts spawn delay
 	
 	var new_unit = load("res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.tscn").instantiate() # instantiates the unit
@@ -56,6 +57,8 @@ func takeDamage(damage, _attacker):
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the building if it's remaining hp is 0 or less
+		if faction == Global.player_faction:
+			Global.updateBuildingCount(false)
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
 

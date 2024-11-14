@@ -3,6 +3,8 @@ extends Control
 signal rebake() # calls to rebake the navmesh
 signal start_game(faction) # tells the game the player has chosen a faction
 
+var hq : Node3D
+
 @onready var node_building_placer: Node3D = $Placer
 @onready var interface_btn_building:Button = $BuildingButton
 @onready var interface_btn_housing:Button = $HousingButton
@@ -26,12 +28,14 @@ var building_placer_location : Vector3 = Vector3.ZERO
 
 
 # switches to buildingmode
-func _ready() -> void:
+func _ready():
 	interface_btn_building.pressed.connect(func() -> void: interface_input_mode = 1)
 	interface_btn_housing.pressed.connect(func() -> void: interface_input_mode = 2)
 	interface_input_mode = 0
 
 func _physics_process(_delta):
+	updateGamestateInfo()
+	
 	if interface_input_mode != 0:
 		#raycast to place preview under mouse
 		var mouse_pos : Vector2 = get_global_mouse_position()
@@ -78,12 +82,22 @@ func _input(_event):
 				building_node.building_menu.connect(get_parent()._on_building_menu)
 				rebake.emit()
 				Global.updateResource(Global.player_faction, 0, -Global.getConstructionCost(interface_input_mode))
+				Global.updateBuildingCount(true)
 				
 				if !shift:
 					interface_input_mode = 0
 	
 	if Input.is_action_just_pressed("Rightclick") and interface_input_mode != 0:
 		interface_input_mode = 0
+
+func updateGamestateInfo():
+	var state_text = ""
+	state_text += "[b]Purple Crystals:[/b] " + str(Global.getResource(Global.player_faction, 0)) + "\n"
+	state_text += "[b]Green Crystals:[/b] " + str(Global.getResource(Global.player_faction, 1)) + "\n\n"
+	state_text += "[b]Combat Units:[/b] " + str(Global.getUnitCount(Global.player_faction)) + "\n"
+	state_text += "[b]Workers[/b]: " + hq.getWorkerNum() + "\n"
+	state_text += "[b]Buildings:[/b] " + str(Global.getBuildingCount())
+	$GamestateInfo.text = state_text
 
 # ends the game
 func gameEnd(faction):

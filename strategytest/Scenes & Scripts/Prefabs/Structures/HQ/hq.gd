@@ -93,6 +93,10 @@ func getArea():
 func getWorkers():
 	return $Workers
 
+# returns the hq's number of current workers out of the maximum number of workers
+func getWorkerNum():
+	return str(current_workers) + "/" + str(MAX_WORKERS)
+
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):
 	current_workers -= 1 # subtracts the removed worker from the current amount

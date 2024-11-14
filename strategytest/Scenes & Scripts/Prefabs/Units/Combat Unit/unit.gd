@@ -103,6 +103,7 @@ func takeDamage(damage, attacker):
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the unit if it's remaining hp is 0 or less
+		Global.updateUnitCount(faction, -1)
 		deleted.emit(self) # tells the system to clear remaining references to the unit
 		queue_free() # then deletes the unit
 	elif current_target == null:

@@ -1,9 +1,14 @@
 extends Node
 
 const CONSTRUCTION_COSTS = [0, 4, 2] # the construction costs for different types of buildings
+
 var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 var player_faction : int # the faction the player has chosen for the current game
+
+var unit_max = [0, 0] # how many units can a faction currently have at max?
+var unit_count = [0, 0] # how many units does each faction currently have?
+var player_building_count : int = 0 # how many building's has the player constructed?
 
 @onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_types.json")) # a dictionary of the different unit types and their properties
 
@@ -31,10 +36,6 @@ func updateResource(faction, type, amount):
 		1:
 			faction_one_resources[type] += amount
 
-# returns to cost for a specified building type
-func getConstructionCost(building_type):
-	return CONSTRUCTION_COSTS[building_type]
-
 # returns a given faction's current balance of a given resource
 func getResource(faction, type):
 	match faction:
@@ -42,3 +43,26 @@ func getResource(faction, type):
 			return faction_zero_resources[type]
 		1:
 			return faction_one_resources[type]
+
+# returns to cost for a specified building type
+func getConstructionCost(building_type):
+	return CONSTRUCTION_COSTS[building_type]
+
+# updates a faction's number of current units
+func updateUnitCount(faction, value):
+	unit_count[faction] += value
+
+# returns a faction's number of current units
+func getUnitCount(faction):
+	return unit_count[faction]
+
+# adds or removes a constructed or destroyed building from the player's count
+func updateBuildingCount(constructed):
+	if constructed:
+		player_building_count += 1
+	else:
+		player_building_count -= 1
+
+# returns the number of the player's current buildings
+func getBuildingCount():
+	return player_building_count
