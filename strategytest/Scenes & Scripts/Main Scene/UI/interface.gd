@@ -77,12 +77,14 @@ func _input(_event):
 						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Production/housing.tscn")
 				var building_node : Node3D = building_packed_scene.instantiate()
 				get_parent().add_child(building_node)
+				
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
 				building_node.setFaction(Global.player_faction)
 				building_node.building_menu.connect(get_parent()._on_building_menu)
 				rebake.emit()
 				Global.updateResource(Global.player_faction, 0, -Global.getConstructionCost(interface_input_mode))
 				Global.updateBuildingCount(true)
+				Global.add_to_list(building_node.position.x, building_node.position.z, Global.player_faction, building_node.get_instance_id(), null, building_node)
 				
 				if !shift:
 					interface_input_mode = 0

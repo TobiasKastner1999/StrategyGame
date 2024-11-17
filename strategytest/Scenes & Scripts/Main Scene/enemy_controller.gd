@@ -63,7 +63,7 @@ func constructBuilding():
 	building.accessStructure() # enables unit production from the building
 	rebake.emit() # calls the re-bake the navmesh
 	Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(1)) # subtracts the required crystals from the AI's resources
-
+	Global.add_to_list(building.position.x, building.position.z, controlled_faction, building.get_instance_id(), null, building)
 # called once the player has selected a faction
 func setUp():
 	if controlled_faction == Global.player_faction:
