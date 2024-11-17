@@ -3,6 +3,7 @@ extends Node
 signal rebake() # to rebake the navmesh when a new building is placed
 
 var build_locations = [[Vector3(0.0, 3.9, 175.0), Vector3(-25.0, 3.9, 175.0), Vector3(25.0, 3.9, 175.0)], [Vector3(0.0, 3.9, -175.0), Vector3(-25.0, 3.9, -175.0), Vector3(25.0, 3.9, -175.0)]] # the pre-determined locations where the AI can construct its buildings
+var housing_locations = [[Vector3(0.0, 3.9, 235.0), Vector3(10.0, 3.9, 230.0), Vector3(-10.0, 3.9, 230.0), Vector3(-20.0, 3.9, 225.0), Vector3(20.0, 3.9, 225.0)], [Vector3(0.0, 3.9, -235.0), Vector3(10.0, 3.9, -230.0), Vector3(-10.0, 3.9, -230.0), Vector3(-20.0, 3.9, -225.0), Vector3(20.0, 3.9, -225.0)]]
 var hq  # the AI's HQ building
 var enemy_hq  # the player's HQ building
 var worker_storage # the AI's workers
@@ -25,8 +26,10 @@ func _physics_process(_delta):
 			issueUnitCommand(unit) # issues new commands to units that currently don't have a target
 	
 	# checks if a new building can be constructed
-	if build_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.getConstructionCost(1):
-		constructBuilding() # constructs a new building if the AI has enough crystals and there are construction plots left
+	if Global.getUnitCount(controlled_faction) >= Global.getUnitLimit(controlled_faction) and housing_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.getConstructionCost(2):
+		constructBuilding(2) # constructs a new housing if the AI needs more unit room, has enough crystals, and there are empty plots left
+	elif build_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.getConstructionCost(1):
+		constructBuilding(1) # otherwise constructs a new barracks if the AI has enough crystals and there are construction plots left
 
 # sets a new destination for a worker
 func setWorkerDestination(worker):
@@ -54,15 +57,24 @@ func issueUnitCommand(unit):
 		unit.setTargetPosition(enemy_hq.global_position) # otherwise instructs the unit to move towards the HQ
 
 # builds a new building
-func constructBuilding():
-	var building = load("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn").instantiate() # instantiates the building
+func constructBuilding(building_type):
+	var building # sets up variable for the new building
+	match building_type:
+		1:
+			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn").instantiate() # instantiates the barracks
+			building.transform.origin = build_locations[controlled_faction][0] # places it at the first available location
+			build_locations[controlled_faction].remove_at(0) # then removes that location from the list
+			Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(1)) # subtracts the required crystals from the AI's resources
+		2:
+			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/housing.tscn").instantiate() # instantiates the housing
+			building.transform.origin = housing_locations[controlled_faction][0] # places it at the first available location
+			housing_locations[controlled_faction].remove_at(0) # then removes that location from the list
+			Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(2)) # subtracts the required crystals from the AI's resources
+	
 	get_parent().add_child(building)
-	building.transform.origin = build_locations[controlled_faction][0] # places it at the first available location
-	build_locations[controlled_faction].remove_at(0) # then removes that location from the list
 	building.setFaction(controlled_faction) # assigns the building's faction
-	building.accessStructure() # enables unit production from the building
+	building.accessStructure() # accesses the building's interface
 	rebake.emit() # calls the re-bake the navmesh
-	Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(1)) # subtracts the required crystals from the AI's resources
 	Global.add_to_list(building.position.x, building.position.z, controlled_faction, building.get_instance_id(), null, building)
 # called once the player has selected a faction
 func setUp():
