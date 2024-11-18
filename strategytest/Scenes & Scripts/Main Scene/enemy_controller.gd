@@ -13,6 +13,17 @@ var worker_storage # the AI's workers
 @onready var unit_storage = $".."/Units # the combat units
 @onready var resources = $".."/Resources # the resources
 
+func _ready():
+	# disables the player HQ until the timer in main scene enables the HQ after 0.1 sec
+	# delay is for minimap updating
+	if Global.player_faction == 0:
+		$"../HQBlue".process_mode = Node.PROCESS_MODE_DISABLED
+	else:
+		$"../HQRed".process_mode = Node.PROCESS_MODE_DISABLED
+
+
+
+
 # issues AI commands
 func _physics_process(_delta):
 	# checks if any workers need new instructions

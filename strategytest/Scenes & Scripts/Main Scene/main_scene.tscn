@@ -332,7 +332,6 @@ resource_type = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, 200)
 
 [node name="HQRed" parent="." instance=ExtResource("7_g6gsm")]
-process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.808, -200)
 faction = 1
 
