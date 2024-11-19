@@ -1,6 +1,6 @@
 extends NavigationRegion3D
 
-var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
+var camera_positions = [Vector3(-18, 10, 20), Vector3(0.0, 0.0, -225.0)]
 @onready var enemy_hq = $HQBlue
 
 @onready var unit_storage = $Units

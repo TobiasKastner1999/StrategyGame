@@ -79,14 +79,16 @@ func _physics_process(_delta):
 
 # zoom in or out with mousewheel
 func _unhandled_input(event):
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-				$".".position.y -= 2
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-				$".".position.y += 2
+	if $".".position.y > 20:
+		if event is InputEventMouseButton:
+			if event.is_pressed():
+				if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+					$".".position.y -= 5
+	if $".".position.y < 60:
+		if event is InputEventMouseButton:
+			if event.is_pressed():
+				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+					$".".position.y += 5
 
 # function to select and replace the old selection
 func selectUnits():
