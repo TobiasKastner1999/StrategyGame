@@ -59,4 +59,4 @@ func _on_building_menu(building):
 
 func _on_timer_timeout():
 	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT
-	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT
+	#$HQRed.process_mode = Node.PROCESS_MODE_INHERIT

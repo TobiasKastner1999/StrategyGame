@@ -20,7 +20,7 @@ func _ready():
 	
 	# sets the positions of the hqs on the minimap
 	unit_sprite.position = Vector2($"../HQBlue".position.x, $"../HQBlue".position.z)
-	unit_sprite2.position = Vector2($"../HQRed".position.x, $"../HQRed".position.z)
+	#unit_sprite2.position = Vector2($"../HQRed".position.x, $"../HQRed".position.z)
 	
 	
 	# visualizes the zoom 

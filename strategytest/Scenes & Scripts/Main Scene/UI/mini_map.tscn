@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://daovvhsbialq1"]
+[gd_scene load_steps=8 format=3 uid="uid://daovvhsbialq1"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/mini_map.gd" id="1_pkvyj"]
 [ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://Assets/UI/blue_dot.png" id="2_wcwke"]
 [ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://Assets/UI/cam.png" id="3_ao8ji"]
-[ext_resource type="Texture2D" uid="uid://77woe7bbd6bk" path="res://Assets/UI/red_dot.png" id="4_shqqg"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/MouseIndicator.gd" id="5_ojfxw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xhnkx"]
@@ -36,9 +35,6 @@ texture = ExtResource("3_ao8ji")
 
 [node name="BaseFriendly" type="Sprite2D" parent="MarginContainer"]
 texture = ExtResource("2_wcwke")
-
-[node name="BaseEnemy" type="Sprite2D" parent="MarginContainer"]
-texture = ExtResource("4_shqqg")
 
 [node name="MinimapRegion" type="Area2D" parent="MarginContainer"]
 
