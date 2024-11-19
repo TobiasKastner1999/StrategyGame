@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bghq1dyglmtly"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/fog_of_war.gd" id="1_fxp1u"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lb08u"]
+blend_mode = 3
+light_mode = 1
+
+[node name="FogOfWar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fxp1u")
+
+[node name="Tick" type="Timer" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+offset_right = 1024.0
+offset_bottom = 1024.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+size = Vector2i(1024, 1024)
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="FogExplored" type="ColorRect" parent="SubViewportContainer/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.193154, 0.193154, 0.193154, 1)
+
+[node name="FogTexture" type="Sprite2D" parent="SubViewportContainer/SubViewport"]
+material = SubResource("CanvasItemMaterial_lb08u")
+
+[node name="TrackedUnits" type="Node2D" parent="SubViewportContainer/SubViewport"]
