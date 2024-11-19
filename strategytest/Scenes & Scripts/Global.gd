@@ -10,7 +10,7 @@ var list_counter = 1
 
 
 
-var unit_max = [0, 0] # how many units can a faction currently have at max?
+var unit_max = [2, 2] # how many units can a faction currently have at max?
 var unit_count = [0, 0] # how many units does each faction currently have?
 var player_building_count : int = 0 # how many building's has the player constructed?
 

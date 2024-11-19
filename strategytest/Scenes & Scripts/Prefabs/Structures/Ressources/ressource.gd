@@ -2,7 +2,7 @@ extends Node3D
 
 signal expended(node) # to have workers remove their references of this node
 
-var resource = 200 # how many resources does this node still hold?
+var resource = 10 # how many resources does this node still hold?
 
 @export var resource_type : int # the type of resource this node contains
 

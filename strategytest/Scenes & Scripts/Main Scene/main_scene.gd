@@ -1,14 +1,32 @@
 extends NavigationRegion3D
 
 var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
+@onready var enemy_hq = $HQBlue
+
+@onready var unit_storage = $Units
+
 
 # called at the start of the game
 func _ready():
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
+	$Building.setFaction(1)
+	Global.updateResource(1, 1, 2)
+	await get_tree().create_timer(30).timeout
+	$Building.process_mode = Node.PROCESS_MODE_INHERIT
+	
 
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
 	$Counter.set_text("Faction 0 Resources: " + str(Global.faction_zero_resources) + " Faction 1 Resources: " + str(Global.faction_one_resources) + "   " + "FPS: " + str(Engine.get_frames_per_second()))
+	
+func _physics_process(delta):
+	for unit in unit_storage.get_children():
+		if !unit.isActive():
+			issueUnitCommand(unit) 
+
+
+
+
 
 # attempts to remove a deleted unit from the camera's selection
 func _on_units_delete_selection(unit):
@@ -60,3 +78,11 @@ func _on_building_menu(building):
 func _on_timer_timeout():
 	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT
 	#$HQRed.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func issueUnitCommand(unit):
+	if unit.isNearBody(enemy_hq):
+		unit.setAttackTarget(enemy_hq) # instructs the unit to attack the enemy HQ if it is near
+	else:
+		unit.setTargetPosition(enemy_hq.global_position) # otherwise instructs the unit to move towards the HQ
+
