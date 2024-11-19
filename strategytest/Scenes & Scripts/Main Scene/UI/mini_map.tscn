@@ -6,10 +6,10 @@
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/MouseIndicator.gd" id="5_ojfxw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xhnkx"]
-size = Vector2(500, 500)
+size = Vector2(250, 250)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
-size = Vector2(501, 500)
+size = Vector2(250, 250)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1leb5"]
 size = Vector2(10, 10)
