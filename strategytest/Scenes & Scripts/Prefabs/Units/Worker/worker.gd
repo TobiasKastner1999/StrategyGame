@@ -14,6 +14,7 @@ var resource = [0, 0] # what type of resource is the worker carrying, and how mu
 var known_resources = [] # an array of all resource nodes the worker has discovered
 var target_resource # the resource the worker is currently moving towards
 var priority_movement = false # is the worker's currently overwritten by a player input?
+var detection_range = 50.0 # the distance at which the worker can detect other units & objects
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gravity affecting the worker
 @onready var go_to # the worker's current navigation destination
 
@@ -25,6 +26,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gr
 func _ready():
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
+	
+	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
+	$RangeArea/RangeColl.shape.radius = detection_range
 
 # controls the worker's movement and other actions
 func _physics_process(delta):

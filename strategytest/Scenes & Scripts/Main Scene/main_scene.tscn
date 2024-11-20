@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=39 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/interface.gd" id="9_f8ghw"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/end_screen.gd" id="10_7e7ws"]
 [ext_resource type="Texture2D" uid="uid://dvdqrkxoca6w" path="res://Assets/UI/UIStarcraft2.png.png" id="10_aww5s"]
+[ext_resource type="PackedScene" uid="uid://bghq1dyglmtly" path="res://Scenes & Scripts/Main Scene/UI/fog_of_war.tscn" id="10_y6v27"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/placer.gd" id="11_mo25r"]
 [ext_resource type="Shader" path="res://Assets/world3d.gdshader" id="12_lfui2"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/selected_panel.gd" id="12_x7t4o"]
@@ -351,6 +352,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_f8ghw")
 
+[node name="FogOfWar" parent="Interface" instance=ExtResource("10_y6v27")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="StartScreen" type="Panel" parent="Interface"]
 process_mode = 2
 layout_mode = 1
@@ -621,6 +630,7 @@ one_shot = true
 autostart = true
 
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
+[connection signal="new_unit" from="Units" to="." method="_on_units_new_unit"]
 [connection signal="rebake" from="Resources" to="." method="_on_interface_rebake"]
 [connection signal="expended" from="Resources/Ressource" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource2" to="Resources" method="_on_ressource_expended"]
@@ -651,7 +661,9 @@ autostart = true
 [connection signal="expended" from="Resources/Ressource27" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource28" to="Resources" method="_on_ressource_expended"]
 [connection signal="destruction" from="HQBlue" to="." method="_on_hq_destruction"]
+[connection signal="new_worker" from="HQBlue" to="." method="_on_hq_new_worker"]
 [connection signal="destruction" from="HQRed" to="." method="_on_hq_destruction"]
+[connection signal="new_worker" from="HQRed" to="." method="_on_hq_new_worker"]
 [connection signal="rebake" from="FactionBlueController" to="." method="_on_interface_rebake"]
 [connection signal="rebake" from="FactionRedController" to="." method="_on_interface_rebake"]
 [connection signal="rebake" from="Interface" to="." method="_on_interface_rebake"]
