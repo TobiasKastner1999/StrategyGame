@@ -56,7 +56,6 @@ func dot_for_worker(dot):
 		if Global.list[i]["dot"] != null:
 			Global.list[i]["dot"].position = Vector2(Global.list[i]["positionX"], Global.list[i]["positionY"])
 
-
 # sets the texture blue and spawns the dot
 func add_unit_blue(dot):
 	for i in Global.list.size():
@@ -65,8 +64,6 @@ func add_unit_blue(dot):
 				dot.texture = load("res://Assets/UI/blue_dot.png")
 				Global.list[i]["dot"] = dot
 				$MarginContainer/Dots.add_child(dot)
-
-
 
 # sets the texture red and spawns the dot
 func add_unit_red(dot):
@@ -101,6 +98,7 @@ func minimap_limits():
 		cam_sprite.position.y = -124
 	if cam_sprite.position.y >= 125:
 		cam_sprite.position.y = 124
+
 # scale the vision sprite when cam zooms in/oout
 func minimap_zoom():
 	
@@ -112,8 +110,6 @@ func minimap_zoom():
 		if main_cam.position.y <= zoom:
 			cam_sprite.scale -=Vector2(0.1, 0.1)
 			zoom = main_cam.position.y
-
-
 
 # limit the minimap clickrange and move the cam to the position on the minimap
 func minimap_clickable():
