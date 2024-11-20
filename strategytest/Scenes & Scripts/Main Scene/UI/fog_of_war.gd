@@ -61,6 +61,8 @@ func addUnit(unit_node):
 	new_sprite.set_texture(getNewDissolveSize(unit_node.detection_range / 2))
 	units.add_child(new_sprite)
 	units_data[unit_node.get_instance_id()] = [unit_node, new_sprite]
+	var pos_to_2D = fog_sprite.get_rect().get_center() + Vector2(unit_node.global_position.x, unit_node.global_position.z) / 2
+	new_sprite.set_position(pos_to_2D)
 
 func attemptRemoveUnit(unit):
 	if units_data.keys().has(unit.get_instance_id()):
