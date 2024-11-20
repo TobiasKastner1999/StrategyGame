@@ -2,8 +2,8 @@ extends NavigationRegion3D
 
 var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
 
-@onready var world_size = Vector2i($Map/Floor/FloorMesh.mesh.size.x, $Map/Floor/FloorMesh.mesh.size.y)
-@onready var fog_of_war = $Interface/FogOfWar
+@onready var world_size = Vector2i($Map/Floor/FloorMesh.mesh.size.x, $Map/Floor/FloorMesh.mesh.size.y) # the size of the level's world environment
+@onready var fog_of_war = $Interface/FogOfWar # the node handling the game's fog of war
 
 # called at the start of the game
 func _ready():
@@ -13,6 +13,7 @@ func _ready():
 func _process(_delta):
 	$Counter.set_text("Faction 0 Resources: " + str(Global.faction_zero_resources) + " Faction 1 Resources: " + str(Global.faction_one_resources) + "   " + "FPS: " + str(Engine.get_frames_per_second()))
 
+# adds a unit to the fog of war system
 func addUnitToFog(unit_node):
 	fog_of_war.addUnit(unit_node)
 
@@ -20,7 +21,7 @@ func addUnitToFog(unit_node):
 func _on_units_delete_selection(unit):
 	if $Camera.selection.has(unit):
 		$Camera.selection.erase(unit) # removes the unit if it is in the camera's current selection
-	fog_of_war.attemptRemoveUnit(unit)
+	fog_of_war.attemptRemoveUnit(unit) # also attempts to remove the unit from the fog of war system
 
 # rebakes the navmesh
 func _on_interface_rebake():
@@ -48,7 +49,7 @@ func _on_interface_start_game(faction):
 	$MiniMap.visible = true
 	#$Counter.visible = true
 	
-	fog_of_war.newFog(Rect2(Vector2.ZERO, world_size))
+	fog_of_war.newFog(Rect2(Vector2.ZERO, world_size)) # sets up the fog of war
 	Global.player_faction = faction # sets the player's global faction to the faction they chose
 	
 	# sets up the AI controllers
@@ -68,8 +69,10 @@ func _on_timer_timeout():
 	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT
 	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT
 
+# calls to add a new worker to the fog of war
 func _on_hq_new_worker(worker):
 	addUnitToFog(worker)
 
+# calls to add a new unit to the fog of war
 func _on_units_new_unit(unit):
 	addUnitToFog(unit)

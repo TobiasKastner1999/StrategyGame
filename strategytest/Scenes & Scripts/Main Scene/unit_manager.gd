@@ -1,13 +1,13 @@
 extends Node3D
 
 signal delete_selection(unit) # to tell camera to remove a deleted unit from the selection
-signal new_unit(unit)
+signal new_unit(unit) # to notify to system about new unit spawns
 
 # calls to connect a newly attached unit's deletion signal
 func connectDeletion(unit):
 	unit.deleted.connect(_on_unit_delete)
 	if unit.getFaction() == Global.player_faction:
-		new_unit.emit(unit)
+		new_unit.emit(unit) # tells the system that a new unit has been spawned
 
 # called when a unit is deleted
 func _on_unit_delete(deleted):
