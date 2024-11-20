@@ -8,14 +8,14 @@ var zoom
 @onready var mouse = $MarginContainer/MouseIndicator # characterbody that will follow the mouse
 @onready var main_cam := $"../Camera" # camera of main scene
 @onready var unit_sprite = $MarginContainer/BaseFriendly # HQ Blue
-@onready var unit_sprite2 = $MarginContainer/BaseEnemy # HQ Red
+#@onready var unit_sprite2 = $MarginContainer/BaseEnemy # HQ Red
 @onready var cam_sprite = $MarginContainer/Cam # Cam indicator sprite
 @onready var tank = $"../HQBlue" # test unit
 
 
 func _ready():
 	# first entry -> test unit
-	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MapContainer/Tank, "worker" : tank}
+	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MarginContainer/Tank , "worker" : tank}
 	
 	
 	# sets the positions of the hqs on the minimap

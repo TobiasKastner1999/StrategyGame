@@ -17,11 +17,11 @@ func _ready():
 
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
-	$Counter.set_text("Faction 0 Resources: " + str(Global.faction_zero_resources) + " Faction 1 Resources: " + str(Global.faction_one_resources) + "   " + "FPS: " + str(Engine.get_frames_per_second()))
+	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second()))
 	
 func _physics_process(delta):
 	for unit in unit_storage.get_children():
-		if !unit.isActive():
+		if !unit.isActive() and unit.getFaction() == 1:
 			issueUnitCommand(unit) 
 
 
