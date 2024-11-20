@@ -11,7 +11,7 @@ func _ready():
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
 	$Building.setFaction(1)
 	Global.updateResource(1, 1, 2)
-	await get_tree().create_timer(30).timeout
+	await get_tree().create_timer(50).timeout
 	$Building.process_mode = Node.PROCESS_MODE_INHERIT
 	
 
