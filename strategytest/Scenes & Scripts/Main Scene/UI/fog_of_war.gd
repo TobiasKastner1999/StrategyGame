@@ -8,7 +8,7 @@ signal fow_updated()
 @onready var units = $SubViewportContainer/SubViewport/TrackedUnits
 @onready var tick = $Tick
 
-var dissolved_locations = []
+var stored_dissolved_positions = []
 var main_image
 var main_texture
 var export_texture
@@ -78,5 +78,9 @@ func processUnitData():
 func dissolveForUnits():
 	for fow_sprite in units.get_children():
 		var sprite_image = fow_sprite.get_texture().get_image()
-		var dissolve_position = fow_sprite.global_position
-		dissolveFog(dissolve_position, sprite_image)
+		var store_position = Vector3i(fow_sprite.position.x, fow_sprite.position.y, fow_sprite.get_texture().get_size().x)
+		
+		if !store_position in stored_dissolved_positions:
+			var dissolve_position = fow_sprite.global_position
+			dissolveFog(dissolve_position, sprite_image)
+			stored_dissolved_positions.append(store_position)
