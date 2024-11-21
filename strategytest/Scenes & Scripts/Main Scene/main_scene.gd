@@ -79,4 +79,3 @@ func _on_units_new_unit(unit):
 
 func _on_fog_of_war_fow_updated(new_texture):
 	$Map/Floor/FloorMesh.get_material_overlay().set_texture(0, new_texture)
-	pass

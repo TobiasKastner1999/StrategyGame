@@ -172,11 +172,11 @@ func updateVisibility(object):
 func _on_range_area_body_entered(body):
 	if body.is_in_group("resource") and !known_resources.has(body):
 		known_resources.append(body)
-	elif body.is_in_group("FowObject") and faction == Global.player_faction:
-		body.updateVisibility(self)
+		if faction == Global.player_faction:
+			body.updateVisibility(self)
 
 func _on_range_area_body_exited(body):
-	if body.is_in_group("FowObject") and faction == Global.player_faction:
+	if body.is_in_group("FowObject") and faction == Global.player_faction and body.getFaction() != faction:
 		body.updateVisibility(self)
 
 # moves the agent on the computed safe velocity

@@ -221,13 +221,17 @@ func _on_area_3d_body_entered(body):
 			setAttackTarget(body)
 		if faction == Global.player_faction:
 			body.updateVisibility(self)
+	elif body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.updateVisibility(self)
 
 # when an object leaves the unit's detection range
 func _on_area_3d_body_exited(body):
 	if nearby_enemies.has(body):
 		nearby_enemies.erase(body) # removes the object from the list of nearby enemies if it was in the list
-		if faction == Global.player_faction and body.is_instance_id_valid():
+		if faction == Global.player_faction and body.getFaction() != faction:
 			body.updateVisibility(self)
+	elif body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.updateVisibility(self)
 
 # re-enables attack when the attack cooldown ends
 func _on_timer_timeout():
