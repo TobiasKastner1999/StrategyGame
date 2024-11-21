@@ -12,6 +12,7 @@ var path = [] # the navigation path the worker is traveling on
 var path_ind = 0 # the index of the worker's current path node
 var resource = [0, 0] # what type of resource is the worker carrying, and how much of it?
 var known_resources = [] # an array of all resource nodes the worker has discovered
+var nearby_observers = [] # an array of nearby units currently observing the worker
 var target_resource # the resource the worker is currently moving towards
 var priority_movement = false # is the worker's currently overwritten by a player input?
 var detection_range = 50.0 # the distance at which the worker can detect other units & objects
@@ -114,6 +115,9 @@ func setFaction(f : int):
 	faction = f
 	$WorkerBody.material_override = load(Global.getFactionColor(faction))
 	
+	if faction != Global.player_faction:
+		visible = false
+	
 	if go_to == null:
 		go_to = global_position # if the worker is first set up, also sets up the movement variable
 
@@ -155,10 +159,25 @@ func removeResourceKnowledge(removed_resource):
 	if known_resources.has(removed_resource):
 		known_resources.erase(removed_resource)
 
+func updateVisibility(object):
+	if object in nearby_observers:
+		nearby_observers.erase(object)
+		if nearby_observers.size() == 0:
+			visible = false
+	else:
+		visible = true
+		nearby_observers.append(object)
+
 # if a new resource entered the worker's detection radius, adds it to its list
 func _on_range_area_body_entered(body):
 	if body.is_in_group("resource") and !known_resources.has(body):
 		known_resources.append(body)
+	elif body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.updateVisibility(self)
+
+func _on_range_area_body_exited(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.updateVisibility(self)
 
 # moves the agent on the computed safe velocity
 func _on_nav_agent_velocity_computed(safe_velocity):

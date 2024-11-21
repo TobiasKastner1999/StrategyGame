@@ -7,6 +7,7 @@ const TARGET_PRIORITY = ["combat", "hq", "building", "worker"] # the unit's targ
 
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
+var nearby_observers = [] # all nearby units currently observing the unit
 var current_target : PhysicsBody3D # the enemy target the unit is currently attacking
 var priority_movement = false # is the unit's movement overridden by a player command
 
@@ -201,6 +202,16 @@ func setAttackTarget(target):
 	if target.is_in_group("CombatTarget") and target.getFaction() != faction:
 		current_target = target # sets the target if the given entity is a valid target and belongs to an enemy faction
 
+func updateVisibility(object):
+	if object in nearby_observers:
+		nearby_observers.erase(object)
+		if nearby_observers.size() == 0:
+			visible = false
+	else:
+		print("spotted!")
+		visible = true
+		nearby_observers.append(object)
+
 # when a new object enters the unit's detection range
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("CombatTarget") and body.getFaction() != faction:
@@ -208,11 +219,15 @@ func _on_area_3d_body_entered(body):
 		if priority_movement:
 			priority_movement = false
 			setAttackTarget(body)
+		if faction == Global.player_faction:
+			body.updateVisibility(self)
 
 # when an object leaves the unit's detection range
 func _on_area_3d_body_exited(body):
 	if nearby_enemies.has(body):
 		nearby_enemies.erase(body) # removes the object from the list of nearby enemies if it was in the list
+		if faction == Global.player_faction and body.is_instance_id_valid():
+			body.updateVisibility(self)
 
 # re-enables attack when the attack cooldown ends
 func _on_timer_timeout():
