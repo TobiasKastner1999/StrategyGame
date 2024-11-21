@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 [autoload]
 
 Global="*res://Scenes & Scripts/Global.gd"
+Sound="*res://Scenes & Scripts/Prefabs/Sound/Sound.tscn"
 
 [display]
 

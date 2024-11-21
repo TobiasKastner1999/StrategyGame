@@ -61,9 +61,14 @@ func add_unit_blue(dot):
 	for i in Global.list.size():
 		if i != null and Global.list[i]["dot"] == null:
 			if Global.list[i]["faction"] == 0:
-				dot.texture = load("res://Assets/UI/blue_dot.png")
+				dot.texture = load("res://Assets/UI/UnitBlue.png")
+				if Global.list[i]["worker"].is_in_group("Structure"):
+					dot.texture = load("res://Assets/UI/BuildingBlue.png")
+					dot.scale.x = 0.7
+					dot.scale.y = 0.7
 				Global.list[i]["dot"] = dot
 				$MarginContainer/Dots.add_child(dot)
+
 
 # sets the texture red and spawns the dot
 func add_unit_red(dot):
@@ -72,7 +77,11 @@ func add_unit_red(dot):
 		if i != null and Global.list[i]["dot"] == null:
 			if Global.list[i]["faction"] == 1:
 				Global.list[i]["dot"] = dot
-				dot.texture = load("res://Assets/UI/red_dot.png")
+				dot.texture = load("res://Assets/UI/UnitRed.png")
+				if Global.list[i]["worker"].is_in_group("Structure"):
+					dot.texture = load("res://Assets/UI/BuildingRed.png")
+					dot.scale.x = 0.7
+					dot.scale.y = 0.7
 				$MarginContainer/Dots.add_child(dot)
 
 # when unit disappears delete the dot on minimap
@@ -118,6 +127,8 @@ func minimap_clickable():
 	else:
 		mouse_over_map = false
 	if mouse_over_map == true and Input.is_action_just_pressed("LeftClick"):
+		Sound.play_sound("res://Sounds/metal-pipe-clang.mp3")
+		Sound.play_sound("res://Sounds/lego-yoda-death-sound-effect.mp3")
 		
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		main_cam.position.x = mouse.position.x

@@ -70,7 +70,7 @@ bg_color = Color(0, 0.713726, 0.443137, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_kfgwd"]
 viewport_path = NodePath("HealthbarContainer")
 
-[node name="Building" type="StaticBody3D" groups=["Building", "CombatTarget", "MouseRaycast"]]
+[node name="Building" type="StaticBody3D" groups=["Building", "CombatTarget", "MouseRaycast", "Structure"]]
 script = ExtResource("1_poico")
 
 [node name="BuildingColl" type="CollisionShape3D" parent="."]

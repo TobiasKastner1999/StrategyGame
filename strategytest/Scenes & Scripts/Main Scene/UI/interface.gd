@@ -100,6 +100,8 @@ func updateGamestateInfo():
 	state_text += "[b]Workers[/b]: " + hq.getWorkerNum() + "\n"
 	state_text += "[b]Buildings:[/b] " + str(Global.getBuildingCount())
 	$GamestateInfo.text = state_text
+	$ResourceTab/ResourceAmount1.text =  "  " + str(Global.getResource(Global.player_faction, 0)) + "\n"
+	$ResourceTab/ResourceAmount2.text = "  " + str(Global.getResource(Global.player_faction, 1)) + "\n\n"
 
 # ends the game
 func gameEnd(faction):

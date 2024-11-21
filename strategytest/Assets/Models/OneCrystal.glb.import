@@ -29,6 +29,13 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Crystal.015": {
+"use_external/enabled": false,
+"use_external/path": "res://Assets/Materials/material_green.tres"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
