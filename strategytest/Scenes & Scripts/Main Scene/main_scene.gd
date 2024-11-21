@@ -47,7 +47,7 @@ func _on_interface_start_game(faction):
 	$Interface/BuildingButton.visible = true
 	$Interface/HousingButton.visible = true
 	$MiniMap.visible = true
-	#$Counter.visible = true
+	$Counter.visible = true
 	
 	fog_of_war.newFog(Rect2(Vector2.ZERO, world_size)) # sets up the fog of war
 	Global.player_faction = faction # sets the player's global faction to the faction they chose
@@ -76,3 +76,7 @@ func _on_hq_new_worker(worker):
 # calls to add a new unit to the fog of war
 func _on_units_new_unit(unit):
 	addUnitToFog(unit)
+
+func _on_fog_of_war_fow_updated(new_texture):
+	$Map/Floor/FloorMesh.get_material_overlay().set_texture(0, new_texture)
+	pass

@@ -1,6 +1,6 @@
 extends Control
 
-signal fow_updated() # to tell the system that the fog of war has changed
+signal fow_updated(new_texture) # to tell the system that the fog of war has changed
 
 var stored_dissolved_positions = [] # a list of positions that have already been dissolved previously
 var main_image # the fog's main image
@@ -26,6 +26,9 @@ func _ready():
 func fogTick():
 	processUnitData() # updates the tracking of all units
 	dissolveForUnits() # then dissolves the fog for each tracked unit
+	
+	export_texture = ImageTexture.create_from_image(viewport.get_texture().get_image())
+	fow_updated.emit(export_texture)
 
 # generates a new fog of war from a given rectangle
 func newFog(new_rect):
