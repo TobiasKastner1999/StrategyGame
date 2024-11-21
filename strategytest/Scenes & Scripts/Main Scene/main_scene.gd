@@ -2,13 +2,14 @@ extends NavigationRegion3D
 
 var camera_positions = [Vector3(-18, 10, 20), Vector3(0.0, 0.0, -225.0)]
 @onready var enemy_hq = $HQBlue
-
 @onready var unit_storage = $Units
+
 
 
 # called at the start of the game
 func _ready():
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
+	# set up for enemy attack, starts after 50 seconds
 	$Building.setFaction(1)
 	Global.updateResource(1, 1, 2)
 	await get_tree().create_timer(50).timeout
