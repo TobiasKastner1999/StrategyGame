@@ -127,39 +127,6 @@ func getUnitUnderMouse():
 	var result = mouse_click_collider_3d_result
 	if result != null && result.is_in_group("Selectable") and result.getFaction() == Global.player_faction:
 		return result
-
-# calls the building (or other structure) that is under the mouse
-func getStructureUnderMouse():
-	raycastFromMouse()
-	var result = mouse_click_collider_3d_result
-	if result != null && result.is_in_group("Building") and result.getFaction() == Global.player_faction:
-		return result
-
-# call the combat target that is under the mouse
-func getTargetUnderMouse():
-	raycastFromMouse()
-	var result = mouse_click_collider_3d_result
-	if result != null && result.is_in_group("CombatTarget"):
-		return result
-
-# makes a 3d box to select units inside
-func getUnitsInBox(top_left, bottom_right):
-	if top_left.x > bottom_right.x:
-		var temp = top_left.x
-		top_left.x = bottom_right.x
-		bottom_right.x = temp
-	if top_left.y > bottom_right.y:
-		var temp = top_left.y
-		top_left.y = bottom_right.y
-		bottom_right.y = temp
-	var box = Rect2(top_left, bottom_right - top_left)
-	selection = []
-	for selected in get_tree().get_nodes_in_group("Selectable"):
-		if box.has_point(camera.unproject_position(selected.global_transform.origin)) and selected.getFaction() == Global.player_faction:
-			selection.append(selected)
-	return selection
-
-# functions create raycasts to form the 3d box for selection
 func raycastMouseClick():
 	var space_state = get_world_3d().direct_space_state
 	var raycast_origin = camera.project_ray_origin(mouse_position)
@@ -193,3 +160,36 @@ func _on_side_bar_control_mouse_entered():
 
 func _on_side_bar_control_mouse_exited():
 	side_bar_mouse_entered = false
+
+# calls the building (or other structure) that is under the mouse
+func getStructureUnderMouse():
+	raycastFromMouse()
+	var result = mouse_click_collider_3d_result
+	if result != null && result.is_in_group("Building") and result.getFaction() == Global.player_faction:
+		return result
+
+# call the combat target that is under the mouse
+func getTargetUnderMouse():
+	raycastFromMouse()
+	var result = mouse_click_collider_3d_result
+	if result != null && result.is_in_group("CombatTarget"):
+		return result
+
+# makes a 3d box to select units inside
+func getUnitsInBox(top_left, bottom_right):
+	if top_left.x > bottom_right.x:
+		var temp = top_left.x
+		top_left.x = bottom_right.x
+		bottom_right.x = temp
+	if top_left.y > bottom_right.y:
+		var temp = top_left.y
+		top_left.y = bottom_right.y
+		bottom_right.y = temp
+	var box = Rect2(top_left, bottom_right - top_left)
+	selection = []
+	for selected in get_tree().get_nodes_in_group("Selectable"):
+		if box.has_point(camera.unproject_position(selected.global_transform.origin)) and selected.getFaction() == Global.player_faction:
+			selection.append(selected)
+	return selection
+
+# functions create raycasts to form the 3d box for selection

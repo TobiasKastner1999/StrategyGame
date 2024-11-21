@@ -19,9 +19,12 @@ func _process(delta):
 
 
 func play_sound(sound):
+	$".".add_child(sound_streamer)
 	var loaded_sound = load(sound)
 	sound_streamer.stream = loaded_sound
 	sound_streamer.play()
+	await sound_streamer.finished
+	sound_streamer.queue_free()
 	
 func play_music(music):
 	var loaded_music = load(music)

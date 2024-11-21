@@ -2,7 +2,7 @@ extends Node
 
 const CONSTRUCTION_COSTS = [0, 4, 2] # the construction costs for different types of buildings
 
-var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
+var faction_zero_resources = [8, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 var player_faction : int # the faction the player has chosen for the current game
 var list = {}

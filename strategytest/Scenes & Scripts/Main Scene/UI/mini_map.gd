@@ -127,8 +127,8 @@ func minimap_clickable():
 	else:
 		mouse_over_map = false
 	if mouse_over_map == true and Input.is_action_just_pressed("LeftClick"):
-		Sound.play_sound("res://Sounds/metal-pipe-clang.mp3")
-		Sound.play_sound("res://Sounds/lego-yoda-death-sound-effect.mp3")
+		#Sound.play_sound("res://Sounds/metal-pipe-clang.mp3")
+		#Sound.play_sound("res://Sounds/lego-yoda-death-sound-effect.mp3")
 		
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		main_cam.position.x = mouse.position.x

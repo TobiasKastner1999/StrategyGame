@@ -18,7 +18,14 @@ func _ready():
 
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
+	
 	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second()))
+	if Global.faction_one_resources == [0, 0]:
+		$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT
+		$HQBlue.global_position
+	
+	
+	
 	
 func _physics_process(delta):
 	for unit in unit_storage.get_children():
