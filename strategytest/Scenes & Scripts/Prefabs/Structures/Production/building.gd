@@ -25,6 +25,9 @@ func _ready():
 	
 	setProductionType(production_type) # sets up the building's unit production
 
+func _process(delta):
+	pass
+
 # checks repeatedly if a new unit can be spawned
 func _physics_process(_delta):
 	var spawn_point = getEmptySpawn()
@@ -44,7 +47,6 @@ func spawnUnit(spawn_point):
 	Global.updateResource(faction, 1, -unit_cost) # subtracts the unit's crystal cost from the player's balance
 	Global.updateUnitCount(faction, 1)
 	$SpawnTimer.start(spawn_rate) # starts spawn delay
-	
 	var new_unit = load("res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.tscn").instantiate() # instantiates the unit
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
