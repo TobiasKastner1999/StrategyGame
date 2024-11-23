@@ -4,7 +4,7 @@ extends Control
 
 @onready var sound_streamer = $SoundStreamer
 @onready var music_streamer = $MusicStreamer
-
+var temp = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,14 +19,30 @@ func _process(delta):
 
 
 func play_sound(sound):
-	$".".add_child(sound_streamer)
+	var new_streamer = load("res://Scenes & Scripts/Prefabs/Sound/streamer.tscn").instantiate()
+	$".".add_child(new_streamer)
 	var loaded_sound = load(sound)
-	sound_streamer.stream = loaded_sound
-	sound_streamer.play()
-	await sound_streamer.finished
-	sound_streamer.queue_free()
+	new_streamer.stream = loaded_sound
+	new_streamer.play()
+	await new_streamer.finished
+	new_streamer.queue_free()
 	
 func play_music(music):
+	var new_streamer = load("res://Scenes & Scripts/Prefabs/Sound/streamer.tscn").instantiate()
+	temp = new_streamer
+	$".".add_child(new_streamer)
 	var loaded_music = load(music)
-	music_streamer.stream = loaded_music
-	music_streamer.play()
+	new_streamer.stream = loaded_music
+	new_streamer.play()
+	new_streamer
+	await new_streamer.finished
+	play_music(music)
+
+func stop_music_loop():
+	if temp != null:
+		await temp.finished
+		temp.queue_free()
+
+func cease_music():
+	if temp != null:
+		temp.queue_free()
