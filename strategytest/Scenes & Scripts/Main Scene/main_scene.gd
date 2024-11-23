@@ -3,7 +3,7 @@ extends NavigationRegion3D
 var camera_positions = [Vector3(-18, 10, 20), Vector3(0.0, 0.0, -225.0)]
 @onready var enemy_hq = $HQBlue
 @onready var unit_storage = $Units
-
+var done = false
 
 
 # called at the start of the game
@@ -18,11 +18,14 @@ func _ready():
 
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
+	print(Global.getUnitCount(0))
 	
 	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second()))
-	if Global.faction_one_resources == [0, 0]:
+	if Global.getResource(Global.player_faction, 0) == 0 and done == false:
+		done = true
 		$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT
-		$HQBlue.global_position
+		$HQBlue.global_position = Global.list[2]["worker"].global_position
+		$HQBlue.global_position.y += 2
 	
 	
 	

@@ -10,9 +10,11 @@ var resource = 10 # how many resources does this node still hold?
 func _ready():
 	match resource_type: # checks for the node's resource type, and sets the texture color accordingly
 		0:
-			$ResourceBody.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
+			pass
+			#$ResourceBody.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
 		1:
-			$ResourceBody.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
+			pass
+			#$ResourceBody.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
 
 # removes a resource from the node
 func takeResource():

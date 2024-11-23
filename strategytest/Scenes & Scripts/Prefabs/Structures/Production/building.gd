@@ -71,7 +71,8 @@ func takeDamage(damage, _attacker):
 			Global.updateBuildingCount(false)
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
-
+	
+	
 # accesses the building's interface function
 func accessStructure():
 	building_menu.emit(self)
