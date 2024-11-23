@@ -59,6 +59,7 @@ script = ExtResource("1_tfu8k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.0276505, 0.0243765, -0.0223084, -0.00637538, 0.0324775, 0.0275862, 0.0324228, -0.0144025, 0.0244493, 0.25374, 0.574175, -0.0937236)
+visible = false
 shape = SubResource("ConcavePolygonShape3D_08jfo")
 
 [node name="ResourceBody" type="MeshInstance3D" parent="."]

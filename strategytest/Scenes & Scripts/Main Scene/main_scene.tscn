@@ -365,14 +365,14 @@ theme = SubResource("Theme_vhkq3")
 text = "Quit"
 
 [node name="UIFrame" type="TextureRect" parent="Interface"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -396.0
-offset_right = 262.0
-offset_bottom = 676.0
+offset_left = -398.0
+offset_top = 26.0
+offset_right = 260.0
+offset_bottom = 702.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("16_r7jgc")
@@ -394,10 +394,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -588.0
-offset_top = -212.0
-offset_right = 291.0
-offset_bottom = -45.0
+offset_left = -592.0
+offset_top = -184.0
+offset_right = 287.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("12_x7t4o")
@@ -574,10 +574,10 @@ scale = Vector2(1.1, 1.1)
 transform = Transform2D(1.1, 0, 0, 1.1, 0, 0)
 
 [node name="MarginContainer" parent="MiniMap" index="0"]
-offset_left = 172.727
-offset_top = 820.0
-offset_right = 530.727
-offset_bottom = 1222.0
+offset_left = 166.364
+offset_top = 843.636
+offset_right = 524.364
+offset_bottom = 1245.64
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 4
