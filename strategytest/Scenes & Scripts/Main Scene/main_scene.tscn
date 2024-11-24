@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=38 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
@@ -8,9 +8,11 @@
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/resource_manager.gd" id="5_de6tf"]
 [ext_resource type="PackedScene" uid="uid://kfr5nk4l557f" path="res://Scenes & Scripts/Prefabs/Structures/Ressources/ressource.tscn" id="6_n2kgi"]
 [ext_resource type="PackedScene" uid="uid://ceeufncih20jh" path="res://Scenes & Scripts/Asset Scenes/stone_01.tscn" id="6_oqcks"]
+[ext_resource type="PackedScene" uid="uid://br0c8t8ngcig1" path="res://Scenes & Scripts/Asset Scenes/rohr_version_1.tscn" id="7_44tru"]
 [ext_resource type="PackedScene" uid="uid://7012rhjv4u2g" path="res://Scenes & Scripts/Prefabs/Structures/HQ/hq.tscn" id="7_g6gsm"]
 [ext_resource type="PackedScene" uid="uid://dwvxab258rcvc" path="res://Scenes & Scripts/Asset Scenes/stone_02.tscn" id="7_svwvi"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/enemy_controller.gd" id="8_q8x15"]
+[ext_resource type="PackedScene" uid="uid://cgiqvp04wh5k" path="res://Scenes & Scripts/Asset Scenes/rohr_version_2.tscn" id="8_yarvw"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/interface.gd" id="9_f8ghw"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/end_screen.gd" id="10_7e7ws"]
 [ext_resource type="PackedScene" uid="uid://bvgxlsv6fcpoe" path="res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn" id="10_prftt"]
@@ -222,6 +224,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8847, 6.28513, 108.933)
 
 [node name="Stone29" parent="Map" instance=ExtResource("7_svwvi")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -20.8847, 6.28513, 108.933)
+
+[node name="Rohr Version 1" parent="Map" instance=ExtResource("7_44tru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.0606, 7.59639, 37.9439)
+
+[node name="Rohr Version2" parent="Map" instance=ExtResource("8_yarvw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1557, 10.1157, -0.97258)
 
 [node name="Units" type="Node3D" parent="."]
 script = ExtResource("4_phx1q")
