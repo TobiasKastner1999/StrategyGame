@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://d7q3bpm32hd" path="res://Assets/UI/BuildingBlue.png" id="4_4rqpp"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/MouseIndicator.gd" id="5_ojfxw"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xhnkx"]
-size = Vector2(250, 250)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0f7gf"]
+load_path = "res://.godot/imported/Map UI .png-7a088e522375a9d4111995c7dba3d979.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
 size = Vector2(250, 250)
@@ -23,7 +23,9 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Background" type="Sprite2D" parent="MarginContainer"]
-texture = SubResource("PlaceholderTexture2D_xhnkx")
+position = Vector2(-2.5, 0)
+scale = Vector2(0.31295, 0.3)
+texture = SubResource("CompressedTexture2D_0f7gf")
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]
 visible = false

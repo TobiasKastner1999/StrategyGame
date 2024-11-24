@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=36 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
@@ -20,6 +20,7 @@
 [ext_resource type="BoxMesh" uid="uid://bb8lq1hny0bmx" path="res://Assets/world3d.tres" id="13_t4iav"]
 [ext_resource type="PackedScene" uid="uid://daovvhsbialq1" path="res://Scenes & Scripts/Main Scene/UI/mini_map.tscn" id="16_cn011"]
 [ext_resource type="Texture2D" uid="uid://ds1xm2wti6bdl" path="res://Assets/UI/UI_Outlaw.png" id="16_r7jgc"]
+[ext_resource type="Texture2D" uid="uid://ovmtkukwhugj" path="res://Assets/UI/Ore Blau UI.png" id="21_ayyw2"]
 [ext_resource type="Texture2D" uid="uid://blg8qkdcemldt" path="res://Assets/UI/Ui Ressourcen.png" id="21_h40mb"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_upq6f"]
@@ -531,8 +532,10 @@ texture = ExtResource("21_h40mb")
 layout_mode = 0
 offset_left = 57.0
 offset_top = 64.0
-offset_right = 127.0
+offset_right = 129.0
 offset_bottom = 136.0
+texture = ExtResource("21_ayyw2")
+expand_mode = 2
 
 [node name="Icon2" type="TextureRect" parent="Interface/ResourceTab"]
 layout_mode = 0
