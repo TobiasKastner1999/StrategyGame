@@ -31,7 +31,7 @@ func placement_check() -> bool:
 
 # sets the check area to be the same size as the building
 	var area_collshape : BoxShape3D = area_coll.get_shape()
-	var area_size : Vector3 = area_collshape.size * 0.5
+	var area_size : Vector3 = area_collshape.size * 0.1
 	var points_to_check : Array = [
 		area_coll.global_transform.origin + Vector3(area_size.x,-area_size.y,area_size.z),
 		area_coll.global_transform.origin + Vector3(area_size.x,-area_size.y,-area_size.z),

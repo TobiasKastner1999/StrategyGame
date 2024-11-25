@@ -12,7 +12,7 @@ func _ready():
 	# set up for enemy attack, starts after 50 seconds
 	$Building.setFaction(1)
 	Global.updateResource(1, 1, 2)
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(50).timeout
 	$Building.process_mode = Node.PROCESS_MODE_INHERIT
 	
 
@@ -20,12 +20,13 @@ func _ready():
 func _process(_delta):
 	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second()))
 
-	if Global.getResource(Global.player_faction, 0) < 8 and done == false:
+	if Global.getResource(Global.player_faction, 0) < 4 and done == false:
 		done = true
 		$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT
 		$HQBlue.global_position = Global.list[1]["worker"].global_position
-		
 		$HQBlue.global_position.y += 2
+
+# ends the game when the construction building is destroyed
 	if done == true and Global.list[1]["worker"] == null:
 		gameEnd(Global.player_faction)
 			
@@ -70,6 +71,7 @@ func _on_interface_start_game(faction):
 	$Interface/HousingButton.visible = true
 	$MiniMap.visible = true
 	$Counter.visible = true
+	$Interface/ResourceTab.visible = true
 	
 	Global.player_faction = faction # sets the player's global faction to the faction they chose
 	

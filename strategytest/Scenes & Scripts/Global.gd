@@ -2,7 +2,7 @@ extends Node
 
 const CONSTRUCTION_COSTS = [0, 4, 2] # the construction costs for different types of buildings
 
-var faction_zero_resources = [8, 0] # faction 0's balances in the different resources
+var faction_zero_resources = [4, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 var player_faction : int # the faction the player has chosen for the current game
 var list = {}
@@ -10,7 +10,7 @@ var list_counter = 1
 
 
 
-var unit_max = [4, 2] # how many units can a faction currently have at max?
+var unit_max = [2, 2] # how many units can a faction currently have at max?
 var unit_count = [0, 0] # how many units does each faction currently have?
 var player_building_count : int = 0 # how many building's has the player constructed?
 
