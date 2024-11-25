@@ -63,6 +63,6 @@ visible = false
 shape = SubResource("ConcavePolygonShape3D_08jfo")
 
 [node name="ResourceBody" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 2.35372e-14, -2.72848e-12, -1.33344e-12, 1, -2.50111e-12, 9.09495e-13, -2.50111e-12, 1, 0.0669678, -0.540526, -0.548169)
+transform = Transform3D(1, 1.33344e-12, -9.09495e-13, -1.33344e-12, 1, 2.50111e-12, 9.09495e-13, -2.50111e-12, 1, 0.0669678, -0.540526, -0.548169)
 mesh = SubResource("ArrayMesh_jjujj")
 skeleton = NodePath("")
