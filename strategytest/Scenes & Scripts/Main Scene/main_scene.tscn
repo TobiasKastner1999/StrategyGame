@@ -109,6 +109,30 @@ shape = SubResource("ConcavePolygonShape3D_6nspn")
 [node name="Stone01" parent="Map" instance=ExtResource("6_oqcks")]
 transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, -25.1132, 8.77985, 52.4992)
 
+[node name="Stone43" parent="Map" instance=ExtResource("6_oqcks")]
+transform = Transform3D(3.5038, 0, 4.87067, 0, 6, 0, -4.87067, 0, 3.5038, -25.1132, 8.77985, -44.3514)
+
+[node name="Stone44" parent="Map" instance=ExtResource("6_oqcks")]
+transform = Transform3D(3.30428, 0, -5.00816, 0, 6, 0, 5.00816, 0, 3.30428, 35.3938, 8.77985, -120.051)
+
+[node name="Stone45" parent="Map" instance=ExtResource("6_oqcks")]
+transform = Transform3D(3.30428, 0, -5.00816, 0, 6, 0, 5.00816, 0, 3.30428, 72.2782, 8.77985, -123.787)
+
+[node name="Stone46" parent="Map" instance=ExtResource("6_oqcks")]
+transform = Transform3D(3.30428, 0, -5.00816, 0, 6, 0, 5.00816, 0, 3.30428, 72.2782, 8.77985, 81.7534)
+
+[node name="Stone47" parent="Map" instance=ExtResource("6_oqcks")]
+transform = Transform3D(3.30428, 0, -5.00816, 0, 6, 0, 5.00816, 0, 3.30428, -64.0521, 8.77985, 101.758)
+
+[node name="Stone48" parent="Map" instance=ExtResource("6_oqcks")]
+transform = Transform3D(5.98868, 0, 0.368382, 0, 6, 0, -0.368382, 0, 5.98868, -166.965, 8.77985, -152.633)
+
+[node name="Stone49" parent="Map" instance=ExtResource("6_oqcks")]
+transform = Transform3D(5.98868, 0, 0.368382, 0, 6, 0, -0.368382, 0, 5.98868, 142.584, 8.77985, -152.633)
+
+[node name="Stone50" parent="Map" instance=ExtResource("6_oqcks")]
+transform = Transform3D(5.98868, 0, 0.368382, 0, 6, 0, -0.368382, 0, 5.98868, 142.584, 8.77985, 67.8706)
+
 [node name="Stone40" parent="Map" instance=ExtResource("6_oqcks")]
 transform = Transform3D(9, 0, 0, 0, 9, 0, 0, 0, 9, -25.1132, 8.77985, -144.309)
 
@@ -233,10 +257,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8847, 6.28513, 108.933)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -20.8847, 6.28513, 108.933)
 
 [node name="Rohr Version 1" parent="Map" instance=ExtResource("7_44tru")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -80.1161, 2.25433, 1.5044)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -80.1161, -2.14254, 1.5044)
+
+[node name="Rohr Version 2" parent="Map" instance=ExtResource("7_44tru")]
+transform = Transform3D(1.33561, 0, -1.48867, 0, 2, 0, 1.48867, 0, 1.33561, -80.1161, -0.851184, -57.1947)
 
 [node name="Rohr Version2" parent="Map" instance=ExtResource("8_yarvw")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 36.1557, 11.9896, -0.97258)
+
+[node name="Rohr Version3" parent="Map" instance=ExtResource("8_yarvw")]
+transform = Transform3D(1.72189, 0, 1.01739, 0, 2, 0, -1.01739, 0, 1.72189, -3.25719, 6.09851, 79.3641)
 
 [node name="Units" type="Node3D" parent="."]
 script = ExtResource("4_phx1q")
