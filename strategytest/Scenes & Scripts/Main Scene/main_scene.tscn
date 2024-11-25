@@ -227,7 +227,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8847, 6.28513, 108.933)
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -20.8847, 6.28513, 108.933)
 
 [node name="Rohr Version 1" parent="Map" instance=ExtResource("7_44tru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50.0606, 7.59639, 37.9439)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.1161, 7.59639, 1.5044)
 
 [node name="Rohr Version2" parent="Map" instance=ExtResource("8_yarvw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.1557, 13.3109, -0.97258)

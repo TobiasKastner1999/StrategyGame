@@ -12,26 +12,23 @@ func _ready():
 	# set up for enemy attack, starts after 50 seconds
 	$Building.setFaction(1)
 	Global.updateResource(1, 1, 2)
-	await get_tree().create_timer(50).timeout
+	await get_tree().create_timer(10).timeout
 	$Building.process_mode = Node.PROCESS_MODE_INHERIT
 	
 
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_up"):
-		Sound.play_music("res://Sounds/lego-yoda-death-sound-effect.mp3")
-
-	if Input.is_action_just_pressed("ui_down"):
-		Sound.cease_music()
-	
 	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second()))
-	if Global.getResource(Global.player_faction, 0) == 0 and done == false:
+
+	if Global.getResource(Global.player_faction, 0) < 8 and done == false:
 		done = true
 		$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT
-		$HQBlue.global_position = Global.list[2]["worker"].global_position
+		$HQBlue.global_position = Global.list[1]["worker"].global_position
+		
 		$HQBlue.global_position.y += 2
-	
-	
+	if done == true and Global.list[1]["worker"] == null:
+		gameEnd(Global.player_faction)
+			
 	
 	
 func _physics_process(delta):
