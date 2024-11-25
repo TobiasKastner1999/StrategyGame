@@ -33,11 +33,11 @@ func _physics_process(_delta):
 		if unit.getFaction() == controlled_faction and !unit.isActive():
 			issueUnitCommand(unit) # issues new commands to units that currently don't have a target
 	
-	# checks if a new building can be constructed
-	if Global.getUnitCount(controlled_faction) >= Global.getUnitLimit(controlled_faction) and housing_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.getConstructionCost(2):
-		constructBuilding(2) # constructs a new housing if the AI needs more unit room, has enough crystals, and there are empty plots left
-	elif build_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.getConstructionCost(1):
-		constructBuilding(1) # otherwise constructs a new barracks if the AI has enough crystals and there are construction plots left
+	## checks if a new building can be constructed
+	#if Global.getUnitCount(controlled_faction) >= Global.getUnitLimit(controlled_faction) and housing_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.getConstructionCost(2):
+		#constructBuilding(2) # constructs a new housing if the AI needs more unit room, has enough crystals, and there are empty plots left
+	#elif build_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.getConstructionCost(1):
+		#constructBuilding(1) # otherwise constructs a new barracks if the AI has enough crystals and there are construction plots left
 
 # sets a new destination for a worker
 func setWorkerDestination(worker):

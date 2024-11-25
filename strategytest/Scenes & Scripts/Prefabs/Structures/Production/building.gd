@@ -1,5 +1,6 @@
 extends Node3D
 
+
 signal building_menu(building) # to activate the interface when the building is clicked
 signal interface_update() # to update the building's interface display
 
