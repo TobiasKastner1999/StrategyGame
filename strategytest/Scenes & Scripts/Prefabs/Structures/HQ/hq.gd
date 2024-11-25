@@ -1,5 +1,6 @@
 extends Node3D
 
+signal new_worker(worker) # to tell the system a new worker has spawned
 signal destruction(faction) # to trigger the game end screen
 
 const TARGET_TYPE = "hq" # the hq's target type
@@ -34,9 +35,6 @@ func _process(_delta):
 			Global.list[i]["positionX"] = worker_id.global_position.x # updates the position x in dictionary 
 			Global.list[i]["positionY"] = worker_id.global_position.z # updates the position y in dictionary 
 
-
-
-
 # spawns a new worker
 func spawnWorker(spawn_point):
 	can_spawn = false # makes further spawns unavailable
@@ -51,6 +49,8 @@ func spawnWorker(spawn_point):
 	worker.deleted.connect(_on_worker_deleted)
 	# add a new entry to the dictionary when a worker spawns
 	Global.add_to_list(worker.global_position.x, worker.global_position.z, faction, worker.get_instance_id(), null, worker)
+	if faction == Global.player_faction:
+		new_worker.emit(worker)
 
 
 # removes references to an expended resource from the workers
@@ -107,6 +107,10 @@ func getWorkers():
 # returns the hq's number of current workers out of the maximum number of workers
 func getWorkerNum():
 	return str(current_workers) + "/" + str(MAX_WORKERS)
+
+func updateVisibility(object):
+	if !visible:
+		visible = true
 
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):
