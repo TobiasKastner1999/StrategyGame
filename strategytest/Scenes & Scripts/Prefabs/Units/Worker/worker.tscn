@@ -19,7 +19,7 @@ bg_color = Color(0, 0.713726, 0.443137, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_3mjsh"]
 viewport_path = NodePath("HealthbarContainer")
 
-[node name="Worker" type="CharacterBody3D" groups=["CombatTarget", "FowObject", "MouseRaycast", "Selectable", "selectable"]]
+[node name="Worker" type="CharacterBody3D" groups=["CombatTarget", "MouseRaycast", "Selectable", "selectable"]]
 script = ExtResource("1_ple0k")
 
 [node name="WorkerBody" type="MeshInstance3D" parent="."]
@@ -40,6 +40,7 @@ target_desired_distance = 2.0
 path_height_offset = 1.0
 avoidance_enabled = true
 height = 2.0
+debug_enabled = true
 
 [node name="HealthbarContainer" type="SubViewport" parent="."]
 disable_3d = true

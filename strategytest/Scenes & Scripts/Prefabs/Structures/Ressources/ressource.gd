@@ -27,10 +27,3 @@ func takeResource():
 # returns the node's resource type
 func getType():
 	return resource_type
-
-func getFaction():
-	return -1
-
-func updateVisibility(object):
-	if !visible:
-		visible = true

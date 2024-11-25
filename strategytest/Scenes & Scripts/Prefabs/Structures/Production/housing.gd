@@ -65,7 +65,3 @@ func getType():
 # returns the physical size of the building
 func getSize():
 	return ($HousingBody.mesh.size.x / 2)
-
-func updateVisibility(object):
-	if !visible:
-		visible = true

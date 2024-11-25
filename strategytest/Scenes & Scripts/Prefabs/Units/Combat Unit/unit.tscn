@@ -311,7 +311,7 @@ _data = {
 "attack": SubResource("Animation_77cqm")
 }
 
-[node name="Unit" type="CharacterBody3D" groups=["CombatTarget", "FowObject", "MouseRaycast", "Selectable", "selectable"]]
+[node name="Unit" type="CharacterBody3D" groups=["CombatTarget", "MouseRaycast", "Selectable", "selectable"]]
 script = ExtResource("1_y82sj")
 
 [node name="Coll" type="Node3D" parent="."]
@@ -341,6 +341,7 @@ avoidance_enabled = true
 height = 1.25
 radius = 1.5
 max_speed = 20.0
+debug_enabled = true
 
 [node name="HealthbarContainer" type="SubViewport" parent="."]
 disable_3d = true
