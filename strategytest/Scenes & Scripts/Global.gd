@@ -16,6 +16,7 @@ var player_building_count : int = 0 # how many building's has the player constru
 
 @onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_types.json")) # a dictionary of the different unit types and their properties
 
+
 # returns the correct color for a given faction
 func getFactionColor(faction):
 	match faction:
