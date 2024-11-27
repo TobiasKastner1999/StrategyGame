@@ -5,6 +5,7 @@ signal deleted(worker) # to tell the system that the worker has been removed
 const TARGET_TYPE = "worker" # the worker's combat type
 const SPEED = 10.0 # the worker's movement speed
 const MAX_HP = 2.0 # the worker's maximum hit points
+const MINE_SPEED = 5.0
 
 var SR
 var faction = 0 # which faction does the worker belong to?
@@ -37,11 +38,11 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	
 	# checks where the worker should move if their movement isn't overwritten by the player
-	if !priority_movement:
+	if !priority_movement and !mining:
 		# if the worker has a resource
 		if resource[1] != 0:
 			# if the worker is near the hq
-			if global_position.distance_to(hq.global_position) < 8:
+			if global_position.distance_to(hq.global_position) < 10:
 				Global.updateResource(faction, resource[0], resource[1]) # adds crystal to player's resources
 				resource = [0, 0]
 			# if the worker is further away from the hq
@@ -51,11 +52,9 @@ func _physics_process(delta):
 		# if the worker has no crystal, but a movement destination
 		elif target_resource != null:
 			# if the worker is near the destination resource
-			if global_position.distance_to(target_resource.global_position) <= 3:
-				resource[0] = target_resource.getType()
-				target_resource.takeResource() # removes a resource from that node
-				resource[1] += 1 # adds the crystal to the worker
-				target_resource = null # clears the worker's target's resource
+			if global_position.distance_to(target_resource.global_position) <= 4:
+				mining = true
+				$MiningTimer.start(MINE_SPEED)
 			# if the worker is further away from the destination
 			else:
 				go_to = target_resource.global_position # sets movement destination
@@ -84,7 +83,7 @@ func _physics_process(delta):
 		var dir = navi.get_next_path_position() - global_position
 		dir = dir.normalized()
 	
-		if global_position.distance_to(go_to) < 3:
+		if global_position.distance_to(go_to) <= 4:
 			velocity = Vector3.ZERO
 			go_to = global_position
 			priority_movement = false
@@ -182,3 +181,11 @@ func _on_range_area_body_entered(body):
 func _on_nav_agent_velocity_computed(safe_velocity):
 	velocity = safe_velocity
 	move_and_slide()
+
+func _on_mining_timer_timeout():
+	mining = false # Replace with function body.
+	if is_instance_valid(target_resource):
+		resource[0] = target_resource.getType()
+		target_resource.takeResource() # removes a resource from that node
+		resource[1] += 1 # adds the crystal to the worker
+		target_resource = null # clears the worker's target's resource

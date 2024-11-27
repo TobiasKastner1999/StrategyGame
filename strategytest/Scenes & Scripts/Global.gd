@@ -21,17 +21,17 @@ var player_building_count : int = 0 # how many building's has the player constru
 func getFactionColor(faction):
 	match faction:
 		0:
-			return "res://Assets/Materials/material_blue.tres"
-		1:
 			return "res://Assets/Materials/material_red.tres"
+		1:
+			return "res://Assets/Materials/material_blue.tres"
 
 # returns the correct selection color for a given faction
 func getSelectedFactionColor(faction):
 	match faction:
 		0:
-			return "res://Assets/Materials/material_blue_selected.tres"
-		1:
 			return "res://Assets/Materials/material_red_selected.tres"
+		1:
+			return "res://Assets/Materials/material_blue_selected.tres"
 
 # adds or removes a given amount of a given resource to a faction's stock
 func updateResource(faction, type, amount):
