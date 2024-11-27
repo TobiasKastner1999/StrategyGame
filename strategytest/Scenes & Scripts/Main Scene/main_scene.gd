@@ -92,7 +92,7 @@ func _on_building_menu(building):
 	$Interface/SelectedPanel.activatePanel(building)
 	if !enemy_triggered:
 		enemy_triggered = true
-		await get_tree().create_timer(30).timeout
+		await get_tree().create_timer(45).timeout
 		$Building.process_mode = Node.PROCESS_MODE_INHERIT
 
 

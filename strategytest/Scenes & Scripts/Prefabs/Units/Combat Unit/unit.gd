@@ -116,7 +116,7 @@ func takeDamage(damage, attacker):
 		Global.updateUnitCount(faction, -1)
 		deleted.emit(self) # tells the system to clear remaining references to the unit
 		queue_free() # then deletes the unit
-	elif current_target == null:
+	elif current_target == null or current_target.getType() != "combat":
 		priority_movement = false
 		current_target = attacker # causes the unit to fight back if it does not yet have a target
 
