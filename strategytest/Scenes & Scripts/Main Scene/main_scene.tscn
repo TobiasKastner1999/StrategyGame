@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=36 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
@@ -22,6 +22,7 @@
 [ext_resource type="BoxMesh" uid="uid://bb8lq1hny0bmx" path="res://Assets/world3d.tres" id="13_t4iav"]
 [ext_resource type="PackedScene" uid="uid://daovvhsbialq1" path="res://Scenes & Scripts/Main Scene/UI/mini_map.tscn" id="16_cn011"]
 [ext_resource type="Texture2D" uid="uid://ds1xm2wti6bdl" path="res://Assets/UI/UI_Outlaw.png" id="16_r7jgc"]
+[ext_resource type="Texture2D" uid="uid://bkfter2f7vp7l" path="res://Assets/UI/OL_Base_UIAsset.png" id="19_lwmrf"]
 [ext_resource type="Texture2D" uid="uid://ovmtkukwhugj" path="res://Assets/UI/Ore Blau UI.png" id="21_ayyw2"]
 [ext_resource type="Texture2D" uid="uid://blg8qkdcemldt" path="res://Assets/UI/Ui Ressourcen.png" id="21_h40mb"]
 [ext_resource type="Texture2D" uid="uid://bqf5o7cmqfovq" path="res://Assets/UI/Kristalle Grün heller.png" id="23_rg8da"]
@@ -518,13 +519,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -204.0
-offset_top = -233.0
-offset_right = -79.0
-offset_bottom = -181.0
+offset_left = -199.0
+offset_top = -251.0
+offset_right = 1729.0
+offset_bottom = 837.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Barracks"
+scale = Vector2(0.05, 0.05)
+icon = ExtResource("19_lwmrf")
+icon_alignment = 1
 
 [node name="HousingButton" type="Button" parent="Interface"]
 visible = false
@@ -543,7 +546,7 @@ grow_vertical = 0
 text = "Housing"
 
 [node name="Placer" type="Node3D" parent="Interface"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 5.74601, -6.16637)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 14.5232, -6.16637)
 script = ExtResource("11_mo25r")
 
 [node name="Preview" type="MeshInstance3D" parent="Interface/Placer"]

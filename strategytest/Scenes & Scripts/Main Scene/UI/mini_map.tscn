@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b6dtu1j332xxy" path="res://Assets/UI/minimaparea.png" id="2_jys8f"]
 [ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://Assets/UI/blue_dot.png" id="2_wcwke"]
 [ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://Assets/UI/cam.png" id="3_ao8ji"]
-[ext_resource type="Texture2D" uid="uid://d7q3bpm32hd" path="res://Assets/UI/BuildingBlue.png" id="4_4rqpp"]
+[ext_resource type="Texture2D" uid="uid://bkfter2f7vp7l" path="res://Assets/UI/OL_Base_UIAsset.png" id="5_m4pgh"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/MouseIndicator.gd" id="5_ojfxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
@@ -37,8 +37,9 @@ texture = ExtResource("3_ao8ji")
 
 [node name="BaseFriendly" type="Sprite2D" parent="MarginContainer"]
 visible = false
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("4_4rqpp")
+position = Vector2(3.3, 5)
+scale = Vector2(0.0065625, 0.00925926)
+texture = ExtResource("5_m4pgh")
 
 [node name="MinimapRegion" type="Area2D" parent="MarginContainer"]
 position = Vector2(-5.25, 9.5)
