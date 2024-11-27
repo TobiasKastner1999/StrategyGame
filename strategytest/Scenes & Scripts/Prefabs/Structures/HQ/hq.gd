@@ -3,7 +3,7 @@ extends Node3D
 signal destruction(faction) # to trigger the game end screen
 
 const TARGET_TYPE = "hq" # the hq's target type
-const SPAWN_DELAY = 10.0 # how often will new workers spawn?
+const SPAWN_DELAY = 15.0 # how often will new workers spawn?
 const MAX_WORKERS = 4 # how many workers can spawn at most?
 const MAX_HP = 20.0 # the hq's maximum hp
 
