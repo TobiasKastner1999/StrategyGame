@@ -1,9 +1,10 @@
 extends NavigationRegion3D
 
 var camera_positions = [Vector3(-18, 10, 20), Vector3(0.0, 0.0, -225.0)]
-@onready var enemy_hq = $HQBlue
+var enemy_hq : Node3D
 @onready var unit_storage = $Units
 var done = false
+var enemy_triggered = false
 
 
 # called at the start of the game
@@ -13,8 +14,6 @@ func _ready():
 	# set up for enemy attack, starts after 50 seconds
 	$Building.setFaction(1)
 	Global.updateResource(1, 1, 2)
-	await get_tree().create_timer(50).timeout
-	$Building.process_mode = Node.PROCESS_MODE_INHERIT
 	
 
 # displays the player's amount of crystals, as well as the current fps
@@ -48,8 +47,10 @@ func _on_units_delete_selection(unit):
 		$Camera.selection.erase(unit) # removes the unit if it is in the camera's current selection
 
 # rebakes the navmesh
-func _on_interface_rebake():
+func _on_interface_rebake(node):
 	bake_navigation_mesh()
+	if node != null:
+		enemy_hq = node
 
 # calls for the game to end once either hq is destroyed
 func _on_hq_destruction(faction):
@@ -88,6 +89,10 @@ func _on_interface_start_game(faction):
 # accesses a clicked building's interface menu
 func _on_building_menu(building):
 	$Interface/SelectedPanel.activatePanel(building)
+	if !enemy_triggered:
+		enemy_triggered = true
+		await get_tree().create_timer(10).timeout
+		$Building.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func _on_timer_timeout():

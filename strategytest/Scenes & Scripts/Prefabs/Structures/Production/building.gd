@@ -3,6 +3,7 @@ extends Node3D
 
 signal building_menu(building) # to activate the interface when the building is clicked
 signal interface_update() # to update the building's interface display
+signal destroyed()
 
 const DISPLAY_NAME = "Building" # the building's displayed name
 const TARGET_TYPE = "building" # the building's combat type
@@ -40,6 +41,10 @@ func _physics_process(_delta):
 			var worker_id = Global.list[i]["worker"] #gets the worker node
 			Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
 			Global.list[i]["positionY"] = worker_id.global_position.z#updates the position y in dictionary 
+	
+	$ProductionProgress/ProductionBar.value = $SpawnTimer.time_left
+	if $SpawnTimer.time_left == 0:
+		$ProgressSprite.visible = false
 
 
 # spawns a new unit
@@ -48,6 +53,7 @@ func spawnUnit(spawn_point):
 	Global.updateResource(faction, 1, -unit_cost) # subtracts the unit's crystal cost from the player's balance
 	Global.updateUnitCount(faction, 1)
 	$SpawnTimer.start(spawn_rate) # starts spawn delay
+	$ProgressSprite.visible = true
 	var new_unit = load("res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.tscn").instantiate() # instantiates the unit
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
@@ -72,6 +78,7 @@ func takeDamage(damage, _attacker):
 	if hp <= 0: # removes the building if it's remaining hp is 0 or less
 		if faction == Global.player_faction:
 			Global.updateBuildingCount(false)
+		destroyed.emit(faction)
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
 	
@@ -90,12 +97,14 @@ func setProductionType(type):
 	production_type = type
 	unit_cost = Global.unit_dict[str(type)]["resource_cost"] # sets the production variables
 	spawn_rate = Global.unit_dict[str(type)]["production_speed"]
+	$ProductionProgress/ProductionBar.max_value = spawn_rate
+	$ProductionProgress/ProductionBar.value = spawn_rate
+	$ProgressSprite.visible = true
 	$SpawnTimer.start(spawn_rate) # then (re-)starts the production timer
 
 # sets the building's faction to a given value
 func setFaction(f : int):
 	faction = f # sets the faction
-	$BuildingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
 
 # returns the building's current faction
 func getFaction():
@@ -115,7 +124,7 @@ func getProduction():
 
 # returns the physical size of the building
 func getSize():
-	return ($BuildingBody.mesh.size.x / 2)
+	return ($BuildingColl.shape.size.x / 2)
 
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():

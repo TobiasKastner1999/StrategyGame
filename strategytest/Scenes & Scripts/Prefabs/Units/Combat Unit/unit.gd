@@ -141,17 +141,6 @@ func setUp(type):
 	
 	hp = max_hp # sets initial hp to max hp
 	
-	# placeholder display for differentiating different unit types
-	match type:
-		0:
-			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_yellow.tres"))
-		1:
-			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
-		2:
-			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
-		3:
-			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_orange.tres"))
-	
 	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
@@ -200,7 +189,7 @@ func isActive():
 
 # checks if the unit is near a given body
 func isNearBody(node):
-	if $RangeArea.overlaps_body(node):
+	if global_position.distance_to(node.global_position) <= attack_range * 2:
 		return true
 	else:
 		return false

@@ -37,7 +37,7 @@ func _physics_process(delta):
 		# if the worker has a resource
 		if resource[1] != 0:
 			# if the worker is near the hq
-			if global_position.distance_to(hq.global_position) < 6:
+			if global_position.distance_to(hq.global_position) < 8:
 				Global.updateResource(faction, resource[0], resource[1]) # adds crystal to player's resources
 				resource = [0, 0]
 			# if the worker is further away from the hq
