@@ -8,11 +8,12 @@ var done = false
 
 # called at the start of the game
 func _ready():
+	Sound.play_music("res://Sounds/BackroundMusic_Rebells_Paschimee Studio.mp3")
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
 	# set up for enemy attack, starts after 50 seconds
 	$Building.setFaction(1)
 	Global.updateResource(1, 1, 2)
-	await get_tree().create_timer(50).timeout
+	await get_tree().create_timer(10).timeout
 	$Building.process_mode = Node.PROCESS_MODE_INHERIT
 	
 

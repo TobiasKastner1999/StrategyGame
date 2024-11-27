@@ -74,11 +74,11 @@ viewport_path = NodePath("HealthbarContainer")
 script = ExtResource("1_poico")
 
 [node name="BuildingColl" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, -1.06516, 0)
 shape = SubResource("BoxShape3D_spen3")
 
 [node name="BuildingBody" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, -1.06516, 0)
 mesh = SubResource("BoxMesh_c6d8r")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_n0win")
@@ -148,6 +148,7 @@ shape = SubResource("CylinderShape3D_xny63")
 [node name="RangeArea" type="Area3D" parent="."]
 
 [node name="RangeColl" type="CollisionShape3D" parent="RangeArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.920098, 0)
 shape = SubResource("SphereShape3D_i5op1")
 
 [node name="HealthbarContainer" type="SubViewport" parent="."]

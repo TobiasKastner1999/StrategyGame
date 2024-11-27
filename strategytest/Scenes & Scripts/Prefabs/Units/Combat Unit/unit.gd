@@ -30,6 +30,10 @@ var speed : float # the unit's movement speed
 
 # controls the unit's movement and other actions
 func _physics_process(delta):
+	
+	
+	
+	
 	# unit is affected by gravity if it is floating
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -84,6 +88,12 @@ func _physics_process(delta):
 func move_to(target_pos):
 	path = navi.get_simple_path(global_transform.origin, target_pos)
 	path_ind = 0
+
+func unit_rotation():
+	if navi.get_next_path_position() != Vector3.ZERO:
+		$UnitBody.look_at(go_to)
+		$UnitBody.rotation.x = 0
+		$UnitBody.rotate_object_local(Vector3.UP, PI)
 
 # returns the priority index of a given entry in the priority array
 func checkTargetPriority(type : String):
@@ -178,9 +188,8 @@ func setTargetPosition(target):
 		current_target = null
 		priority_movement = true
 	go_to = target
+	unit_rotation()
 	
-	$UnitBody.look_at(go_to)
-	$UnitBody.rotate_object_local(Vector3.UP, PI)
 
 # checks if the unit is active
 func isActive():
