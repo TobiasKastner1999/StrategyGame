@@ -95,8 +95,8 @@ func _input(_event):
 
 func updateGamestateInfo():
 	var state_text = ""
-	state_text += "[b]Ferronit Crystals:[/b] " + str(Global.getResource(Global.player_faction, 0)) + "\n"
-	state_text += "[b]Zenezium Crystals:[/b] " + str(Global.getResource(Global.player_faction, 1)) + "\n\n"
+	state_text += "[b]Ferronite Crystals:[/b] " + str(Global.getResource(Global.player_faction, 0)) + "\n"
+	state_text += "[b]Zenecium Crystals:[/b] " + str(Global.getResource(Global.player_faction, 1)) + "\n\n"
 	state_text += "[b]Combat Units:[/b] " + str(Global.getUnitCount(Global.player_faction)) + "/" + str(Global.getUnitLimit(Global.player_faction)) + "\n"
 	state_text += "[b]Workers[/b]: " + hq.getWorkerNum() + "\n"
 	state_text += "[b]Buildings:[/b] " + str(Global.getBuildingCount())
