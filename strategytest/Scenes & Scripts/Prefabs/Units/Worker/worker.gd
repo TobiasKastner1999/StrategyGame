@@ -14,6 +14,8 @@ var resource = [0, 0] # what type of resource is the worker carrying, and how mu
 var known_resources = [] # an array of all resource nodes the worker has discovered
 var target_resource # the resource the worker is currently moving towards
 var priority_movement = false # is the worker's currently overwritten by a player input?
+var has_moved = false
+var mining = false # is the worker currently mining a resource?
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gravity affecting the worker
 @onready var go_to # the worker's current navigation destination
 
@@ -25,6 +27,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gr
 func _ready():
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
+	await get_tree().physics_frame
+	velocity = Vector3.ZERO
 
 # controls the worker's movement and other actions
 func _physics_process(delta):
@@ -73,6 +77,7 @@ func _physics_process(delta):
 	
 	# controls the unit's actual movement
 	if go_to != global_position:
+		has_moved = true
 		if navi.target_position != go_to:
 			navi.target_position = go_to
 		
@@ -86,6 +91,16 @@ func _physics_process(delta):
 		else:
 			var intended_velocity = velocity.lerp(dir * SPEED, 10 * delta)
 			navi.set_velocity(intended_velocity) # passes the intended movement velocity on to the navigation agent
+	
+	animationControl()
+
+func animationControl():
+	if mining:
+		$rebel_anim/AnimationPlayer.play("attack")
+	elif has_moved and velocity != Vector3.ZERO:
+		$rebel_anim/AnimationPlayer.play("walk")
+	else:
+		$rebel_anim/AnimationPlayer.play("idle")
 
 # receives the path from NavAgent
 func move_to(target_pos):
@@ -134,10 +149,12 @@ func isWorking():
 
 # changes the color of the worker when selected
 func select():
+	pass
 	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
 
 # changes the color of the worker when it is deselected
 func deselect():
+	pass
 	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
 
 # sets the position the NavAgent will move to
