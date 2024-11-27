@@ -291,7 +291,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9258, 14.1749, 21.6846)
 
 [node name="Building" parent="." instance=ExtResource("10_prftt")]
 process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.3753, 12.3002, 91.193)
+transform = Transform3D(-0.978871, 0, 0.204479, 0, 1, 0, -0.204479, 0, -0.978871, -120.887, 12.3002, 91.193)
 visible = false
 
 [node name="FactionBlueController" type="Node3D" parent="."]

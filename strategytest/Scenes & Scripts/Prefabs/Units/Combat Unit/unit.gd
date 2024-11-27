@@ -30,7 +30,7 @@ var speed : float # the unit's movement speed
 
 # controls the unit's movement and other actions
 func _physics_process(delta):
-	
+	$UnitBody.rotation.x = 0 # locks unit rotation
 	
 	
 	

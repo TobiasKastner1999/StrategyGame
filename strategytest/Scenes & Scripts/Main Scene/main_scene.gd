@@ -13,7 +13,7 @@ func _ready():
 	# set up for enemy attack, starts after 50 seconds
 	$Building.setFaction(1)
 	Global.updateResource(1, 1, 2)
-	await get_tree().create_timer(10).timeout
+	await get_tree().create_timer(50).timeout
 	$Building.process_mode = Node.PROCESS_MODE_INHERIT
 	
 

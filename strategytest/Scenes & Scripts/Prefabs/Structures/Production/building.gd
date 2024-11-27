@@ -120,3 +120,4 @@ func getSize():
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():
 	can_spawn = true
+
