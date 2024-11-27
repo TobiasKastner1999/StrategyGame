@@ -32,7 +32,8 @@ position = Vector2(131, 106.5)
 texture = ExtResource("2_wcwke")
 
 [node name="Cam" type="Sprite2D" parent="MarginContainer"]
-position = Vector2(-5.25, 9.5)
+position = Vector2(48, 2.75)
+scale = Vector2(1.92, 1.81)
 texture = ExtResource("3_ao8ji")
 
 [node name="BaseFriendly" type="Sprite2D" parent="MarginContainer"]

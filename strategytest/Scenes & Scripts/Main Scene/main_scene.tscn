@@ -77,10 +77,11 @@ directional_shadow_fade_start = 0.0
 directional_shadow_max_distance = 1000.0
 
 [node name="Camera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 60, 0)
 script = ExtResource("2_6i5cw")
 
 [node name="Camera" type="Camera3D" parent="Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 40, 45)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 60, 45)
 fov = 37.8493
 
 [node name="SelectionBox" type="Control" parent="Camera"]
@@ -441,10 +442,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -592.0
-offset_top = -184.0
-offset_right = 287.0
-offset_bottom = -17.0
+offset_left = -599.0
+offset_top = -214.0
+offset_right = 280.0
+offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("12_x7t4o")
@@ -493,6 +494,7 @@ offset_bottom = 102.0
 text = "Toggle Status"
 
 [node name="ButtonContainer" type="GridContainer" parent="Interface/SelectedPanel"]
+visible = false
 layout_mode = 0
 offset_left = 510.0
 offset_right = 762.0

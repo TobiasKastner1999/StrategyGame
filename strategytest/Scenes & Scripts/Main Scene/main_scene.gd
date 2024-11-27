@@ -80,7 +80,8 @@ func _on_interface_start_game(faction):
 	# sets up the AI controllers
 	$FactionBlueController.setUp()
 	$FactionRedController.setUp()
-	$Camera.global_position = camera_positions[faction] # warps the camera to the chosen HQ's location
+	#$Camera.global_position = camera_positions[faction] # warps the camera to the chosen HQ's location
+	$Camera.position.y = 60
 	for hq in get_tree().get_nodes_in_group("HQ"):
 		if hq.getFaction() == faction:
 			$Interface/Placer.hq_zone = hq.getArea() # locks the building placers to the platform of the player's chosen faction

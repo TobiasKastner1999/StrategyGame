@@ -15,6 +15,10 @@ var double_click = false
 @onready var mouse_raycast_group
 @onready var mouse_raycast
 
+func _ready():
+	$Camera.position.y = 59
+
+
 func _physics_process(_delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	var window_size = get_viewport().get_visible_rect().size
