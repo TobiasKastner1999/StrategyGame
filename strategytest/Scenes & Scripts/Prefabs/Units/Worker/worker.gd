@@ -43,7 +43,7 @@ func _physics_process(delta):
 			# if the worker is further away from the hq
 			else:
 				go_to = hq.global_position # sets hq as movement destination
-		
+				worker_rotation()
 		# if the worker has no crystal, but a movement destination
 		elif target_resource != null:
 			# if the worker is near the destination resource
@@ -55,7 +55,7 @@ func _physics_process(delta):
 			# if the worker is further away from the destination
 			else:
 				go_to = target_resource.global_position # sets movement destination
-		
+				worker_rotation()
 		# if the worker has no crystal and no movement destination
 		else:
 			var closest_distance
@@ -91,7 +91,7 @@ func _physics_process(delta):
 func move_to(target_pos):
 	path = navi.get_simple_path(global_transform.origin, target_pos)
 	path_ind = 0
-
+	
 # causes the worker to take a given amount of damage
 func takeDamage(damage, _attacker):
 	hp -= damage # subtracts the damage taken from the current hp
@@ -108,7 +108,7 @@ func setAttackTarget(_unit):
 # sets the worker's faction to a given value
 func setFaction(f : int):
 	faction = f
-	$WorkerBody.material_override = load(Global.getFactionColor(faction))
+	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
 	
 	if go_to == null:
 		go_to = global_position # if the worker is first set up, also sets up the movement variable
@@ -134,18 +134,23 @@ func isWorking():
 
 # changes the color of the worker when selected
 func select():
-	$WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
+	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
 
 # changes the color of the worker when it is deselected
 func deselect():
-	$WorkerBody.material_override = load(Global.getFactionColor(faction))
+	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
 
 # sets the position the NavAgent will move to
 func setTargetPosition(target):
 	target_resource = null
 	priority_movement = true
 	go_to = target
-
+	worker_rotation()
+func worker_rotation():
+	$rebel_anim.look_at(go_to)
+	$rebel_anim.rotation.x = 0
+	$rebel_anim.rotate_object_local(Vector3.UP, PI)
+	
 # removes a cleared resource node from the worker's list if it is on there
 func removeResourceKnowledge(removed_resource):
 	if known_resources.has(removed_resource):
