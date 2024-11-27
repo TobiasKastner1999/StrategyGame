@@ -55,6 +55,8 @@ func _physics_process(delta):
 			if global_position.distance_to(target_resource.global_position) <= 4:
 				mining = true
 				$MiningTimer.start(MINE_SPEED)
+				await get_tree().create_timer(1).timeout
+				Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3")
 			# if the worker is further away from the destination
 			else:
 				go_to = target_resource.global_position # sets movement destination
@@ -96,6 +98,7 @@ func _physics_process(delta):
 func animationControl():
 	if mining:
 		$rebel_anim/AnimationPlayer.play("attack")
+		
 	elif has_moved and velocity != Vector3.ZERO:
 		$rebel_anim/AnimationPlayer.play("walk")
 	else:
