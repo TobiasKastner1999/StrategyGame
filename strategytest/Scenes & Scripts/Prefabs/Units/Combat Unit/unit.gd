@@ -30,10 +30,6 @@ var speed : float # the unit's movement speed
 
 # controls the unit's movement and other actions
 func _physics_process(delta):
-	
-	
-	
-	
 	# unit is affected by gravity if it is floating
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -116,7 +112,7 @@ func takeDamage(damage, attacker):
 		Global.updateUnitCount(faction, -1)
 		deleted.emit(self) # tells the system to clear remaining references to the unit
 		queue_free() # then deletes the unit
-	elif current_target == null:
+	elif current_target == null or current_target.getType() != "combat":
 		priority_movement = false
 		current_target = attacker # causes the unit to fight back if it does not yet have a target
 
@@ -195,8 +191,11 @@ func setTargetPosition(target):
 func isActive():
 	if current_target != null:
 		return true # returns true if the unit has a target
-	else:
-		return false
+	elif nearby_enemies.size() > 0:
+		for enemy in nearby_enemies:
+			if enemy.getType() == "combat":
+				return true
+	return false
 
 # checks if the unit is near a given body
 func isNearBody(node):
