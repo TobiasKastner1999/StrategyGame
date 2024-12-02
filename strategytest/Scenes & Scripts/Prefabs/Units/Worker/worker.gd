@@ -3,7 +3,7 @@ extends CharacterBody3D
 signal deleted(worker) # to tell the system that the worker has been removed
 
 const TARGET_TYPE = "worker" # the worker's combat type
-const SPEED = 10.0 # the worker's movement speed
+const SPEED = 10.0# # the worker's movement speed
 const MAX_HP = 2.0 # the worker's maximum hit points
 
 var SR

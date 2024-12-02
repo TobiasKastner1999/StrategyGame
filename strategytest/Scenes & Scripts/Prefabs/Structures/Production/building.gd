@@ -19,6 +19,7 @@ var spawn_rate : float # how often can the building produce new units?
 
 # prepares to spawn a new unit when first built
 func _ready():
+	
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	
