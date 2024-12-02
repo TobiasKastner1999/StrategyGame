@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/MouseIndicator.gd" id="5_ojfxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
-size = Vector2(501, 500)
+size = Vector2(506, 500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1leb5"]
 size = Vector2(10, 10)
@@ -18,11 +18,12 @@ size = Vector2(10, 10)
 script = ExtResource("1_pkvyj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 253.0
+offset_bottom = 251.0
 
 [node name="Background" type="Sprite2D" parent="MarginContainer"]
 texture = ExtResource("2_2enkc")
+metadata/_edit_lock_ = true
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]
 visible = false
@@ -41,10 +42,11 @@ texture = ExtResource("4_jkjjc")
 texture = ExtResource("5_oa4x0")
 
 [node name="MinimapRegion" type="Area2D" parent="MarginContainer"]
+metadata/_edit_lock_ = true
 
 [node name="MinimapColl" type="CollisionShape2D" parent="MarginContainer/MinimapRegion"]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_186kj")
+metadata/_edit_lock_ = true
 
 [node name="MouseIndicator" type="CharacterBody2D" parent="MarginContainer"]
 visible = false
