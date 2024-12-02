@@ -3,8 +3,9 @@ extends CharacterBody3D
 signal deleted(worker) # to tell the system that the worker has been removed
 
 const TARGET_TYPE = "worker" # the worker's combat type
-const SPEED = 10.0# # the worker's movement speed
+const SPEED = 10.0 # the worker's movement speed
 const MAX_HP = 2.0 # the worker's maximum hit points
+const MINE_SPEED = 5.0
 
 var SR
 var faction = 0 # which faction does the worker belong to?
@@ -14,6 +15,8 @@ var resource = [0, 0] # what type of resource is the worker carrying, and how mu
 var known_resources = [] # an array of all resource nodes the worker has discovered
 var target_resource # the resource the worker is currently moving towards
 var priority_movement = false # is the worker's currently overwritten by a player input?
+var has_moved = false
+var mining = false # is the worker currently mining a resource?
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gravity affecting the worker
 @onready var go_to # the worker's current navigation destination
 
@@ -25,6 +28,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gr
 func _ready():
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
+	await get_tree().physics_frame
+	velocity = Vector3.ZERO
 
 # controls the worker's movement and other actions
 func _physics_process(delta):
@@ -33,29 +38,29 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	
 	# checks where the worker should move if their movement isn't overwritten by the player
-	if !priority_movement:
+	if !priority_movement and !mining:
 		# if the worker has a resource
 		if resource[1] != 0:
 			# if the worker is near the hq
-			if global_position.distance_to(hq.global_position) < 6:
+			if global_position.distance_to(hq.global_position) < 10:
 				Global.updateResource(faction, resource[0], resource[1]) # adds crystal to player's resources
 				resource = [0, 0]
 			# if the worker is further away from the hq
 			else:
 				go_to = hq.global_position # sets hq as movement destination
-		
+				worker_rotation()
 		# if the worker has no crystal, but a movement destination
 		elif target_resource != null:
 			# if the worker is near the destination resource
-			if global_position.distance_to(target_resource.global_position) <= 3:
-				resource[0] = target_resource.getType()
-				target_resource.takeResource() # removes a resource from that node
-				resource[1] += 1 # adds the crystal to the worker
-				target_resource = null # clears the worker's target's resource
+			if global_position.distance_to(target_resource.global_position) <= 4:
+				mining = true
+				$MiningTimer.start(MINE_SPEED)
+				await get_tree().create_timer(1).timeout
+				Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3")
 			# if the worker is further away from the destination
 			else:
 				go_to = target_resource.global_position # sets movement destination
-		
+				worker_rotation()
 		# if the worker has no crystal and no movement destination
 		else:
 			var closest_distance
@@ -73,25 +78,37 @@ func _physics_process(delta):
 	
 	# controls the unit's actual movement
 	if go_to != global_position:
+		has_moved = true
 		if navi.target_position != go_to:
 			navi.target_position = go_to
 		
 		var dir = navi.get_next_path_position() - global_position
 		dir = dir.normalized()
 	
-		if global_position.distance_to(go_to) < 3:
+		if global_position.distance_to(go_to) <= 4:
 			velocity = Vector3.ZERO
 			go_to = global_position
 			priority_movement = false
 		else:
 			var intended_velocity = velocity.lerp(dir * SPEED, 10 * delta)
 			navi.set_velocity(intended_velocity) # passes the intended movement velocity on to the navigation agent
+	
+	animationControl()
+
+func animationControl():
+	if mining:
+		$rebel_anim/AnimationPlayer.play("attack")
+		
+	elif has_moved and velocity != Vector3.ZERO:
+		$rebel_anim/AnimationPlayer.play("walk")
+	else:
+		$rebel_anim/AnimationPlayer.play("idle")
 
 # receives the path from NavAgent
 func move_to(target_pos):
 	path = navi.get_simple_path(global_transform.origin, target_pos)
 	path_ind = 0
-
+	
 # causes the worker to take a given amount of damage
 func takeDamage(damage, _attacker):
 	hp -= damage # subtracts the damage taken from the current hp
@@ -108,7 +125,7 @@ func setAttackTarget(_unit):
 # sets the worker's faction to a given value
 func setFaction(f : int):
 	faction = f
-	$WorkerBody.material_override = load(Global.getFactionColor(faction))
+	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
 	
 	if go_to == null:
 		go_to = global_position # if the worker is first set up, also sets up the movement variable
@@ -134,18 +151,25 @@ func isWorking():
 
 # changes the color of the worker when selected
 func select():
-	$WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
+	pass
+	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
 
 # changes the color of the worker when it is deselected
 func deselect():
-	$WorkerBody.material_override = load(Global.getFactionColor(faction))
+	pass
+	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
 
 # sets the position the NavAgent will move to
 func setTargetPosition(target):
 	target_resource = null
 	priority_movement = true
 	go_to = target
-
+	worker_rotation()
+func worker_rotation():
+	$rebel_anim.look_at(go_to)
+	$rebel_anim.rotation.x = 0
+	$rebel_anim.rotate_object_local(Vector3.UP, PI)
+	
 # removes a cleared resource node from the worker's list if it is on there
 func removeResourceKnowledge(removed_resource):
 	if known_resources.has(removed_resource):
@@ -160,3 +184,11 @@ func _on_range_area_body_entered(body):
 func _on_nav_agent_velocity_computed(safe_velocity):
 	velocity = safe_velocity
 	move_and_slide()
+
+func _on_mining_timer_timeout():
+	mining = false # Replace with function body.
+	if is_instance_valid(target_resource):
+		resource[0] = target_resource.getType()
+		target_resource.takeResource() # removes a resource from that node
+		resource[1] += 1 # adds the crystal to the worker
+		target_resource = null # clears the worker's target's resource

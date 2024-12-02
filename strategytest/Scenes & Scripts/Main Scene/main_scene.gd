@@ -4,6 +4,7 @@ var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
 
 # called at the start of the game
 func _ready():
+	#Input.set_custom_mouse_cursor(cursor)
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
 
 # displays the player's amount of crystals, as well as the current fps

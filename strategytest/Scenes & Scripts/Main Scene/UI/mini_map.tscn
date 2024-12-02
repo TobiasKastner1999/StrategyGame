@@ -1,14 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://daovvhsbialq1"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/mini_map.gd" id="1_pkvyj"]
+[ext_resource type="Texture2D" uid="uid://b6dtu1j332xxy" path="res://Assets/UI/minimaparea.png" id="2_2enkc"]
 [ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://Assets/UI/blue_dot.png" id="2_wcwke"]
 [ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://Assets/UI/cam.png" id="3_ao8ji"]
 [ext_resource type="Texture2D" uid="uid://d7q3bpm32hd" path="res://Assets/UI/BuildingBlue.png" id="4_jkjjc"]
 [ext_resource type="Texture2D" uid="uid://dtdwlepjf3g0s" path="res://Assets/UI/BuildingRed.png" id="5_oa4x0"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/MouseIndicator.gd" id="5_ojfxw"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xhnkx"]
-size = Vector2(500, 500)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
 size = Vector2(501, 500)
@@ -24,7 +22,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Background" type="Sprite2D" parent="MarginContainer"]
-texture = SubResource("PlaceholderTexture2D_xhnkx")
+texture = ExtResource("2_2enkc")
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]
 visible = false

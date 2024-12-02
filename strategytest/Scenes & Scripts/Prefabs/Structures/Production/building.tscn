@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvgxlsv6fcpoe"]
+[gd_scene load_steps=18 format=3 uid="uid://bvgxlsv6fcpoe"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Structures/Production/building.gd" id="1_poico"]
 
@@ -67,8 +67,16 @@ bg_color = Color(1, 0.337255, 0.337255, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pa52"]
 bg_color = Color(0, 0.713726, 0.443137, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yy1nf"]
+bg_color = Color(0.6, 0.52549, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6w1ms"]
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_kfgwd"]
 viewport_path = NodePath("HealthbarContainer")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0nlid"]
+viewport_path = NodePath("ProductionProgress")
 
 [node name="Building" type="StaticBody3D" groups=["Building", "CombatTarget", "MouseRaycast", "Structure"]]
 script = ExtResource("1_poico")
@@ -155,8 +163,7 @@ disable_3d = true
 transparent_bg = true
 
 [node name="HealthBar" type="ProgressBar" parent="HealthbarContainer"]
-offset_left = -1.0
-offset_right = 353.0
+offset_right = 354.0
 offset_bottom = 27.0
 size_flags_horizontal = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_nej64")
@@ -164,10 +171,29 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0pa52")
 value = 100.0
 show_percentage = false
 
+[node name="ProductionProgress" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="ProductionBar" type="ProgressBar" parent="ProductionProgress"]
+offset_right = 354.0
+offset_bottom = 27.0
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_yy1nf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6w1ms")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
 [node name="HealthBarSprite" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.889443, 0.901891, 0)
 visible = false
 texture = SubResource("ViewportTexture_kfgwd")
+
+[node name="ProgressSprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.32067, 0)
+visible = false
+texture = SubResource("ViewportTexture_0nlid")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
