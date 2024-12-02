@@ -40,7 +40,7 @@ func _on_interface_start_game(faction):
 	$Interface/HousingButton.visible = true
 	$MiniMap.visible = true
 	$Counter.visible = true
-	
+	$Interface/ResourceTab.visible = true
 	Global.player_faction = faction # sets the player's global faction to the faction they chose
 	
 	# sets up the AI controllers

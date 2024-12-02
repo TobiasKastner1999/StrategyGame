@@ -15,7 +15,7 @@ var zoom
 
 func _ready():
 	# first entry -> test unit
-	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MapContainer/Tank, "worker" : tank}
+	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MarginContainer/Tank , "worker" : tank}
 	
 	
 	# sets the positions of the hqs on the minimap
@@ -56,16 +56,18 @@ func dot_for_worker(dot):
 		if Global.list[i]["dot"] != null:
 			Global.list[i]["dot"].position = Vector2(Global.list[i]["positionX"], Global.list[i]["positionY"])
 
-
 # sets the texture blue and spawns the dot
 func add_unit_blue(dot):
 	for i in Global.list.size():
 		if i != null and Global.list[i]["dot"] == null:
 			if Global.list[i]["faction"] == 0:
-				dot.texture = load("res://Assets/UI/blue_dot.png")
+				dot.texture = load("res://Assets/UI/UnitBlue.png")
+				if Global.list[i]["worker"].is_in_group("Structure"):
+					dot.texture = load("res://Assets/UI/BuildingBlue.png")
+					dot.scale.x = 0.7
+					dot.scale.y = 0.7
 				Global.list[i]["dot"] = dot
 				$MarginContainer/Dots.add_child(dot)
-
 
 
 # sets the texture red and spawns the dot
@@ -75,7 +77,11 @@ func add_unit_red(dot):
 		if i != null and Global.list[i]["dot"] == null:
 			if Global.list[i]["faction"] == 1:
 				Global.list[i]["dot"] = dot
-				dot.texture = load("res://Assets/UI/red_dot.png")
+				dot.texture = load("res://Assets/UI/UnitRed.png")
+				if Global.list[i]["worker"].is_in_group("Structure"):
+					dot.texture = load("res://Assets/UI/BuildingRed.png")
+					dot.scale.x = 0.7
+					dot.scale.y = 0.7
 				$MarginContainer/Dots.add_child(dot)
 
 # when unit disappears delete the dot on minimap
@@ -90,7 +96,7 @@ func minimap_limits():
 	if not cam_sprite.position.x <= -250 and not cam_sprite.position.x >= 250:
 		cam_sprite.position.x = main_cam.position.x
 	if cam_sprite.position.x <= -250:
-		cam_sprite.position.x = -249
+		cam_sprite.position.x = -259
 	if cam_sprite.position.x >= 250:
 		cam_sprite.position.x = 249
 
@@ -101,6 +107,7 @@ func minimap_limits():
 		cam_sprite.position.y = -249
 	if cam_sprite.position.y >= 250:
 		cam_sprite.position.y = 249
+
 # scale the vision sprite when cam zooms in/oout
 func minimap_zoom():
 	
@@ -113,8 +120,6 @@ func minimap_zoom():
 			cam_sprite.scale -=Vector2(0.1, 0.1)
 			zoom = main_cam.position.y
 
-
-
 # limit the minimap clickrange and move the cam to the position on the minimap
 func minimap_clickable():
 	if mouse.position.x >= -250 and  mouse.position.x <= 250 and mouse.position.y >= -250 and mouse.position.y <= 250:
@@ -126,5 +131,3 @@ func minimap_clickable():
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		main_cam.position.x = mouse.position.x
 		main_cam.position.z = mouse.position.y
-
-
