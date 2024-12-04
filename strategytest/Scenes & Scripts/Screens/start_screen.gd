@@ -14,7 +14,6 @@ func _process(delta):
 func _on_start_pressed():
 	
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Main Scene/main_scene.tscn")
-	#load("res://Scenes & Scripts/Main Scene/main_scene.tscn").get_tree().reload_current_scene()
 func _on_options_pressed():
 	$OptionsMenu/Panel.visible = true
 

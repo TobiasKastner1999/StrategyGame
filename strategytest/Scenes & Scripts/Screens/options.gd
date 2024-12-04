@@ -1,14 +1,16 @@
 extends Control
 
 signal quit()
-
+var slider_counter = 6
+var language = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	checkMusic()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	checkFlag()
 	if Input.is_action_just_pressed("escape") and $".".visible == true:
 		if $Panel.visible == false:
 			$Panel.visible = true
@@ -35,3 +37,41 @@ func _on_menu_button_pressed():
 	else:
 		$Panel.visible = false
 		get_tree().paused = false
+
+
+
+func _on_music_plus_button_pressed():
+	slider_counter += 1
+	checkMusic()
+
+func _on_music_minus_button_pressed():
+	slider_counter -= 1
+	checkMusic()
+
+func checkMusic():
+	var button_container = $Panel/MusicContainer
+	for i in range(button_container.get_child_count()):
+		var button = button_container.get_child(i)
+		if i > slider_counter:
+			button.visible = true
+		else:
+			button.visible = false
+
+func checkFlag():
+	if language < 0:
+		language = 0
+	if language > 1:
+		language = 1
+	if language == 0:
+		$Panel/LanguageSelection/FlagSlot.texture = load("res://Assets/UI/british flag.png")
+	elif language == 1:
+		$Panel/LanguageSelection/FlagSlot.texture = load("res://Assets/UI/german flag.png")
+
+
+
+func _on_language_left_pressed():
+	language -= 1
+
+
+func _on_language_right_pressed():
+	language += 1
