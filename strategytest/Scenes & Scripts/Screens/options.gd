@@ -41,11 +41,13 @@ func _on_menu_button_pressed():
 
 
 func _on_music_plus_button_pressed():
-	slider_counter += 1
+	if slider_counter <= 10:
+		slider_counter += 1
 	checkMusic()
 
 func _on_music_minus_button_pressed():
-	slider_counter -= 1
+	if slider_counter >= 0:
+		slider_counter -= 1
 	checkMusic()
 
 func checkMusic():
@@ -70,8 +72,21 @@ func checkFlag():
 
 
 func _on_language_left_pressed():
-	language -= 1
+	#language -= 1
+	$Panel/VBoxContainer.visible = true
+	
 
 
-func _on_language_right_pressed():
-	language += 1
+#func _on_language_right_pressed():
+	#language += 1
+
+
+func _on_german_flag_pressed():
+	language = 1
+	$Panel/VBoxContainer.visible = false
+
+
+func _on_british_flag_pressed():
+	language = 0
+	$Panel/VBoxContainer.visible = false
+
