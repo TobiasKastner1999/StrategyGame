@@ -1,11 +1,15 @@
-[gd_scene load_steps=33 format=3 uid="uid://0lf8y4ljp5j1"]
+[gd_scene load_steps=37 format=3 uid="uid://0lf8y4ljp5j1"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.gd" id="1_y82sj"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Units/Combat Unit/combat_unit_behaviour.gd" id="2_0jtmk"]
 [ext_resource type="Material" uid="uid://cbehhahip1xin" path="res://Assets/Materials/material_blue.tres" id="2_6xgls"]
 [ext_resource type="Texture2D" uid="uid://jsqacwpmihlv" path="res://Assets/Models/Units/Panzer_metal_plate_02_diff_2k.jpg" id="2_xiumj"]
 [ext_resource type="Texture2D" uid="uid://des6q6y33wwwi" path="res://Assets/Models/Units/Panzer_metal_plate_02_metal_2k-metal_plate_02_rough_2k.png" id="3_mwmmn"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/combat_target_behaviour.gd" id="3_r8ouf"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/movement_behaviour.gd" id="4_1x5qh"]
 [ext_resource type="Texture2D" uid="uid://ibcnkje4t41i" path="res://Assets/Models/Units/Panzer_metal_plate_02_nor_gl_2k.png" id="4_nr7cd"]
 [ext_resource type="Texture2D" uid="uid://b1ctsh35olvmp" path="res://Assets/Models/Units/Panzer_blue_metal_plate_diff_2k.jpg" id="5_1bqv7"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/attack_behaviour.gd" id="5_ias7k"]
 [ext_resource type="Texture2D" uid="uid://qcdwned2jcpg" path="res://Assets/Models/Units/Panzer_blue_metal_plate_rough_2k.png" id="6_bpihc"]
 [ext_resource type="Texture2D" uid="uid://xdp4umjqe7wx" path="res://Assets/Models/Units/Panzer_blue_metal_plate_nor_gl_2k.png" id="7_jbb3g"]
 [ext_resource type="Texture2D" uid="uid://tuekmo6u2wkj" path="res://Assets/Models/Units/Panzer_rubber_tiles_diff_2k.jpg" id="8_xi38d"]
@@ -314,7 +318,17 @@ _data = {
 [node name="Unit" type="CharacterBody3D" groups=["CombatTarget", "MouseRaycast", "Selectable", "selectable"]]
 script = ExtResource("1_y82sj")
 
-[node name="Coll" type="Node3D" parent="."]
+[node name="UnitBehaviours" type="Node" parent="."]
+script = ExtResource("2_0jtmk")
+
+[node name="CombatTargetBehaviour" type="Node" parent="UnitBehaviours"]
+script = ExtResource("3_r8ouf")
+
+[node name="MovementBehaviour" type="Node" parent="UnitBehaviours"]
+script = ExtResource("4_1x5qh")
+
+[node name="AttackBehaviour" type="Node" parent="UnitBehaviours"]
+script = ExtResource("5_ias7k")
 
 [node name="UnitBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.464085, 0, 0.0337671, 0, 0.248896, 0, -0.0179176, 0, 0.874604, 0, 0, 0)
