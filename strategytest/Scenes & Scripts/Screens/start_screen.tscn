@@ -1,0 +1,82 @@
+[gd_scene load_steps=3 format=3 uid="uid://wkpqihr2k85a"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Screens/start_screen.gd" id="1_8y2io"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Screens/options.gd" id="2_0p6e6"]
+
+[node name="StartScreen" type="Node2D"]
+script = ExtResource("1_8y2io")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Start" type="Button" parent="."]
+offset_left = 100.0
+offset_top = 446.0
+offset_right = 400.0
+offset_bottom = 506.0
+text = "start game"
+
+[node name="Options" type="Button" parent="."]
+offset_left = 100.0
+offset_top = 559.0
+offset_right = 400.0
+offset_bottom = 619.0
+text = "options"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 100.0
+offset_top = 674.0
+offset_right = 400.0
+offset_bottom = 734.0
+text = "quit"
+
+[node name="OptionsMenu" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_left = -25.0
+offset_top = -55.0
+offset_right = -25.0
+offset_bottom = -55.0
+script = ExtResource("2_0p6e6")
+
+[node name="MenuButton" type="Button" parent="OptionsMenu"]
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = 87.0
+offset_right = 364.0
+offset_bottom = 147.0
+text = "menu"
+
+[node name="Panel" type="Panel" parent="OptionsMenu"]
+visible = false
+layout_mode = 0
+offset_left = 682.0
+offset_top = 245.0
+offset_right = 1201.0
+offset_bottom = 850.0
+
+[node name="ContinueButtons" type="Button" parent="OptionsMenu/Panel"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 129.0
+offset_right = 396.0
+offset_bottom = 189.0
+text = "continue"
+
+[node name="QuitButtons" type="Button" parent="OptionsMenu/Panel"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 380.0
+offset_right = 405.0
+offset_bottom = 440.0
+text = "quit"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="OptionsMenu/MenuButton" to="OptionsMenu" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="OptionsMenu/Panel/ContinueButtons" to="OptionsMenu" method="_on_continue_buttons_pressed"]
+[connection signal="pressed" from="OptionsMenu/Panel/QuitButtons" to="OptionsMenu" method="_on_quit_buttons_pressed"]

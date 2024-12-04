@@ -58,3 +58,12 @@ extends Control
 @export var worker_limit = 4 # how many workers can spawn at most?
 @export var hq_hp = 20.0 # the hq's maximum hp
 @export var resource = 10 # how many resources can be mined
+
+# text to be translated
+# title in faction selection
+# faction buttons
+# Gamestateinfo
+# building tab
+# unit type buttons
+# Game Over screen
+# Quit button

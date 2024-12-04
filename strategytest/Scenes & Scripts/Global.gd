@@ -85,3 +85,9 @@ func add_to_list(positionX, positionY, faction, id, dot, worker):
 	Global.list[list_counter] = {"positionX" : positionX, "positionY" : positionY, "faction" : faction , "id" : id, "dot": dot, "worker" : worker}
 	list_counter += 1
 
+func emptyList():
+	list.clear()
+	Global.list[0] = {"positionX" :null ,"positionY":null,  "faction" : null ,"id":null ,"dot" :null, "worker" :null}
+	Global.list[1] = {"positionX" :null ,"positionY":null,  "faction" : null ,"id":null ,"dot" :null, "worker" :null}
+	Global.list[2] = {"positionX" :null ,"positionY":null,  "faction" : null ,"id":null ,"dot" :null, "worker" :null}
+	
