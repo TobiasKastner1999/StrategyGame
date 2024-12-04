@@ -6,7 +6,7 @@ var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
 func _ready():
 	#Input.set_custom_mouse_cursor(cursor)
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
-
+	
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
 	$Counter.set_text("Faction 0 Resources: " + str(Global.faction_zero_resources) + " Faction 1 Resources: " + str(Global.faction_one_resources) + "   " + "FPS: " + str(Engine.get_frames_per_second()))
@@ -42,6 +42,7 @@ func _on_interface_start_game(faction):
 	$MiniMap.visible = true
 	$Counter.visible = true
 	$Interface/ResourceTab.visible = true
+	$Options.visible = true
 	Global.player_faction = faction # sets the player's global faction to the faction they chose
 	
 	# sets up the AI controllers
@@ -62,3 +63,7 @@ func _on_building_menu(building):
 func _on_timer_timeout():
 	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT
 	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+#func _on_options_quit():
+	#Global.emptyList()

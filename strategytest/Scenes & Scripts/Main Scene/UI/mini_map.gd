@@ -15,7 +15,7 @@ var zoom
 
 func _ready():
 	# first entry -> test unit
-	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MarginContainer/Tank , "worker" : tank}
+	
 	
 	
 	# sets the positions of the hqs on the minimap
@@ -29,7 +29,7 @@ func _ready():
 # when the mouse enters the area of minimap the var turns true and if you click the camera moves to the position given
 # via a characterbody2d that is constantly following the mouse
 func _process(delta):
-	
+	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MarginContainer/Tank , "worker" : tank}
 	
 	# sprite to add when units spawns
 	var dot = load("res://Scenes & Scripts/Main Scene/UI/dot.tscn").instantiate()
@@ -62,7 +62,7 @@ func add_unit_blue(dot):
 		if i != null and Global.list[i]["dot"] == null:
 			if Global.list[i]["faction"] == 0:
 				dot.texture = load("res://Assets/UI/UnitBlue.png")
-				if Global.list[i]["worker"].is_in_group("Structure"):
+				if Global.list[i]["worker"] != null and Global.list[i]["worker"].is_in_group("Structure"):
 					dot.texture = load("res://Assets/UI/BuildingBlue.png")
 					dot.scale.x = 0.7
 					dot.scale.y = 0.7
@@ -78,7 +78,7 @@ func add_unit_red(dot):
 			if Global.list[i]["faction"] == 1:
 				Global.list[i]["dot"] = dot
 				dot.texture = load("res://Assets/UI/UnitRed.png")
-				if Global.list[i]["worker"].is_in_group("Structure"):
+				if Global.list[i]["worker"] != null and Global.list[i]["worker"].is_in_group("Structure"):
 					dot.texture = load("res://Assets/UI/BuildingRed.png")
 					dot.scale.x = 0.7
 					dot.scale.y = 0.7
