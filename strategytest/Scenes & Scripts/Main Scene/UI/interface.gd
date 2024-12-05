@@ -107,19 +107,27 @@ func gameEnd(faction):
 	for c in get_children():
 		c.visible = false # hides all UI elements
 	if faction == Global.player_faction:
-		$EndScreen/EndScreenText.text = "Game Over! You lost..." # sets end screen text if the player was defeated
+		$EndScreen.text = "Game Over! You lost..." # sets end screen text if the player was defeated
 	else:
-		$EndScreen/EndScreenText.text = "Victory!" # sets end screen text if the player won the game
+		$EndScreen.text = "Victory!" # sets end screen text if the player won the game
 	$EndScreen.visible = true # enables end screen visibility
 
 # returns the interface's current input mode
 func getInputMode():
 	return interface_input_mode
 
-# when the player starts the game and chooses the blue faction
-func _on_button_blue_pressed():
+## when the player starts the game and chooses the blue faction
+#func _on_button_blue_pressed():
+	#start_game.emit(0)
+#
+## when the player starts the game and chooses the red faction
+#func _on_button_red_pressed():
+	#start_game.emit(1)
+
+
+func _on_faction_selection_start_game_dome():
 	start_game.emit(0)
 
-# when the player starts the game and chooses the red faction
-func _on_button_red_pressed():
+
+func _on_faction_selection_start_game_rebels():
 	start_game.emit(1)

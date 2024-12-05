@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://ut6cde7ie7n"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Screens/end_screen.gd" id="1_d6x33"]
+
+[node name="EndScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d6x33")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="GameOverText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 769.0
+offset_top = 155.0
+offset_right = 1166.0
+offset_bottom = 331.0
+theme_override_font_sizes/normal_font_size = 40
+text = "Game Over!"
+autowrap_mode = 2
+tab_size = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 400.0
+offset_right = 1077.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 31
+text = "quit"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -35,7 +35,7 @@ func _on_interface_start_game(faction):
 	get_tree().paused = false # ends the game's freeze state
 	
 	# then toggles the visibility of various UI elements
-	$Interface/StartScreen.visible = false
+	$Interface/FactionSelection.visible = false
 	$Interface/UIFrame.visible = true
 	$Interface/BuildingButton.visible = true
 	$Interface/HousingButton.visible = true
@@ -50,6 +50,8 @@ func _on_interface_start_game(faction):
 	$FactionRedController.setUp()
 	$Camera.global_position = camera_positions[faction] # warps the camera to the chosen HQ's location
 	$Camera.position.y = 60
+	#if Global.player_faction == 1:
+		#$Camera/Camera.rotation.y = 110
 	for hq in get_tree().get_nodes_in_group("HQ"):
 		if hq.getFaction() == faction:
 			$Interface/Placer.hq_zone = hq.getArea() # locks the building placers to the platform of the player's chosen faction
