@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7exd2o303ini"]
+[gd_scene load_steps=10 format=3 uid="uid://c7exd2o303ini"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/options.gd" id="1_171km"]
 [ext_resource type="PackedScene" uid="uid://dg54ll1jfet6s" path="res://Scenes & Scripts/Screens/settings_slider.tscn" id="2_u5ebn"]
@@ -9,6 +9,9 @@
 size = Vector2(40, 40)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lky5h"]
+size = Vector2(40, 40)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i2gqk"]
 size = Vector2(40, 40)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_scalf"]
@@ -32,6 +35,7 @@ offset_bottom = 147.0
 text = "menu"
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 682.0
 offset_top = 245.0
@@ -40,26 +44,26 @@ offset_bottom = 850.0
 
 [node name="ContinueButtons" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 129.0
-offset_right = 396.0
-offset_bottom = 189.0
+offset_left = 105.0
+offset_top = 25.0
+offset_right = 405.0
+offset_bottom = 85.0
 text = "continue"
 
 [node name="QuitButtons" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 105.0
-offset_top = 380.0
-offset_right = 405.0
-offset_bottom = 440.0
-text = "quit"
+offset_left = 108.0
+offset_top = 479.0
+offset_right = 408.0
+offset_bottom = 539.0
+text = "main menu"
 
 [node name="MusicContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_left = 102.0
-offset_top = 223.0
-offset_right = 394.0
-offset_bottom = 263.0
+offset_left = 112.0
+offset_top = 153.0
+offset_right = 401.0
+offset_bottom = 193.0
 
 [node name="SettingsSlider" parent="Panel/MusicContainer" instance=ExtResource("2_u5ebn")]
 layout_mode = 2
@@ -93,27 +97,80 @@ layout_mode = 2
 
 [node name="MusicPlusButton" type="TextureButton" parent="Panel"]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 224.0
-offset_right = 88.0
-offset_bottom = 264.0
+offset_left = 55.0
+offset_top = 152.0
+offset_right = 95.0
+offset_bottom = 192.0
 texture_normal = SubResource("PlaceholderTexture2D_amxvf")
 
 [node name="MusicMinusButton" type="TextureButton" parent="Panel"]
 layout_mode = 0
-offset_left = 413.0
-offset_top = 223.0
-offset_right = 453.0
-offset_bottom = 263.0
+offset_left = 415.0
+offset_top = 153.0
+offset_right = 455.0
+offset_bottom = 193.0
 texture_normal = SubResource("PlaceholderTexture2D_lky5h")
+
+[node name="SoundContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 261.0
+offset_right = 401.0
+offset_bottom = 301.0
+
+[node name="SettingsSlider" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SettingsSlider2" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SettingsSlider3" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SettingsSlider4" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SettingsSlider5" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SettingsSlider6" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SettingsSlider7" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SettingsSlider8" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SettingsSlider9" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SettingsSlider10" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
+layout_mode = 2
+
+[node name="SoundMinusButton" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 260.0
+offset_right = 98.0
+offset_bottom = 300.0
+texture_normal = SubResource("PlaceholderTexture2D_i2gqk")
+
+[node name="SoundPlusButton" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 260.0
+offset_right = 456.0
+offset_bottom = 300.0
+texture_normal = SubResource("PlaceholderTexture2D_i2gqk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 visible = false
 layout_mode = 2
-offset_left = 390.0
-offset_top = 315.0
-offset_right = 490.0
-offset_bottom = 439.0
+offset_left = 416.0
+offset_top = 370.0
+offset_right = 516.0
+offset_bottom = 494.0
 
 [node name="GermanFlag" type="TextureButton" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(100, 60)
@@ -131,10 +188,10 @@ stretch_mode = 0
 
 [node name="LanguageSelection" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_left = 154.0
-offset_top = 315.0
-offset_right = 370.0
-offset_bottom = 375.0
+offset_left = 147.0
+offset_top = 361.0
+offset_right = 363.0
+offset_bottom = 421.0
 
 [node name="LanguageLeft" type="TextureButton" parent="Panel/LanguageSelection"]
 custom_minimum_size = Vector2(50, 50)
@@ -153,11 +210,29 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_oopl1")
 
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 115.0
+offset_right = 268.0
+offset_bottom = 138.0
+text = "music"
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 230.0
+offset_right = 268.0
+offset_bottom = 253.0
+text = "sound"
+
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Panel/ContinueButtons" to="." method="_on_continue_buttons_pressed"]
 [connection signal="pressed" from="Panel/QuitButtons" to="." method="_on_quit_buttons_pressed"]
 [connection signal="pressed" from="Panel/MusicPlusButton" to="." method="_on_music_plus_button_pressed"]
 [connection signal="pressed" from="Panel/MusicMinusButton" to="." method="_on_music_minus_button_pressed"]
+[connection signal="pressed" from="Panel/SoundMinusButton" to="." method="_on_sound_minus_button_pressed"]
+[connection signal="pressed" from="Panel/SoundPlusButton" to="." method="_on_sound_plus_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/GermanFlag" to="." method="_on_german_flag_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/BritishFlag" to="." method="_on_british_flag_pressed"]
 [connection signal="pressed" from="Panel/LanguageSelection/LanguageLeft" to="." method="_on_language_left_pressed"]

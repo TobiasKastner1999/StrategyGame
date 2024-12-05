@@ -6,7 +6,8 @@ extends Control
 @onready var sound_streamer = $SoundStreamer # gets the streamernode
 @onready var music_streamer = $MusicStreamer # gets the streamernode
 var temp = null # temporary save streamer
-
+var sound_volume = 0
+var music_volume = 0
 
 
 
@@ -25,6 +26,7 @@ func play_music(music):
 	var new_streamer = load("res://Scenes & Scripts/Prefabs/Sound/streamer.tscn").instantiate() # loades the streamer
 	temp = new_streamer
 	$".".add_child(new_streamer) # creates a new streamer
+	new_streamer.volume = music_volume
 	var loaded_music = load(music)
 	new_streamer.stream = loaded_music # sets the sound to given value
 	new_streamer.play() # starts the stream
