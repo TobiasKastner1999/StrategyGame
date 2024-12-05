@@ -23,6 +23,7 @@ func _process(delta):
 
 func _on_continue_buttons_pressed():
 	$Panel.visible = false # hides the menu when continued
+	get_tree().paused = false
 
 
 func _on_quit_buttons_pressed():

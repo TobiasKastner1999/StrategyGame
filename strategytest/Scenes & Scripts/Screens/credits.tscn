@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctwbapr2v8x1c"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Screens/credits.gd" id="1_7oij2"]
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_7oij2")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1920.0
+offset_bottom = 1081.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_right = 213.0
+offset_bottom = 115.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 1917.0
+offset_bottom = 1078.0
+bbcode_enabled = true
