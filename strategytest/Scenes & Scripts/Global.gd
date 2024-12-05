@@ -5,8 +5,8 @@ const CONSTRUCTION_COSTS = [0, 4, 2] # the construction costs for different type
 var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 var player_faction : int # the faction the player has chosen for the current game
-var list = {}
-var list_counter = 1
+var list = {} # dictionary to store units and building to project on the minimap
+var list_counter = 1 # sets the start value of the dictionary to 1 instead of 0 
 
 
 
@@ -85,9 +85,4 @@ func add_to_list(positionX, positionY, faction, id, dot, worker):
 	Global.list[list_counter] = {"positionX" : positionX, "positionY" : positionY, "faction" : faction , "id" : id, "dot": dot, "worker" : worker}
 	list_counter += 1
 
-func emptyList():
-	list.clear()
-	Global.list[0] = {"positionX" :null ,"positionY":null,  "faction" : null ,"id":null ,"dot" :null, "worker" :null}
-	Global.list[1] = {"positionX" :null ,"positionY":null,  "faction" : null ,"id":null ,"dot" :null, "worker" :null}
-	Global.list[2] = {"positionX" :null ,"positionY":null,  "faction" : null ,"id":null ,"dot" :null, "worker" :null}
-	
+

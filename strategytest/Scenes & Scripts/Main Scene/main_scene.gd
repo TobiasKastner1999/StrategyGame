@@ -55,15 +55,15 @@ func _on_interface_start_game(faction):
 			$Interface/Placer.hq_zone = hq.getArea() # locks the building placers to the platform of the player's chosen faction
 			$Interface.hq = hq
 
+
 # accesses a clicked building's interface menu
 func _on_building_menu(building):
 	$Interface/SelectedPanel.activatePanel(building)
 
 
 func _on_timer_timeout():
-	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT
-	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT
+	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT # activates the blue hq
+	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT # activates the red hq
 
 
-#func _on_options_quit():
-	#Global.emptyList()
+

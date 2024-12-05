@@ -1,91 +1,85 @@
 extends Control
 
-signal quit()
-var slider_counter = 6
-var language = 0
-# Called when the node enters the scene tree for the first time.
+
+var slider_counter = 6 # slidercounter to visualize the music settings
+var language = 0 # languagecounter that indicates the current language selected
+
 func _ready():
-	checkMusic()
+	checkMusic() # updates the visual sliders of music settings
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
-	checkFlag()
-	if Input.is_action_just_pressed("escape") and $".".visible == true:
+	checkFlag() # perma updates the current flag of the language icon
+	if Input.is_action_just_pressed("escape") and $".".visible == true: # activates when visible ans escape pressed
 		if $Panel.visible == false:
-			$Panel.visible = true
-			get_tree().paused = true
+			$Panel.visible = true # when menu is hidden unhide it
+			get_tree().paused = true # pause the game
 		else:
-			$Panel.visible = false
-			get_tree().paused = false
+			$Panel.visible = false # hides the menu when already open
+			get_tree().paused = false # unpauses the game
 
 
 func _on_continue_buttons_pressed():
-	$Panel.visible = false
+	$Panel.visible = false # hides the menu when continued
 
 
 func _on_quit_buttons_pressed():
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/start_screen.tscn")
-	quit.emit()
+	get_tree().paused = false # upause the game so that the startscreen isnt frozen
+	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/start_screen.tscn") # changes scene to startscreen
+
 
 
 func _on_menu_button_pressed():
 	if $Panel.visible == false:
-		$Panel.visible = true
-		get_tree().paused = true
+		$Panel.visible = true # when menu is hidden unhide it
+		get_tree().paused = true # pause the game
 	else:
-		$Panel.visible = false
-		get_tree().paused = false
+		$Panel.visible = false # hides the menu when already open
+		get_tree().paused = false # unpauses the game
 
 
 
 func _on_music_plus_button_pressed():
-	if slider_counter <= 10:
-		slider_counter += 1
-	checkMusic()
+	if slider_counter <= 10: # limits the slider
+		slider_counter += 1 # increases the slider counter that hide/unhide the sliders
+	checkMusic() # updates the visual sliders of music settings
 
 func _on_music_minus_button_pressed():
-	if slider_counter >= 0:
-		slider_counter -= 1
-	checkMusic()
+	if slider_counter >= 0: # limits the slider
+		slider_counter -= 1 # decreases the slider counter that hide/unhide the sliders
+	checkMusic() # updates the visual sliders of music settings
 
-func checkMusic():
-	var button_container = $Panel/MusicContainer
-	for i in range(button_container.get_child_count()):
-		var button = button_container.get_child(i)
-		if i > slider_counter:
-			button.visible = true
+func checkMusic(): # function to update the sliders on the menu
+	var button_container = $Panel/MusicContainer # gets the slider container
+	for i in range(button_container.get_child_count()): # iterates through the container
+		var button = button_container.get_child(i) # gets the current iterated child
+		if i > slider_counter: # checks which sliders are withing range of the slidercounter
+			button.visible = true # unhides the sliders within range
 		else:
-			button.visible = false
+			button.visible = false # hides the sliders outside range
 
-func checkFlag():
-	if language < 0:
-		language = 0
+func checkFlag(): # updates the flag icon in language selection
+	if language < 0: 
+		language = 0 # lowerlimit for the flagcounter 
 	if language > 1:
-		language = 1
-	if language == 0:
+		language = 1 # upperlimit for the flagcounter
+	if language == 0: # sets the default 0 to english
 		$Panel/LanguageSelection/FlagSlot.texture = load("res://Assets/UI/british flag.png")
-	elif language == 1:
+	elif language == 1: # sets the value 1 to german
 		$Panel/LanguageSelection/FlagSlot.texture = load("res://Assets/UI/german flag.png")
 
 
 
 func _on_language_left_pressed():
-	#language -= 1
-	$Panel/VBoxContainer.visible = true
-	
+	$Panel/VBoxContainer.visible = true # open the drop down for languages
 
-
-#func _on_language_right_pressed():
-	#language += 1
-
-
+# sets the language to german
 func _on_german_flag_pressed():
-	language = 1
+	language = 1 
 	$Panel/VBoxContainer.visible = false
 
-
+# sets the language to english
 func _on_british_flag_pressed():
 	language = 0
 	$Panel/VBoxContainer.visible = false

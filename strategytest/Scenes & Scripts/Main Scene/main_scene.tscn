@@ -730,7 +730,6 @@ autostart = true
 [connection signal="pressed" from="Interface/StartScreen/ButtonRed" to="Interface" method="_on_button_red_pressed"]
 [connection signal="pressed" from="Interface/EndScreen/ButtonQuit" to="Interface/EndScreen" method="_on_button_quit_pressed"]
 [connection signal="pressed" from="Interface/SelectedPanel/ButtonToggle" to="Interface/SelectedPanel" method="_on_button_toggle_pressed"]
-[connection signal="quit" from="Options" to="." method="_on_options_quit"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="MiniMap"]

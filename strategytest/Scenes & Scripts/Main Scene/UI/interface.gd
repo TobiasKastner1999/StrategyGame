@@ -92,14 +92,14 @@ func _input(_event):
 	if Input.is_action_just_pressed("Rightclick") and interface_input_mode != 0:
 		interface_input_mode = 0
 
+# updates the Gamestatinfotext 
 func updateGamestateInfo():
 	var state_text = ""
 	state_text += "[b]Combat Units:[/b] " + str(Global.getUnitCount(Global.player_faction)) + "/" + str(Global.getUnitLimit(Global.player_faction)) + "\n"
 	state_text += "[b]Workers[/b]: " + hq.getWorkerNum() + "\n"
 	state_text += "[b]Buildings:[/b] " + str(Global.getBuildingCount())
-	$ResourceTab/ResourceAmount1.text = str(Global.getResource(Global.player_faction, 0)) + "\n"
-	$ResourceTab/ResourceAmount2.text = str(Global.getResource(Global.player_faction, 1)) + "\n"
-	
+	$ResourceTab/ResourceAmount1.text = str(Global.getResource(Global.player_faction, 0)) + "\n" # updates the recourse tab
+	$ResourceTab/ResourceAmount2.text = str(Global.getResource(Global.player_faction, 1)) + "\n" # updates the recourse tab
 	$GamestateInfo.text = state_text
 
 # ends the game
