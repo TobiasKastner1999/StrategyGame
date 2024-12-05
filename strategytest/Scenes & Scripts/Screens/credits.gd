@@ -1,9 +1,10 @@
 extends Node2D
 
 
-@onready var text = $RichTextLabel
+@onready var text = $RichTextLabel # Label to fill with names
 
-# Called when the node enters the scene tree for the first time.
+
+ # added text to the credits
 func _ready():
 	text.add_text("Dominik-Niklas Fuchs")
 	text.newline()
@@ -19,11 +20,6 @@ func _ready():
 	
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
-
 
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/start_screen.tscn")
+	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/start_screen.tscn") # change scene back to startingmenu

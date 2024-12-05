@@ -19,4 +19,4 @@ func _on_quit_pressed():
 
 
 func _on_credits_pressed():
-	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/credits.tscn")
+	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/credits.tscn") # switch to the credits
