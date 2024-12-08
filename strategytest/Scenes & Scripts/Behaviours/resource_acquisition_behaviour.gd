@@ -6,12 +6,10 @@ var run_node : Node3D # the node the behaviour is operating on
 func runBehaviour(node):
 	run_node = node # stores the operating node
 	
-	print(getTargetType())
 	match getTargetType():
 		0:
 			depositResource()
 		1:
-			print("checking state...")
 			match checkInteractionState():
 				0:
 					startAcquisition()
