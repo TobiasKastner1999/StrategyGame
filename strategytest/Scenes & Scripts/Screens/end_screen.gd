@@ -1,15 +1,13 @@
 extends Control
 var text = ""
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _process(delta):
-	$GameOverText.text = text
+	$GameOverText.text = text # sets text to given value
 
 
-func _on_button_pressed():
+func _on_button_pressed(): # ends the game
 	get_tree().quit()

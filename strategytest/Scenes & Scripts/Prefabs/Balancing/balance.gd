@@ -1,4 +1,5 @@
 extends Control
+
 # stats of the different Unit types
 @export var ranged_hp = 10
 @export var ranged_damage = 1
@@ -68,3 +69,15 @@ extends Control
 # Game Over screen
 # Quit button
 # Optionsmenu
+
+#func _ready():
+	#Global.unit_dict["0"]["max_hp"] = ranged_hp
+	#Global.unit_dict["0"]["damage_value"] = ranged_damage
+	#Global.unit_dict["0"]["attack_range"] = ranged_range
+	#Global.unit_dict["0"]["attack_speed"] = ranged_attack_speed
+	#Global.unit_dict["0"]["detection_range"] = ranged_detection
+	#Global.unit_dict["0"]["speed"] = ranged_speed
+	#Global.unit_dict["0"]["resource_cost"] = ranged_cost
+	#Global.unit_dict["0"]["production_speed"] = ranged_production
+	
+

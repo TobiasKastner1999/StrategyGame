@@ -1,6 +1,9 @@
 extends Node2D
 
-
+func _process(delta):
+	if $OptionsMenu/Panel.visible == false:
+		$OptionsMenu.visible = false
+		$OptionsMenu/Panel.visible = true
 
 
 
@@ -13,3 +16,7 @@ func _on_options_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()#  ends the game
+
+
+func _on_credits_pressed():
+	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/credits.tscn") # switch to the credits
