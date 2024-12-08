@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv6hhbex0d0qh"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/threat_detection_behaviour.gd" id="1_hi8hr"]
+
+[node name="ThreatDetectionBehaviour" type="Node"]
+script = ExtResource("1_hi8hr")
