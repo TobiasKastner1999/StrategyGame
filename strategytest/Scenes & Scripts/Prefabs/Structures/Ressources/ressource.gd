@@ -23,5 +23,8 @@ func takeResource():
 		queue_free() # then removes the node
 
 # returns the node's resource type
-func getType():
+func getResourceType():
 	return resource_type
+
+func getType():
+	return "resource"

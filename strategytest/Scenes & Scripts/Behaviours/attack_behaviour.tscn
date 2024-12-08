@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmvax73tyb631"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/attack_behaviour.gd" id="1_1rwdl"]
+
+[node name="AttackBehaviour" type="Node"]
+script = ExtResource("1_1rwdl")
