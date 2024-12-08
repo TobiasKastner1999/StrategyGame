@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpg7qjwkl4tpd"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/resource_acquisition_behaviour.gd" id="1_854iq"]
+
+[node name="ResourceAcquisitionBehaviour" type="Node"]
+script = ExtResource("1_854iq")

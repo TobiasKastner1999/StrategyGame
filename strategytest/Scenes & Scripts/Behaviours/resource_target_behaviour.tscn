@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcq5y83avvqgb"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/resource_target_behaviour.gd" id="1_sdam1"]
+
+[node name="ResourceTargetBehaviour" type="Node"]
+script = ExtResource("1_sdam1")
