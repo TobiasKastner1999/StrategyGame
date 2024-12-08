@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3va1hvkqjulw"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/combat_target_behaviour.gd" id="1_ti35p"]
+
+[node name="CombatTargetBehaviour" type="Node"]
+script = ExtResource("1_ti35p")

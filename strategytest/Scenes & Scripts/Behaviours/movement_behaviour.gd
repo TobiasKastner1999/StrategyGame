@@ -10,7 +10,10 @@ func runBehaviour(node, delta):
 	
 	if hasMovementDestination(): # checks if the node has a movement destination
 		await(moveToDestination()) # if so, moves the node towards that destination
-		isDestinationReached() # then checks if the node is close enough to the destination
+		if isDestinationReached(): # then checks if the node is close enough to the destination
+			return true
+		return false
+	return true
 
 # checks if the node has a movement destination
 func hasMovementDestination():
@@ -44,10 +47,19 @@ func isDestinationReached():
 		# if the node is withing the proximity towards the destination, stops its movement
 		run_node.setDestination(run_node.global_position)
 		run_node.velocity = Vector3.ZERO
+		return true
+	return false
 
 # determines the right proximity distance
 func setProximityDistance():
-	if run_node.getActiveTarget() != null:
-		return run_node.getAttackRange() # proximity is set to the unit's attack range if the unit is moving towards a combat target
-	else:
-		return (run_node.getAttackRange() / 2.0) # proximity is set to half the unit's attack range otherwise
+	match run_node.getType():
+		"combat":
+			if run_node.getActiveTarget() != null:
+				return run_node.getAttackRange() # proximity is set to the unit's attack range if the unit is moving towards a combat target
+			else:
+				return (run_node.getAttackRange() / 2.0) # proximity is set to half the unit's attack range otherwise
+		"worker":
+			if run_node.getActiveTarget() != null:
+				return run_node.getProximity()
+			else:
+				return 2.0

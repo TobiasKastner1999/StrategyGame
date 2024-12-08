@@ -50,7 +50,7 @@ func setWorkerDestination(worker):
 	if resource_list.size() > 0:
 		if (Global.getResource(controlled_faction, 0) < Global.getConstructionCost(1)) and (build_locations[controlled_faction].size() == 3):
 			for resource in resource_list: # if the AI still needs to construct a building, and does not have enough resources to do so
-				if resource.getType() != 0:
+				if resource.getResourceType() != 0:
 					resource_list.erase(resource) # ignores all resources for units
 		else:
 			for resource in resource_list:
