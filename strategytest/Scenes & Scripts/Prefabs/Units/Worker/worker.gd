@@ -35,8 +35,7 @@ func _ready():
 
 # controls the worker's movement and other actions
 func _physics_process(delta):
-	$UnitBehaviours.runBehaviours(self, delta)
-	
+	await $UnitBehaviours.runBehaviours(self, delta)
 	animationControl()
 
 func startMiningState():
@@ -95,16 +94,17 @@ func setTarget(target):
 	if target_node != null and str(target_node.getType()) == "resource":
 		previous_target = target_node
 	target_node = target
-	destination = target_node.global_position
+	setDestination(target_node.global_position)
 
 func setDestination(new_destination):
 	destination = new_destination
+	if !has_moved:
+		has_moved = true
 
 func animationControl():
 	if interaction_state == 1:
 		$rebel_anim/AnimationPlayer.play("attack")
-		
-	elif has_moved and velocity != Vector3.ZERO:
+	elif velocity != Vector3.ZERO:
 		$rebel_anim/AnimationPlayer.play("walk")
 	else:
 		$rebel_anim/AnimationPlayer.play("idle")
