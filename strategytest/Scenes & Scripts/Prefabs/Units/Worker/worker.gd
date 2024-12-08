@@ -33,6 +33,12 @@ func _ready():
 
 # controls the worker's movement and other actions
 func _physics_process(delta):
+	print($rebel_anim/AnimationPlayer.current_animation)
+	if $rebel_anim/AnimationPlayer.current_animation == "walk":
+		$rebel_anim/Armature_002/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true
+	else:
+		$rebel_anim/Armature_002/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false
+		
 	# applies gravity
 	if not is_on_floor():
 		velocity.y -= gravity * delta
