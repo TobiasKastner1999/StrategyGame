@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmguykcueewvt"]
+
+[ext_resource type="PackedScene" uid="uid://ytorrlsgc6t1" path="res://Assets/Models/Map/scrap.glb" id="1_wfkeo"]
+
+[node name="scrap" instance=ExtResource("1_wfkeo")]

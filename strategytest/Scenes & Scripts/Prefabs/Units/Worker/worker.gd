@@ -35,20 +35,33 @@ var speed : float # the worker's movement speed
 
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the worker's movement
 @onready var hq = $".." # the hq the worker belongs to
+@onready var worker_anim = $OutlawWorkerAllAnimationsBaked/AnimationPlayer #  animationplayer for the model
 
 # controls the worker's behaviour
 func _physics_process(delta):
+	worker_rotation() # permanently sets the direction the worker is facing
+	if worker_anim.current_animation == "OutlawWorkerJog": # when the worker is playing the walk animation the particles are emitted
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
+	else: #  when walking stops the particles stop spawning
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false # stops particles
 	await $UnitBehaviours.runBehaviours(self, delta) # calls the worker's behaviour tree
 	animationControl() # then plays the correct animation based on the worker's current state
+
+# rotates the model to face in the right direction
+func worker_rotation():
+	var nav = $NavAgent.get_next_path_position() # position where the worker moves next on his path to the final destination
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.look_at(nav) # looks at the next position
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotation.x = rad_to_deg(90) # locks the rotation of x
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotate_object_local(Vector3.UP, PI) # flips the model 
 
 # controls the worker's animation
 func animationControl():
 	if interaction_state == 1:
-		$rebel_anim/AnimationPlayer.play("attack") # plays the attack animation if the worker is mining
+		worker_anim.play("OutlawWorkerHarvest") # plays the attack animation if the worker is mining
 	elif velocity != Vector3.ZERO:
-		$rebel_anim/AnimationPlayer.play("walk") # plays the walk animation if they are moving
+		worker_anim.play("OutlawWorkerJog") # plays the walk animation if they are moving
 	else:
-		$rebel_anim/AnimationPlayer.play("idle") # plays the idle animation otherwise
+		worker_anim.play("OutlawWorkerIdle") # plays the idle animation otherwise
 
 # sets up the worker and its properties when it is spawned
 func setUp(type):
@@ -74,7 +87,8 @@ func setUp(type):
 func startMiningState():
 	$MiningTimer.start(MINE_SPEED)
 	await get_tree().create_timer(1).timeout
-	Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3")
+	if Global.player_faction == faction:
+		Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3")
 
 # advanced the worker's interaction state
 func advanceInteractionState():
@@ -237,7 +251,7 @@ func getHQ():
 # sets the worker's faction to a given value
 func setFaction(f : int):
 	faction = f
-	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
+
 	
 	if destination == null:
 		destination = global_position # if the worker is first set up, also sets up the movement variable
@@ -257,12 +271,12 @@ func getSize():
 # changes the color of the worker when selected
 func select():
 	pass
-	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
+	#$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
 
 # changes the color of the worker when it is deselected
 func deselect():
 	pass
-	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
+	#$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
 
 # if a new resource entered the worker's detection radius, adds it to its list
 func _on_range_area_body_entered(body):
