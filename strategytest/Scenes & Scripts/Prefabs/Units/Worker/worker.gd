@@ -33,12 +33,15 @@ func _ready():
 	$HealthbarContainer/HealthBar.value = hp
 	await get_tree().physics_frame
 	velocity = Vector3.ZERO
+# controls the worker's behaviour
+func _physics_process(delta):
+	if worker_anim.current_animation == "OutlawWorkerJog":
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true
+	else:
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false
+	await $UnitBehaviours.runBehaviours(self, delta) # calls the worker's behaviour tree
+	animationControl() # then plays the correct animation based on the worker's current state
 
-
-	
-
-		
-	
 func worker_rotation():
 	pass
 	#$OutlawWorkerAllAnimationsBaked/OutlawWorker.look_at(go_to)
@@ -50,7 +53,6 @@ func _on_range_area_body_entered(body):
 	if body.is_in_group("resource") and !known_resources.has(body):
 		known_resources.append(body)
 
-# moves the agent on the computed safe velocity
 
 
 
@@ -61,23 +63,17 @@ func _on_range_area_body_entered(body):
 
 
 
-# controls the worker's behaviour
-func _physics_process(delta):
-	if worker_anim.current_animation == "OutlawWorkerJog":
-		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true
-	else:
-		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false
-	await $UnitBehaviours.runBehaviours(self, delta) # calls the worker's behaviour tree
-	animationControl() # then plays the correct animation based on the worker's current state
+
+
 
 # controls the worker's animation
 func animationControl():
 	if interaction_state == 1:
-		$rebel_anim/AnimationPlayer.play("attack") # plays the attack animation if the worker is mining
+		worker_anim.play("OutlawWorkerAttack") # plays the attack animation if the worker is mining
 	elif velocity != Vector3.ZERO:
-		$rebel_anim/AnimationPlayer.play("walk") # plays the walk animation if they are moving
+		worker_anim.play("OutlawWorkerJog") # plays the walk animation if they are moving
 	else:
-		$rebel_anim/AnimationPlayer.play("idle") # plays the idle animation otherwise
+		worker_anim.play("OutlawWorkerIdle") # plays the idle animation otherwise
 
 # calls the worker to start mining
 func startMiningState():
