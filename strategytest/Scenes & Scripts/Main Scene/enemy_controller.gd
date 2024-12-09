@@ -21,14 +21,11 @@ func _ready():
 	else:
 		$"../HQRed".process_mode = Node.PROCESS_MODE_DISABLED
 
-
-
-
 # issues AI commands
 func _physics_process(_delta):
 	# checks if any workers need new instructions
 	for worker in worker_storage.get_children():
-		if !worker.isWorking():
+		if !worker.isActive():
 			setWorkerDestination(worker) # sets a new destination for workers that don't currently have one
 	
 	# checks if any combat units need new instructions
@@ -58,7 +55,7 @@ func setWorkerDestination(worker):
 					resource_list.erase(resource) # otherwise, ignores all resources for buildings instead
 		if resource_list.size() == 0:
 			resource_list = resources.get_children() # re-generates the list if ignoring a specific type of resource would cause the list to be empty
-		worker.setTargetPosition(resource_list[randi_range(0, resource_list.size() - 1)].global_position) # sends the worker to a random resource from the list
+		worker.setTarget(resource_list[randi_range(0, resource_list.size() - 1)]) # sends the worker to a random resource from the list
 
 # issues new commands to a combat unit
 func issueUnitCommand(unit):

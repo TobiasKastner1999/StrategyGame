@@ -46,6 +46,7 @@ func spawnWorker(spawn_point):
 	var worker = load("res://Scenes & Scripts/Prefabs/Units/Worker/worker.tscn").instantiate() # instantiates a new worker object
 	$Workers.add_child(worker) # adds the worker to the correct node
 	worker.global_position = spawn_point # moves the worker to the correct spawn location
+	worker.setUp("worker")
 	worker.setFaction(faction) # assigns the worker to the hq's faction
 	worker.hq = self # saves the hq's position on the worker
 	worker.deleted.connect(_on_worker_deleted)
