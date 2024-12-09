@@ -23,7 +23,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") # the gr
 @onready var hp = MAX_HP # the worker's current hit points, set to the maximum on instantiation
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the worker's movement
 @onready var hq = $".." # the hq the worker belongs to
-
+@onready var worker_anim = $OutlawWorkerAllAnimationsBaked/AnimationPlayer
 # called when the worker is first instantiated
 func _ready():
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
@@ -33,11 +33,11 @@ func _ready():
 
 # controls the worker's movement and other actions
 func _physics_process(delta):
-	print($rebel_anim/AnimationPlayer.current_animation)
-	if $rebel_anim/AnimationPlayer.current_animation == "walk":
-		$rebel_anim/Armature_002/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true
+	
+	if worker_anim.current_animation == "OutlawWorkerJog":
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true
 	else:
-		$rebel_anim/Armature_002/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false
 		
 	# applies gravity
 	if not is_on_floor():
@@ -62,7 +62,8 @@ func _physics_process(delta):
 				mining = true
 				$MiningTimer.start(MINE_SPEED)
 				await get_tree().create_timer(1).timeout
-				Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3")
+				if Global.player_faction == $".".getFaction():
+					Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3")
 			# if the worker is further away from the destination
 			else:
 				go_to = target_resource.global_position # sets movement destination
@@ -103,12 +104,12 @@ func _physics_process(delta):
 
 func animationControl():
 	if mining:
-		$rebel_anim/AnimationPlayer.play("attack")
+		worker_anim.play("OutlawWorkerHarvest")
 		
 	elif has_moved and velocity != Vector3.ZERO:
-		$rebel_anim/AnimationPlayer.play("walk")
+		worker_anim.play("OutlawWorkerJog")
 	else:
-		$rebel_anim/AnimationPlayer.play("idle")
+		worker_anim.play("OutlawWorkerIdle")
 
 # receives the path from NavAgent
 func move_to(target_pos):
@@ -131,7 +132,7 @@ func setAttackTarget(_unit):
 # sets the worker's faction to a given value
 func setFaction(f : int):
 	faction = f
-	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
+	
 	
 	if go_to == null:
 		go_to = global_position # if the worker is first set up, also sets up the movement variable
@@ -158,12 +159,12 @@ func isWorking():
 # changes the color of the worker when selected
 func select():
 	pass
-	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
+
 
 # changes the color of the worker when it is deselected
 func deselect():
 	pass
-	$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
+
 
 # sets the position the NavAgent will move to
 func setTargetPosition(target):
@@ -172,9 +173,9 @@ func setTargetPosition(target):
 	go_to = target
 	worker_rotation()
 func worker_rotation():
-	$rebel_anim.look_at(go_to)
-	$rebel_anim.rotation.x = 0
-	$rebel_anim.rotate_object_local(Vector3.UP, PI)
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.look_at(go_to)
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotation.x = rad_to_deg(90)
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotate_object_local(Vector3.UP, PI)
 	
 # removes a cleared resource node from the worker's list if it is on there
 func removeResourceKnowledge(removed_resource):
