@@ -6,14 +6,14 @@ var run_node : Node3D # the node the behaviour is operating on
 func runBehaviour(node, _delta):
 	run_node = node # stores the operating node
 	
-	if targetInRange() and canAttack(): # checks if the target is within range of the node, and if the unit can attack
+	if combatTargetInRange() and canAttack(): # checks if the target is within range of the node, and if the unit can attack
 		attackTarget() # if yes, attacks the target
 
 # checks if the target is within range of the node
-func targetInRange():
+func combatTargetInRange():
 	var target = run_node.getActiveTarget()
 	
-	if target != null:
+	if target != null and run_node.getTargetMode() == 1:
 		var attack_range = run_node.getAttackRange() # if the node has a target, gets the node's attack range
 	
 		if run_node.getPosition().distance_to(target.global_position) <= attack_range: # then determines if the target is within the attack range

@@ -45,6 +45,7 @@ func checkForPrevious():
 # has the node target its previous target
 func reTargetPrevious():
 	run_node.setTarget(run_node.getPrevious())
+	run_node.setTargetMode(0)
 
 # checks if the node knows of any other resource nodes
 func checkForKnown():
@@ -69,7 +70,9 @@ func targetKnown():
 			run_node.removeResourceKnowledge(resource) # otherwise clears the resource from the node's list
 	
 	run_node.setTarget(target) # has the node target the intended target
+	run_node.setTargetMode(0)
 
 # has the node target its base
 func targetHQ():
 	run_node.setTarget(run_node.getHQ())
+	run_node.setTargetMode(0)

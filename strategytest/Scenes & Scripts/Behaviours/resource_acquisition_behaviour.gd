@@ -20,7 +20,7 @@ func runBehaviour(node):
 
 # returns the node's current target type
 func getTargetType():
-	if run_node.getActiveTarget() != null:
+	if run_node.getActiveTarget() != null and run_node.getTargetMode() == 0:
 		match run_node.getActiveTarget().getType():
 			"resource":
 				return 1 # returns 1 if the node is targeting a resource

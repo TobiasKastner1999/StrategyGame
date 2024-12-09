@@ -18,11 +18,11 @@ var known_resources = [] # an array of all resource nodes the worker has discove
 var priority_movement = false # is the worker's currently overwritten by a player input?
 var destination # the worker's current navigation destination
 var target_node # the node the worker currently is targeting
+var target_mode : int # which targeting mode is the worker currently following? (0 = resources, 1 = combat)
 var previous_target # the worker's previously targeted resource
 
 var hp : float # the worker's current hit points
 var can_attack = true # can the worker currently attack (is its attack not on cooldown)?
-var active_target : PhysicsBody3D # the enemy target the worker is currently attacking
 
 var unit_type : int # the worker's type
 var faction : int # which faction does this worker belong to?
@@ -35,6 +35,24 @@ var speed : float # the worker's movement speed
 
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the worker's movement
 @onready var hq = $".." # the hq the worker belongs to
+
+func _ready():
+	max_hp = 10.0
+	damage_value = 1.0
+	attack_range = 2.0
+	attack_speed = 3.0
+	detection_range = 15.0
+	speed = 10.0
+	
+	hp = max_hp # sets initial hp to max hp
+	
+	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
+	$HealthbarContainer/HealthBar.value = hp
+	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
+	$RangeArea/RangeColl.shape.radius = detection_range
+	
+	await get_tree().physics_frame
+	destination = global_position # sets the initial navigation target to the unit's own position
 
 # controls the worker's behaviour
 func _physics_process(delta):
@@ -90,16 +108,15 @@ func getInteractionState():
 
 # checks if the worker is currently doing anything
 func isWorking():
-	if known_resources.size() > 0 or resource != [0, 0] or priority_movement or active_target != null:
+	if known_resources.size() > 0 or resource != [0, 0] or priority_movement or target_node != null:
 		return true # returns true if the worker is delivering a crystal or knows of any remaining resource nodes
 	else:
 		return false
 
 # sets the position the NavAgent will move to
 func setTargetPosition(target):
-	target_node = null
-	if nearby_enemies.size() != 0 or active_target != null:
-		active_target = null
+	if nearby_enemies.size() != 0 or target_node != null:
+		target_node = null
 		priority_movement = true
 	destination = target
 
@@ -147,14 +164,16 @@ func takeDamage(damage, attacker):
 	if hp <= 0: # removes the worker if it's remaining hp is 0 or less
 		deleted.emit(self) # tells the system to clear remaining references to the worker
 		queue_free() # then deletes the worker
-	elif active_target == null:
+	elif target_node == null or target_node.getType() != "combat":
 		priority_movement = false
-		active_target = attacker # causes the worker to fight back if it does not yet have a target
+		target_node = attacker # causes the worker to fight back if it does not yet have a target
+		setTargetMode(1)
 
 # sets attack target (has no effect for the worker)
 func setAttackTarget(target):
 	if target.is_in_group("CombatTarget") and target.getFaction() != faction:
-		active_target = target # sets the target if the given entity is a valid target and belongs to an enemy faction
+		target_node = target # sets the target if the given entity is a valid target and belongs to an enemy faction
+		setTargetMode(1)
 
 # attack the worker's current target
 func startAttackCooldown():
@@ -164,8 +183,8 @@ func startAttackCooldown():
 
 # sets the target's position as the movement destination
 func focusAtTarget():
-	if active_target != null:
-		destination = active_target.global_position
+	if target_node != null:
+		destination = target_node.global_position
 
 # returns a list of enemy units currently near the unit
 func getNearbyEnemies():
@@ -205,10 +224,15 @@ func getResourceState():
 func getActiveTarget():
 	return target_node
 
+func setTargetMode(mode):
+	target_mode = mode
+
+func getTargetMode():
+	return target_mode
+
 # returns the worker's saved previous resource node target
 func getPrevious():
 	return previous_target
-	# return active_target
 
 # returns a list of the resources the worker knows
 func getKnownResources():

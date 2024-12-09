@@ -13,7 +13,7 @@ func runBehaviour(node, _delta):
 
 # checks if the node has no target
 func hasEmptyTarget():
-	if run_node.getActiveTarget() != null:
+	if run_node.getActiveTarget() != null and run_node.getTargetMode() == 1:
 		return false
 	return true
 
@@ -38,6 +38,7 @@ func prioritySelectTarget():
 			distance = enemy_distance
 	
 	run_node.setAttackTarget(target) # sets target as the node's new attack target
+	run_node.setTargetMode(1)
 	run_node.focusAtTarget()
 
 # checks for a target's priority

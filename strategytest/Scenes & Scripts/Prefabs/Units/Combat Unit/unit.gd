@@ -139,6 +139,9 @@ func setAttackTarget(target):
 func getActiveTarget():
 	return active_target
 
+func getTargetMode():
+	return 1
+
 # returns a list of enemy units currently near the unit
 func getNearbyEnemies():
 	return nearby_enemies
