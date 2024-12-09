@@ -25,7 +25,7 @@ var target_resource
 @onready var hp = MAX_HP # the worker's current hit points, set to the maximum on instantiation
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the worker's movement
 @onready var hq = $".." # the hq the worker belongs to
-@onready var worker_anim = $OutlawWorkerAllAnimationsBaked/AnimationPlayer
+@onready var worker_anim = $OutlawWorkerAllAnimationsBaked/AnimationPlayer #  animationplayer for the model
 # called when the worker is first instantiated
 
 func _ready():
@@ -36,19 +36,20 @@ func _ready():
 
 # controls the worker's behaviour
 func _physics_process(delta):
-	worker_rotation()
-	if worker_anim.current_animation == "OutlawWorkerJog":
-		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true
-	else:
-		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false
+	worker_rotation() # permanently sets the direction the worker is facing
+	if worker_anim.current_animation == "OutlawWorkerJog": # when the worker is playing the walk animation the particles are emitted
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
+	else: #  when walking stops the particles stop spawning
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false # stops particles
 	await $UnitBehaviours.runBehaviours(self, delta) # calls the worker's behaviour tree
 	animationControl() # then plays the correct animation based on the worker's current state
 
+# rotates the model to face in the right direction
 func worker_rotation():
-	var nav = $NavAgent.get_next_path_position()
-	$OutlawWorkerAllAnimationsBaked/OutlawWorker.look_at(nav)
-	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotation.x = rad_to_deg(90)
-	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotate_object_local(Vector3.UP, PI)
+	var nav = $NavAgent.get_next_path_position() # position where the worker moves next on his path to the final destination
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.look_at(nav) # looks at the next position
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotation.x = rad_to_deg(90) # locks the rotation of x
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotate_object_local(Vector3.UP, PI) # flips the model 
 
 # if a new resource entered the worker's detection radius, adds it to its list
 func _on_range_area_body_entered(body):
