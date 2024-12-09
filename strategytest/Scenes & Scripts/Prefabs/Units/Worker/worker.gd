@@ -23,6 +23,7 @@ var previous_target # the worker's previously targeted resource
 
 var hp : float # the worker's current hit points
 var can_attack = true # can the worker currently attack (is its attack not on cooldown)?
+var attacking = false # is the worker playing its attack animation?
 
 var unit_type : int # the worker's type
 var faction : int # which faction does this worker belong to?
@@ -39,12 +40,8 @@ var speed : float # the worker's movement speed
 
 # controls the worker's behaviour
 func _physics_process(delta):
-	worker_rotation() # permanently sets the direction the worker is facing
-	if worker_anim.current_animation == "OutlawWorkerJog": # when the worker is playing the walk animation the particles are emitted
-		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
-	else: #  when walking stops the particles stop spawning
-		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false # stops particles
 	await $UnitBehaviours.runBehaviours(self, delta) # calls the worker's behaviour tree
+	worker_rotation() # permanently sets the direction the worker is facing
 	animationControl() # then plays the correct animation based on the worker's current state
 
 # rotates the model to face in the right direction
@@ -56,12 +53,18 @@ func worker_rotation():
 
 # controls the worker's animation
 func animationControl():
-	if interaction_state == 1:
-		worker_anim.play("OutlawWorkerHarvest") # plays the attack animation if the worker is mining
-	elif velocity != Vector3.ZERO:
-		worker_anim.play("OutlawWorkerJog") # plays the walk animation if they are moving
-	else:
-		worker_anim.play("OutlawWorkerIdle") # plays the idle animation otherwise
+	if !attacking:
+		if interaction_state == 1:
+			worker_anim.play("OutlawWorkerHarvest") # plays the attack animation if the worker is mining
+		elif velocity != Vector3.ZERO:
+			worker_anim.play("OutlawWorkerJog") # plays the walk animation if they are moving
+		else:
+			worker_anim.play("OutlawWorkerIdle") # plays the idle animation otherwise
+	
+	if worker_anim.current_animation == "OutlawWorkerJog": # when the worker is playing the walk animation the particles are emitted
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
+	else: #  when walking stops the particles stop spawning
+		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false # stops particles
 
 # sets up the worker and its properties when it is spawned
 func setUp(type):
@@ -181,6 +184,8 @@ func setAttackTarget(target):
 func startAttackCooldown():
 	can_attack = false # disables the worker's attack
 	$AttackTimer.start(attack_speed) # starts the attack cooldown
+	worker_anim.play("OutlawWorkerAttack") # plays the attack animation if the worker is mining
+	attacking = true
 
 # sets the target's position as the movement destination
 func focusAtTarget():
@@ -300,3 +305,7 @@ func _on_mining_timer_timeout():
 # re-enables attack when the attack cooldown ends
 func _on_attack_timer_timeout():
 	can_attack = true
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "OutlawWorkerAttack":
+		attacking = false
