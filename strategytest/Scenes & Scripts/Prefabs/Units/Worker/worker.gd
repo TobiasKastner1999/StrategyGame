@@ -3,7 +3,7 @@ extends CharacterBody3D
 signal deleted(worker) # to tell the system that the worker has been removed
 
 const TARGET_TYPE = "worker" # the worker's combat type
-const SPEED = 10.0 # the worker's movement speed
+const SPEED = 5.0 # the worker's movement speed
 const MAX_HP = 2.0 # the worker's maximum hit points
 const MINE_SPEED = 5.0 # the speed at which the worker acquired resources
 const INTERACTION_STATE_MAX = 2 # the maximum value of the worker's interaction state
@@ -20,7 +20,6 @@ var priority_movement = false # is the worker's currently overwritten by a playe
 var destination # the worker's current navigation destination
 var target_node # the node the worker currently is targeting
 var previous_target # the worker's previously targeted resource
-var mining = false
 var target_resource 
 
 @onready var hp = MAX_HP # the worker's current hit points, set to the maximum on instantiation
@@ -28,11 +27,13 @@ var target_resource
 @onready var hq = $".." # the hq the worker belongs to
 @onready var worker_anim = $OutlawWorkerAllAnimationsBaked/AnimationPlayer
 # called when the worker is first instantiated
+
 func _ready():
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	await get_tree().physics_frame
 	velocity = Vector3.ZERO
+
 # controls the worker's behaviour
 func _physics_process(delta):
 	if worker_anim.current_animation == "OutlawWorkerJog":
@@ -52,19 +53,6 @@ func worker_rotation():
 func _on_range_area_body_entered(body):
 	if body.is_in_group("resource") and !known_resources.has(body):
 		known_resources.append(body)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # controls the worker's animation
 func animationControl():
@@ -154,6 +142,12 @@ func takeDamage(damage, _attacker):
 func setAttackTarget(_unit):
 	pass
 
+func setTargetMode(_mode):
+	pass
+
+func getTargetMode():
+	return 0
+
 # updates the worker's carried resource
 func setResource(new_resource):
 	resource = new_resource
@@ -192,7 +186,6 @@ func getHQ():
 # sets the worker's faction to a given value
 func setFaction(f : int):
 	faction = f
-
 	
 	if destination == null:
 		destination = global_position # if the worker is first set up, also sets up the movement variable
@@ -223,9 +216,4 @@ func _on_nav_agent_velocity_computed(safe_velocity):
 	move_and_slide()
 
 func _on_mining_timer_timeout():
-	mining = false # Replace with function body.
-	if is_instance_valid(target_resource):
-		resource[0] = target_resource.getType()
-		target_resource.takeResource() # removes a resource from that node
-		resource[1] += 1 # adds the crystal to the worker
-		target_resource = null # clears the worker's target's resource
+	advanceInteractionState()
