@@ -31,7 +31,7 @@ func getTargetType():
 # deposits the node's carried resource at the base
 func depositResource():
 	Global.updateResource(run_node.getFaction(), run_node.getResource()[0], run_node.getResource()[1]) # adds resource to player's resources
-	run_node.setResource([0,0]) # resets the node's carried resource
+	run_node.clearResource() # resets the node's carried resource
 
 # returns the node's interaction state
 func checkInteractionState():

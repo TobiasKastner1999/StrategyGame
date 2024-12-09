@@ -51,7 +51,7 @@ func setWorkerDestination(worker):
 					resource_list.erase(resource) # ignores all resources for units
 		else:
 			for resource in resource_list:
-				if resource.getType() == 0:
+				if resource.getResourceType() == 0:
 					resource_list.erase(resource) # otherwise, ignores all resources for buildings instead
 		if resource_list.size() == 0:
 			resource_list = resources.get_children() # re-generates the list if ignoring a specific type of resource would cause the list to be empty

@@ -3,7 +3,7 @@ extends CharacterBody3D
 signal deleted(unit) # to tell the system the unit has been defeated
 
 const TARGET_TYPE = "combat" # the unit's target type
-const TARGET_PRIORITY = ["combat", "hq", "building", "worker"] # the unit's targeting priority based on types
+const TARGET_PRIORITY = ["combat", "worker", "hq", "building"] # the unit's targeting priority based on types
 
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
@@ -45,7 +45,7 @@ func takeDamage(damage, attacker):
 		Global.updateUnitCount(faction, -1)
 		deleted.emit(self) # tells the system to clear remaining references to the unit
 		queue_free() # then deletes the unit
-	elif active_target == null:
+	elif active_target == null or TARGET_PRIORITY.find(active_target.getType()) > TARGET_PRIORITY.find(attacker.getType()):
 		priority_movement = false
 		active_target = attacker # causes the unit to fight back if it does not yet have a target
 
@@ -134,6 +134,9 @@ func getPosition():
 func setAttackTarget(target):
 	if target.is_in_group("CombatTarget") and target.getFaction() != faction:
 		active_target = target # sets the target if the given entity is a valid target and belongs to an enemy faction
+
+func clearAttackTarget():
+	active_target = null
 
 # returns the unit's current active target
 func getActiveTarget():

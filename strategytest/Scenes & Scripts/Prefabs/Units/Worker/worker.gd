@@ -6,7 +6,7 @@ const TARGET_PRIORITY = ["combat", "hq", "building", "worker"] # the worker's ta
 const TARGET_TYPE = "worker" # the worker's combat type
 const MINE_SPEED = 5.0 # the speed at which the worker acquired resources
 const INTERACTION_STATE_MAX = 2 # the maximum value of the worker's interaction state
-const PROXIMITY_DISTANCE = 5.0 # the worker's proximity distance
+const PROXIMITY_DISTANCE = 10.0 # the worker's proximity distance
 
 var SR
 var interaction_state = 0 # which state of its object interaction is the worker currently in?
@@ -215,6 +215,11 @@ func getAttackAvailability():
 # updates the worker's carried resource
 func setResource(new_resource):
 	resource = new_resource
+
+func clearResource():
+	resource = [0,0]
+	if target_node == hq:
+		target_node = null
 
 # returns the worker's currently carried resource
 func getResource():
