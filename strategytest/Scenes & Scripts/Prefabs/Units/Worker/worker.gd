@@ -67,7 +67,8 @@ func animationControl():
 func startMiningState():
 	$MiningTimer.start(MINE_SPEED)
 	await get_tree().create_timer(1).timeout
-	Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3")
+	if Global.player_faction == faction:
+		Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3")
 
 # advanced the worker's interaction state
 func advanceInteractionState():
