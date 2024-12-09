@@ -34,12 +34,13 @@ var detection_range : float # the distance at which the worker can detect other 
 var speed : float # the worker's movement speed
 
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the worker's movement
-@onready var hq = $".." # the hq the worker belongs to
+@onready var hq = $".../HQBlue" # the hq the worker belongs to
 
 func _ready():
+	faction = 0
 	max_hp = 10.0
 	damage_value = 1.0
-	attack_range = 2.0
+	attack_range = 5.0
 	attack_speed = 3.0
 	detection_range = 15.0
 	speed = 10.0
@@ -107,9 +108,16 @@ func getInteractionState():
 	return interaction_state
 
 # checks if the worker is currently doing anything
-func isWorking():
+func isActive():
 	if known_resources.size() > 0 or resource != [0, 0] or priority_movement or target_node != null:
 		return true # returns true if the worker is delivering a crystal or knows of any remaining resource nodes
+	else:
+		return false
+
+# checks if the unit is near a given body
+func isNearBody(node):
+	if $RangeArea.overlaps_body(node):
+		return true
 	else:
 		return false
 
@@ -178,8 +186,7 @@ func setAttackTarget(target):
 # attack the worker's current target
 func startAttackCooldown():
 	can_attack = false # disables the worker's attack
-	$AttackCooldown.start(attack_speed) # starts the attack cooldown
-	$AttackAnim/AnimationPlayer.play("attack")
+	$AttackTimer.start(attack_speed) # starts the attack cooldown
 
 # sets the target's position as the movement destination
 func focusAtTarget():

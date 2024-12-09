@@ -139,6 +139,9 @@ func setAttackTarget(target):
 func getActiveTarget():
 	return active_target
 
+func setTargetMode(_mode):
+	pass
+
 func getTargetMode():
 	return 1
 
