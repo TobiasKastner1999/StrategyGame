@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 const CONSTRUCTION_COSTS = [0, 4, 2] # the construction costs for different types of buildings
 
@@ -49,6 +49,14 @@ func getResource(faction, type):
 			return faction_one_resources[type]
 
 
+
+func setCursor(image):
+	var cursor = load(image)
+	Input.set_custom_mouse_cursor(cursor)
+
+func defaultCursor():
+	var arrow
+	Input.set_custom_mouse_cursor(arrow, Input.CURSOR_ARROW)
 # returns to cost for a specified building type
 func getConstructionCost(building_type):
 	return CONSTRUCTION_COSTS[building_type]
@@ -84,5 +92,6 @@ func getBuildingCount():
 func add_to_list(positionX, positionY, faction, id, dot, worker):
 	Global.list[list_counter] = {"positionX" : positionX, "positionY" : positionY, "faction" : faction , "id" : id, "dot": dot, "worker" : worker}
 	list_counter += 1
+
 
 

@@ -16,9 +16,11 @@ var interface_input_mode : int:
 		interface_input_mode = new_value
 		
 		if interface_input_mode:
+			Global.setCursor("res://Assets/UI/red_dot.png")
 			interface_label_building.show()
 			node_building_placer.enable_area()
 		else:
+			Global.defaultCursor()
 			node_building_placer.hide()
 			interface_label_building.hide()
 			node_building_placer.disable_area()
@@ -116,13 +118,7 @@ func gameEnd(faction):
 func getInputMode():
 	return interface_input_mode
 
-## when the player starts the game and chooses the blue faction
-#func _on_button_blue_pressed():
-	#start_game.emit(0)
-#
-## when the player starts the game and chooses the red faction
-#func _on_button_red_pressed():
-	#start_game.emit(1)
+
 
 
 func _on_faction_selection_start_game_dome():

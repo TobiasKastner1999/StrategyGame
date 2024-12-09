@@ -4,11 +4,11 @@ var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
 #var cursor = load()
 # called at the start of the game
 func _ready():
-	#Input.set_custom_mouse_cursor(cursor)
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
 	
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
+	checkUnderMouse($Camera/Camera)
 	$Counter.set_text("Faction 0 Resources: " + str(Global.faction_zero_resources) + " Faction 1 Resources: " + str(Global.faction_one_resources) + "   " + "FPS: " + str(Engine.get_frames_per_second()))
 
 # attempts to remove a deleted unit from the camera's selection
@@ -33,7 +33,6 @@ func gameEnd(faction):
 # once the player chooses a faction at the start of the game
 func _on_interface_start_game(faction):
 	get_tree().paused = false # ends the game's freeze state
-	
 	# then toggles the visibility of various UI elements
 	$Interface/FactionSelection.visible = false
 	$Interface/UIFrame.visible = true
@@ -67,5 +66,24 @@ func _on_timer_timeout():
 	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT # activates the blue hq
 	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT # activates the red hq
 
-
+# mouse cursor on hovering above certain objects
+func checkUnderMouse(camera):
+	var mousePos = get_viewport().get_mouse_position()
+	var raylength = 1000
+	var from = camera.project_ray_origin(mousePos)
+	var to = from + camera.project_ray_normal(mousePos) * raylength
+	var space = get_world_3d().direct_space_state
+	var rayQuery = PhysicsRayQueryParameters3D.new()
+	rayQuery.from = from
+	rayQuery.to = to
+	var result = space.intersect_ray(rayQuery)
+	if result.size()<1:
+		return
+	if $Interface.interface_input_mode == 0: # checks if buildingmode is on
+		if result.collider.is_in_group("resource"): # called when mouse above crystal
+			Global.setCursor("res://Assets/UI/blue_dot.png") # sets the cursor
+		elif result.collider.is_in_group("Selectable") and result.collider.faction != Global.player_faction: # checks for enemy units
+			Global.setCursor("res://Assets/UI/red_dot.png") # sets the cursor
+		else:
+			Global.defaultCursor() #  sets the cursor to default when above nothing
 
