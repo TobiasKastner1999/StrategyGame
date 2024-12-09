@@ -36,6 +36,7 @@ func _ready():
 
 # controls the worker's behaviour
 func _physics_process(delta):
+	worker_rotation()
 	if worker_anim.current_animation == "OutlawWorkerJog":
 		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true
 	else:
@@ -44,10 +45,10 @@ func _physics_process(delta):
 	animationControl() # then plays the correct animation based on the worker's current state
 
 func worker_rotation():
-	pass
-	#$OutlawWorkerAllAnimationsBaked/OutlawWorker.look_at(go_to)
-	#$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotation.x = rad_to_deg(90)
-	#$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotate_object_local(Vector3.UP, PI)
+	var nav = $NavAgent.get_next_path_position()
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.look_at(nav)
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotation.x = rad_to_deg(90)
+	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotate_object_local(Vector3.UP, PI)
 
 # if a new resource entered the worker's detection radius, adds it to its list
 func _on_range_area_body_entered(body):
