@@ -75,7 +75,6 @@ func setUp(type):
 	attack_speed = Global.unit_dict[str(type)]["attack_speed"]
 	detection_range = Global.unit_dict[str(type)]["detection_range"]
 	speed = Global.unit_dict[str(type)]["speed"]
-	
 	hp = max_hp # sets initial hp to max hp
 	
 	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
