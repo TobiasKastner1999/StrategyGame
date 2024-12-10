@@ -84,6 +84,8 @@ func checkUnderMouse(camera):
 			Global.setCursor("res://Assets/UI/blue_dot.png") # sets the cursor
 		elif result.collider.is_in_group("Selectable") and result.collider.faction != Global.player_faction: # checks for enemy units
 			Global.setCursor("res://Assets/UI/red_dot.png") # sets the cursor
+		elif result.collider.is_in_group("Structure") and result.collider.faction != Global.player_faction: # checks for enemy buildings
+			Global.setCursor("res://Assets/UI/red_dot.png") # sets the cursor
 		else:
 			Global.defaultCursor() #  sets the cursor to default when above nothing
 
