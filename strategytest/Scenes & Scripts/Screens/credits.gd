@@ -6,6 +6,8 @@ extends Node2D
 
  # added text to the credits
 func _ready():
+	$Button.text = Global.getText($Button.text)
+	
 	text.add_text("Dominik-Niklas Fuchs")
 	text.newline()
 	text.add_text("Tobias Kastner")

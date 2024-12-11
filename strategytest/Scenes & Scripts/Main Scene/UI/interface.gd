@@ -34,6 +34,9 @@ func _ready():
 	interface_btn_building.pressed.connect(func() -> void: interface_input_mode = 1)
 	interface_btn_housing.pressed.connect(func() -> void: interface_input_mode = 2)
 	interface_input_mode = 0
+	
+	$BuildingButton.text = Global.getText("@interface_button_building")
+	$HousingButton.text = Global.getText("@interface_button_housing")
 
 func _physics_process(_delta):
 	updateGamestateInfo()
@@ -97,9 +100,9 @@ func _input(_event):
 # updates the Gamestatinfotext 
 func updateGamestateInfo():
 	var state_text = ""
-	state_text += "[b]Combat Units:[/b] " + str(Global.getUnitCount(Global.player_faction)) + "/" + str(Global.getUnitLimit(Global.player_faction)) + "\n"
-	state_text += "[b]Workers[/b]: " + hq.getWorkerNum() + "\n"
-	state_text += "[b]Buildings:[/b] " + str(Global.getBuildingCount())
+	state_text += "[b]" + Global.getText("@state_info_units") + ":[/b] " + str(Global.getUnitCount(Global.player_faction)) + "/" + str(Global.getUnitLimit(Global.player_faction)) + "\n"
+	state_text += "[b]" + Global.getText("@state_info_workers") + ":[/b]: " + hq.getWorkerNum() + "\n"
+	state_text += "[b]" + Global.getText("@state_info_buildings") + ":[/b] " + str(Global.getBuildingCount())
 	$ResourceTab/ResourceAmount1.text = str(Global.getResource(Global.player_faction, 0)) + "\n" # updates the recourse tab
 	$ResourceTab/ResourceAmount2.text = str(Global.getResource(Global.player_faction, 1)) + "\n" # updates the recourse tab
 	$GamestateInfo.text = state_text
@@ -109,17 +112,15 @@ func gameEnd(faction):
 	for c in get_children():
 		c.visible = false # hides all UI elements
 	if faction == Global.player_faction:
-		$EndScreen.text = "Game Over! You lost..." # sets end screen text if the player was defeated
+		$EndScreen.text = Global.getText("@game_over_loss") # sets end screen text if the player was defeated
 	else:
-		$EndScreen.text = "Victory!" # sets end screen text if the player won the game
+		$EndScreen.text = Global.getText("@game_over_win") # sets end screen text if the player won the game
 	$EndScreen.visible = true # enables end screen visibility
+	$EndScreen.setText()
 
 # returns the interface's current input mode
 func getInputMode():
 	return interface_input_mode
-
-
-
 
 func _on_faction_selection_start_game_dome():
 	start_game.emit(0)

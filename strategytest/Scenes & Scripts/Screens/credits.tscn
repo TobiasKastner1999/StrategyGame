@@ -20,6 +20,6 @@ offset_top = 930.0
 offset_right = 1143.0
 offset_bottom = 1045.0
 theme_override_font_sizes/font_size = 30
-text = "menu"
+text = "@interface_button_menu"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

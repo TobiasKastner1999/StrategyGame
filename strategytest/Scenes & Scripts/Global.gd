@@ -8,18 +8,13 @@ var player_faction : int # the faction the player has chosen for the current gam
 var list = {} # dictionary to store units and building to project on the minimap
 var list_counter = 1 # sets the start value of the dictionary to 1 instead of 0 
 
-
+var selected_language : String = "en" # the language currently selected by the player
 
 var unit_max = [0, 0] # how many units can a faction currently have at max?
 var unit_count = [0, 0] # how many units does each faction currently have?
 var player_building_count : int = 0 # how many building's has the player constructed?
 
 @onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_types.json")) # a dictionary of the different unit types and their properties
-
-#func _ready():
-	#faction_zero_resources = Balance.faction_zero_resources
-	#faction_one_resources = Balance.faction_one_resources
-	#unit_max = Balance.unit_max
 	
 # returns the correct color for a given faction
 func getFactionColor(faction):
@@ -53,7 +48,8 @@ func getResource(faction, type):
 		1:
 			return faction_one_resources[type]
 
-
+func getText(id):
+	return id
 
 func setCursor(image):
 	var cursor = load(image)

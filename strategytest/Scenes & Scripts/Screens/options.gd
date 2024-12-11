@@ -8,7 +8,12 @@ var language = 0 # languagecounter that indicates the current language selected
 func _ready():
 	checkMusic() # updates the visual sliders of music settings
 	checkSound()
-
+	
+	$MenuButton.text = Global.getText($MenuButton.text)
+	$Panel/ContinueButtons.text = Global.getText($Panel/ContinueButtons.text)
+	$Panel/QuitButtons.text = Global.getText($Panel/QuitButtons.text)
+	#$LabelMusic.text = Global.getText($LabelMusic.text)
+	#$LabelSound.text = Global.getText($LabelSound.text)
 
 func _process(delta):
 	checkFlag() # perma updates the current flag of the language icon
@@ -85,10 +90,6 @@ func checkSound(): # function to update the sliders on the menu
 		else:
 			button.visible = false # hides the sliders outside range
 
-
-
-
-
 func checkFlag(): # updates the flag icon in language selection
 	if language < 0: 
 		language = 0 # lowerlimit for the flagcounter 
@@ -107,11 +108,13 @@ func _on_language_left_pressed():
 # sets the language to german
 func _on_german_flag_pressed():
 	language = 1 
+	Global.selected_language = "de"
 	$Panel/VBoxContainer.visible = false
 
 # sets the language to english
 func _on_british_flag_pressed():
 	language = 0
+	Global.selected_language = "en"
 	$Panel/VBoxContainer.visible = false
 
 
