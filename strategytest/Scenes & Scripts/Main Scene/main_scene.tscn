@@ -584,6 +584,7 @@ offset_right = 639.667
 offset_bottom = 2089.27
 
 [node name="Options" parent="." instance=ExtResource("20_x38bj")]
+visible = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
