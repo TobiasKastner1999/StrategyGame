@@ -99,9 +99,9 @@ func checkFlag(): # updates the flag icon in language selection
 		language = 0 # lowerlimit for the flagcounter 
 	if language > 1:
 		language = 1 # upperlimit for the flagcounter
-	if language == 0: # sets the default 0 to english
+	if Global.selected_language == "en": # sets the default 0 to english
 		$Panel/LanguageSelection/FlagSlot.texture = load("res://Assets/UI/british flag.png")
-	elif language == 1: # sets the value 1 to german
+	elif Global.selected_language == "de": # sets the value 1 to german
 		$Panel/LanguageSelection/FlagSlot.texture = load("res://Assets/UI/german flag.png")
 
 func _on_language_left_pressed():
