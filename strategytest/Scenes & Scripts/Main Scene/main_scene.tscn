@@ -432,7 +432,7 @@ offset_left = 355.0
 offset_top = 48.0
 offset_right = 491.0
 offset_bottom = 101.0
-text = "Toggle Status"
+text = "@interface_button_toggle_building"
 
 [node name="ButtonContainer" type="GridContainer" parent="Interface/SelectedPanel"]
 layout_mode = 0

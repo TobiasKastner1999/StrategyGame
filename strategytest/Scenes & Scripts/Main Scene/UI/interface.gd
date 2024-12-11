@@ -35,8 +35,8 @@ func _ready():
 	interface_btn_housing.pressed.connect(func() -> void: interface_input_mode = 2)
 	interface_input_mode = 0
 	
-	$BuildingButton.text = Global.getText("@interface_button_building")
-	$HousingButton.text = Global.getText("@interface_button_housing")
+	$BuildingButton.text = Global.getText("@name_building_barracks")
+	$HousingButton.text = Global.getText("@name_building_housing")
 
 func _physics_process(_delta):
 	updateGamestateInfo()

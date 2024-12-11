@@ -12,8 +12,8 @@ func _ready():
 	$MenuButton.text = Global.getText($MenuButton.text)
 	$Panel/ContinueButtons.text = Global.getText($Panel/ContinueButtons.text)
 	$Panel/QuitButtons.text = Global.getText($Panel/QuitButtons.text)
-	#$LabelMusic.text = Global.getText($LabelMusic.text)
-	#$LabelSound.text = Global.getText($LabelSound.text)
+	$Panel/LabelMusic.text = Global.getText($Panel/LabelMusic.text)
+	$Panel/LabelSound.text = Global.getText($Panel/LabelSound.text)
 
 func _process(delta):
 	checkFlag() # perma updates the current flag of the language icon
@@ -100,8 +100,6 @@ func checkFlag(): # updates the flag icon in language selection
 	elif language == 1: # sets the value 1 to german
 		$Panel/LanguageSelection/FlagSlot.texture = load("res://Assets/UI/german flag.png")
 
-
-
 func _on_language_left_pressed():
 	$Panel/VBoxContainer.visible = true # open the drop down for languages
 
@@ -116,11 +114,6 @@ func _on_british_flag_pressed():
 	language = 0
 	Global.selected_language = "en"
 	$Panel/VBoxContainer.visible = false
-
-
-
-
-
 
 func _on_close():
 	if $MenuButton.visible == false:

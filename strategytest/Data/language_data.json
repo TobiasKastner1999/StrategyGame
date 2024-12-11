@@ -1,0 +1,134 @@
+{
+  "@interface_button_start_game": {
+    "en": "Start Game",
+    "de": "Spiel starten"
+  },
+  "@interface_button_quit_game": {
+    "en": "Quit Game",
+    "de": "Spiel verlassen"
+  },
+  "@interface_button_continue": {
+    "en": "Back to Game",
+    "de": "Zurück zum Spiel"
+  },
+  "@interface_button_main_menu": {
+    "en": "Back to Main Menu",
+    "de": "Zurück zum Hauptmenü"
+  },
+  "@interface_button_menu": {
+    "en": "Back to Menu",
+    "de": "Zurück zum Menü"
+  },
+  "@interface_button_pause_menu": {
+    "en": "Pause Menu",
+    "de": "Pausenmenü"
+  },
+  "@interface_button_settings": {
+    "en": "Settings",
+    "de": "Einstellungen"
+  },
+  "@interface_button_credits": {
+    "en": "Credits",
+    "de": "Credits"
+  },
+  "@interface_button_building": {
+    "en": "Barracks",
+    "de": "Kaserne"
+  },
+  "@interface_button_housing": {
+    "en": "Housing",
+    "de": "Unterkunft"
+  },
+  "@interface_text_music_settings": {
+    "en": "Music Volume",
+    "de": "Musiklautstärke"
+  },
+  "@interface_text_sound_settings": {
+    "en": "Sound Volume",
+    "de": "Tonlautstärke"
+  },
+  "@interface_text_choose_faction": {
+    "en": "Choose your Faction!",
+    "de": "Wähle deine Fraktion!"
+  },
+  "@interface_text_faction_blue": {
+    "en": "Nova Lumina",
+    "de": "Nova Lumina"
+  },
+  "@interface_text_faction_red": {
+    "en": "Ashfolk",
+    "de": "Aschenfolk"
+  },
+  "@interface_button_toggle_building": {
+    "en": "Toggle Production",
+    "de": "Produktion umschalten"
+  },
+  "@game_over_win": {
+    "en": "Victory!",
+    "de": "Du hast gewonnen!"
+  },
+  "@game_over_loss": {
+    "en": "Game Over! You lost...",
+    "de": "Du hast verloren..."
+  },
+  "@state_info_units": {
+    "en": "Combat Units",
+    "de": "Kampfeinheiten"
+  },
+  "@state_info_workers": {
+    "en": "Workers",
+    "de": "Arbeiter"
+  },
+  "@state_info_buildings": {
+    "en": "Buildings",
+    "de": "Gebäude"
+  },
+  "@inspect_text_hp": {
+    "en": "HP",
+    "de": "Leben"
+  },
+  "@inspect_text_status": {
+    "en": "Status",
+    "de": "Status"
+  },
+  "@inspect_text_status_true": {
+    "en": "Active",
+    "de": "Aktiv"
+  },
+  "@inspect_text_status_false": {
+    "en": "Inactive",
+    "de": "Inaktiv"
+  },
+  "@inspect_text_production": {
+    "en": "Production",
+    "de": "Produktion"
+  },
+  "@name_building_barracks": {
+    "en": "Barracks",
+    "de": "Kaserne"
+  },
+  "@name_building_housing": {
+    "en": "Housing",
+    "de": "Unterkunft"
+  },
+  "@name_unit_ranged": {
+    "en": "Ranged",
+    "de": "Fernkämpfer"
+  },
+  "@name_unit_scout": {
+    "en": "Scout",
+    "de": "Kundschafter"
+  },
+  "@name_unit_melee": {
+    "en": "Melee",
+    "de": "Nahkämpfer"
+  },
+  "@name_unit_sniper": {
+    "en": "Sniper",
+    "de": "Scharfschütze"
+  },
+  "@name_unit_worker": {
+    "en": "Worker",
+    "de": "Arbeiter"
+  }
+}

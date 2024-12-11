@@ -3,7 +3,7 @@ extends Node3D
 signal building_menu(building) # to activate the interface when the building is clicked
 signal interface_update() # to update the building's interface display
 
-const DISPLAY_NAME = "Building" # the building's displayed name
+const DISPLAY_NAME = "@name_building_barracks" # the building's displayed name
 const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
 

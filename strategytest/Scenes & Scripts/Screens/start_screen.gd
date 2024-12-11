@@ -1,11 +1,15 @@
 extends Node2D
 
+func _ready():
+	$Start.text = Global.getText($Start.text)
+	$Options.text = Global.getText($Options.text)
+	$Credits.text = Global.getText($Credits.text)
+	$Quit.text = Global.getText($Quit.text)
+
 #func _process(delta):
 	#if $OptionsMenu.visible == false:
 		#$OptionsMenu.visible = false
 		#$OptionsMenu/Panel.visible = true
-
-
 
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Main Scene/main_scene.tscn")# switch scene to main
