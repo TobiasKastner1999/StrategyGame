@@ -14,8 +14,9 @@ var unit_max = [4, 4] # how many units can a faction currently have at max?
 var unit_count = [0, 0] # how many units does each faction currently have?
 var player_building_count : int = 0 # how many building's has the player constructed?
 
-@onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_types.json")) # a dictionary of the different unit types and their properties
-	
+@onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_data.json")) # a dictionary of the different unit types and their properties
+@onready var language_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/language_data.json")) # a dictionary of the different translation of texts in different languages
+
 # returns the correct color for a given faction
 func getFactionColor(faction):
 	match faction:
@@ -49,7 +50,9 @@ func getResource(faction, type):
 			return faction_one_resources[type]
 
 func getText(id):
-	return id
+	if language_dict.has(id):
+		return language_dict[id][selected_language]
+	return ""
 
 func setCursor(image):
 	var cursor = load(image)
