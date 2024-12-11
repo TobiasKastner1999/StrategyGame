@@ -11,7 +11,7 @@ var current_workers = 0 # how many workers are currently alive?
 var can_spawn = false # can the hq spawn a new worker?
 
 @onready var unit_manager = $".."/Units
-@onready var hp = MAX_HP # the hq's current hp, initially set to the maximum
+@onready var hp = Balance.hq_hp # the hq's current hp, initially set to the maximum
 
 @export var faction = 0 # the hq's faction
 
@@ -20,12 +20,12 @@ func _ready():
 	$HqBody.set_surface_override_material(3, load(Global.getFactionColor(faction))) 
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
-	$SpawnTimer.start(SPAWN_DELAY) # prepares to spawn the first worker
+	$SpawnTimer.start(Balance.hq_spawn_delay) # prepares to spawn the first worker
 
 # checks repeatedly to spawn new workers
 func _process(_delta):
 	var spawn_point = getEmptySpawn()
-	if spawn_point != null and can_spawn and current_workers < MAX_WORKERS:
+	if spawn_point != null and can_spawn and current_workers < Balance.worker_limit:
 		spawnWorker(spawn_point) # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
 
 	for i in Global.list:#iterates through the list
@@ -40,7 +40,7 @@ func _process(_delta):
 # spawns a new worker
 func spawnWorker(spawn_point):
 	can_spawn = false # makes further spawns unavailable
-	$SpawnTimer.start(SPAWN_DELAY) # starts the delay for the next spawn
+	$SpawnTimer.start(Balance.hq_spawn_delay) # starts the delay for the next spawn
 	current_workers += 1 # saves the new number of workers
 	
 	var worker = load("res://Scenes & Scripts/Prefabs/Units/Worker/worker.tscn").instantiate() # instantiates a new worker object
@@ -107,7 +107,7 @@ func getWorkers():
 
 # returns the hq's number of current workers out of the maximum number of workers
 func getWorkerNum():
-	return str(current_workers) + "/" + str(MAX_WORKERS)
+	return str(current_workers) + "/" + str(Balance.worker_limit)
 
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):

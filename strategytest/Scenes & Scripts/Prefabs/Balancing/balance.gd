@@ -67,7 +67,7 @@ const FILE = "res://Data/test.json"
 @export var hq_spawn_delay = 10.0 # how often will new workers spawn?
 @export var worker_limit = 4 # how many workers can spawn at most?
 @export var hq_hp = 20.0 # the hq's maximum hp
-@export var resource = 10 # how many resources can be mined
+@export var resource = 4 # how many resources can be mined
 
 # text to be translated
 # title in faction selection
@@ -129,6 +129,6 @@ const FILE = "res://Data/test.json"
 	#Global.unit_dict["worker"]["speed"] = worker_speed
 	#Global.unit_dict["worker"]["resource_cost"] = worker_cost
 	#Global.unit_dict["worker"]["production_speed"] = worker_production
-	
+	#
 	#var json_string = JSON.stringify(Global.unit_dict)
 	#save.store_line(json_string)

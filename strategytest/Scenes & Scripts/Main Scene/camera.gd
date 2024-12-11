@@ -25,22 +25,22 @@ func _physics_process(_delta):
 
 # camera movement when mouse near window border or WASD
 	if mouse_pos.x < 10 and $".".position.x > -250:
-		$".".position.x -= 0.5
+		$".".position.x -= Balance.cameara_speed
 	elif mouse_pos.x > window_size.x - 10 and $".".position.x < 250:
-		$".".position.x += 0.5
+		$".".position.x += Balance.cameara_speed
 	if mouse_pos.y < 10 and $".".position.z > -250:
-		$".".position.z -= 0.5
+		$".".position.z -= Balance.cameara_speed
 	elif mouse_pos.y > window_size.y - 10 and $".".position.z < 250:
-		$".".position.z += 0.5
+		$".".position.z += Balance.cameara_speed
 
 	if Input.is_action_pressed("front") and $".".position.z > -250:
-		$".".position.z -= 0.5
+		$".".position.z -= Balance.cameara_speed
 	if Input.is_action_pressed("back") and $".".position.z < 250:
-		$".".position.z += 0.5
+		$".".position.z += Balance.cameara_speed
 	if Input.is_action_pressed("left") and $".".position.x > -250:
-		$".".position.x -= 0.5
+		$".".position.x -= Balance.cameara_speed
 	if Input.is_action_pressed("right") and $".".position.x < 250:
-		$".".position.x += 0.5
+		$".".position.x += Balance.cameara_speed
 
 # deselects the units on click that are not in dragged box
 	mouse_position = get_viewport().get_mouse_position()
@@ -83,16 +83,16 @@ func _physics_process(_delta):
 
 # zoom in or out with mousewheel
 func _unhandled_input(event):
-	if $".".position.y > 20:
+	if $".".position.y > Balance.camera_zoom_down_limit:
 		if event is InputEventMouseButton:
 			if event.is_pressed():
 				if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-					$".".position.y -= 5
-	if $".".position.y < 60:
+					$".".position.y -= Balance.camera_zoom_speed
+	if $".".position.y < Balance.camera_zoom_up_limit:
 		if event is InputEventMouseButton:
 			if event.is_pressed():
 				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-					$".".position.y += 5
+					$".".position.y += Balance.camera_zoom_speed
 
 # function to select and replace the old selection
 func selectUnits():
