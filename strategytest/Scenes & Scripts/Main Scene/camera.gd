@@ -15,6 +15,10 @@ var double_click = false
 @onready var mouse_raycast_group
 @onready var mouse_raycast
 
+func _process(delta):
+	checkUnderMouse($Camera)
+
+
 func _physics_process(_delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	var window_size = get_viewport().get_visible_rect().size
@@ -192,3 +196,27 @@ func _on_side_bar_control_mouse_entered():
 
 func _on_side_bar_control_mouse_exited():
 	side_bar_mouse_entered = false
+
+func checkUnderMouse(camera):
+	var mousePos = get_viewport().get_mouse_position() # grabs the mouse position on screen
+	var raylength = 1000 # determines the length of the ray
+	var from = camera.project_ray_origin(mousePos) # start of the ray
+	var to = from + camera.project_ray_normal(mousePos) * raylength # shoots ray from mouse
+	var space = get_world_3d().direct_space_state # set 3d world
+	var rayQuery = PhysicsRayQueryParameters3D.new() # new query
+	rayQuery.from = from # sets query 
+	rayQuery.to = to # sets query
+	var result = space.intersect_ray(rayQuery) # gets the object the ray collides with
+	if result.size()<1: # limits the collider
+		return
+	if $"../Interface".interface_input_mode == 0: # checks if buildingmode is on
+		if result.collider.is_in_group("resource"): # called when mouse above crystal
+			Global.setCursor("res://Assets/UI/blue_dot.png") # sets the cursor
+		elif result.collider.is_in_group("Selectable") and result.collider.faction != Global.player_faction: # checks for enemy units
+			Global.setCursor("res://Assets/UI/red_dot.png") # sets the cursor
+		elif result.collider.is_in_group("Structure") and result.collider.faction != Global.player_faction: # checks for enemy buildings
+			Global.setCursor("res://Assets/UI/red_dot.png") # sets the cursor
+		else:
+			Global.defaultCursor() #  sets the cursor to default when above nothing
+
+
