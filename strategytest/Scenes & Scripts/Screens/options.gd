@@ -1,5 +1,5 @@
 extends Control
-
+signal close
 
 var music_slider_counter = 6 # slidercounter to visualize the music settings
 var sound_slider_counter = 6 # slidercounter to visualize the sound settings
@@ -29,7 +29,7 @@ func _process(delta):
 func _on_continue_buttons_pressed():
 	$Panel.visible = false # hides the menu when continued
 	get_tree().paused = false # unpauses the game when button is used
-
+	close.emit()
 
 func _on_quit_buttons_pressed():
 	get_tree().paused = false # upause the game so that the startscreen isnt frozen
@@ -120,3 +120,8 @@ func _on_british_flag_pressed():
 
 
 
+
+
+func _on_close():
+	if $MenuButton.visible == false:
+		$Panel.visible = true

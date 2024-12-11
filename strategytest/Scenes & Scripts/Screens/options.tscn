@@ -34,22 +34,6 @@ offset_right = 364.0
 offset_bottom = 147.0
 text = "@interface_button_pause_menu"
 
-[node name="LabelSound" type="Label" parent="."]
-layout_mode = 0
-offset_left = 904.0
-offset_top = 475.0
-offset_right = 1148.0
-offset_bottom = 498.0
-text = "@interface_text_sound_settings"
-
-[node name="LabelMusic" type="Label" parent="."]
-layout_mode = 0
-offset_left = 904.0
-offset_top = 360.0
-offset_right = 1146.0
-offset_bottom = 383.0
-text = "@interface_text_music_settings"
-
 [node name="Panel" type="Panel" parent="."]
 visible = false
 layout_mode = 0
@@ -226,6 +210,23 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 texture_normal = SubResource("PlaceholderTexture2D_oopl1")
 
+[node name="LabelSound" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 230.0
+offset_right = 466.0
+offset_bottom = 253.0
+text = "@interface_text_sound_settings"
+
+[node name="LabelMusic" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 115.0
+offset_right = 464.0
+offset_bottom = 138.0
+text = "@interface_text_music_settings"
+
+[connection signal="close" from="." to="." method="_on_close"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Panel/ContinueButtons" to="." method="_on_continue_buttons_pressed"]
 [connection signal="pressed" from="Panel/QuitButtons" to="." method="_on_quit_buttons_pressed"]

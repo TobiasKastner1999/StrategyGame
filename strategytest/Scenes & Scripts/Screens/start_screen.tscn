@@ -1,25 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://wkpqihr2k85a"]
+[gd_scene load_steps=3 format=3 uid="uid://wkpqihr2k85a"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/start_screen.gd" id="1_8y2io"]
-[ext_resource type="Script" path="res://Scenes & Scripts/Screens/options.gd" id="2_7tte6"]
-[ext_resource type="PackedScene" uid="uid://dg54ll1jfet6s" path="res://Scenes & Scripts/Screens/settings_slider.tscn" id="3_o6ria"]
-[ext_resource type="Texture2D" uid="uid://u2xvlp6swmse" path="res://Assets/UI/german flag.png" id="4_x6d3w"]
-[ext_resource type="Texture2D" uid="uid://v4n1snu8m3m2" path="res://Assets/UI/british flag.png" id="5_jqor6"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_amxvf"]
-size = Vector2(40, 40)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lky5h"]
-size = Vector2(40, 40)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i2gqk"]
-size = Vector2(40, 40)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_scalf"]
-size = Vector2(50, 50)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oopl1"]
-size = Vector2(50, 50)
+[ext_resource type="PackedScene" uid="uid://c7exd2o303ini" path="res://Scenes & Scripts/Screens/options.tscn" id="2_syotr"]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_8y2io")
@@ -56,229 +38,23 @@ offset_right = 400.0
 offset_bottom = 835.0
 text = "quit"
 
-[node name="OptionsMenu" type="Control" parent="."]
-process_mode = 3
-visible = false
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("2_7tte6")
-
-[node name="MenuButton" type="Button" parent="OptionsMenu"]
-visible = false
-layout_mode = 0
-offset_left = 64.0
-offset_top = 87.0
-offset_right = 364.0
-offset_bottom = 147.0
-text = "menu"
-
-[node name="Panel" type="Panel" parent="OptionsMenu"]
-layout_mode = 0
-offset_left = 682.0
-offset_top = 245.0
-offset_right = 1201.0
-offset_bottom = 850.0
-
-[node name="ContinueButtons" type="Button" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 105.0
-offset_top = 25.0
-offset_right = 405.0
-offset_bottom = 85.0
-text = "continue"
-
-[node name="QuitButtons" type="Button" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 108.0
-offset_top = 479.0
-offset_right = 408.0
-offset_bottom = 539.0
-text = "main menu"
-
-[node name="MusicContainer" type="HBoxContainer" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 153.0
-offset_right = 401.0
-offset_bottom = 193.0
-
-[node name="SettingsSlider" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider2" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider3" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider4" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider5" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider6" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider7" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider8" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider9" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider10" parent="OptionsMenu/Panel/MusicContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="MusicPlusButton" type="TextureButton" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 55.0
-offset_top = 152.0
-offset_right = 95.0
-offset_bottom = 192.0
-texture_normal = SubResource("PlaceholderTexture2D_amxvf")
-
-[node name="MusicMinusButton" type="TextureButton" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 415.0
-offset_top = 153.0
-offset_right = 455.0
-offset_bottom = 193.0
-texture_normal = SubResource("PlaceholderTexture2D_lky5h")
-
-[node name="SoundContainer" type="HBoxContainer" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 261.0
-offset_right = 401.0
-offset_bottom = 301.0
-
-[node name="SettingsSlider" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider2" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider3" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider4" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider5" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider6" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider7" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider8" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider9" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SettingsSlider10" parent="OptionsMenu/Panel/SoundContainer" instance=ExtResource("3_o6ria")]
-layout_mode = 2
-
-[node name="SoundMinusButton" type="TextureButton" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 260.0
-offset_right = 98.0
-offset_bottom = 300.0
-texture_normal = SubResource("PlaceholderTexture2D_i2gqk")
-
-[node name="SoundPlusButton" type="TextureButton" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 260.0
-offset_right = 456.0
-offset_bottom = 300.0
-texture_normal = SubResource("PlaceholderTexture2D_i2gqk")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu/Panel"]
-visible = false
-layout_mode = 2
-offset_left = 416.0
-offset_top = 370.0
-offset_right = 516.0
-offset_bottom = 494.0
-
-[node name="GermanFlag" type="TextureButton" parent="OptionsMenu/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
-layout_mode = 2
-texture_normal = ExtResource("4_x6d3w")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="BritishFlag" type="TextureButton" parent="OptionsMenu/Panel/VBoxContainer"]
-custom_minimum_size = Vector2(100, 60)
-layout_mode = 2
-texture_normal = ExtResource("5_jqor6")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="LanguageSelection" type="HBoxContainer" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 147.0
-offset_top = 361.0
-offset_right = 363.0
-offset_bottom = 421.0
-
-[node name="LanguageLeft" type="TextureButton" parent="OptionsMenu/Panel/LanguageSelection"]
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_scalf")
-
-[node name="FlagSlot" type="TextureRect" parent="OptionsMenu/Panel/LanguageSelection"]
-custom_minimum_size = Vector2(100, 60)
-layout_mode = 2
-texture = ExtResource("5_jqor6")
-expand_mode = 2
-
-[node name="LanguageRight" type="TextureButton" parent="OptionsMenu/Panel/LanguageSelection"]
-visible = false
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_oopl1")
-
-[node name="Label" type="Label" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 222.0
-offset_top = 115.0
-offset_right = 268.0
-offset_bottom = 138.0
-text = "music"
-
-[node name="Label2" type="Label" parent="OptionsMenu/Panel"]
-layout_mode = 0
-offset_left = 222.0
-offset_top = 230.0
-offset_right = 268.0
-offset_bottom = 253.0
-text = "sound"
-
 [node name="Button" type="Button" parent="."]
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="OptionMenu" parent="." instance=ExtResource("2_syotr")]
+visible = false
+
+[node name="MenuButton" parent="OptionMenu" index="0"]
+visible = false
+
+[node name="Panel" parent="OptionMenu" index="1"]
+visible = true
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="OptionsMenu/MenuButton" to="OptionsMenu" method="_on_menu_button_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/ContinueButtons" to="OptionsMenu" method="_on_continue_buttons_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/QuitButtons" to="OptionsMenu" method="_on_quit_buttons_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/MusicPlusButton" to="OptionsMenu" method="_on_music_plus_button_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/MusicMinusButton" to="OptionsMenu" method="_on_music_minus_button_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/SoundMinusButton" to="OptionsMenu" method="_on_sound_minus_button_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/SoundPlusButton" to="OptionsMenu" method="_on_sound_plus_button_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/VBoxContainer/GermanFlag" to="OptionsMenu" method="_on_german_flag_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/VBoxContainer/BritishFlag" to="OptionsMenu" method="_on_british_flag_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/LanguageSelection/LanguageLeft" to="OptionsMenu" method="_on_language_left_pressed"]
-[connection signal="pressed" from="OptionsMenu/Panel/LanguageSelection/LanguageRight" to="OptionsMenu" method="_on_language_right_pressed"]
+[connection signal="close" from="OptionMenu" to="." method="_on_option_menu_close"]
+
+[editable path="OptionMenu"]
