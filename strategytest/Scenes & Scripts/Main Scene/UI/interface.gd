@@ -35,8 +35,7 @@ func _ready():
 	interface_btn_housing.pressed.connect(func() -> void: interface_input_mode = 2)
 	interface_input_mode = 0
 	
-	$BuildingButton.text = Global.getText("@name_building_barracks")
-	$HousingButton.text = Global.getText("@name_building_housing")
+	setTexts()
 
 func _physics_process(_delta):
 	updateGamestateInfo()
@@ -106,6 +105,10 @@ func updateGamestateInfo():
 	$ResourceTab/ResourceAmount1.text = str(Global.getResource(Global.player_faction, 0)) + "\n" # updates the recourse tab
 	$ResourceTab/ResourceAmount2.text = str(Global.getResource(Global.player_faction, 1)) + "\n" # updates the recourse tab
 	$GamestateInfo.text = state_text
+
+func setTexts():
+	$BuildingButton.text = Global.getText("@name_building_barracks")
+	$HousingButton.text = Global.getText("@name_building_housing")
 
 # ends the game
 func gameEnd(faction):

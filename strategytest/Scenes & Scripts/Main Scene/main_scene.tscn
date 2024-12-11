@@ -629,6 +629,7 @@ autostart = true
 [connection signal="start_game_Dome" from="Interface/FactionSelection" to="Interface" method="_on_faction_selection_start_game_dome"]
 [connection signal="start_game_rebels" from="Interface/FactionSelection" to="Interface" method="_on_faction_selection_start_game_rebels"]
 [connection signal="pressed" from="Interface/SelectedPanel/ButtonToggle" to="Interface/SelectedPanel" method="_on_button_toggle_pressed"]
+[connection signal="language_changed" from="Options" to="." method="_on_language_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
 [editable path="MiniMap"]

@@ -2,7 +2,10 @@ extends Control
 var text = ""
 
 func _ready():
-	$Button.text = Global.getText($Button.text)
+	setTexts()
+
+func setTexts():
+	$Button.text = Global.getText("@interface_button_quit_game")
 
 func setText():
 	$GameOverText.text = text # sets text to given value

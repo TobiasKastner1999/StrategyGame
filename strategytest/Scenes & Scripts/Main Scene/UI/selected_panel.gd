@@ -3,6 +3,9 @@ extends Node
 var current_selected # the currently selected node which the interface represents
 
 func _ready():
+	updateTexts()
+
+func updateTexts():
 	$ButtonToggle.text = Global.getText($ButtonToggle.text)
 
 # sets the panel's properties when it is activated
@@ -31,6 +34,8 @@ func unselect():
 
 # updates the dynamic interface components
 func updateSelectedInterface():
+	if current_selected == null:
+		return
 	if current_selected.hp <= 0:
 		unselect()
 	else:

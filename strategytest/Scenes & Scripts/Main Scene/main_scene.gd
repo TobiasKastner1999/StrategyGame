@@ -67,4 +67,10 @@ func _on_timer_timeout():
 
 # mouse cursor on hovering above certain objects
 
-
+func _on_language_changed():
+	$Options.setTexts()
+	$Interface.setTexts()
+	$Interface/FactionSelection.setTexts()
+	$Interface/EndScreen.setTexts()
+	$Interface/SelectedPanel.updateTexts()
+	$Interface/SelectedPanel.updateSelectedInterface()

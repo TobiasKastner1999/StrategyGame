@@ -23,7 +23,6 @@ offset_left = 736.0
 offset_top = 143.0
 offset_right = 1196.0
 offset_bottom = 289.0
-text = "@interface_text_choose_faction"
 label_settings = SubResource("LabelSettings_o7w5b")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -35,7 +34,6 @@ offset_left = 541.0
 offset_top = 372.0
 offset_right = 778.0
 offset_bottom = 501.0
-text = "@interface_text_faction_blue"
 
 [node name="RedFaction" type="Button" parent="."]
 layout_mode = 0
@@ -43,7 +41,6 @@ offset_left = 1087.0
 offset_top = 365.0
 offset_right = 1324.0
 offset_bottom = 494.0
-text = "@interface_text_faction_red"
 
 [connection signal="pressed" from="BlueFaction" to="." method="_on_blue_faction_pressed"]
 [connection signal="pressed" from="RedFaction" to="." method="_on_red_faction_pressed"]
