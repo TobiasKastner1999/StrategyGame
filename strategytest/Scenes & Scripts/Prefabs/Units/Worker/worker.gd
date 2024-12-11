@@ -36,7 +36,7 @@ var speed : float # the worker's movement speed
 
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the worker's movement
 @onready var hq = $".." # the hq the worker belongs to
-@onready var worker_anim = $OutlawWorkerAllAnimationsBaked/AnimationPlayer #  animationplayer for the model
+@onready var worker_anim = $OutlawWorker/AnimationPlayer #  animationplayer for the model
 
 # controls the worker's behaviour
 func _physics_process(delta):
@@ -47,9 +47,9 @@ func _physics_process(delta):
 # rotates the model to face in the right direction
 func worker_rotation():
 	var nav = $NavAgent.get_next_path_position() # position where the worker moves next on his path to the final destination
-	$OutlawWorkerAllAnimationsBaked/OutlawWorker.look_at(nav) # looks at the next position
-	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotation.x = rad_to_deg(90) # locks the rotation of x
-	$OutlawWorkerAllAnimationsBaked/OutlawWorker.rotate_object_local(Vector3.UP, PI) # flips the model 
+	$OutlawWorker/OutlawWorker.look_at(nav) # looks at the next position
+	$OutlawWorker/OutlawWorker.rotation.x = rad_to_deg(90) # locks the rotation of x
+	$OutlawWorker/OutlawWorker.rotate_object_local(Vector3.UP, PI) # flips the model 
 
 # controls the worker's animation
 func animationControl():
@@ -62,9 +62,9 @@ func animationControl():
 			worker_anim.play("OutlawWorkerIdle") # plays the idle animation otherwise
 	
 	if worker_anim.current_animation == "OutlawWorkerJog": # when the worker is playing the walk animation the particles are emitted
-		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
+		$OutlawWorker/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
 	else: #  when walking stops the particles stop spawning
-		$OutlawWorkerAllAnimationsBaked/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false # stops particles
+		$OutlawWorker/OutlawWorker/Skeleton3D/BoneAttachment3D2.emitting = false # stops particles
 
 # sets up the worker and its properties when it is spawned
 func setUp(type):
