@@ -14,7 +14,7 @@ var production_type = 0 # which type of unit does the building currently produce
 var unit_cost : int # how many crystals does each unit from this building cost to produce?
 var spawn_rate : float # how often can the building produce new units?
 
-@onready var hp = MAX_HP # the building's current hit points, initially set to the maximum hit points
+@onready var hp = Balance.building_hp # the building's current hit points, initially set to the maximum hit points
 @onready var unit_storage = $"../Units" # the main system node for units
 
 # prepares to spawn a new unit when first built

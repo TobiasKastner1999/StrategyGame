@@ -8,7 +8,6 @@ func _ready():
 	
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
-	
 	$Counter.set_text("Faction 0 Resources: " + str(Global.faction_zero_resources) + " Faction 1 Resources: " + str(Global.faction_one_resources) + "   " + "FPS: " + str(Engine.get_frames_per_second()))
 
 # attempts to remove a deleted unit from the camera's selection

@@ -10,7 +10,7 @@ var list_counter = 1 # sets the start value of the dictionary to 1 instead of 0
 
 var selected_language : String = "en" # the language currently selected by the player
 
-var unit_max = [0, 0] # how many units can a faction currently have at max?
+var unit_max = [4, 4] # how many units can a faction currently have at max?
 var unit_count = [0, 0] # how many units does each faction currently have?
 var player_building_count : int = 0 # how many building's has the player constructed?
 
@@ -60,7 +60,7 @@ func setCursor(image):
 
 func defaultCursor():
 	var arrow
-	Input.set_custom_mouse_cursor(arrow, Input.CURSOR_ARROW)
+	Input.set_custom_mouse_cursor(load("res://Assets/UI/CursorNormal.png"))
 # returns to cost for a specified building type
 func getConstructionCost(building_type):
 	return CONSTRUCTION_COSTS[building_type]
