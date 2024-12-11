@@ -32,7 +32,6 @@ offset_left = 64.0
 offset_top = 87.0
 offset_right = 364.0
 offset_bottom = 147.0
-text = "@interface_button_pause_menu"
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -48,7 +47,6 @@ offset_left = 105.0
 offset_top = 25.0
 offset_right = 405.0
 offset_bottom = 85.0
-text = "@interface_button_continue"
 
 [node name="QuitButtons" type="Button" parent="Panel"]
 layout_mode = 0
@@ -56,7 +54,6 @@ offset_left = 108.0
 offset_top = 479.0
 offset_right = 408.0
 offset_bottom = 539.0
-text = "@interface_button_main_menu"
 
 [node name="MusicContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -216,7 +213,6 @@ offset_left = 222.0
 offset_top = 230.0
 offset_right = 466.0
 offset_bottom = 253.0
-text = "@interface_text_sound_settings"
 
 [node name="LabelMusic" type="Label" parent="Panel"]
 layout_mode = 0
@@ -224,7 +220,6 @@ offset_left = 222.0
 offset_top = 115.0
 offset_right = 464.0
 offset_bottom = 138.0
-text = "@interface_text_music_settings"
 
 [connection signal="close" from="." to="." method="_on_close"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

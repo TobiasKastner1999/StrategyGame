@@ -1,5 +1,7 @@
 extends Control
+
 signal close
+signal language_changed()
 
 var music_slider_counter = 6 # slidercounter to visualize the music settings
 var sound_slider_counter = 6 # slidercounter to visualize the sound settings
@@ -8,12 +10,14 @@ var language = 0 # languagecounter that indicates the current language selected
 func _ready():
 	checkMusic() # updates the visual sliders of music settings
 	checkSound()
-	
-	$MenuButton.text = Global.getText($MenuButton.text)
-	$Panel/ContinueButtons.text = Global.getText($Panel/ContinueButtons.text)
-	$Panel/QuitButtons.text = Global.getText($Panel/QuitButtons.text)
-	$Panel/LabelMusic.text = Global.getText($Panel/LabelMusic.text)
-	$Panel/LabelSound.text = Global.getText($Panel/LabelSound.text)
+	setTexts()
+
+func setTexts():
+	$MenuButton.text = Global.getText("@interface_button_pause_menu")
+	$Panel/ContinueButtons.text = Global.getText("@interface_button_continue")
+	$Panel/QuitButtons.text = Global.getText("@interface_button_main_menu")
+	$Panel/LabelMusic.text = Global.getText("@interface_text_music_settings")
+	$Panel/LabelSound.text = Global.getText("@interface_text_sound_settings")
 
 func _process(delta):
 	checkFlag() # perma updates the current flag of the language icon
@@ -108,12 +112,14 @@ func _on_german_flag_pressed():
 	language = 1 
 	Global.selected_language = "de"
 	$Panel/VBoxContainer.visible = false
+	language_changed.emit()
 
 # sets the language to english
 func _on_british_flag_pressed():
 	language = 0
 	Global.selected_language = "en"
 	$Panel/VBoxContainer.visible = false
+	language_changed.emit()
 
 func _on_close():
 	if $MenuButton.visible == false:

@@ -15,28 +15,24 @@ offset_left = 100.0
 offset_top = 446.0
 offset_right = 400.0
 offset_bottom = 506.0
-text = "@interface_button_start_game"
 
 [node name="Options" type="Button" parent="."]
 offset_left = 100.0
 offset_top = 559.0
 offset_right = 400.0
 offset_bottom = 619.0
-text = "@interface_button_settings"
 
 [node name="Credits" type="Button" parent="."]
 offset_left = 100.0
 offset_top = 673.0
 offset_right = 400.0
 offset_bottom = 733.0
-text = "@interface_button_credits"
 
 [node name="Quit" type="Button" parent="."]
 offset_left = 100.0
 offset_top = 775.0
 offset_right = 400.0
 offset_bottom = 835.0
-text = "@interface_button_quit_game"
 
 [node name="OptionMenu" parent="." instance=ExtResource("2_syotr")]
 visible = false
@@ -52,5 +48,6 @@ visible = true
 [connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="close" from="OptionMenu" to="." method="_on_option_menu_close"]
+[connection signal="language_changed" from="OptionMenu" to="." method="_on_language_changed"]
 
 [editable path="OptionMenu"]

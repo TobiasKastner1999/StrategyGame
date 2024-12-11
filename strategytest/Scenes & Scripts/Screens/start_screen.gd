@@ -1,10 +1,13 @@
 extends Node2D
 
 func _ready():
-	$Start.text = Global.getText($Start.text)
-	$Options.text = Global.getText($Options.text)
-	$Credits.text = Global.getText($Credits.text)
-	$Quit.text = Global.getText($Quit.text)
+	setTexts()
+
+func setTexts():
+	$Start.text = Global.getText("@interface_button_start_game")
+	$Options.text = Global.getText("@interface_button_settings")
+	$Credits.text = Global.getText("@interface_button_credits")
+	$Quit.text = Global.getText("@interface_button_quit_game")
 
 #func _process(delta):
 	#if $OptionsMenu.visible == false:
@@ -28,3 +31,7 @@ func _on_credits_pressed():
 
 func _on_option_menu_close():
 	$OptionMenu.visible = false
+
+func _on_language_changed():
+	setTexts()
+	$OptionMenu.setTexts()
