@@ -33,6 +33,7 @@ func gameEnd(faction):
 func _on_interface_start_game(faction):
 	get_tree().paused = false # ends the game's freeze state
 	# then toggles the visibility of various UI elements
+	$Options.visible = true
 	$Interface/FactionSelection.visible = false
 	$Interface/UIFrame.visible = true
 	$Interface/BuildingButton.visible = true

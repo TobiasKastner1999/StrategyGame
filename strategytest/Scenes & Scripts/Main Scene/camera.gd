@@ -211,11 +211,11 @@ func checkUnderMouse(camera):
 		return
 	if $"../Interface".interface_input_mode == 0: # checks if buildingmode is on
 		if result.collider.is_in_group("resource"): # called when mouse above crystal
-			Global.setCursor("res://Assets/UI/blue_dot.png") # sets the cursor
+			Global.setCursor("res://Assets/UI/CursorHarvest.png") # sets the cursor
 		elif result.collider.is_in_group("Selectable") and result.collider.faction != Global.player_faction: # checks for enemy units
-			Global.setCursor("res://Assets/UI/red_dot.png") # sets the cursor
+			Global.setCursor("res://Assets/UI/Cursor Attack.png") # sets the cursor
 		elif result.collider.is_in_group("Structure") and result.collider.faction != Global.player_faction: # checks for enemy buildings
-			Global.setCursor("res://Assets/UI/red_dot.png") # sets the cursor
+			Global.setCursor("res://Assets/UI/Cursor Attack.png") # sets the cursor
 		else:
 			Global.defaultCursor() #  sets the cursor to default when above nothing
 

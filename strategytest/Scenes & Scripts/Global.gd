@@ -37,17 +37,17 @@ func getSelectedFactionColor(faction):
 func updateResource(faction, type, amount):
 	match faction:
 		0:
-			faction_zero_resources[type] += amount
+			Balance.faction_zero_resources[type] += amount
 		1:
-			faction_one_resources[type] += amount
+			Balance.faction_one_resources[type] += amount
 
 # returns a given faction's current balance of a given resource
 func getResource(faction, type):
 	match faction:
 		0:
-			return faction_zero_resources[type]
+			return Balance.faction_zero_resources[type]
 		1:
-			return faction_one_resources[type]
+			return Balance.faction_one_resources[type]
 
 func getText(id):
 	if language_dict.has(id):
@@ -63,7 +63,7 @@ func defaultCursor():
 	Input.set_custom_mouse_cursor(load("res://Assets/UI/CursorNormal.png"))
 # returns to cost for a specified building type
 func getConstructionCost(building_type):
-	return CONSTRUCTION_COSTS[building_type]
+	return Balance.construction_costs[building_type]
 
 # updates a faction's number of current units
 func updateUnitCount(faction, value):
@@ -75,11 +75,11 @@ func getUnitCount(faction):
 
 # updates a faction's maximum number of units
 func updateUnitLimit(faction, value):
-	unit_max[faction] += value
+	Balance.unit_max[faction] += value
 
 # returns a faction's maximum number of units
 func getUnitLimit(faction):
-	return unit_max[faction]
+	return Balance.unit_max[faction]
 
 # adds or removes a constructed or destroyed building from the player's count
 func updateBuildingCount(constructed):
