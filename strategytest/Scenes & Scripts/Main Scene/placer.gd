@@ -27,7 +27,7 @@ func placement_check() -> bool:
 	# cant place when obstacles are in the way
 	if area.has_overlapping_bodies() or Global.getResource(Global.player_faction, 0) < Global.getConstructionCost(interface.getInputMode()) or !area.overlaps_area(hq_zone):
 		return false
-
+	
 # sets the check area to be the same size as the building
 	var area_collshape : BoxShape3D = area_coll.get_shape()
 	var area_size : Vector3 = area_collshape.size * 0.5
@@ -62,5 +62,6 @@ func placement_check() -> bool:
 	
 	# sets the model green when everything is fine
 	model_green()
+	
 	return true
 

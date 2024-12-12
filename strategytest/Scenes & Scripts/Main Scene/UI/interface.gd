@@ -69,8 +69,10 @@ func _physics_process(_delta):
 # places the building with click and keeps building mode on when shift is pressed
 func _input(_event):
 	if Input.is_action_just_released("LeftClick"):
+		
+		#Input.warp_mouse(Vector2(get_global_mouse_position().x+50, get_global_mouse_position().y))
 		var shift : bool = Input.is_action_pressed("shift")
-
+		
 		if interface_input_mode != 0:
 			if building_placer_can_place and building_placer_location != Vector3.ZERO:
 				var building_packed_scene : PackedScene
@@ -81,6 +83,7 @@ func _input(_event):
 						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Production/housing.tscn")
 				var building_node : Node3D = building_packed_scene.instantiate()
 				get_parent().add_child(building_node)
+
 				
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
 				building_node.setFaction(Global.player_faction)
@@ -89,7 +92,8 @@ func _input(_event):
 				Global.updateResource(Global.player_faction, 0, -Global.getConstructionCost(interface_input_mode))
 				Global.updateBuildingCount(true)
 				Global.add_to_list(building_node.position.x, building_node.position.z, Global.player_faction, building_node.get_instance_id(), null, building_node)
-				
+				building_placer_can_place = false
+				$Placer.model_red()
 				if !shift:
 					interface_input_mode = 0
 	
