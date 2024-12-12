@@ -9,9 +9,9 @@ func runBehaviour(node, delta):
 	current_delta = delta # stores the current data
 	
 	if hasMovementDestination(): # checks if the node has a movement destination
-		await(moveToDestination()) # if so, moves the node towards that destination
-		if isDestinationReached(): # then checks if the node is close enough to the destination
+		if await isDestinationReached(): # then checks if the node is close enough to the destination
 			return true
+		moveToDestination() # if so, moves the node towards that destination
 		return false
 	return true
 
