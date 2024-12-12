@@ -13,7 +13,7 @@ func runBehaviour(node, _delta):
 
 # checks if the node has no target
 func hasEmptyTarget():
-	if run_node.getActiveTarget() != null and run_node.getTargetMode() == 1:
+	if (run_node.getActiveTarget() != null and run_node.getTargetMode() == 1) or run_node.getPriorityMovement():
 		return false
 	return true
 

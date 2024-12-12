@@ -159,6 +159,10 @@ func isActive():
 	else:
 		return false
 
+# returns whether or not the unit is currently acting on priority movement
+func getPriorityMovement():
+	return priority_movement
+
 # returns the unit's targeting priority
 func getTargetPriority():
 	return TARGET_PRIORITY

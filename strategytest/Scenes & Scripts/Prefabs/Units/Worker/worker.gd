@@ -110,6 +110,10 @@ func isActive():
 	else:
 		return false
 
+# returns whether or not the worker is currently acting on priority movement
+func getPriorityMovement():
+	return priority_movement
+
 # checks if the unit is near a given body
 func isNearBody(node):
 	if $RangeArea.overlaps_body(node):
@@ -260,7 +264,6 @@ func getHQ():
 # sets the worker's faction to a given value
 func setFaction(f : int):
 	faction = f
-
 	
 	if destination == null:
 		destination = global_position # if the worker is first set up, also sets up the movement variable
