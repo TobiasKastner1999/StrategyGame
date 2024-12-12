@@ -73,7 +73,6 @@ const FILE = "res://Data/test.json"
 
 
 func _ready():
-	print(worker_hp)
 	setValues()
 	#var save = FileAccess.open(FILE, FileAccess.WRITE)
 	#var json_string = JSON.stringify(Global.unit_dict)
