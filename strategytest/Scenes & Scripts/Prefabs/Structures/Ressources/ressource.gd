@@ -26,5 +26,6 @@ func takeResource():
 func getResourceType():
 	return resource_type
 
+# returns the resource node's node type
 func getType():
 	return "resource"

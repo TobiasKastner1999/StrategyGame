@@ -49,10 +49,11 @@ func getResource(faction, type):
 		1:
 			return Balance.faction_one_resources[type]
 
+# returns the correct text with the given id in the player's chosen language
 func getText(id):
 	if language_dict.has(id):
 		return language_dict[id][selected_language]
-	return ""
+	return "" # if the id is invalid, an empty string is returned instead
 
 func setCursor(image):
 	var cursor = load(image)
@@ -61,6 +62,7 @@ func setCursor(image):
 func defaultCursor():
 	var arrow
 	Input.set_custom_mouse_cursor(load("res://Assets/UI/CursorNormal.png"))
+
 # returns to cost for a specified building type
 func getConstructionCost(building_type):
 	return Balance.construction_costs[building_type]

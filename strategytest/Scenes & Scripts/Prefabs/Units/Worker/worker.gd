@@ -24,6 +24,7 @@ var previous_target # the worker's previously targeted resource
 var hp : float # the worker's current hit points
 var can_attack = true # can the worker currently attack (is its attack not on cooldown)?
 var attacking = false # is the worker playing its attack animation?
+var is_awake = true # is the worker currently actively acting?
 
 var unit_type : int # the worker's type
 var faction : int # which faction does this worker belong to?
@@ -40,9 +41,10 @@ var speed : float # the worker's movement speed
 
 # controls the worker's behaviour
 func _physics_process(delta):
-	await $UnitBehaviours.runBehaviours(self, delta) # calls the worker's behaviour tree
-	worker_rotation() # permanently sets the direction the worker is facing
-	animationControl() # then plays the correct animation based on the worker's current state
+	if is_awake:
+		await $UnitBehaviours.runBehaviours(self, delta) # calls the worker's behaviour tree
+		worker_rotation() # permanently sets the direction the worker is facing
+		animationControl() # then plays the correct animation based on the worker's current state
 
 # rotates the model to face in the right direction
 func worker_rotation():
@@ -169,13 +171,22 @@ func takeDamage(damage, attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
-	if hp <= 0: # removes the worker if it's remaining hp is 0 or less
-		deleted.emit(self) # tells the system to clear remaining references to the worker
-		queue_free() # then deletes the worker
+	if hp <= 0: # calls the worker's death function if its remaining hp is 0 or less
+		startDeathState()
 	elif target_node == null or target_node.getType() != "combat":
 		priority_movement = false
 		target_node = attacker # causes the worker to fight back if it does not yet have a target
 		setTargetMode(1)
+
+# starts the worker's death state
+func startDeathState():
+	is_awake = false 
+	deleted.emit(self) # tells the system to clear remaining references to the worker
+	for group in get_groups():
+		remove_from_group(group) # removes the worker from all groups
+	
+	$HealthBarSprite.visible = false
+	$OutlawWorker/AnimationPlayer.play("OutlawWorkerDeath") # starts the death animation
 
 # sets attack target (has no effect for the worker)
 func setAttackTarget(target):
@@ -238,9 +249,11 @@ func getResourceState():
 func getActiveTarget():
 	return target_node
 
+# sets the worker's targeting mode
 func setTargetMode(mode):
 	target_mode = mode
 
+# returns the worker's current targeting mode
 func getTargetMode():
 	return target_mode
 
@@ -283,12 +296,10 @@ func getSize():
 # changes the color of the worker when selected
 func select():
 	pass
-	#$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getSelectedFactionColor(faction))
 
 # changes the color of the worker when it is deselected
 func deselect():
 	pass
-	#$rebel_anim/Armature_002/Skeleton3D/WorkerBody.material_override = load(Global.getFactionColor(faction))
 
 # if a new resource entered the worker's detection radius, adds it to its list
 func _on_range_area_body_entered(body):
@@ -313,6 +324,10 @@ func _on_mining_timer_timeout():
 func _on_attack_timer_timeout():
 	can_attack = true
 
+# calls functions when specific animations finish playing
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "OutlawWorkerAttack":
-		attacking = false
+	match anim_name:
+		"OutlawWorkerAttack":
+			attacking = false # lets the worker play other animations again once their attack animation has run
+		"OutlawWorkerDeath":
+			queue_free() # deletes the worker once their death animation has finished

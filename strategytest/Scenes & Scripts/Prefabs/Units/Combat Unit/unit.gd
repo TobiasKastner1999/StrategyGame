@@ -142,9 +142,11 @@ func clearAttackTarget():
 func getActiveTarget():
 	return active_target
 
+# sets the unit's targeting mode (always combat targeting)
 func setTargetMode(_mode):
 	pass
 
+# returns the unit's current targeting mode (always combat targeting)
 func getTargetMode():
 	return 1
 
