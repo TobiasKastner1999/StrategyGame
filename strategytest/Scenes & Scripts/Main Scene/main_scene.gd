@@ -1,5 +1,6 @@
 extends NavigationRegion3D
 
+
 var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
 #var cursor = load()
 # called at the start of the game

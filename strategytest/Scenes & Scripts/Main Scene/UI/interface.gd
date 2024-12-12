@@ -16,7 +16,7 @@ var interface_input_mode : int:
 		interface_input_mode = new_value
 		
 		if interface_input_mode:
-			Global.setCursor("res://Assets/UI/red_dot.png")
+			Global.setCursor("res://Assets/UI/CursorBuilding.png")
 			interface_label_building.show()
 			node_building_placer.enable_area()
 		else:
