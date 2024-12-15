@@ -7,6 +7,7 @@ const DISPLAY_NAME = "@name_building_barracks" # the building's displayed name
 const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
 
+var nearby_observers = [] # a list of nearby units currently observing the building
 var can_spawn = false # can the building currently produce a new unit?
 var spawn_active = true # is the building's unit production toggled on?
 var faction : int # the faction the building belongs to
@@ -53,6 +54,10 @@ func spawnUnit(spawn_point):
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
 	new_unit.setUp(production_type) # sets up the unit's properties based on the building's production type
 	new_unit.setFaction(faction) # assigns the spawned unit to the building's faction
+	
+	if faction != Global.player_faction:
+		new_unit.visible = false
+	
 	# add entry to dictionary for combat units
 	Global.add_to_list(new_unit.global_position.x, new_unit.global_position.z, faction, new_unit.get_instance_id(), null , new_unit)
 	unit_storage.connectDeletion(new_unit) # calls for the storage to connect to its new child
@@ -118,6 +123,10 @@ func getProduction():
 # returns the physical size of the building
 func getSize():
 	return ($BuildingBody.mesh.size.x / 2)
+
+func updateVisibility(object):
+	if !visible:
+		visible = true
 
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():
