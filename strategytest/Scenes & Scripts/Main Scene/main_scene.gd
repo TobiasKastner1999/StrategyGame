@@ -87,3 +87,6 @@ func _on_language_changed():
 	$Interface/EndScreen.setTexts()
 	$Interface/SelectedPanel.updateTexts()
 	$Interface/SelectedPanel.updateSelectedInterface()
+
+func _on_fog_of_war_fow_updated(new_texture):
+	$Map/Floor/FloorMesh.get_material_override().next_pass.set_shader_parameter("mask_texture", new_texture)
