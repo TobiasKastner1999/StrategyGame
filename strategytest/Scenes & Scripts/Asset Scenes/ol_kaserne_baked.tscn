@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgvb87durx888"]
+
+[ext_resource type="PackedScene" uid="uid://dj3cjcw50uqtv" path="res://Assets/Models/HQ/OL_Kaserne_baked.glb" id="1_imh2y"]
+
+[node name="OL_Kaserne_baked" instance=ExtResource("1_imh2y")]

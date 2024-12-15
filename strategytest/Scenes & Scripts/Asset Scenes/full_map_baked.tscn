@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0lgalb0fpgln"]
+
+[ext_resource type="PackedScene" uid="uid://bvjp8g5rdy4fn" path="res://Assets/Models/Map/FullMapBaked.glb" id="1_ogqi6"]
+
+[node name="FullMapBaked" instance=ExtResource("1_ogqi6")]
