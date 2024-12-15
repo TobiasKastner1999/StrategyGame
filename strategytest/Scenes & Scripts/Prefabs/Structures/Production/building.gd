@@ -55,8 +55,8 @@ func spawnUnit(spawn_point):
 	new_unit.setUp(production_type) # sets up the unit's properties based on the building's production type
 	new_unit.setFaction(faction) # assigns the spawned unit to the building's faction
 	
-	if faction != Global.player_faction:
-		new_unit.visible = false
+	#if faction != Global.player_faction:
+		#new_unit.visible = false
 	
 	# add entry to dictionary for combat units
 	Global.add_to_list(new_unit.global_position.x, new_unit.global_position.z, faction, new_unit.get_instance_id(), null , new_unit)

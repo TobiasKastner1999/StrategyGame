@@ -604,6 +604,7 @@ offset_right = -5.0
 offset_bottom = -1119.0
 
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
+[connection signal="new_unit" from="Units" to="." method="_on_new_unit"]
 [connection signal="rebake" from="Resources" to="." method="_on_interface_rebake"]
 [connection signal="expended" from="Resources/Ressource" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource2" to="Resources" method="_on_ressource_expended"]
@@ -634,7 +635,9 @@ offset_bottom = -1119.0
 [connection signal="expended" from="Resources/Ressource27" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource28" to="Resources" method="_on_ressource_expended"]
 [connection signal="destruction" from="HQBlue" to="." method="_on_hq_destruction"]
+[connection signal="new_worker" from="HQBlue" to="." method="_on_new_unit"]
 [connection signal="destruction" from="HQRed" to="." method="_on_hq_destruction"]
+[connection signal="new_worker" from="HQRed" to="." method="_on_new_unit"]
 [connection signal="rebake" from="FactionBlueController" to="." method="_on_interface_rebake"]
 [connection signal="rebake" from="FactionRedController" to="." method="_on_interface_rebake"]
 [connection signal="rebake" from="Interface" to="." method="_on_interface_rebake"]

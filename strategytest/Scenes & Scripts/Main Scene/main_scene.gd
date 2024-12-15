@@ -2,7 +2,12 @@ extends NavigationRegion3D
 
 
 var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
+
+@onready var world_size = Vector2i($Map/Floor/FloorMesh.mesh.size.x, $Map/Floor/FloorMesh.mesh.size.y) # the size of the level's world environment
+@onready var fog_of_war = $Interface/FogOfWar # the node handling the game's fog of war
+
 #var cursor = load()
+
 # called at the start of the game
 func _ready():
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
@@ -11,10 +16,15 @@ func _ready():
 func _process(_delta):
 	$Counter.set_text("Faction 0 Resources: " + str(Global.faction_zero_resources) + " Faction 1 Resources: " + str(Global.faction_one_resources) + "   " + "FPS: " + str(Engine.get_frames_per_second()))
 
+# adds a unit to the fog of war system
+func addUnitToFog(unit_node):
+	fog_of_war.addUnit(unit_node)
+
 # attempts to remove a deleted unit from the camera's selection
 func _on_units_delete_selection(unit):
 	if $Camera.selection.has(unit):
 		$Camera.selection.erase(unit) # removes the unit if it is in the camera's current selection
+	fog_of_war.attemptRemoveUnit(unit) # also attempts to remove the unit from the fog of war system
 
 # rebakes the navmesh
 func _on_interface_rebake():
@@ -43,6 +53,7 @@ func _on_interface_start_game(faction):
 	$Counter.visible = true
 	$Interface/ResourceTab.visible = true
 	
+	fog_of_war.newFog(Rect2(Vector2.ZERO, world_size)) # sets up the fog of war
 	Global.player_faction = faction # sets the player's global faction to the faction they chose
 	
 	# sets up the AI controllers
@@ -64,6 +75,9 @@ func _on_building_menu(building):
 func _on_timer_timeout():
 	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT # activates the blue hq
 	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT # activates the red hq
+
+func _on_new_unit(unit):
+	addUnitToFog(unit)
 
 # re-sets the interface texts when the game's language is changed
 func _on_language_changed():
