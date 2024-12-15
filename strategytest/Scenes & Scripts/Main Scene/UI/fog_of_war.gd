@@ -27,8 +27,7 @@ func fogTick():
 	processUnitData() # updates the tracking of all units
 	dissolveForUnits() # then dissolves the fog for each tracked unit
 	
-	export_texture = ImageTexture.create_from_image(viewport.get_texture().get_image())
-	fow_updated.emit(export_texture)
+	exportFog() # exports the fog to the main map
 
 # generates a new fog of war from a given rectangle
 func newFog(new_rect):
@@ -40,7 +39,14 @@ func newFog(new_rect):
 	
 	main_image = Image.create(int(map_rect.size.x), int(map_rect.size.y), false, Image.FORMAT_RGBA8)
 	main_image.fill(Color(0.0, 0.0, 0.0, 1.0)) # creates new image for the fog of war from the rectangle
+	
 	updateTexture() # updates the fog of war texture with the new image
+	exportFog() # exports the fog to the main map
+
+# exports the fog to the main map
+func exportFog():
+	export_texture = ImageTexture.create_from_image(viewport.get_texture().get_image())
+	fow_updated.emit(export_texture)
 
 # updates the fog of war's texture
 func updateTexture():
