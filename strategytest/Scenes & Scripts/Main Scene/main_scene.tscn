@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=43 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/enemy_controller.gd" id="8_q8x15"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/interface.gd" id="9_f8ghw"]
 [ext_resource type="Texture2D" uid="uid://dvdqrkxoca6w" path="res://Assets/UI/UIStarcraft2.png.png" id="10_aww5s"]
+[ext_resource type="PackedScene" uid="uid://bghq1dyglmtly" path="res://Scenes & Scripts/Main Scene/UI/fog_of_war.tscn" id="10_lnqnp"]
 [ext_resource type="PackedScene" uid="uid://cgnn6igsps6mn" path="res://Scenes & Scripts/Screens/faction_selection.tscn" id="10_rfqo2"]
 [ext_resource type="PackedScene" uid="uid://ut6cde7ie7n" path="res://Scenes & Scripts/Screens/end_screen.tscn" id="11_ge2eb"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/placer.gd" id="11_mo25r"]
@@ -350,6 +351,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_f8ghw")
+
+[node name="FogOfWar" parent="Interface" instance=ExtResource("10_lnqnp")]
+layout_mode = 1
+scale = Vector2(0.5, 0.5)
 
 [node name="FactionSelection" parent="Interface" instance=ExtResource("10_rfqo2")]
 
