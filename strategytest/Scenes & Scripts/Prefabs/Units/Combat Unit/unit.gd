@@ -30,9 +30,13 @@ var speed : float # the unit's movement speed
 # controls the unit's movement and other actions
 func _physics_process(delta):
 	$UnitBehaviours.runBehaviours(self, delta)
+	if $".".velocity != Vector3.ZERO:
+		unit_rotation()
+	
 
 # receives the path from NavAgent
 func move_to(target_pos):
+	
 	path = navi.get_simple_path(global_transform.origin, target_pos)
 	path_ind = 0
 
@@ -111,6 +115,7 @@ func setDestination(new_destination):
 	destination = new_destination
 	if priority_movement:
 		priority_movement = false
+		
 
 # overwrites the unit's actions with a specific movement destination
 func setTargetPosition(target):
@@ -119,8 +124,7 @@ func setTargetPosition(target):
 		priority_movement = true
 	destination = target
 	
-	$UnitBody.look_at(destination)
-	$UnitBody.rotate_object_local(Vector3.UP, PI)
+
 
 # returns the unit's current movement destination
 func getDestination():
@@ -219,6 +223,14 @@ func _on_area_3d_body_entered(body):
 		if priority_movement:
 			priority_movement = false
 			setAttackTarget(body)
+
+# rotates the model to face in the right direction
+func unit_rotation():
+	var nav = $NavAgent.get_next_path_position() # position where the worker moves next on his path to the final destination
+	$UnitBody.look_at(nav) # looks at the next position
+	$UnitBody.rotation.x = rad_to_deg(0) # locks the rotation of x
+	$UnitBody.rotate_object_local(Vector3.UP, PI) # flips the model 
+
 
 # when an object leaves the unit's detection range
 func _on_area_3d_body_exited(body):

@@ -9,6 +9,7 @@ var new_selection = []
 var focus_fire_target_collider
 var side_bar_mouse_entered = false
 var double_click = false
+var on_ui = false
 
 @onready var camera = $Camera
 @onready var selection_box_2d = $SelectionBox
@@ -44,7 +45,7 @@ func _physics_process(_delta):
 
 # deselects the units on click that are not in dragged box
 	mouse_position = get_viewport().get_mouse_position()
-	if Input.is_action_just_pressed("LeftClick"):
+	if Input.is_action_just_pressed("LeftClick") :
 		if $DoubleClickTimer.time_left > 0:
 			double_click = true
 		$DoubleClickTimer.start()
@@ -53,7 +54,8 @@ func _physics_process(_delta):
 		for selected in selection:
 			if selected != null:
 				selected.deselect()
-		selection.clear()
+		if on_ui == false:
+			selection.clear()
 
 # selects the units inside the box
 	if Input.is_action_pressed("LeftClick"):
@@ -220,3 +222,11 @@ func checkUnderMouse(camera):
 			Global.defaultCursor() #  sets the cursor to default when above nothing
 
 
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("mousepointer"):
+		on_ui = true
+
+
+func _on_area_2d_body_exited(body):
+	if body.is_in_group("mousepointer"):
+		on_ui = false

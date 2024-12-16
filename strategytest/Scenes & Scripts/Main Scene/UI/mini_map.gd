@@ -27,7 +27,7 @@ func _ready():
 
 func _process(delta):
 	# first entry -> test unit
-	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MarginContainer/Tank , "worker" : tank}
+	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MarginContainer/Tank , "worker" : tank, "visibility" : false}
 	# sprite to add when units spawns
 	var dot = load("res://Scenes & Scripts/Main Scene/UI/dot.tscn").instantiate()
 	
@@ -37,6 +37,7 @@ func _process(delta):
 	minimap_zoom()
 	minimap_limits()
 	minimap_clickable()
+	check_visibility()
 
 
 
@@ -64,6 +65,15 @@ func add_unit_blue(dot):
 					dot.scale.y = 0.7
 				Global.list[i]["dot"] = dot
 				$MarginContainer/Dots.add_child(dot)
+
+
+func check_visibility():
+	
+	for i in Global.list.size():
+		if i != null and Global.list[i]["worker"].visible == false:
+			Global.list[i]["dot"].visible = false
+		if i != null and Global.list[i]["worker"].visible == true:
+			Global.list[i]["dot"].visible = true
 
 
 # sets the texture red and spawns the dot

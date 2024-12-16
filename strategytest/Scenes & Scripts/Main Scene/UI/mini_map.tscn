@@ -48,7 +48,7 @@ metadata/_edit_lock_ = true
 shape = SubResource("RectangleShape2D_186kj")
 metadata/_edit_lock_ = true
 
-[node name="MouseIndicator" type="CharacterBody2D" parent="MarginContainer"]
+[node name="MouseIndicator" type="CharacterBody2D" parent="MarginContainer" groups=["mousepointer"]]
 visible = false
 script = ExtResource("5_ojfxw")
 
