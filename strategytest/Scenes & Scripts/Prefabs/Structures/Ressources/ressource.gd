@@ -39,6 +39,12 @@ func getPosition():
 func getRotation():
 	return rotation
 
+func fowEnter(_node):
+	fowReveal()
+
+func fowExit(_node):
+	pass
+
 func fowReveal():
 	if !visible:
 		visible = true

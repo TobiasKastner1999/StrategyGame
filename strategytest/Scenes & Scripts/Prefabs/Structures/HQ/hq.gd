@@ -52,7 +52,12 @@ func spawnWorker(spawn_point):
 	Global.add_to_list(worker.global_position.x, worker.global_position.z, faction, worker.get_instance_id(), null, worker)
 	if faction == Global.player_faction:
 		new_worker.emit(worker)
+	else:
+		worker.visible = false
 
+func clearUnitReferences(unit):
+	for worker in $Workers.get_children():
+		worker.checkUnitRemoval(unit)
 
 # removes references to an expended resource from the workers
 func excludeResource(node):
