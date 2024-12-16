@@ -82,7 +82,7 @@ func getEmptySpawn():
 
 # returns an array of the ressources near the HQ
 func getResources():
-	var nearby = $DetectionArea.get_overlapping_bodies() # checks for all nearby bodies
+	var nearby = $ResourceDetectionArea.get_overlapping_bodies() # checks for all nearby bodies
 	var resources = []
 	for body in nearby:
 		if body.is_in_group("resource"):
@@ -102,9 +102,9 @@ func getSize():
 	return ($HqSize.mesh.size.x / 2)
 	#added a Mesh for size measurement because no index on arraymesh
 
-# returns the HQ's detection area
+# returns the HQ's resource detection area
 func getArea():
-	return $DetectionArea
+	return $ResourceDetectionArea
 
 # returns the HQ's worker storage
 func getWorkers():
@@ -117,6 +117,16 @@ func getWorkerNum():
 func updateVisibility(object):
 	if !visible:
 		visible = true
+
+# when a new object enters the hq's detection range
+func _on_unit_detection_body_entered(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowEnter(self)
+
+# when an object leaves the hq's detection range
+func _on_unit_detection_body_exited(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowExit(self)
 
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):
