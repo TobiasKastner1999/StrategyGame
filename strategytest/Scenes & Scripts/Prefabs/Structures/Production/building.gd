@@ -7,7 +7,6 @@ const DISPLAY_NAME = "@name_building_barracks" # the building's displayed name
 const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
 
-var nearby_observers = [] # a list of nearby units currently observing the building
 var can_spawn = false # can the building currently produce a new unit?
 var spawn_active = true # is the building's unit production toggled on?
 var faction : int # the faction the building belongs to
@@ -124,9 +123,15 @@ func getProduction():
 func getSize():
 	return ($BuildingBody.mesh.size.x / 2)
 
-func updateVisibility(object):
-	if !visible:
-		visible = true
+func fowEnter(node):
+	fowReveal(true)
+
+func fowExit(node):
+	pass
+
+func fowReveal(bol):
+	if visible != bol:
+		visible = bol
 
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():

@@ -66,6 +66,12 @@ func getType():
 func getSize():
 	return ($HousingBody.mesh.size.x / 2)
 
-func updateVisibility(object):
-	if !visible:
-		visible = true
+func fowEnter(node):
+	fowReveal(true)
+
+func fowExit(node):
+	pass
+
+func fowReveal(bol):
+	if visible != bol:
+		visible = bol
