@@ -114,12 +114,15 @@ func getWorkers():
 func getWorkerNum():
 	return str(current_workers) + "/" + str(Balance.worker_limit)
 
+# called when the hq comes into view of a player-controlled unit
 func fowEnter(node):
-	fowReveal(true)
+	fowReveal(true) # makes the hq visible
 
+# called when the hq is no longer in view of a player-controlled unit
 func fowExit(node):
 	pass
 
+# sets the hq's visibility to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
@@ -127,12 +130,12 @@ func fowReveal(bol):
 # when a new object enters the hq's detection range
 func _on_unit_detection_body_entered(body):
 	if body.is_in_group("FowObject") and faction == Global.player_faction:
-		body.fowEnter(self)
+		body.fowEnter(self) # triggers the object's fow detection
 
 # when an object leaves the hq's detection range
 func _on_unit_detection_body_exited(body):
 	if body.is_in_group("FowObject") and faction == Global.player_faction:
-		body.fowExit(self)
+		body.fowExit(self) # updates the object's fow detection
 
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):

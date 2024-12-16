@@ -66,12 +66,15 @@ func getType():
 func getSize():
 	return ($HousingBody.mesh.size.x / 2)
 
-func fowEnter(node):
-	fowReveal(true)
+# calling when the housing comes into view of a player-controlled unit
+func fowEnter(_node):
+	fowReveal(true) # makes the housing visible
 
-func fowExit(node):
+# called when the housing is no longer in view of a player-controlled unit
+func fowExit(_node):
 	pass
 
+# sets the housing's visibility to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol

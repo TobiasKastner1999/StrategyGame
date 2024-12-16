@@ -123,12 +123,15 @@ func getProduction():
 func getSize():
 	return ($BuildingBody.mesh.size.x / 2)
 
+# called when the building comes into view of a player-controlled unit
 func fowEnter(node):
-	fowReveal(true)
+	fowReveal(true) # makes the building visible
 
+# called when the building is no longer in view of a player-controlled unit
 func fowExit(node):
 	pass
 
+# toggles the building's visibility to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol

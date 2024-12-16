@@ -30,21 +30,27 @@ func getResourceType():
 func getType():
 	return "resource"
 
+# returns the resource's current visibility state
 func isVisible():
 	return visible
 
+# returns the resource's global position
 func getPosition():
 	return global_position
 
+# returns the resource's rotation
 func getRotation():
 	return rotation
 
+# called when the resource comes into view of a player-controlled unit
 func fowEnter(_node):
-	fowReveal()
+	fowReveal() # enables the visibility of the resource
 
+# called when the resource is no longer in view of a player-controlled unit
 func fowExit(_node):
 	pass
 
+# enables the visibility of the resource
 func fowReveal():
 	if !visible:
 		visible = true

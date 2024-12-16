@@ -311,17 +311,20 @@ func select():
 func deselect():
 	pass
 
+# called when the worker comes into view of a player-controlled unit
 func fowEnter(node):
 	if node.getFaction() != faction:
-		current_observers.append(node)
-		fowReveal(true)
+		current_observers.append(node) # adds the player unit to the worker's observers
+		fowReveal(true) # makes the worker visible
 
+# called when the worker is no longer in view of a player-controlled unit
 func fowExit(node):
 	if current_observers.has(node):
-		current_observers.erase(node)
+		current_observers.erase(node) # removes the player unit from the worker's observers
 		if current_observers.size() == 0:
-			fowReveal(false)
+			fowReveal(false) # if no observers remain,n makes the worker invisible
 
+# sets the worker's visibility to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
@@ -329,7 +332,7 @@ func fowReveal(bol):
 # if a new resource entered the worker's detection radius, adds it to its list
 func _on_range_area_body_entered(body):
 	if body.is_in_group("FowObject") and faction == Global.player_faction:
-		body.fowEnter(self)
+		body.fowEnter(self) # triggers the objects fow detection
 	if body.is_in_group("resource") and !known_resources.has(body):
 		known_resources.append(body)
 	elif body.is_in_group("CombatTarget") and body.getFaction() != faction:
@@ -341,7 +344,7 @@ func _on_range_area_body_entered(body):
 # when an object leaves the worker's detection range
 func _on_range_area_body_exited(body):
 	if body.is_in_group("FowObject") and faction == Global.player_faction:
-		body.fowExit(self)
+		body.fowExit(self) # updates the object's fow detection
 	if nearby_enemies.has(body):
 		nearby_enemies.erase(body) # removes the object from the list of nearby enemies if it was in the list
 

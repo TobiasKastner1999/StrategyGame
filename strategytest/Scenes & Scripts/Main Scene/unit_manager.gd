@@ -13,7 +13,5 @@ func connectDeletion(unit):
 func _on_unit_delete(deleted):
 	# checks for each other unit of they have the deleted unit as their current target
 	for unit in get_children():
-		unit.checkUnitRemoval(deleted)
-		if unit.getActiveTarget() == deleted:
-			unit.clearAttackTarget() # if a unit does, its target is cleared
+		unit.checkUnitRemoval(deleted) # has each unit remove potential references to the deleted unit
 	delete_selection.emit(deleted) # also instructs the camera to remove the deleted unit from its selection
