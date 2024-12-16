@@ -70,9 +70,9 @@ func add_unit_blue(dot):
 func check_visibility():
 	
 	for i in Global.list.size():
-		if i != null and Global.list[i]["worker"].visible == false:
+		if i != null and Global.list[i]["worker"] != null and Global.list[i]["worker"].visible == false:
 			Global.list[i]["dot"].visible = false
-		if i != null and Global.list[i]["worker"].visible == true:
+		if i != null and Global.list[i]["worker"] != null and Global.list[i]["worker"].visible == true:
 			Global.list[i]["dot"].visible = true
 		if $"../HQBlue".visible == false:
 			$MarginContainer/BaseFriendly.visible = false
