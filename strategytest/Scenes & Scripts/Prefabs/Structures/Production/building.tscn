@@ -78,7 +78,7 @@ viewport_path = NodePath("HealthbarContainer")
 [sub_resource type="ViewportTexture" id="ViewportTexture_0nlid"]
 viewport_path = NodePath("ProductionProgress")
 
-[node name="Building" type="StaticBody3D" groups=["Building", "CombatTarget", "MouseRaycast", "Structure"]]
+[node name="Building" type="StaticBody3D" groups=["Building", "CombatTarget", "FowObject", "MouseRaycast", "Structure"]]
 script = ExtResource("1_poico")
 
 [node name="BuildingColl" type="CollisionShape3D" parent="."]

@@ -25,6 +25,8 @@ func _on_units_delete_selection(unit):
 	if $Camera.selection.has(unit):
 		$Camera.selection.erase(unit) # removes the unit if it is in the camera's current selection
 	fog_of_war.attemptRemoveUnit(unit) # also attempts to remove the unit from the fog of war system
+	$HQBlue.clearUnitReferences(unit)
+	$HQRed.clearUnitReferences(unit)
 
 # rebakes the navmesh
 func _on_interface_rebake():
@@ -67,6 +69,8 @@ func _on_interface_start_game(faction):
 		if hq.getFaction() == faction:
 			$Interface/Placer.hq_zone = hq.getArea() # locks the building placers to the platform of the player's chosen faction
 			$Interface.hq = hq
+		else:
+			hq.visible = false # makes the enemy's hq invisible
 
 # accesses a clicked building's interface menu
 func _on_building_menu(building):
@@ -88,5 +92,6 @@ func _on_language_changed():
 	$Interface/SelectedPanel.updateTexts()
 	$Interface/SelectedPanel.updateSelectedInterface()
 
+# updates the map with a new fog of war texture
 func _on_fog_of_war_fow_updated(new_texture):
 	$Map/Floor/FloorMesh.get_material_override().next_pass.set_shader_parameter("mask_texture", new_texture)

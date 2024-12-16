@@ -9,6 +9,7 @@ var can_attack = true # can the unit currently attack (is its attack not on cool
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
 var active_target : PhysicsBody3D # the enemy target the unit is currently attacking
 var priority_movement = false # is the unit's movement overridden by a player command
+var current_observers = []
 
 var path = [] # the path the unit is navigating on
 var path_ind = 0 # the id of the unit's current path position
@@ -139,6 +140,12 @@ func setAttackTarget(target):
 	if target.is_in_group("CombatTarget") and target.getFaction() != faction:
 		active_target = target # sets the target if the given entity is a valid target and belongs to an enemy faction
 
+func checkUnitRemoval(unit):
+	if active_target == unit:
+		clearAttackTarget()
+	if current_observers.has(unit):
+		fowExit(unit)
+
 func clearAttackTarget():
 	active_target = null
 
@@ -216,8 +223,28 @@ func isNearBody(node):
 	else:
 		return false
 
+# called when the unit comes into view of a player-controlled unit
+func fowEnter(node):
+	if node.getFaction() != faction:
+		current_observers.append(node) # adds the player unit to this unit's observers
+		fowReveal(true) # makes the unit visible
+
+# called when the unit is no longer in view of a player-controlled unit
+func fowExit(node):
+	if current_observers.has(node):
+		current_observers.erase(node) # removes the player unit from this unit's observers
+		if current_observers.size() == 0:
+			fowReveal(false) # if no observers remain,n makes the unit invisible
+
+# sets the unit's visibility to a given state
+func fowReveal(bol):
+	if visible != bol:
+		visible = bol
+
 # when a new object enters the unit's detection range
 func _on_area_3d_body_entered(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowEnter(self) # triggers the object's fow detection
 	if body.is_in_group("CombatTarget") and body.getFaction() != faction:
 		nearby_enemies.append(body) # adds the object to the list of nearby enemies if it is a valid t arget and belongs to an enemy faction
 		if priority_movement:
@@ -234,6 +261,8 @@ func unit_rotation():
 
 # when an object leaves the unit's detection range
 func _on_area_3d_body_exited(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowExit(self) # updates the object's fow detection
 	if nearby_enemies.has(body):
 		nearby_enemies.erase(body) # removes the object from the list of nearby enemies if it was in the list
 

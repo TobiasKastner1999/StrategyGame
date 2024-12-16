@@ -52,7 +52,12 @@ func spawnWorker(spawn_point):
 	Global.add_to_list(worker.global_position.x, worker.global_position.z, faction, worker.get_instance_id(), null, worker)
 	if faction == Global.player_faction:
 		new_worker.emit(worker)
+	else:
+		worker.visible = false
 
+func clearUnitReferences(unit):
+	for worker in $Workers.get_children():
+		worker.checkUnitRemoval(unit)
 
 # removes references to an expended resource from the workers
 func excludeResource(node):
@@ -77,7 +82,7 @@ func getEmptySpawn():
 
 # returns an array of the ressources near the HQ
 func getResources():
-	var nearby = $DetectionArea.get_overlapping_bodies() # checks for all nearby bodies
+	var nearby = $ResourceDetectionArea.get_overlapping_bodies() # checks for all nearby bodies
 	var resources = []
 	for body in nearby:
 		if body.is_in_group("resource"):
@@ -97,9 +102,9 @@ func getSize():
 	return ($HqSize.mesh.size.x / 2)
 	#added a Mesh for size measurement because no index on arraymesh
 
-# returns the HQ's detection area
+# returns the HQ's resource detection area
 func getArea():
-	return $DetectionArea
+	return $ResourceDetectionArea
 
 # returns the HQ's worker storage
 func getWorkers():
@@ -109,9 +114,28 @@ func getWorkers():
 func getWorkerNum():
 	return str(current_workers) + "/" + str(Balance.worker_limit)
 
-func updateVisibility(object):
-	if !visible:
-		visible = true
+# called when the hq comes into view of a player-controlled unit
+func fowEnter(node):
+	fowReveal(true) # makes the hq visible
+
+# called when the hq is no longer in view of a player-controlled unit
+func fowExit(node):
+	pass
+
+# sets the hq's visibility to a given state
+func fowReveal(bol):
+	if visible != bol:
+		visible = bol
+
+# when a new object enters the hq's detection range
+func _on_unit_detection_body_entered(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowEnter(self) # triggers the object's fow detection
+
+# when an object leaves the hq's detection range
+func _on_unit_detection_body_exited(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowExit(self) # updates the object's fow detection
 
 # clears remaining references to a deleted worker
 func _on_worker_deleted(worker):

@@ -15,6 +15,7 @@ var path_ind = 0 # the index of the worker's current path node
 var resource = [0, 0] # what type of resource is the worker carrying, and how much of it?
 var nearby_enemies = [] # all enemy targets that are currently within range of the worker
 var known_resources = [] # an array of all resource nodes the worker has discovered
+var current_observers = []
 var priority_movement = false # is the worker's currently overwritten by a player input?
 var destination # the worker's current navigation destination
 var target_node # the node the worker currently is targeting
@@ -249,6 +250,15 @@ func getResourceState():
 func getActiveTarget():
 	return target_node
 
+func checkUnitRemoval(unit):
+	if target_node == unit:
+		clearAttackTarget()
+	if current_observers.has(unit):
+		fowExit(unit)
+
+func clearAttackTarget():
+	target_node = null
+
 # sets the worker's targeting mode
 func setTargetMode(mode):
 	target_mode = mode
@@ -301,8 +311,28 @@ func select():
 func deselect():
 	pass
 
+# called when the worker comes into view of a player-controlled unit
+func fowEnter(node):
+	if node.getFaction() != faction:
+		current_observers.append(node) # adds the player unit to the worker's observers
+		fowReveal(true) # makes the worker visible
+
+# called when the worker is no longer in view of a player-controlled unit
+func fowExit(node):
+	if current_observers.has(node):
+		current_observers.erase(node) # removes the player unit from the worker's observers
+		if current_observers.size() == 0:
+			fowReveal(false) # if no observers remain,n makes the worker invisible
+
+# sets the worker's visibility to a given state
+func fowReveal(bol):
+	if visible != bol:
+		visible = bol
+
 # if a new resource entered the worker's detection radius, adds it to its list
 func _on_range_area_body_entered(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowEnter(self) # triggers the objects fow detection
 	if body.is_in_group("resource") and !known_resources.has(body):
 		known_resources.append(body)
 	elif body.is_in_group("CombatTarget") and body.getFaction() != faction:
@@ -313,6 +343,8 @@ func _on_range_area_body_entered(body):
 
 # when an object leaves the worker's detection range
 func _on_range_area_body_exited(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowExit(self) # updates the object's fow detection
 	if nearby_enemies.has(body):
 		nearby_enemies.erase(body) # removes the object from the list of nearby enemies if it was in the list
 
