@@ -69,6 +69,8 @@ func _on_interface_start_game(faction):
 		if hq.getFaction() == faction:
 			$Interface/Placer.hq_zone = hq.getArea() # locks the building placers to the platform of the player's chosen faction
 			$Interface.hq = hq
+		else:
+			hq.visible = false
 
 # accesses a clicked building's interface menu
 func _on_building_menu(building):

@@ -114,9 +114,15 @@ func getWorkers():
 func getWorkerNum():
 	return str(current_workers) + "/" + str(Balance.worker_limit)
 
-func updateVisibility(object):
-	if !visible:
-		visible = true
+func fowEnter(node):
+	fowReveal(true)
+
+func fowExit(node):
+	pass
+
+func fowReveal(bol):
+	if visible != bol:
+		visible = bol
 
 # when a new object enters the hq's detection range
 func _on_unit_detection_body_entered(body):
