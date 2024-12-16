@@ -27,7 +27,7 @@ metadata/_edit_lock_ = true
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]
 visible = false
-modulate = Color(0.639216, 0.639216, 0.639216, 1)
+modulate = Color(0.639216, 0.639216, 0.639216, 0)
 position = Vector2(131, 106.5)
 texture = ExtResource("2_wcwke")
 
