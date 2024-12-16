@@ -30,6 +30,15 @@ func getResourceType():
 func getType():
 	return "resource"
 
-func revealVisibility():
+func isVisible():
+	return visible
+
+func getPosition():
+	return global_position
+
+func getRotation():
+	return rotation
+
+func fowReveal():
 	if !visible:
 		visible = true

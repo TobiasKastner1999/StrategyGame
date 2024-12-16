@@ -214,8 +214,8 @@ func isNearBody(node):
 
 # when a new object enters the unit's detection range
 func _on_area_3d_body_entered(body):
-	if body.is_in_group("resource"):
-		body.revealVisibility()
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowReveal()
 	if body.is_in_group("CombatTarget") and body.getFaction() != faction:
 		nearby_enemies.append(body) # adds the object to the list of nearby enemies if it is a valid t arget and belongs to an enemy faction
 		if priority_movement:

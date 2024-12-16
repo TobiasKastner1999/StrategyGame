@@ -303,9 +303,10 @@ func deselect():
 
 # if a new resource entered the worker's detection radius, adds it to its list
 func _on_range_area_body_entered(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowReveal()
 	if body.is_in_group("resource") and !known_resources.has(body):
 		known_resources.append(body)
-		body.revealVisibility()
 	elif body.is_in_group("CombatTarget") and body.getFaction() != faction:
 		nearby_enemies.append(body) # adds the object to the list of nearby enemies if it is a valid target and belongs to an enemy faction
 		if priority_movement:
