@@ -19,3 +19,6 @@ func setUp(type, pos, rot):
 # called when the dummy comes into view of a player-controlled unit
 func fowEnter(_node):
 	queue_free() # removes the dummy
+
+func fowExit(_node):
+	pass
