@@ -19,7 +19,7 @@ func setTexts():
 	$Panel/LabelMusic.text = Global.getText("@interface_text_music_settings")
 	$Panel/LabelSound.text = Global.getText("@interface_text_sound_settings")
 
-func _process(delta):
+func _process(_delta):
 	checkFlag() # perma updates the current flag of the language icon
 	if Input.is_action_just_pressed("escape") and $".".visible == true: # activates when visible ans escape pressed
 		if $Panel.visible == false:

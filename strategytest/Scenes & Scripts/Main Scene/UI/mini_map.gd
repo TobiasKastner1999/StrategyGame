@@ -25,7 +25,7 @@ func _ready():
 	zoom = main_cam.position.y
 
 
-func _process(delta):
+func _process(_delta):
 	# first entry -> test unit
 	Global.list[0] = {"positionX" : tank.position.x ,"positionY": tank.position.y,  "faction" : 0 ,"id": tank ,"dot" : $MarginContainer/Tank , "worker" : tank, "visibility" : false}
 	# sprite to add when units spawns
@@ -66,22 +66,21 @@ func add_unit_blue(dot):
 				Global.list[i]["dot"] = dot
 				$MarginContainer/Dots.add_child(dot)
 
-
+# checks for the visibility and sets the dots accordingly
 func check_visibility():
-	
-	for i in Global.list.size():
-		if i != null and Global.list[i]["worker"] != null and Global.list[i]["worker"].visible == false:
-			Global.list[i]["dot"].visible = false
-		if i != null and Global.list[i]["worker"] != null and Global.list[i]["worker"].visible == true:
-			Global.list[i]["dot"].visible = true
-		if $"../HQBlue".visible == false:
-			$MarginContainer/BaseFriendly.visible = false
+	for i in Global.list.size(): # iterates through list
+		if i != null and Global.list[i]["worker"] != null and Global.list[i]["worker"].visible == false: # checks if the unit of the entry is visible
+			Global.list[i]["dot"].visible = false # sets the dot invisible
+		if i != null and Global.list[i]["worker"] != null and Global.list[i]["worker"].visible == true: # checks if the unit of the entry is visible
+			Global.list[i]["dot"].visible = true # sets the dot visible
+		if $"../HQBlue".visible == false: # checks the Blue HQ
+			$MarginContainer/BaseFriendly.visible = false # sets the dot invisible
 		else: 
-			$MarginContainer/BaseFriendly.visible = true
-		if $"../HQRed".visible == false:
-			$MarginContainer/BaseEnemy.visible = false
+			$MarginContainer/BaseFriendly.visible = true # sets the dot visible
+		if $"../HQRed".visible == false: # checks the Red HQ
+			$MarginContainer/BaseEnemy.visible = false # sets the dot invisible
 		else: 
-			$MarginContainer/BaseEnemy.visible = true
+			$MarginContainer/BaseEnemy.visible = true # sets the dot visible
 
 
 # sets the texture red and spawns the dot
@@ -103,6 +102,7 @@ func delete_dot():
 	for i in Global.list:
 		if Global.list[i]["worker"] == null:
 			Global.list[i]["dot"].texture = null
+
 
 
 # limitations for the cam sprite so it cant leave the minimap
@@ -134,9 +134,6 @@ func minimap_zoom():
 			zoom = main_cam.position.y
 
 
-
-
-
 func minimap_clickable():
 	# when the mouse enters the area of minimap the var turns true and if you click the camera moves to the position given
 	# via a characterbody2d that is constantly following the mouse and
@@ -147,6 +144,6 @@ func minimap_clickable():
 		mouse_over_map = false
 	# moves the indicatorsprite to the mouse position
 	if mouse_over_map == true and Input.is_action_just_pressed("LeftClick"):
-		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+		var _mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		main_cam.position.x = mouse.position.x
 		main_cam.position.z = mouse.position.y

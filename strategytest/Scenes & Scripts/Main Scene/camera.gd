@@ -16,7 +16,7 @@ var on_ui = false
 @onready var mouse_raycast_group
 @onready var mouse_raycast
 
-func _process(delta):
+func _process(_delta):
 	checkUnderMouse($Camera)
 
 

@@ -60,7 +60,6 @@ func setCursor(image):
 	Input.set_custom_mouse_cursor(cursor)
 
 func defaultCursor():
-	var arrow
 	Input.set_custom_mouse_cursor(load("res://Assets/UI/CursorNormal.png"))
 
 # returns to cost for a specified building type
