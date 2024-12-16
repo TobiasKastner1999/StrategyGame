@@ -227,6 +227,8 @@ func _on_area_2d_body_entered(body):
 		on_ui = true
 
 
+
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("mousepointer"):
 		on_ui = false
+

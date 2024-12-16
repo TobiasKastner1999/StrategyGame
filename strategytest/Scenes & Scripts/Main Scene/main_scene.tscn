@@ -98,15 +98,15 @@ albedo_color = Color(0.870827, 0.518907, 0.405892, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47v5a"]
 albedo_color = Color(0.870588, 0.517647, 0.407843, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xrfe"]
-size = Vector2(1917, 298)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_samg3"]
 render_priority = 0
 shader = ExtResource("12_lfui2")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hw102"]
 size = Vector3(4.9989, 5.05823, 5.10894)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xrfe"]
+size = Vector2(3202.17, 655.636)
 
 [node name="Main" type="NavigationRegion3D"]
 process_mode = 1
@@ -423,12 +423,6 @@ grow_vertical = 2
 texture = ExtResource("10_aww5s")
 expand_mode = 2
 
-[node name="Area2D" type="Area2D" parent="Interface/UIFrame"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interface/UIFrame/Area2D"]
-position = Vector2(959.5, 929)
-shape = SubResource("RectangleShape2D_7xrfe")
-
 [node name="GamestateInfo" type="RichTextLabel" parent="Interface"]
 layout_mode = 0
 offset_left = 1548.0
@@ -635,7 +629,6 @@ offset_bottom = 40.0
 text = "Kristalle:"
 
 [node name="MiniMap" parent="." instance=ExtResource("16_cn011")]
-visible = false
 scale = Vector2(0.6, 0.55)
 transform = Transform2D(0.6, 0, 0, 0.55, 0, 0)
 
@@ -644,6 +637,20 @@ offset_left = 281.667
 offset_top = 1687.27
 offset_right = 639.667
 offset_bottom = 2089.27
+
+[node name="UiArea" type="Area2D" parent="MiniMap"]
+position = Vector2(523.333, 698.182)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiniMap/UiArea"]
+position = Vector2(1087.58, 953)
+shape = SubResource("RectangleShape2D_7xrfe")
+
+[node name="Label" type="Label" parent="MiniMap/UiArea"]
+offset_left = 647.0
+offset_top = 30.0
+offset_right = 1050.0
+offset_bottom = 149.0
 
 [node name="Options" parent="." instance=ExtResource("20_x38bj")]
 visible = false
@@ -701,9 +708,9 @@ offset_bottom = -1119.0
 [connection signal="fow_updated" from="Interface/FogOfWar" to="." method="_on_fog_of_war_fow_updated"]
 [connection signal="start_game_Dome" from="Interface/FactionSelection" to="Interface" method="_on_faction_selection_start_game_dome"]
 [connection signal="start_game_rebels" from="Interface/FactionSelection" to="Interface" method="_on_faction_selection_start_game_rebels"]
-[connection signal="body_entered" from="Interface/UIFrame/Area2D" to="Camera" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Interface/UIFrame/Area2D" to="Camera" method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="Interface/SelectedPanel/ButtonToggle" to="Interface/SelectedPanel" method="_on_button_toggle_pressed"]
+[connection signal="body_entered" from="MiniMap/UiArea" to="Camera" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="MiniMap/UiArea" to="Camera" method="_on_area_2d_body_exited"]
 [connection signal="language_changed" from="Options" to="." method="_on_language_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
