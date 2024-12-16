@@ -74,6 +74,14 @@ func check_visibility():
 			Global.list[i]["dot"].visible = false
 		if i != null and Global.list[i]["worker"].visible == true:
 			Global.list[i]["dot"].visible = true
+		if $"../HQBlue".visible == false:
+			$MarginContainer/BaseFriendly.visible = false
+		else: 
+			$MarginContainer/BaseFriendly.visible = true
+		if $"../HQRed".visible == false:
+			$MarginContainer/BaseEnemy.visible = false
+		else: 
+			$MarginContainer/BaseEnemy.visible = true
 
 
 # sets the texture red and spawns the dot
