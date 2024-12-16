@@ -29,3 +29,7 @@ func getResourceType():
 # returns the resource node's node type
 func getType():
 	return "resource"
+
+func revealVisibility():
+	if !visible:
+		visible = true
