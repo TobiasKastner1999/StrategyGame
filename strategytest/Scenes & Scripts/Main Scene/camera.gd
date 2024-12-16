@@ -221,14 +221,14 @@ func checkUnderMouse(camera):
 		else:
 			Global.defaultCursor() #  sets the cursor to default when above nothing
 
-
+# func to check if mouse is on ui
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("mousepointer"):
-		on_ui = true
+	if body.is_in_group("mousepointer"): # checks if mouse is on ui by checking the mouseindicator
+		on_ui = true # sets the var for mouse is on ui
 
 
-
+# func to check if mouse left ui
 func _on_area_2d_body_exited(body):
-	if body.is_in_group("mousepointer"):
-		on_ui = false
+	if body.is_in_group("mousepointer"): # checks if mouse is on ui by checking the mouseindicator
+		on_ui = false # sets the var for mouse is on ui
 
