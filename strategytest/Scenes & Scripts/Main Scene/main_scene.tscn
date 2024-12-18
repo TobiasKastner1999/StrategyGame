@@ -682,9 +682,9 @@ transform = Transform2D(0.4, 0, 0, 0.35, 0, 0)
 
 [node name="MarginContainer" parent="MiniMap" index="0"]
 offset_left = 425.0
-offset_top = 2688.57
+offset_top = 2689.0
 offset_right = 783.0
-offset_bottom = 3090.57
+offset_bottom = 3158.0
 
 [node name="UiArea" type="Area2D" parent="MiniMap"]
 position = Vector2(523.333, 698.182)
