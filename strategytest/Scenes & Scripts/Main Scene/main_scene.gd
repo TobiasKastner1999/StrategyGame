@@ -69,6 +69,7 @@ func _on_interface_start_game(faction):
 		if hq.getFaction() == faction:
 			$Interface/Placer.hq_zone = hq.getArea() # locks the building placers to the platform of the player's chosen faction
 			$Interface.hq = hq
+			addUnitToFog(hq)
 		else:
 			hq.visible = false # makes the enemy's hq invisible
 

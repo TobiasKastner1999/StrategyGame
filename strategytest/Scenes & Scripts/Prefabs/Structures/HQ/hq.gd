@@ -10,6 +10,7 @@ const MAX_HP = 20.0 # the hq's maximum hp
 
 var current_workers = 0 # how many workers are currently alive?
 var can_spawn = false # can the hq spawn a new worker?
+var detection_range = 50.0
 
 @onready var unit_manager = $".."/Units
 @onready var hp = Balance.hq_hp # the hq's current hp, initially set to the maximum
@@ -126,6 +127,9 @@ func fowExit(node):
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
+
+func getDetectionRange():
+	return $UnitDetectionArea/DetectionAreaShape.shape.radius
 
 # when a new object enters the hq's detection range
 func _on_unit_detection_body_entered(body):
