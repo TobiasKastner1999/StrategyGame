@@ -63,7 +63,7 @@ func setProximityDistance():
 				return 2.0
 			match run_node.getActiveTarget().getType():
 				"resource":
-					return (run_node.getProximity() / 3.0)
+					return (run_node.getProximity() / 2.0)
 				"hq":
 					return run_node.getProximity()
 				_:
