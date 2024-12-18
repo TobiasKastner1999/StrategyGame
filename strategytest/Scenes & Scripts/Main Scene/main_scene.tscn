@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=55 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
@@ -6,9 +6,12 @@
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/selection_box.gd" id="3_ue6em"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/unit_manager.gd" id="4_phx1q"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/resource_manager.gd" id="5_de6tf"]
+[ext_resource type="Shader" path="res://Assets/fow_terrain.gdshader" id="5_dxxc2"]
 [ext_resource type="Shader" path="res://Scenes & Scripts/Asset Scenes/mapshader.gdshader" id="5_k2sqr"]
 [ext_resource type="Texture2D" uid="uid://bm1hdk2f5ev6u" path="res://Assets/Models/Map/FullMapBaked_NormalMap.png" id="6_0vaex"]
+[ext_resource type="Texture2D" uid="uid://chuskcnc8fqrb" path="res://Assets/testmask.png" id="6_8aatv"]
 [ext_resource type="PackedScene" uid="uid://kfr5nk4l557f" path="res://Scenes & Scripts/Prefabs/Structures/Ressources/ressource.tscn" id="6_n2kgi"]
+[ext_resource type="Texture2D" uid="uid://8fp5r7lvixka" path="res://Assets/texture_fow.png" id="7_axjv0"]
 [ext_resource type="PackedScene" uid="uid://7012rhjv4u2g" path="res://Scenes & Scripts/Prefabs/Structures/HQ/hq.tscn" id="7_g6gsm"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/enemy_controller.gd" id="8_q8x15"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/interface.gd" id="9_f8ghw"]
@@ -44,8 +47,21 @@ sky = SubResource("Sky_dyptq")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uva0g"]
+render_priority = 0
+shader = ExtResource("5_dxxc2")
+shader_parameter/albedo_a = Vector4(1, 1, 1, 1)
+shader_parameter/albedo_b = Vector4(1, 1, 1, 1)
+shader_parameter/mask_texture = ExtResource("6_8aatv")
+shader_parameter/texture_a = ExtResource("7_axjv0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utr4t"]
+next_pass = SubResource("ShaderMaterial_uva0g")
+transparency = 1
+blend_mode = 3
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rxa1o"]
-render_priority = 1
+render_priority = 0
 shader = ExtResource("5_k2sqr")
 shader_parameter/dune_scale = 2.0
 shader_parameter/heat_distortion_strength = 0.1
@@ -182,10 +198,11 @@ one_shot = true
 [node name="Map" type="Node3D" parent="."]
 
 [node name="Map" type="Node3D" parent="Map"]
-transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 16.7885, -6.71572, 0)
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, -6.716, 0)
 
 [node name="Bake" type="MeshInstance3D" parent="Map/Map"]
-transform = Transform3D(169.739, 0, 0, 0, 169.739, 0, 0, 0, 169.739, -3.52298, 0, 0.530764)
+transform = Transform3D(169.739, 0, 0, 0, 169.739, 0, 0, 0, 169.739, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_utr4t")
 mesh = SubResource("ArrayMesh_8g7q4")
 skeleton = NodePath("")
 
@@ -195,7 +212,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_xf5ak")
 
 [node name="MapSize" type="MeshInstance3D" parent="Map/Map"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -3.71335, -1.39427, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -1.394, 0)
 visible = false
 mesh = SubResource("PlaneMesh_pe0lx")
 skeleton = NodePath("../..")
