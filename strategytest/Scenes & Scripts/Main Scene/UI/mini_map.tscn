@@ -34,6 +34,7 @@ offset_right = 256.0
 offset_bottom = 256.0
 
 [node name="Background" type="Sprite2D" parent="MarginContainer"]
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_2enkc")
 metadata/_edit_lock_ = true
 
@@ -53,6 +54,7 @@ texture = ExtResource("5_oa4x0")
 metadata/_edit_lock_ = true
 
 [node name="MinimapColl" type="CollisionShape2D" parent="MarginContainer/MinimapRegion"]
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_186kj")
 metadata/_edit_lock_ = true
 
@@ -70,6 +72,7 @@ shape = SubResource("RectangleShape2D_1leb5")
 [node name="Dots" type="Node2D" parent="MarginContainer"]
 
 [node name="FogOfWar" type="Sprite2D" parent="MarginContainer"]
+visible = false
 material = SubResource("ShaderMaterial_v5e1d")
 position = Vector2(-20, 20)
 texture = ExtResource("9_eerus")

@@ -2,8 +2,8 @@ shader_type spatial;
 
 uniform sampler2D texture_albedo;
 uniform sampler2D texture_normal : hint_normal;
-uniform float dune_scale : hint_range(0.1, 20.0) = 2.0;
-uniform float heat_distortion_strength : hint_range(0.0, 10.0) = 0.1;
+uniform float dune_scale : hint_range(0.1, 10.0) = 2.0;
+uniform float heat_distortion_strength : hint_range(0.0, 10.0) = 1.0;
 uniform float time_scale : hint_range(0.1, 10.0) = 1.0;
 
 // Colors for gradient (low and high areas of sand)
@@ -40,5 +40,5 @@ void fragment() {
 
     // Finish up
     ROUGHNESS = 2.0; // Sand is rough
-    METALLIC = 0.3; // Sand is not metallic
+    METALLIC = 0.5; // Sand is not metallic
 }
