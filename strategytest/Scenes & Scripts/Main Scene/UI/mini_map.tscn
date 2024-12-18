@@ -73,7 +73,6 @@ shape = SubResource("RectangleShape2D_1leb5")
 
 [node name="FogOfWar" type="Sprite2D" parent="MarginContainer"]
 material = SubResource("ShaderMaterial_v5e1d")
-position = Vector2(-20, 20)
 texture = ExtResource("9_eerus")
 
 [node name="Cam" type="Sprite2D" parent="MarginContainer"]

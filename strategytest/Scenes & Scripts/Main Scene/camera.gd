@@ -25,22 +25,22 @@ func _physics_process(_delta):
 	var window_size = get_viewport().get_visible_rect().size
 
 # camera movement when mouse near window border or WASD
-	if mouse_pos.x < 10 and $".".position.x > -350:
+	if mouse_pos.x < 10 and $".".position.x > -300:
 		$".".position.x -= Balance.cameara_speed
-	elif mouse_pos.x > window_size.x - 10 and $".".position.x < 350:
+	elif mouse_pos.x > window_size.x - 10 and $".".position.x < 300:
 		$".".position.x += Balance.cameara_speed
-	if mouse_pos.y < 10 and $".".position.z > -350:
+	if mouse_pos.y < 10 and $".".position.z > -300:
 		$".".position.z -= Balance.cameara_speed
-	elif mouse_pos.y > window_size.y - 10 and $".".position.z < 350:
+	elif mouse_pos.y > window_size.y - 10 and $".".position.z < 300:
 		$".".position.z += Balance.cameara_speed
 
-	if Input.is_action_pressed("front") and $".".position.z > -350:
+	if Input.is_action_pressed("front") and $".".position.z > -300:
 		$".".position.z -= Balance.cameara_speed
-	if Input.is_action_pressed("back") and $".".position.z < 350:
+	if Input.is_action_pressed("back") and $".".position.z < 300:
 		$".".position.z += Balance.cameara_speed
-	if Input.is_action_pressed("left") and $".".position.x > -350:
+	if Input.is_action_pressed("left") and $".".position.x > -300:
 		$".".position.x -= Balance.cameara_speed
-	if Input.is_action_pressed("right") and $".".position.x < 350:
+	if Input.is_action_pressed("right") and $".".position.x < 300:
 		$".".position.x += Balance.cameara_speed
 
 # deselects the units on click that are not in dragged box
