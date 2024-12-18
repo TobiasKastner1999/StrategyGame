@@ -11,7 +11,9 @@ const MAX_HP = 20.0 # the hq's maximum hp
 var current_workers = 0 # how many workers are currently alive?
 var can_spawn = false # can the hq spawn a new worker?
 var detection_range = 50.0
+var nearby_observers = []
 
+@onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 @onready var unit_manager = $".."/Units
 @onready var hp = Balance.hq_hp # the hq's current hp, initially set to the maximum
 
@@ -117,16 +119,28 @@ func getWorkerNum():
 
 # called when the hq comes into view of a player-controlled unit
 func fowEnter(node):
-	fowReveal(true) # makes the hq visible
+	if node.getFaction() != faction:
+		nearby_observers.append(node)
+		fowReveal(true) # enables the visibility of the hq
+		setGreystate(false)
 
 # called when the hq is no longer in view of a player-controlled unit
 func fowExit(node):
-	pass
+	if nearby_observers.has(node):
+		nearby_observers.erase(node)
+		if nearby_observers.size() == 0:
+			setGreystate(true)
 
-# sets the hq's visibility to a given state
+# sets the visibility of the hq to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
+
+func setGreystate(bol):
+	if bol:
+		$HqBody.material_overlay = greystate
+	else:
+		$HqBody.material_overlay = null
 
 func getDetectionRange():
 	return $UnitDetectionArea/DetectionAreaShape.shape.radius

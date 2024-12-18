@@ -13,7 +13,9 @@ var faction : int # the faction the building belongs to
 var production_type = 0 # which type of unit does the building currently produce?
 var unit_cost : int # how many crystals does each unit from this building cost to produce?
 var spawn_rate : float # how often can the building produce new units?
+var nearby_observers = []
 
+@onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 @onready var hp = Balance.building_hp # the building's current hit points, initially set to the maximum hit points
 @onready var unit_storage = $"../Units" # the main system node for units
 
@@ -125,16 +127,28 @@ func getSize():
 
 # called when the building comes into view of a player-controlled unit
 func fowEnter(node):
-	fowReveal(true) # makes the building visible
+	if node.getFaction() != faction:
+		nearby_observers.append(node)
+		fowReveal(true) # enables the visibility of the building
+		setGreystate(false)
 
 # called when the building is no longer in view of a player-controlled unit
 func fowExit(node):
-	pass
+	if nearby_observers.has(node):
+		nearby_observers.erase(node)
+		if nearby_observers.size() == 0:
+			setGreystate(true)
 
-# toggles the building's visibility to a given state
+# sets the visibility of the building to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
+
+func setGreystate(bol):
+	if bol:
+		$BuildingBody.material_overlay = greystate
+	else:
+		$BuildingBody.material_overlay = null
 
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():

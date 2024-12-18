@@ -219,6 +219,7 @@ skeleton = NodePath("../..")
 
 [node name="Wallpaper" type="MeshInstance3D" parent="Map/Map"]
 transform = Transform3D(220, 0, 0, 0, 220, 0, 0, 0, 220, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_utr4t")
 mesh = SubResource("ArrayMesh_8g7q4")
 skeleton = NodePath("")

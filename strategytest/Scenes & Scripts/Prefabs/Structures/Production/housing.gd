@@ -10,7 +10,9 @@ const CAPACITY = 5 # how many units the building can hold
 
 var function_active = true
 var faction : int # the faction the building belongs to
+var nearby_observers = []
 
+@onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 @onready var hp = MAX_HP # the building's current hit points, initially set to the maximum hit points
 
 # prepares to spawn a new unit when first built
@@ -66,15 +68,27 @@ func getType():
 func getSize():
 	return ($HousingBody.mesh.size.x / 2)
 
-# calling when the housing comes into view of a player-controlled unit
-func fowEnter(_node):
-	fowReveal(true) # makes the housing visible
+# called when the housing comes into view of a player-controlled unit
+func fowEnter(node):
+	if node.getFaction() != faction:
+		nearby_observers.append(node)
+		fowReveal(true) # enables the visibility of the housing
+		setGreystate(false)
 
 # called when the housing is no longer in view of a player-controlled unit
-func fowExit(_node):
-	pass
+func fowExit(node):
+	if nearby_observers.has(node):
+		nearby_observers.erase(node)
+		if nearby_observers.size() == 0:
+			setGreystate(true)
 
-# sets the housing's visibility to a given state
+# sets the visibility of the housing to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
+
+func setGreystate(bol):
+	if bol:
+		$HousingBody.material_overlay = greystate
+	else:
+		$HousingBody.material_overlay = null

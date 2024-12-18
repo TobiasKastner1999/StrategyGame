@@ -3,7 +3,9 @@ extends Node3D
 signal expended(node) # to have workers remove their references of this node
 
 var resource = Balance.resource # how many resources does this node still hold?
+var nearby_observers = []
 
+@onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 @export var resource_type : int # the type of resource this node contains
 
 # called when the node is first initialized
@@ -43,14 +45,25 @@ func getRotation():
 	return rotation
 
 # called when the resource comes into view of a player-controlled unit
-func fowEnter(_node):
-	fowReveal() # enables the visibility of the resource
+func fowEnter(node):
+	nearby_observers.append(node)
+	fowReveal(true) # enables the visibility of the resource
+	setGreystate(false)
 
 # called when the resource is no longer in view of a player-controlled unit
-func fowExit(_node):
-	pass
+func fowExit(node):
+	if nearby_observers.has(node):
+		nearby_observers.erase(node)
+		if nearby_observers.size() == 0:
+			setGreystate(true)
 
-# enables the visibility of the resource
-func fowReveal():
-	if !visible:
-		visible = true
+# sets the visibility of the resource to a given state
+func fowReveal(bol):
+	if visible != bol:
+		visible = bol
+
+func setGreystate(bol):
+	if bol:
+		$ResourceBody.material_overlay = greystate
+	else:
+		$ResourceBody.material_overlay = null
