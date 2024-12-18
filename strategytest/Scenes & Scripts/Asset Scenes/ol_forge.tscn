@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs5ubhgxt5nqo"]
+
+[ext_resource type="PackedScene" uid="uid://5no0210n5mqm" path="res://Assets/Models/HQ/OL_forge.glb" id="1_81lv7"]
+
+[node name="OL_forge" instance=ExtResource("1_81lv7")]
