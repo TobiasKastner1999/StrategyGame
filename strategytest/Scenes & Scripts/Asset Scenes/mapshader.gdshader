@@ -19,7 +19,7 @@ void fragment() {
     float dune_pattern = sin(uv.x * dune_scale) * cos(uv.y * dune_scale);
 
     //randomization
-    dune_pattern += texture(texture_normal, uv * dune_scale * 0.5).r * 0.5;
+    dune_pattern += texture(texture_normal, uv * dune_scale * 0.5).r * 1.5;
 
     // Calculate height-based sand color gradient
     vec3 sand_color = mix(low_sand_color, high_sand_color, clamp(dune_pattern, 0.0, 1.0));
@@ -35,10 +35,10 @@ void fragment() {
     //NORMAL = normalize(TANGENT * (normal_map * 2.0 - 1.0));
 
     // Add heat distortion (using time-based offset)
-    float distortion = sin(TIME * time_scale + uv.y * 10.0) * heat_distortion_strength;
+    float distortion = sin(TIME * time_scale + uv.y * 5.0) * heat_distortion_strength;
     uv += vec2(distortion, distortion * 0.5);
 
     // Finish up
-    ROUGHNESS = 3.0; // Sand is rough
+    ROUGHNESS = 2.0; // Sand is rough
     METALLIC = 0.3; // Sand is not metallic
 }

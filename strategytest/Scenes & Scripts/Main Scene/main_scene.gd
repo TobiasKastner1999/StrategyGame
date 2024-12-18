@@ -3,7 +3,7 @@ extends NavigationRegion3D
 
 var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
 
-@onready var world_size = Vector2i($Map/Floor/FloorMesh.mesh.size.x, $Map/Floor/FloorMesh.mesh.size.y) # the size of the level's world environment
+@onready var world_size = Vector2i($Map/Map/MapSize.mesh.size.x, $Map/Map/MapSize.mesh.size.y) # the size of the level's world environment
 @onready var fog_of_war = $Interface/FogOfWar # the node handling the game's fog of war
 
 #var cursor = load()
@@ -94,6 +94,6 @@ func _on_language_changed():
 	$Interface/SelectedPanel.updateSelectedInterface()
 
 # updates the map with a new fog of war texture
-func _on_fog_of_war_fow_updated(new_texture):
-	$Map/Floor/FloorMesh.get_material_override().next_pass.set_shader_parameter("mask_texture", new_texture)
-	$MiniMap.setFogTexture(new_texture)
+#func _on_fog_of_war_fow_updated(new_texture):
+	#$Map/Floor/FloorMesh.get_material_override().next_pass.set_shader_parameter("mask_texture", new_texture)
+	#$MiniMap.setFogTexture(new_texture)

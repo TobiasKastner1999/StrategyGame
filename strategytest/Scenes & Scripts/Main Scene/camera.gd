@@ -25,22 +25,22 @@ func _physics_process(_delta):
 	var window_size = get_viewport().get_visible_rect().size
 
 # camera movement when mouse near window border or WASD
-	if mouse_pos.x < 10 and $".".position.x > -250:
+	if mouse_pos.x < 10 and $".".position.x > -350:
 		$".".position.x -= Balance.cameara_speed
-	elif mouse_pos.x > window_size.x - 10 and $".".position.x < 250:
+	elif mouse_pos.x > window_size.x - 10 and $".".position.x < 350:
 		$".".position.x += Balance.cameara_speed
-	if mouse_pos.y < 10 and $".".position.z > -250:
+	if mouse_pos.y < 10 and $".".position.z > -350:
 		$".".position.z -= Balance.cameara_speed
-	elif mouse_pos.y > window_size.y - 10 and $".".position.z < 250:
+	elif mouse_pos.y > window_size.y - 10 and $".".position.z < 350:
 		$".".position.z += Balance.cameara_speed
 
-	if Input.is_action_pressed("front") and $".".position.z > -250:
+	if Input.is_action_pressed("front") and $".".position.z > -350:
 		$".".position.z -= Balance.cameara_speed
-	if Input.is_action_pressed("back") and $".".position.z < 250:
+	if Input.is_action_pressed("back") and $".".position.z < 350:
 		$".".position.z += Balance.cameara_speed
-	if Input.is_action_pressed("left") and $".".position.x > -250:
+	if Input.is_action_pressed("left") and $".".position.x > -350:
 		$".".position.x -= Balance.cameara_speed
-	if Input.is_action_pressed("right") and $".".position.x < 250:
+	if Input.is_action_pressed("right") and $".".position.x < 350:
 		$".".position.x += Balance.cameara_speed
 
 # deselects the units on click that are not in dragged box
@@ -212,11 +212,11 @@ func checkUnderMouse(camera):
 	if result.size()<1: # limits the collider
 		return
 	if $"../Interface".interface_input_mode == 0: # checks if buildingmode is on
-		if result.collider.is_in_group("resource"): # called when mouse above crystal
+		if result.collider.is_in_group("resource") and result.collider.visible == true: # called when mouse above crystal
 			Global.setCursor("res://Assets/UI/CursorHarvest.png") # sets the cursor
-		elif result.collider.is_in_group("Selectable") and result.collider.faction != Global.player_faction: # checks for enemy units
+		elif result.collider.is_in_group("Selectable") and result.collider.faction != Global.player_faction and result.collider.visible == true: # checks for enemy units
 			Global.setCursor("res://Assets/UI/Cursor Attack.png") # sets the cursor
-		elif result.collider.is_in_group("Structure") and result.collider.faction != Global.player_faction: # checks for enemy buildings
+		elif result.collider.is_in_group("Structure") and result.collider.faction != Global.player_faction and result.collider.visible == true: # checks for enemy buildings
 			Global.setCursor("res://Assets/UI/Cursor Attack.png") # sets the cursor
 		else:
 			Global.defaultCursor() #  sets the cursor to default when above nothing

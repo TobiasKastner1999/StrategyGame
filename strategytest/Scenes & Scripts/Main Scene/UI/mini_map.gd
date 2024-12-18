@@ -108,19 +108,19 @@ func delete_dot():
 # limitations for the cam sprite so it cant leave the minimap
 func minimap_limits():
 	# limits for the cam sprite on the x-axis 
-	if not cam_sprite.position.x <= -250 and not cam_sprite.position.x >= 250:
+	if not cam_sprite.position.x <= -350 and not cam_sprite.position.x >= 350:
 		cam_sprite.position.x = main_cam.position.x
-	if cam_sprite.position.x <= -250:
-		cam_sprite.position.x = -259
-	if cam_sprite.position.x >= 250:
-		cam_sprite.position.x = 249
+	if cam_sprite.position.x <= -350:
+		cam_sprite.position.x = -359
+	if cam_sprite.position.x >= 350:
+		cam_sprite.position.x = 349
 	# limits for the cam sprite on the y-axis 
-	if not cam_sprite.position.y <= -250 and not cam_sprite.position.y >= 250:
+	if not cam_sprite.position.y <= -350 and not cam_sprite.position.y >= 350:
 		cam_sprite.position.y = main_cam.position.z
-	if cam_sprite.position.y <= -250:
-		cam_sprite.position.y = -249
-	if cam_sprite.position.y >= 250:
-		cam_sprite.position.y = 249
+	if cam_sprite.position.y <= -350:
+		cam_sprite.position.y = -349
+	if cam_sprite.position.y >= 350:
+		cam_sprite.position.y = 349
 
 # scale the vision sprite when cam zooms in/oout
 func minimap_zoom():
@@ -138,7 +138,7 @@ func minimap_clickable():
 	# when the mouse enters the area of minimap the var turns true and if you click the camera moves to the position given
 	# via a characterbody2d that is constantly following the mouse and
 	# limit the minimap clickrange
-	if mouse.position.x >= -250 and  mouse.position.x <= 250 and mouse.position.y >= -250 and mouse.position.y <= 250:
+	if mouse.position.x >= -350 and  mouse.position.x <= 350 and mouse.position.y >= -350 and mouse.position.y <= 350:
 		mouse_over_map = true
 	else:
 		mouse_over_map = false
