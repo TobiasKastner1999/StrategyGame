@@ -108,12 +108,12 @@ func delete_dot():
 # limitations for the cam sprite so it cant leave the minimap
 func minimap_limits():
 	# limits for the cam sprite on the x-axis 
-	if not cam_sprite.position.x <= -350 and not cam_sprite.position.x >= 350:
+	if not cam_sprite.position.x <= -340 and not cam_sprite.position.x >= 340:
 		cam_sprite.position.x = main_cam.position.x
-	if cam_sprite.position.x <= -350:
-		cam_sprite.position.x = -359
-	if cam_sprite.position.x >= 350:
-		cam_sprite.position.x = 349
+	if cam_sprite.position.x <= -340:
+		cam_sprite.position.x = -339
+	if cam_sprite.position.x >= 340:
+		cam_sprite.position.x = 339
 	# limits for the cam sprite on the y-axis 
 	if not cam_sprite.position.y <= -350 and not cam_sprite.position.y >= 350:
 		cam_sprite.position.y = main_cam.position.z
