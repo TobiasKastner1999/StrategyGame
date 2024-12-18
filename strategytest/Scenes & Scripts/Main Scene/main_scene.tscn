@@ -61,7 +61,7 @@ transparency = 1
 blend_mode = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rxa1o"]
-render_priority = 0
+render_priority = 1
 shader = ExtResource("5_k2sqr")
 shader_parameter/dune_scale = 2.0
 shader_parameter/heat_distortion_strength = 0.1
@@ -216,6 +216,12 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -1.394, 0)
 visible = false
 mesh = SubResource("PlaneMesh_pe0lx")
 skeleton = NodePath("../..")
+
+[node name="Wallpaper" type="MeshInstance3D" parent="Map/Map"]
+transform = Transform3D(220, 0, 0, 0, 220, 0, 0, 0, 220, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_utr4t")
+mesh = SubResource("ArrayMesh_8g7q4")
+skeleton = NodePath("")
 
 [node name="HillFriendly" type="StaticBody3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -233.809, -11.0373, 260.084)
