@@ -4,6 +4,7 @@ signal rebake()
 
 var dummy_prefab = preload("res://Scenes & Scripts/Prefabs/Structures/Ressources/dummy_resource.tscn") # the scene for a dummy resource
 
+# removes all references to a given unit from all resources
 func clearUnitReferences(unit):
 	for resource in get_children():
 		clearUnitReferences(unit)

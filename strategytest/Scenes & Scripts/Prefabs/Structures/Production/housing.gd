@@ -68,6 +68,7 @@ func getType():
 func getSize():
 	return ($HousingBody.mesh.size.x / 2)
 
+# removes a given unit from the list of the housing's observers
 func clearUnitReferences(unit):
 	fowExit(unit)
 
@@ -76,20 +77,21 @@ func fowEnter(node):
 	if node.getFaction() != faction:
 		nearby_observers.append(node)
 		fowReveal(true) # enables the visibility of the housing
-		setGreystate(false)
+		setGreystate(false) # enables the greystate of the housing
 
 # called when the housing is no longer in view of a player-controlled unit
 func fowExit(node):
 	if nearby_observers.has(node):
 		nearby_observers.erase(node)
 		if nearby_observers.size() == 0:
-			setGreystate(true)
+			setGreystate(true) # disables the greystate of the housing
 
 # sets the visibility of the housing to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
 
+# sets the greystate of the housing
 func setGreystate(bol):
 	if bol:
 		$HousingBody.material_overlay = greystate

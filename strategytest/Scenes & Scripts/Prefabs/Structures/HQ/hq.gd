@@ -58,8 +58,9 @@ func spawnWorker(spawn_point):
 	else:
 		worker.visible = false
 
+# clears references to a given unit from the HQ and its workers
 func clearUnitReferences(unit):
-	fowExit(unit)
+	fowExit(unit) # removes the unit from the list of the HQ's observers
 	for worker in $Workers.get_children():
 		worker.checkUnitRemoval(unit)
 
@@ -123,20 +124,21 @@ func fowEnter(node):
 	if node.getFaction() != faction:
 		nearby_observers.append(node)
 		fowReveal(true) # enables the visibility of the hq
-		setGreystate(false)
+		setGreystate(false) # disables the HQ's greystate
 
 # called when the hq is no longer in view of a player-controlled unit
 func fowExit(node):
 	if nearby_observers.has(node):
 		nearby_observers.erase(node)
 		if nearby_observers.size() == 0:
-			setGreystate(true)
+			setGreystate(true) # enables the HQ's greystate
 
 # sets the visibility of the hq to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
 
+# sets the greystate of the HQ
 func setGreystate(bol):
 	if bol:
 		$HqBody.material_overlay = greystate

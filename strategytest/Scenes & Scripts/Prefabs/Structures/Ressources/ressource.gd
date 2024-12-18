@@ -44,6 +44,7 @@ func getPosition():
 func getRotation():
 	return rotation
 
+# removes a given unit from the list of the resource's observers
 func clearUnitReferences(unit):
 	fowExit(unit)
 
@@ -51,20 +52,21 @@ func clearUnitReferences(unit):
 func fowEnter(node):
 	nearby_observers.append(node)
 	fowReveal(true) # enables the visibility of the resource
-	setGreystate(false)
+	setGreystate(false) # disables the resource's greystate
 
 # called when the resource is no longer in view of a player-controlled unit
 func fowExit(node):
 	if nearby_observers.has(node):
 		nearby_observers.erase(node)
 		if nearby_observers.size() == 0:
-			setGreystate(true)
+			setGreystate(true) # enables the resource's greystate
 
 # sets the visibility of the resource to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
 
+# sets the resource's greystate
 func setGreystate(bol):
 	if bol:
 		$ResourceBody.material_overlay = greystate

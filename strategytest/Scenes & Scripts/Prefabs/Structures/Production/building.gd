@@ -125,6 +125,7 @@ func getProduction():
 func getSize():
 	return ($BuildingBody.mesh.size.x / 2)
 
+# removes a given unit from the list of the building's observers
 func clearUnitReferences(unit):
 	fowExit(unit)
 
@@ -133,20 +134,21 @@ func fowEnter(node):
 	if node.getFaction() != faction:
 		nearby_observers.append(node)
 		fowReveal(true) # enables the visibility of the building
-		setGreystate(false)
+		setGreystate(false) # dusables the greystate of the building
 
 # called when the building is no longer in view of a player-controlled unit
 func fowExit(node):
 	if nearby_observers.has(node):
 		nearby_observers.erase(node)
 		if nearby_observers.size() == 0:
-			setGreystate(true)
+			setGreystate(true) # enables the greystate of the building
 
 # sets the visibility of the building to a given state
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
 
+# sets the greystate of the building
 func setGreystate(bol):
 	if bol:
 		$BuildingBody.material_overlay = greystate
