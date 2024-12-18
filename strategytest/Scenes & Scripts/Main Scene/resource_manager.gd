@@ -4,6 +4,10 @@ signal rebake()
 
 var dummy_prefab = preload("res://Scenes & Scripts/Prefabs/Structures/Ressources/dummy_resource.tscn") # the scene for a dummy resource
 
+func clearUnitReferences(unit):
+	for resource in get_children():
+		clearUnitReferences(unit)
+
 # creates a new dummy resource
 func createDummyResource(type, pos, rot):
 	var new_dummy = dummy_prefab.instantiate()

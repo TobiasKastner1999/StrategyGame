@@ -68,6 +68,9 @@ func getType():
 func getSize():
 	return ($HousingBody.mesh.size.x / 2)
 
+func clearUnitReferences(unit):
+	fowExit(unit)
+
 # called when the housing comes into view of a player-controlled unit
 func fowEnter(node):
 	if node.getFaction() != faction:

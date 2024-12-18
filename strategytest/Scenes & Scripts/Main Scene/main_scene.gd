@@ -27,6 +27,10 @@ func _on_units_delete_selection(unit):
 	fog_of_war.attemptRemoveUnit(unit) # also attempts to remove the unit from the fog of war system
 	$HQBlue.clearUnitReferences(unit)
 	$HQRed.clearUnitReferences(unit)
+	$Resources.clearUnitReferences(unit)
+	
+	for building in get_tree().get_nodes_in_group("building"):
+		building.clearUnitReferences(unit)
 
 # rebakes the navmesh
 func _on_interface_rebake():

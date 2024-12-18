@@ -59,6 +59,7 @@ func spawnWorker(spawn_point):
 		worker.visible = false
 
 func clearUnitReferences(unit):
+	fowExit(unit)
 	for worker in $Workers.get_children():
 		worker.checkUnitRemoval(unit)
 

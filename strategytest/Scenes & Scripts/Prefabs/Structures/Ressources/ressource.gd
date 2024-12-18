@@ -44,6 +44,9 @@ func getPosition():
 func getRotation():
 	return rotation
 
+func clearUnitReferences(unit):
+	fowExit(unit)
+
 # called when the resource comes into view of a player-controlled unit
 func fowEnter(node):
 	nearby_observers.append(node)
