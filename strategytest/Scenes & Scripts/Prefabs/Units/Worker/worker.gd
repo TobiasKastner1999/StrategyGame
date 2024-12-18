@@ -27,7 +27,7 @@ var can_attack = true # can the worker currently attack (is its attack not on co
 var attacking = false # is the worker playing its attack animation?
 var is_awake = true # is the worker currently actively acting?
 
-var unit_type : int # the worker's type
+var unit_type : String # the worker's type
 var faction : int # which faction does this worker belong to?
 var max_hp : float # the worker's maximum hit points
 var damage_value : float # the damage the worker deals with each attack
@@ -72,6 +72,7 @@ func animationControl():
 # sets up the worker and its properties when it is spawned
 func setUp(type):
 	# sets the various properties from the given values for the worker's type
+	unit_type = type
 	max_hp = Global.unit_dict[str(type)]["max_hp"]
 	damage_value = Global.unit_dict[str(type)]["damage_value"]
 	attack_range = Global.unit_dict[str(type)]["attack_range"]
@@ -298,6 +299,9 @@ func getFaction():
 # returns the combat target type (worker)
 func getType():
 	return TARGET_TYPE
+
+func getUnitType():
+	return unit_type
 
 # returns the worker's physical size
 func getSize():
