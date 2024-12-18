@@ -73,7 +73,7 @@ shape = SubResource("RectangleShape2D_1leb5")
 [node name="FogOfWar" type="Sprite2D" parent="MarginContainer"]
 material = SubResource("ShaderMaterial_v5e1d")
 position = Vector2(1.00001, -1.00004)
-scale = Vector2(2.99219, 2.9375)
+scale = Vector2(3, 3)
 texture = ExtResource("9_eerus")
 metadata/_edit_lock_ = true
 

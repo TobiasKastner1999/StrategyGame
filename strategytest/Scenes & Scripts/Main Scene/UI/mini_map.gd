@@ -149,4 +149,7 @@ func minimap_clickable():
 		main_cam.position.z = mouse.position.y
 
 func setFogTexture(new_texture):
-	$MarginContainer/FogOfWar.set_texture(new_texture)
+	var fow = $MarginContainer/FogOfWar
+	fow.set_texture(new_texture)
+	var scale_factor = 256.0 / (float)(new_texture.get_height())
+	fow.scale = Vector2(3 * scale_factor, 3 * scale_factor)
