@@ -147,3 +147,6 @@ func minimap_clickable():
 		var _mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		main_cam.position.x = mouse.position.x
 		main_cam.position.z = mouse.position.y
+
+func setFogTexture(new_texture):
+	$MarginContainer/FogOfWar.set_texture(new_texture)

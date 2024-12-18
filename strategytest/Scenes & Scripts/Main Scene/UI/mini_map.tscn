@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://daovvhsbialq1"]
+[gd_scene load_steps=13 format=3 uid="uid://daovvhsbialq1"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/mini_map.gd" id="1_pkvyj"]
 [ext_resource type="Texture2D" uid="uid://b6dtu1j332xxy" path="res://Assets/UI/minimaparea.png" id="2_2enkc"]
 [ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://Assets/UI/blue_dot.png" id="2_wcwke"]
 [ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://Assets/UI/cam.png" id="3_ao8ji"]
+[ext_resource type="Shader" path="res://Assets/fow_sprite_shader.gdshader" id="3_lsynx"]
 [ext_resource type="Texture2D" uid="uid://d7q3bpm32hd" path="res://Assets/UI/BuildingBlue.png" id="4_jkjjc"]
 [ext_resource type="Texture2D" uid="uid://dtdwlepjf3g0s" path="res://Assets/UI/BuildingRed.png" id="5_oa4x0"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/MouseIndicator.gd" id="5_ojfxw"]
+[ext_resource type="Texture2D" uid="uid://8fp5r7lvixka" path="res://Assets/texture_fow.png" id="9_eerus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
 size = Vector2(506, 500)
@@ -14,26 +16,31 @@ size = Vector2(506, 500)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1leb5"]
 size = Vector2(10, 10)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v5e1d"]
+shader = ExtResource("3_lsynx")
+shader_parameter/octaves = 4
+shader_parameter/starting_amplitude = 0.5
+shader_parameter/starting_frequency = 1.0
+shader_parameter/shift = 0.0
+shader_parameter/white_cutoff = 1.0
+shader_parameter/velocity = Vector2(1, 1)
+shader_parameter/fog_color = Vector4(0, 0, 0, 1)
+
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_pkvyj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 253.0
-offset_bottom = 251.0
+offset_right = 256.0
+offset_bottom = 256.0
 
 [node name="Background" type="Sprite2D" parent="MarginContainer"]
 texture = ExtResource("2_2enkc")
-metadata/_edit_lock_ = true
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]
 visible = false
 modulate = Color(0.639216, 0.639216, 0.639216, 0)
 position = Vector2(131, 106.5)
 texture = ExtResource("2_wcwke")
-
-[node name="Cam" type="Sprite2D" parent="MarginContainer"]
-scale = Vector2(2, 2)
-texture = ExtResource("3_ao8ji")
 
 [node name="BaseFriendly" type="Sprite2D" parent="MarginContainer"]
 texture = ExtResource("4_jkjjc")
@@ -60,3 +67,12 @@ texture = ExtResource("2_wcwke")
 shape = SubResource("RectangleShape2D_1leb5")
 
 [node name="Dots" type="Node2D" parent="MarginContainer"]
+
+[node name="FogOfWar" type="Sprite2D" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_v5e1d")
+scale = Vector2(2, 2)
+texture = ExtResource("9_eerus")
+
+[node name="Cam" type="Sprite2D" parent="MarginContainer"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_ao8ji")
