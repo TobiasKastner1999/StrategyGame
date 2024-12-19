@@ -16,6 +16,9 @@ func setUp(type, pos, rot):
 	rotation = rot
 	scale = Vector3(2, 2, 2)
 
+func clearUnitReferences(_unit):
+	pass
+
 # called when the dummy comes into view of a player-controlled unit
 func fowEnter(_node):
 	queue_free() # removes the dummy

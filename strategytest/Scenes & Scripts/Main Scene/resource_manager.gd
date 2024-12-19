@@ -7,7 +7,7 @@ var dummy_prefab = preload("res://Scenes & Scripts/Prefabs/Structures/Ressources
 # removes all references to a given unit from all resources
 func clearUnitReferences(unit):
 	for resource in get_children():
-		clearUnitReferences(unit)
+		resource.clearUnitReferences(unit)
 
 # creates a new dummy resource
 func createDummyResource(type, pos, rot):

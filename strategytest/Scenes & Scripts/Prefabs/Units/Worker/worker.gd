@@ -40,6 +40,8 @@ var speed : float # the worker's movement speed
 @onready var hq = $".." # the hq the worker belongs to
 @onready var worker_anim = $OutlawWorker/AnimationPlayer #  animationplayer for the model
 
+var selected = false
+
 # controls the worker's behaviour
 func _physics_process(delta):
 	if is_awake:
@@ -259,6 +261,7 @@ func checkUnitRemoval(unit):
 
 func clearAttackTarget():
 	target_node = null
+	target_mode = 0
 
 # sets the worker's targeting mode
 func setTargetMode(mode):
@@ -309,7 +312,7 @@ func getSize():
 
 # changes the color of the worker when selected
 func select():
-	pass
+	selected = true
 
 # changes the color of the worker when it is deselected
 func deselect():
@@ -317,6 +320,9 @@ func deselect():
 
 # called when the worker comes into view of a player-controlled unit
 func fowEnter(node):
+	if faction == 1:
+		print("Observed!")
+	fowReveal(true) # makes the worker visible
 	if node.getFaction() != faction:
 		current_observers.append(node) # adds the player unit to the worker's observers
 		fowReveal(true) # makes the worker visible
@@ -326,7 +332,7 @@ func fowExit(node):
 	if current_observers.has(node):
 		current_observers.erase(node) # removes the player unit from the worker's observers
 		if current_observers.size() == 0:
-			fowReveal(false) # if no observers remain,n makes the worker invisible
+			fowReveal(false) # if no observers remain, makes the worker invisible
 
 # sets the worker's visibility to a given state
 func fowReveal(bol):

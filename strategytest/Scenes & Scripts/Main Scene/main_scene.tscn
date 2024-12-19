@@ -467,8 +467,15 @@ grow_vertical = 2
 script = ExtResource("9_f8ghw")
 
 [node name="FogOfWar" parent="Interface" instance=ExtResource("10_lnqnp")]
-visible = false
 layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+offset_top = -0.159912
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 0
 scale = Vector2(0.5, 0.5)
 
 [node name="FactionSelection" parent="Interface" instance=ExtResource("10_rfqo2")]

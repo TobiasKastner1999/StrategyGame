@@ -13,7 +13,7 @@ func runBehaviour(node, _delta):
 func combatTargetInRange():
 	var target = run_node.getActiveTarget()
 	
-	if target != null and run_node.getTargetMode() == 1:
+	if target != null and target.getType() != "resource" and run_node.getTargetMode() == 1:
 		var attack_range = run_node.getAttackRange() # if the node has a target, gets the node's attack range
 	
 		if run_node.getPosition().distance_to(target.global_position) <= attack_range: # then determines if the target is within the attack range
