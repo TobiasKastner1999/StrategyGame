@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://blg8qkdcemldt" path="res://Assets/UI/Ui Ressourcen.png" id="16_mpbxc"]
 [ext_resource type="Texture2D" uid="uid://bqf5o7cmqfovq" path="res://Assets/UI/Kristalle Grün heller.png" id="17_c1w0m"]
 [ext_resource type="Texture2D" uid="uid://ovmtkukwhugj" path="res://Assets/UI/Ore Blau UI.png" id="18_mgo0t"]
-[ext_resource type="Texture2D" uid="uid://cxr1wou8abxmn" path="res://Assets/UI/UI_NL_concept.png" id="19_rysqs"]
+[ext_resource type="Texture2D" uid="uid://2bvmoc8lo2yx" path="res://Assets/UI/NL_UI.png" id="19_wh33d"]
 [ext_resource type="PackedScene" uid="uid://c7exd2o303ini" path="res://Scenes & Scripts/Screens/options.tscn" id="20_x38bj"]
 [ext_resource type="PackedScene" uid="uid://bibc15eiia2c0" path="res://Scenes & Scripts/Prefabs/Balancing/balance.tscn" id="22_fnvhq"]
 
@@ -489,7 +489,7 @@ offset_right = 287.0
 offset_bottom = 698.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("19_rysqs")
+texture = ExtResource("19_wh33d")
 expand_mode = 2
 
 [node name="GamestateInfo" type="RichTextLabel" parent="Interface"]

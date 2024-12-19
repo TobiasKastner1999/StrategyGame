@@ -1,18 +1,16 @@
 extends Node2D
 
 func _ready():
-	setTexts()
+	setTexts() #  sets the starting language
 
+# setter methods
 func setTexts():
 	$Start.text = Global.getText("@interface_button_start_game")
 	$Options.text = Global.getText("@interface_button_settings")
 	$Credits.text = Global.getText("@interface_button_credits")
 	$Quit.text = Global.getText("@interface_button_quit_game")
 
-#func _process(delta):
-	#if $OptionsMenu.visible == false:
-		#$OptionsMenu.visible = false
-		#$OptionsMenu/Panel.visible = true
+
 
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Main Scene/main_scene.tscn")# switch scene to main
@@ -30,8 +28,8 @@ func _on_credits_pressed():
 
 
 func _on_option_menu_close():
-	$OptionMenu.visible = false
+	$OptionMenu.visible = false # hides the menu
 
 func _on_language_changed():
-	setTexts()
-	$OptionMenu.setTexts()
+	setTexts() # changes the text
+	$OptionMenu.setTexts() # changes the text
