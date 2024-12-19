@@ -153,15 +153,15 @@ albedo_color = Color(0.870827, 0.518907, 0.405892, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47v5a"]
 albedo_color = Color(0.870588, 0.517647, 0.407843, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xrfe"]
+size = Vector2(5492, 919)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_samg3"]
 render_priority = 0
 shader = ExtResource("12_lfui2")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hw102"]
 size = Vector3(4.9989, 5.05823, 5.10894)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7xrfe"]
-size = Vector2(5492, 919)
 
 [node name="Main" type="NavigationRegion3D"]
 process_mode = 1
@@ -457,6 +457,48 @@ script = ExtResource("8_q8x15")
 script = ExtResource("8_q8x15")
 controlled_faction = 1
 
+[node name="MiniMap" parent="." instance=ExtResource("16_cn011")]
+layer = -1
+visible = false
+scale = Vector2(0.35, 0.35)
+transform = Transform2D(0.35, 0, 0, 0.35, 0, 0)
+
+[node name="MarginContainer" parent="MiniMap" index="0"]
+show_behind_parent = true
+offset_left = 477.143
+offset_top = 2622.86
+offset_right = 1307.14
+offset_bottom = 3344.86
+
+[node name="UiArea" type="Area2D" parent="MiniMap"]
+position = Vector2(523.333, 698.182)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiniMap/UiArea"]
+position = Vector2(2228.67, 1946.32)
+shape = SubResource("RectangleShape2D_7xrfe")
+
+[node name="Label" type="Label" parent="MiniMap/UiArea"]
+offset_left = 647.0
+offset_top = 30.0
+offset_right = 1050.0
+offset_bottom = 149.0
+
+[node name="UIFrame" type="TextureRect" parent="MiniMap"]
+visible = false
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1023.0
+offset_top = 14.0
+offset_right = 4683.0
+offset_bottom = 4363.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_wh33d")
+expand_mode = 2
+
 [node name="Interface" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -484,22 +526,8 @@ scale = Vector2(0.5, 0.5)
 visible = false
 layout_mode = 1
 
-[node name="UIFrame" type="TextureRect" parent="Interface"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -421.0
-offset_top = 3.0
-offset_right = 287.0
-offset_bottom = 698.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("19_wh33d")
-expand_mode = 2
-
 [node name="GamestateInfo" type="RichTextLabel" parent="Interface"]
+top_level = true
 layout_mode = 0
 offset_left = 1548.0
 offset_top = 843.0
@@ -509,6 +537,7 @@ bbcode_enabled = true
 
 [node name="SelectedPanel" type="Panel" parent="Interface"]
 visible = false
+top_level = true
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -587,6 +616,7 @@ grow_vertical = 0
 
 [node name="BuildingButton" type="Button" parent="Interface"]
 visible = false
+top_level = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -603,6 +633,7 @@ text = "Barracks"
 
 [node name="HousingButton" type="Button" parent="Interface"]
 visible = false
+top_level = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -704,31 +735,6 @@ offset_right = 145.0
 offset_bottom = 40.0
 text = "Kristalle:"
 
-[node name="MiniMap" parent="." instance=ExtResource("16_cn011")]
-visible = false
-scale = Vector2(0.35, 0.35)
-transform = Transform2D(0.35, 0, 0, 0.35, 0, 0)
-
-[node name="MarginContainer" parent="MiniMap" index="0"]
-offset_left = 477.143
-offset_top = 2622.86
-offset_right = 1307.14
-offset_bottom = 3344.86
-
-[node name="UiArea" type="Area2D" parent="MiniMap"]
-position = Vector2(523.333, 698.182)
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MiniMap/UiArea"]
-position = Vector2(2228.67, 1946.32)
-shape = SubResource("RectangleShape2D_7xrfe")
-
-[node name="Label" type="Label" parent="MiniMap/UiArea"]
-offset_left = 647.0
-offset_top = 30.0
-offset_right = 1050.0
-offset_bottom = 149.0
-
 [node name="Options" parent="." instance=ExtResource("20_x38bj")]
 visible = false
 
@@ -780,14 +786,14 @@ offset_bottom = -1119.0
 [connection signal="new_worker" from="HQRed" to="." method="_on_new_unit"]
 [connection signal="rebake" from="FactionBlueController" to="." method="_on_interface_rebake"]
 [connection signal="rebake" from="FactionRedController" to="." method="_on_interface_rebake"]
+[connection signal="body_entered" from="MiniMap/UiArea" to="Camera" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="MiniMap/UiArea" to="Camera" method="_on_area_2d_body_exited"]
 [connection signal="rebake" from="Interface" to="." method="_on_interface_rebake"]
 [connection signal="start_game" from="Interface" to="." method="_on_interface_start_game"]
 [connection signal="fow_updated" from="Interface/FogOfWar" to="." method="_on_fog_of_war_fow_updated"]
 [connection signal="start_game_Dome" from="Interface/FactionSelection" to="Interface" method="_on_faction_selection_start_game_dome"]
 [connection signal="start_game_rebels" from="Interface/FactionSelection" to="Interface" method="_on_faction_selection_start_game_rebels"]
 [connection signal="pressed" from="Interface/SelectedPanel/ButtonToggle" to="Interface/SelectedPanel" method="_on_button_toggle_pressed"]
-[connection signal="body_entered" from="MiniMap/UiArea" to="Camera" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="MiniMap/UiArea" to="Camera" method="_on_area_2d_body_exited"]
 [connection signal="language_changed" from="Options" to="." method="_on_language_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
