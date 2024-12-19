@@ -1,8 +1,8 @@
 extends NavigationRegion3D
 
 
-var camera_positions = [Vector3(-235.0, 0.0, 265.0), Vector3(241.0, 0.0, -299.0)]
-var ui = [load("res://Assets/UI/UI_NL_concept.png"),load("res://Assets/UI/UI_Outlaw.png") ]
+var camera_positions = [Vector3(-235.0, 0.0, 265.0), Vector3(241.0, 0.0, -299.0)] # hq positions for the camerea to spawn at
+var ui = [load("res://Assets/UI/NL_UI.png"),load("res://Assets/UI/UI_Outlaw.png") ] # ui assets for bot factions
 
 @onready var world_size = Vector2i($Map/Map/MapSize.mesh.size.x, $Map/Map/MapSize.mesh.size.y) # the size of the level's world environment
 @onready var fog_of_war = $Interface/FogOfWar # the node handling the game's fog of war
@@ -69,8 +69,8 @@ func _on_interface_start_game(faction):
 	$Camera.global_position = camera_positions[faction] # warps the camera to the chosen HQ's location
 	$Interface/UIFrame.texture = ui[faction]
 	$Camera.position.y = 60
-	#if Global.player_faction == 1:
-		#$Camera/Camera.rotation.y = 110
+
+
 	for hq in get_tree().get_nodes_in_group("HQ"):
 		if hq.getFaction() == faction:
 			$Interface/Placer.hq_zone = hq.getArea() # locks the building placers to the platform of the player's chosen faction
