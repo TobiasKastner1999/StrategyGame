@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://7012rhjv4u2g" path="res://Scenes & Scripts/Prefabs/Structures/HQ/hq.tscn" id="7_g6gsm"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/enemy_controller.gd" id="8_q8x15"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/interface.gd" id="9_f8ghw"]
-[ext_resource type="Texture2D" uid="uid://dvdqrkxoca6w" path="res://Assets/UI/UIStarcraft2.png.png" id="10_aww5s"]
 [ext_resource type="PackedScene" uid="uid://bghq1dyglmtly" path="res://Scenes & Scripts/Main Scene/UI/fog_of_war.tscn" id="10_lnqnp"]
 [ext_resource type="PackedScene" uid="uid://cgnn6igsps6mn" path="res://Scenes & Scripts/Screens/faction_selection.tscn" id="10_rfqo2"]
 [ext_resource type="PackedScene" uid="uid://ut6cde7ie7n" path="res://Scenes & Scripts/Screens/end_screen.tscn" id="11_ge2eb"]
@@ -27,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://blg8qkdcemldt" path="res://Assets/UI/Ui Ressourcen.png" id="16_mpbxc"]
 [ext_resource type="Texture2D" uid="uid://bqf5o7cmqfovq" path="res://Assets/UI/Kristalle Grün heller.png" id="17_c1w0m"]
 [ext_resource type="Texture2D" uid="uid://ovmtkukwhugj" path="res://Assets/UI/Ore Blau UI.png" id="18_mgo0t"]
+[ext_resource type="Texture2D" uid="uid://cxr1wou8abxmn" path="res://Assets/UI/UI_NL_concept.png" id="19_rysqs"]
 [ext_resource type="PackedScene" uid="uid://c7exd2o303ini" path="res://Scenes & Scripts/Screens/options.tscn" id="20_x38bj"]
 [ext_resource type="PackedScene" uid="uid://bibc15eiia2c0" path="res://Scenes & Scripts/Prefabs/Balancing/balance.tscn" id="22_fnvhq"]
 
@@ -483,9 +483,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -421.0
+offset_top = 3.0
+offset_right = 287.0
+offset_bottom = 698.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_aww5s")
+texture = ExtResource("19_rysqs")
 expand_mode = 2
 
 [node name="GamestateInfo" type="RichTextLabel" parent="Interface"]
@@ -695,21 +699,21 @@ text = "Kristalle:"
 
 [node name="MiniMap" parent="." instance=ExtResource("16_cn011")]
 visible = false
-scale = Vector2(0.4, 0.35)
-transform = Transform2D(0.4, 0, 0, 0.35, 0, 0)
+scale = Vector2(0.4, 0.4)
+transform = Transform2D(0.4, 0, 0, 0.4, 0, 0)
 
 [node name="MarginContainer" parent="MiniMap" index="0"]
-offset_left = 425.0
-offset_top = 2689.0
-offset_right = 783.0
-offset_bottom = 3158.0
+offset_left = 430.0
+offset_top = 2297.5
+offset_right = 1260.0
+offset_bottom = 3019.5
 
 [node name="UiArea" type="Area2D" parent="MiniMap"]
 position = Vector2(523.333, 698.182)
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiniMap/UiArea"]
-position = Vector2(1874.37, 1980)
+position = Vector2(1879.17, 1604.32)
 shape = SubResource("RectangleShape2D_7xrfe")
 
 [node name="Label" type="Label" parent="MiniMap/UiArea"]
