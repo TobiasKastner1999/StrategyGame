@@ -85,7 +85,6 @@ func check_visibility():
 
 # sets the texture red and spawns the dot
 func add_unit_red(dot):
-	#await get_tree().create_timer(0.1).timeout
 	for i in Global.list.size():
 		if i != null and Global.list[i]["dot"] == null:
 			if Global.list[i]["faction"] == 1:

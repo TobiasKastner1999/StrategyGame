@@ -1,7 +1,7 @@
 extends NavigationRegion3D
 
 
-var camera_positions = [Vector3(0.0, 0.0, 175.0), Vector3(0.0, 0.0, -225.0)]
+var camera_positions = [Vector3(-235.0, 0.0, 265.0), Vector3(241.0, 0.0, -299.0)]
 
 @onready var world_size = Vector2i($Map/Map/MapSize.mesh.size.x, $Map/Map/MapSize.mesh.size.y) # the size of the level's world environment
 @onready var fog_of_war = $Interface/FogOfWar # the node handling the game's fog of war

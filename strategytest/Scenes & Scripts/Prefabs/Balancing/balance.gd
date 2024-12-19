@@ -79,7 +79,7 @@ func _ready():
 	#save.store_line(json_string)
 
 
-
+# sets the values of the dictionary to be the same as balance editor
 func setValues():
 	Global.unit_dict["0"]["max_hp"] = ranged_hp
 	Global.unit_dict["0"]["damage_value"] = ranged_damage
