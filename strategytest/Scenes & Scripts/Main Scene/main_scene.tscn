@@ -161,7 +161,7 @@ shader = ExtResource("12_lfui2")
 size = Vector3(4.9989, 5.05823, 5.10894)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xrfe"]
-size = Vector2(4762.58, 798.357)
+size = Vector2(5492, 919)
 
 [node name="Main" type="NavigationRegion3D"]
 process_mode = 1
@@ -699,21 +699,21 @@ text = "Kristalle:"
 
 [node name="MiniMap" parent="." instance=ExtResource("16_cn011")]
 visible = false
-scale = Vector2(0.4, 0.4)
-transform = Transform2D(0.4, 0, 0, 0.4, 0, 0)
+scale = Vector2(0.35, 0.35)
+transform = Transform2D(0.35, 0, 0, 0.35, 0, 0)
 
 [node name="MarginContainer" parent="MiniMap" index="0"]
-offset_left = 430.0
-offset_top = 2297.5
-offset_right = 1260.0
-offset_bottom = 3019.5
+offset_left = 477.143
+offset_top = 2622.86
+offset_right = 1307.14
+offset_bottom = 3344.86
 
 [node name="UiArea" type="Area2D" parent="MiniMap"]
 position = Vector2(523.333, 698.182)
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiniMap/UiArea"]
-position = Vector2(1879.17, 1604.32)
+position = Vector2(2228.67, 1946.32)
 shape = SubResource("RectangleShape2D_7xrfe")
 
 [node name="Label" type="Label" parent="MiniMap/UiArea"]
