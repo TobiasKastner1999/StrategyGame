@@ -77,7 +77,7 @@ func _on_interface_start_game(faction):
 			$Interface.hq = hq
 			addUnitToFog(hq)
 		else:
-			hq.visible = false # makes the enemy's hq invisible
+			hq.setGreystate(false) # makes the enemy's hq invisible
 
 # accesses a clicked building's interface menu
 func _on_building_menu(building):
