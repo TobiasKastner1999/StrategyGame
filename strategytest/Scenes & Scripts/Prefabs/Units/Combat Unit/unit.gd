@@ -11,6 +11,7 @@ var active_target : PhysicsBody3D # the enemy target the unit is currently attac
 var priority_movement = false # is the unit's movement overridden by a player command
 var current_observers = []
 
+var attacking = false
 var path = [] # the path the unit is navigating on
 var path_ind = 0 # the id of the unit's current path position
 var destination : Vector3 # the unit's current navigation target
@@ -27,12 +28,13 @@ var speed : float # the unit's movement speed
 
 @onready var hp = max_hp # the unit's current hp, starting as its maximum hp
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the unit's movement
-
+@onready var unit_anim = $UnitBody/AnimationPlayer
 # controls the unit's movement and other actions
 func _physics_process(delta):
 	$UnitBehaviours.runBehaviours(self, delta)
-	if $".".velocity != Vector3.ZERO:
-		unit_rotation()
+
+	unit_rotation()
+	animationControl()
 	
 
 # receives the path from NavAgent
@@ -58,7 +60,9 @@ func takeDamage(damage, attacker):
 func startAttackCooldown():
 	can_attack = false # disables the unit's attack
 	$AttackCooldown.start(attack_speed) # starts the attack cooldown
+	unit_anim.play("OutlawFighterRifleFire")
 	$AttackAnim/AnimationPlayer.play("attack")
+	attacking = true
 
 # sets the target's position as the movement destination
 func focusAtTarget():
@@ -101,15 +105,15 @@ func setUp(type):
 # sets the unit's faction to a given value
 func setFaction(f : int):
 	faction = f
-	$UnitBody.set_surface_override_material(1, load(Global.getFactionColor(faction)))
+	$UnitBody/Armature/Skeleton3D/FighterBake.set_surface_override_material(1, load(Global.getFactionColor(faction)))
 
 # changes the color of the unit when selected
 func select():
-	$UnitBody.set_surface_override_material(1, load(Global.getSelectedFactionColor(faction)))
+	$UnitBody/Armature/Skeleton3D/FighterBake.set_surface_override_material(1, load(Global.getSelectedFactionColor(faction)))
 
 # changes the color of the unit when it is deselected
 func deselect():
-	$UnitBody.set_surface_override_material(1, load(Global.getFactionColor(faction)) )
+	$UnitBody/Armature/Skeleton3D/FighterBake.set_surface_override_material(1, load(Global.getFactionColor(faction)) )
 
 # sets the unit's movement destination
 func setDestination(new_destination):
@@ -258,6 +262,18 @@ func unit_rotation():
 	$UnitBody.rotation.x = rad_to_deg(0) # locks the rotation of x
 	$UnitBody.rotate_object_local(Vector3.UP, PI) # flips the model 
 
+func animationControl():
+	if !attacking:
+		if velocity != Vector3.ZERO:
+			unit_anim.play("OutlawFighterRun") # plays the walk animation if they are moving
+		else:
+			unit_anim.play("OutlawFighterIdle") # plays the idle animation otherwise
+
+	if unit_anim.current_animation == "OutlawFighterRun": # when the worker is playing the walk animation the particles are emitted
+		$UnitBody/Armature/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
+	else: #  when walking stops the particles stop spawning
+		$UnitBody/Armature/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false # stops particles
+
 
 # when an object leaves the unit's detection range
 func _on_area_3d_body_exited(body):
@@ -269,3 +285,11 @@ func _on_area_3d_body_exited(body):
 # re-enables attack when the attack cooldown ends
 func _on_timer_timeout():
 	can_attack = true
+
+
+func _on_animation_player_animation_finished(anim_name):
+	match anim_name:
+		"OutlawFighterRifleFire":
+			attacking = false # lets the unit play other animations again once their attack animation has run
+		"OutlawFighterDeath":
+			queue_free() # deletes the unit once their death animation has finished

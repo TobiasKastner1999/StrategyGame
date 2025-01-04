@@ -52,7 +52,7 @@ const FILE = "res://Data/test.json"
 
 
 @export var construction_costs = [0, 4, 2] # the construction costs for different types of buildings
-@export var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
+@export var faction_zero_resources = [8, 6] # faction 0's balances in the different resources
 @export var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 @export var unit_max = [2, 2] # how many units can a faction currently have at max?
 
