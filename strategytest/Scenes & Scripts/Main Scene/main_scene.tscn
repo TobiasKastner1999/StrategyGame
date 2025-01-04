@@ -537,6 +537,7 @@ bbcode_enabled = true
 
 [node name="SelectedPanel" type="Panel" parent="Interface"]
 visible = false
+self_modulate = Color(1, 1, 1, 0)
 top_level = true
 layout_mode = 1
 anchors_preset = 7
@@ -546,8 +547,8 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -598.0
 offset_top = -188.0
-offset_right = 399.0
-offset_bottom = -21.0
+offset_right = 293.0
+offset_bottom = -33.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("12_x7t4o")
@@ -589,16 +590,16 @@ text = "Type
 
 [node name="ButtonToggle" type="Button" parent="Interface/SelectedPanel"]
 layout_mode = 0
-offset_left = 355.0
-offset_top = 48.0
-offset_right = 491.0
-offset_bottom = 101.0
+offset_left = 235.0
+offset_top = 58.0
+offset_right = 511.0
+offset_bottom = 111.0
 text = "@interface_button_toggle_building"
 
 [node name="ButtonContainer" type="GridContainer" parent="Interface/SelectedPanel"]
 layout_mode = 0
-offset_left = 510.0
-offset_right = 997.0
+offset_left = 447.0
+offset_right = 826.0
 offset_bottom = 167.0
 columns = 4
 
@@ -623,10 +624,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -152.0
-offset_top = -233.0
-offset_right = -27.0
-offset_bottom = -181.0
+offset_left = -167.0
+offset_top = -232.0
+offset_right = -42.0
+offset_bottom = -180.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Barracks"
@@ -640,10 +641,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -151.0
-offset_top = -175.0
-offset_right = -26.0
-offset_bottom = -123.0
+offset_left = -166.0
+offset_top = -174.0
+offset_right = -41.0
+offset_bottom = -122.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Housing"
