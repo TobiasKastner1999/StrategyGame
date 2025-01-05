@@ -12,6 +12,8 @@ func runBehaviour(node):
 
 # checks if there are any enemy units near the node
 func hasNearbyEnemies():
+	if run_node.getTargetMode() == 1:
+		return true
 	for enemy in run_node.getNearbyEnemies():
 		if enemy.getType() == "combat" or enemy.getType() == "worker":
 			return true # returns true if there is a non-building enemy in the list

@@ -224,6 +224,8 @@ func getAttackDamage():
 
 # returns the unit's current attack range
 func getAttackRange():
+	if getActiveTarget().getType() == "hq":
+		return attack_range * 2
 	return attack_range
 
 # returns if the unit's attack is currently available
