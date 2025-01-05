@@ -3,8 +3,9 @@ extends Node
 var current_selected # the currently selected node which the interface represents
 
 func _ready():
-	updateTexts()
+	updateTexts() # sets the interface texts to the correct language
 
+# sets the interface texts to the correct language
 func updateTexts():
 	$ButtonToggle.text = Global.getText("@interface_button_toggle_building")
 
@@ -16,7 +17,7 @@ func activatePanel(selected):
 		unselect() # unselects the currently selected object (if one exists)
 	current_selected = selected # saves the selected object
 	
-	setUpSelectedInterface()
+	setUpSelectedInterface() # sets up the interface objects
 	self.visible = true
 	selected.interface_update.connect(updateSelectedInterface) # connects object for dynymic updates
 
@@ -28,14 +29,17 @@ func unselect():
 	current_selected.interface_update.disconnect(updateSelectedInterface) # disconnects dynamic updates
 	current_selected = null
 
+# sets up the interface objects
 func setUpSelectedInterface():
 	if current_selected == null:
-		return
+		return # if no selected object exists, does nothing
 	elif current_selected.hp <= 0:
-		unselect()
+		unselect() # unselects the object if it is dead / destroyed
 	else:
+		# runs setup based on the object type
 		match current_selected.getType():
 			"building":
+				# sets up the production type selection
 				for type in Global.unit_dict:
 					if type != "worker": 
 						var button = load("res://Scenes & Scripts/Prefabs/Interface/unit_type_button.tscn").instantiate()
@@ -49,13 +53,14 @@ func setUpSelectedInterface():
 			"hq":
 				$ButtonToggle.visible = false
 		
-		updateSelectedInterface()
+		updateSelectedInterface() # updates dynamic UI elements
 
 # updates the dynamic interface components
 func updateSelectedInterface():
 	$SelectedName.text = "[b]" + Global.getText(current_selected.DISPLAY_NAME) + "[/b]" # displays the name
 	$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.hp) + "/" + str(current_selected.MAX_HP) # displays the object's current hp out of its maximum hp
-		
+	
+	# updates additional elements based on object type
 	match current_selected.getType():
 		"building":
 			if current_selected.getStatus():
@@ -65,7 +70,7 @@ func updateSelectedInterface():
 			
 			for button in $ButtonContainer.get_children():
 				if button.getType() == current_selected.getProduction():
-					button.grab_focus()
+					button.grab_focus() # focus-outlines the button of the currently selected production type
 		
 		"hq":
 			pass
@@ -80,10 +85,12 @@ func _on_type_button_pressed(type):
 	current_selected.setProductionType(type)
 	updateSelectedInterface() # also updates the dynamic interface
 
+# toggles the tooltip panel on hover over a selection type
 func _on_type_button_hover(type, bol):
 	if bol:
 		$TooltipPanel.visible = true
 		$TooltipPanel.setType(type)
+	
 	else:
 		if $TooltipPanel.current_type == type:
 			$TooltipPanel.visible = false

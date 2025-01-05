@@ -3,18 +3,18 @@ extends Node3D
 signal new_worker(worker) # to tell the system a new worker has spawned
 signal destruction(faction) # to trigger the game end screen
 signal building_menu(hq) # to activate the interface when the building is clicked
-signal interface_update()
+signal interface_update() # to update the interface while the HQ is selected
 
 const TARGET_TYPE = "hq" # the hq's target type
 const SPAWN_DELAY = 10.0 # how often will new workers spawn?
 const MAX_WORKERS = 4 # how many workers can spawn at most?
 const MAX_HP = 20.0 # the hq's maximum hp
-const DISPLAY_NAME = "@name_building_hq"
+const DISPLAY_NAME = "@name_building_hq" # the HQ's name tag
 
 var current_workers = 0 # how many workers are currently alive?
 var can_spawn = false # can the hq spawn a new worker?
-var detection_range = 50.0
-var nearby_observers = []
+var detection_range = 50.0 # the range at which the HQ can detect enemy units
+var nearby_observers = [] # a list of enemy units near the HQ
 
 @onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 @onready var unit_manager = $".."/Units
@@ -95,6 +95,7 @@ func getEmptySpawn():
 			return point.global_position # if a spawn point is empty (no other unit is occupying it), return that spawn point
 	return null # if there are no empty spawn points, returns null instead
 
+# opens the HQ's interface menu
 func accessStructure():
 	building_menu.emit(self)
 

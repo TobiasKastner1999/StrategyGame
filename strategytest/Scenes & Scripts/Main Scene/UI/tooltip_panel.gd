@@ -1,12 +1,11 @@
 extends Panel
 
-var current_type : int
+var current_type : int # the unit type currently displayed through the panel
 
-func _physics_process(delta):
-	pass
-
+# sets up the information panel for a given unit type
 func setType(type):
 	current_type = type
+	
 	$TooltipHP.text = "[b]HP:[/b] " + str(Global.unit_dict[str(current_type)]["max_hp"])
 	$TooltipDamage.text = "[b]DP:[/b] " + str(Global.unit_dict[str(current_type)]["damage_value"])
 	$TooltipRange.text = "[b]RA:[/b] " + str(Global.unit_dict[str(current_type)]["attack_range"])
