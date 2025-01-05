@@ -137,7 +137,7 @@ func getUnitUnderMouse():
 func getStructureUnderMouse():
 	raycastFromMouse()
 	var result = mouse_click_collider_3d_result
-	if result != null && result.is_in_group("Building") and result.getFaction() == Global.player_faction:
+	if result != null && (result.is_in_group("Building") or result.is_in_group("HQ")) and result.getFaction() == Global.player_faction:
 		return result
 
 # call the combat target that is under the mouse

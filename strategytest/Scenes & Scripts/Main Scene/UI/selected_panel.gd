@@ -6,15 +6,17 @@ func _ready():
 	updateTexts()
 
 func updateTexts():
-	$ButtonToggle.text = Global.getText($ButtonToggle.text)
+	$ButtonToggle.text = Global.getText("@interface_button_toggle_building")
 
 # sets the panel's properties when it is activated
 func activatePanel(selected):
+	updateTexts()
+	
 	if current_selected != null:
 		unselect() # unselects the currently selected object (if one exists)
 	current_selected = selected # saves the selected object
 	
-	updateSelectedInterface() # updates the changing interface properties
+	setUpSelectedInterface()
 	self.visible = true
 	selected.interface_update.connect(updateSelectedInterface) # connects object for dynymic updates
 
@@ -26,23 +28,14 @@ func unselect():
 	current_selected.interface_update.disconnect(updateSelectedInterface) # disconnects dynamic updates
 	current_selected = null
 
-# updates the dynamic interface components
-func updateSelectedInterface():
+func setUpSelectedInterface():
 	if current_selected == null:
 		return
 	elif current_selected.hp <= 0:
 		unselect()
 	else:
-		$SelectedName.text = "[b]" + Global.getText(current_selected.DISPLAY_NAME) + "[/b]" # displays the name
-		$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.hp) + "/" + str(current_selected.MAX_HP) # displays the object's current hp out of its maximum hp
-		
 		match current_selected.getType():
 			"building":
-				if current_selected.getStatus():
-					$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_true") # displays the object's active status
-				else:
-					$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_false") # displays the object's inactive status
-				
 				for type in Global.unit_dict:
 					if type != "worker": 
 						var button = load("res://Scenes & Scripts/Prefabs/Interface/unit_type_button.tscn").instantiate()
@@ -50,11 +43,32 @@ func updateSelectedInterface():
 						button.assignType(type) # assigns the button to the correct unit type
 						button.change_type.connect(_on_type_button_pressed)
 						button.hover_tooltip.connect(_on_type_button_hover)
-				for button in $ButtonContainer.get_children():
-					if button.getType() == current_selected.getProduction():
-						button.grab_focus()
+			
+				$ButtonToggle.visible = true
+			
 			"hq":
-				pass
+				$ButtonToggle.visible = false
+		
+		updateSelectedInterface()
+
+# updates the dynamic interface components
+func updateSelectedInterface():
+	$SelectedName.text = "[b]" + Global.getText(current_selected.DISPLAY_NAME) + "[/b]" # displays the name
+	$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.hp) + "/" + str(current_selected.MAX_HP) # displays the object's current hp out of its maximum hp
+		
+	match current_selected.getType():
+		"building":
+			if current_selected.getStatus():
+				$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_true") # displays the object's active status
+			else:
+				$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_false") # displays the object's inactive status
+			
+			for button in $ButtonContainer.get_children():
+				if button.getType() == current_selected.getProduction():
+					button.grab_focus()
+		
+		"hq":
+			pass
 
 # calls to toggle the selected object's status when the button is pressed
 func _on_button_toggle_pressed():

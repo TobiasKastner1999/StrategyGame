@@ -103,6 +103,10 @@
 	"en": "Production",
 	"de": "Produktion"
   },
+  "@name_building_hq": {
+	"en": "Main Base",
+	"de": "Basis"
+  },
   "@name_building_barracks": {
 	"en": "Barracks",
 	"de": "Kaserne"

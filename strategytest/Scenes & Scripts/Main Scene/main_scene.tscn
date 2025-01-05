@@ -586,7 +586,6 @@ offset_left = 165.0
 offset_top = 13.0
 offset_right = 340.0
 offset_bottom = 63.0
-text = "@interface_button_toggle_building"
 text_overrun_behavior = 1
 
 [node name="ButtonContainer" type="GridContainer" parent="Interface/SelectedPanel"]
@@ -883,8 +882,10 @@ offset_bottom = -1119.0
 [connection signal="expended" from="Resources/Ressource26" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource27" to="Resources" method="_on_ressource_expended"]
 [connection signal="expended" from="Resources/Ressource28" to="Resources" method="_on_ressource_expended"]
+[connection signal="building_menu" from="HQBlue" to="." method="_on_building_menu"]
 [connection signal="destruction" from="HQBlue" to="." method="_on_hq_destruction"]
 [connection signal="new_worker" from="HQBlue" to="." method="_on_new_unit"]
+[connection signal="building_menu" from="HQRed" to="." method="_on_building_menu"]
 [connection signal="destruction" from="HQRed" to="." method="_on_hq_destruction"]
 [connection signal="new_worker" from="HQRed" to="." method="_on_new_unit"]
 [connection signal="rebake" from="FactionBlueController" to="." method="_on_interface_rebake"]
