@@ -106,10 +106,10 @@ func setFaction(f : int):
 	faction = f # sets the faction
 	$BuildingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
 
-	if faction == 0:
-		$OL_Kaserne_baked.visible = true
-	elif faction == 1:
-		$BuildingBody.visible = true
+	if faction == 0: # when faction is 0
+		$OL_Kaserne_baked.visible = true # outlaw asset becomes visible
+	elif faction == 1: # when faction is 1
+		$BuildingBody.visible = true # new lights assets becomes visible
 # returns the building's current faction
 func getFaction():
 	return faction
