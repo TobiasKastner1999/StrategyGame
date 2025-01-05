@@ -21,6 +21,12 @@ var nearby_observers = []
 
 # called at the start of the game
 func _ready():
+	if faction == 0:
+		$OL_Base_unbaked.visible = true
+		$HqBody.visible = false
+	else:
+		$OL_Base_unbaked.visible = false
+		$HqBody.visible = true
 	$HqBody.set_surface_override_material(3, load(Global.getFactionColor(faction))) 
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp

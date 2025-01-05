@@ -17,6 +17,7 @@ var nearby_observers = []
 
 # prepares to spawn a new unit when first built
 func _ready():
+
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 
@@ -51,6 +52,10 @@ func setFaction(f : int):
 	faction = f # sets the faction
 	$HousingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
 	Global.updateUnitLimit(faction, CAPACITY)
+	if faction == 0:
+		$OL_forge.visible = true
+	elif faction == 1:
+		$HousingBody.visible = true
 
 # returns the building's current faction
 func getFaction():
@@ -76,8 +81,10 @@ func clearUnitReferences(unit):
 func fowEnter(node):
 	if node.getFaction() != faction:
 		nearby_observers.append(node)
+
 		fowReveal(true) # enables the visibility of the housing
 		setGreystate(false) # enables the greystate of the housing
+
 
 # called when the housing is no longer in view of a player-controlled unit
 func fowExit(node):

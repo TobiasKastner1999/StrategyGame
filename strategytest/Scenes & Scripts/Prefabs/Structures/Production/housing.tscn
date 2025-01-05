@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://yl1kdq707egr"]
+[gd_scene load_steps=15 format=3 uid="uid://yl1kdq707egr"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Structures/Production/housing.gd" id="1_wapyf"]
+[ext_resource type="PackedScene" uid="uid://bs5ubhgxt5nqo" path="res://Scenes & Scripts/Asset Scenes/ol_forge.tscn" id="2_eiwek"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rr254"]
 size = Vector3(2, 1, 2)
@@ -74,9 +75,14 @@ script = ExtResource("1_wapyf")
 shape = SubResource("BoxShape3D_rr254")
 
 [node name="HousingBody" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_4ipiy")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_n0win")
+
+[node name="OL_forge" parent="." instance=ExtResource("2_eiwek")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -5.73361, -0.464318, 1.96848)
+visible = false
 
 [node name="HousingPause" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -21,7 +21,7 @@ var nearby_observers = []
 
 # prepares to spawn a new unit when first built
 func _ready():
-	
+
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	
@@ -55,6 +55,7 @@ func spawnUnit(spawn_point):
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
 	new_unit.setUp(production_type) # sets up the unit's properties based on the building's production type
 	new_unit.setFaction(faction) # assigns the spawned unit to the building's faction
+
 	
 	if faction != Global.player_faction:
 		new_unit.visible = false
@@ -105,6 +106,10 @@ func setFaction(f : int):
 	faction = f # sets the faction
 	$BuildingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
 
+	if faction == 0:
+		$OL_Kaserne_baked.visible = true
+	elif faction == 1:
+		$BuildingBody.visible = true
 # returns the building's current faction
 func getFaction():
 	return faction
@@ -136,6 +141,7 @@ func fowEnter(node):
 		fowReveal(true) # enables the visibility of the building
 		setGreystate(false) # dusables the greystate of the building
 
+
 # called when the building is no longer in view of a player-controlled unit
 func fowExit(node):
 	if nearby_observers.has(node):
@@ -147,6 +153,7 @@ func fowExit(node):
 func fowReveal(bol):
 	if visible != bol:
 		visible = bol
+
 
 # sets the greystate of the building
 func setGreystate(bol):
