@@ -529,10 +529,10 @@ layout_mode = 1
 [node name="GamestateInfo" type="RichTextLabel" parent="Interface"]
 top_level = true
 layout_mode = 0
-offset_left = 1548.0
-offset_top = 843.0
-offset_right = 1760.0
-offset_bottom = 1054.0
+offset_left = 385.0
+offset_top = 900.0
+offset_right = 597.0
+offset_bottom = 1029.0
 bbcode_enabled = true
 
 [node name="SelectedPanel" type="Panel" parent="Interface"]
@@ -545,10 +545,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -598.0
-offset_top = -188.0
-offset_right = 293.0
-offset_bottom = -33.0
+offset_left = 574.0
+offset_top = -258.0
+offset_right = 946.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("12_x7t4o")
@@ -590,11 +590,12 @@ text = "Type
 
 [node name="ButtonToggle" type="Button" parent="Interface/SelectedPanel"]
 layout_mode = 0
-offset_left = 235.0
-offset_top = 58.0
-offset_right = 511.0
-offset_bottom = 111.0
+offset_left = 165.0
+offset_top = 13.0
+offset_right = 340.0
+offset_bottom = 63.0
 text = "@interface_button_toggle_building"
+text_overrun_behavior = 1
 
 [node name="ButtonContainer" type="GridContainer" parent="Interface/SelectedPanel"]
 layout_mode = 0
@@ -624,10 +625,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -167.0
-offset_top = -232.0
-offset_right = -42.0
-offset_bottom = -180.0
+offset_left = -835.0
+offset_top = -180.0
+offset_right = -710.0
+offset_bottom = -128.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Barracks"
@@ -641,10 +642,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -166.0
-offset_top = -174.0
-offset_right = -41.0
-offset_bottom = -122.0
+offset_left = -835.0
+offset_top = -120.0
+offset_right = -710.0
+offset_bottom = -68.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Housing"
