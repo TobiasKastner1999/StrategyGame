@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Interface/unit_type_button.gd" id="1_8kikr"]
 
 [node name="UnitTypeButton" type="Button"]
-custom_minimum_size = Vector2(100, 50)
+custom_minimum_size = Vector2(100, 25)
 text = "Test"
 script = ExtResource("1_8kikr")
 

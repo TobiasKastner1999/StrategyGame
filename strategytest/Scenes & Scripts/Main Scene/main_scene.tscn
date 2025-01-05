@@ -599,10 +599,10 @@ text_overrun_behavior = 1
 
 [node name="ButtonContainer" type="GridContainer" parent="Interface/SelectedPanel"]
 layout_mode = 0
-offset_left = 447.0
-offset_right = 826.0
-offset_bottom = 167.0
-columns = 4
+offset_left = 227.0
+offset_top = 71.0
+offset_right = 340.0
+offset_bottom = 241.0
 
 [node name="Indicator" type="Label" parent="Interface"]
 layout_mode = 1

@@ -21,6 +21,9 @@ func activatePanel(selected):
 				$ButtonContainer.add_child(button) # sets up a button for each unit type in the data
 				button.assignType(type) # assigns the button to the correct unit type
 				button.change_type.connect(_on_type_button_pressed)
+		for button in $ButtonContainer.get_children():
+			if button.getType() == current_selected.getProduction():
+				button.grab_focus()
 	self.visible = true
 	selected.interface_update.connect(updateSelectedInterface) # connects object for dynymic updates
 
