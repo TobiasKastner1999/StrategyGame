@@ -21,6 +21,7 @@ func activatePanel(selected):
 				$ButtonContainer.add_child(button) # sets up a button for each unit type in the data
 				button.assignType(type) # assigns the button to the correct unit type
 				button.change_type.connect(_on_type_button_pressed)
+				button.hover_tooltip.connect(_on_type_button_hover)
 		for button in $ButtonContainer.get_children():
 			if button.getType() == current_selected.getProduction():
 				button.grab_focus()
@@ -48,11 +49,6 @@ func updateSelectedInterface():
 			$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_true") # displays the object's active status
 		else:
 			$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_false") # displays the object's inactive status
-		if current_selected.has_method("getProduction"):
-			$SelectedType.text = Global.getText("@inspect_text_production") + ": " + Global.getText(Global.unit_dict[str(current_selected.getProduction())]["name"]) # displayers the current unit production type
-			$SelectedType.visible = true
-		else:
-			$SelectedType.visible = false
 
 # calls to toggle the selected object's status when the button is pressed
 func _on_button_toggle_pressed():
@@ -63,3 +59,11 @@ func _on_button_toggle_pressed():
 func _on_type_button_pressed(type):
 	current_selected.setProductionType(type)
 	updateSelectedInterface() # also updates the dynamic interface
+
+func _on_type_button_hover(type, bol):
+	if bol:
+		$TooltipPanel.visible = true
+		$TooltipPanel.setType(type)
+	else:
+		if $TooltipPanel.current_type == type:
+			$TooltipPanel.visible = false
