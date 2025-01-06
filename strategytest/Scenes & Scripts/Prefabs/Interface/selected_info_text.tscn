@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://1uv8e4mttjp5"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Interface/selected_info_text.gd" id="1_7yqps"]
+
+[node name="SelectedInfoText" type="RichTextLabel"]
+custom_minimum_size = Vector2(0, 25)
+bbcode_enabled = true
+text = "Status
+"
+script = ExtResource("1_7yqps")

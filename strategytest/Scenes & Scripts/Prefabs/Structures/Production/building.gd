@@ -125,8 +125,13 @@ func getType():
 	return TARGET_TYPE
 
 # returns the building's function status
-func getStatus():
-	return spawn_active
+func getInspectInfo(info):
+	match info:
+		"status":
+			if spawn_active:
+				return "active"
+			else:
+				return "inactive"
 
 # returns the building's current unit production
 func getProduction():

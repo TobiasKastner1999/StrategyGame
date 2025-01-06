@@ -558,8 +558,8 @@ script = ExtResource("12_x7t4o")
 layout_mode = 0
 offset_left = 11.0
 offset_top = 9.0
-offset_right = 283.0
-offset_bottom = 37.0
+offset_right = 261.0
+offset_bottom = 34.0
 bbcode_enabled = true
 text = "[b]Name[/b]"
 
@@ -567,18 +567,16 @@ text = "[b]Name[/b]"
 layout_mode = 0
 offset_left = 12.0
 offset_top = 36.0
-offset_right = 284.0
-offset_bottom = 64.0
+offset_right = 262.0
+offset_bottom = 61.0
 text = "HP"
 
-[node name="SelectedStatus" type="RichTextLabel" parent="Interface/SelectedPanel"]
+[node name="InfoContainer" type="VBoxContainer" parent="Interface/SelectedPanel"]
 layout_mode = 0
-offset_left = 13.0
-offset_top = 63.0
-offset_right = 285.0
-offset_bottom = 91.0
-text = "Status
-"
+offset_left = 11.0
+offset_top = 61.0
+offset_right = 261.0
+offset_bottom = 261.0
 
 [node name="ButtonToggle" type="Button" parent="Interface/SelectedPanel"]
 layout_mode = 0

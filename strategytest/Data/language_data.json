@@ -91,13 +91,41 @@
 	"en": "Status",
 	"de": "Status"
   },
-  "@inspect_text_status_true": {
+  "@inspect_text_status_active": {
 	"en": "Active",
 	"de": "Aktiv"
   },
-  "@inspect_text_status_false": {
+  "@inspect_text_status_inactive": {
 	"en": "Inactive",
 	"de": "Inaktiv"
+  },
+  "@inspect_text_status_moving": {
+	"en": "Moving",
+	"de": "In Bewegung"
+  },
+  "@inspect_text_status_fighting": {
+	"en": "Fighting",
+	"de": "Im Kampf"
+  },
+  "@inspect_text_status_working": {
+	"en": "Working",
+	"de": "Arbeitet"
+  },
+  "@inspect_text_resource": {
+	"en": "Resource",
+	"de": "Ressource"
+  },
+  "@inspect_text_resource_empty": {
+	"en": "-",
+	"de": "-"
+  },
+  "@inspect_text_resource_zenecium": {
+	"en": "Zenecium",
+	"de": "Zenezium"
+  },
+  "@inspect_text_resource_ferronite": {
+	"en": "Ferronite",
+	"de": "Ferronit"
   },
   "@inspect_text_production": {
 	"en": "Production",

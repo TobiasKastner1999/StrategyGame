@@ -27,6 +27,8 @@ func unselect():
 		self.visible = false
 		for button in $ButtonContainer.get_children():
 			button.queue_free() # clears all existing buttons
+		for info_text in $InfoContainer.get_children():
+			info_text.queue_free()
 		current_selected.interface_update.disconnect(updateSelectedInterface) # disconnects dynamic updates
 		current_selected = null
 
@@ -48,29 +50,40 @@ func setUpSelectedInterface():
 						button.assignType(type) # assigns the button to the correct unit type
 						button.change_type.connect(_on_type_button_pressed)
 						button.hover_tooltip.connect(_on_type_button_hover)
-			
+				
+				newInfoText("status")
 				$ButtonToggle.visible = true
 			
 			"hq":
 				$ButtonToggle.visible = false
 			
 			"worker":
+				newInfoText("status")
+				#newInfoText("resource")
 				$ButtonToggle.visible = false
 		
 		updateSelectedInterface() # updates dynamic UI elements
+
+func newInfoText(info):
+	var info_text = load("res://Scenes & Scripts/Prefabs/Interface/selected_info_text.tscn").instantiate()
+	$InfoContainer.add_child(info_text)
+	info_text.setInfo(info)
 
 # updates the dynamic interface components
 func updateSelectedInterface():
 	$SelectedName.text = "[b]" + Global.getText(current_selected.DISPLAY_NAME) + "[/b]" # displays the name
 	$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.getHP()) + "/" + str(current_selected.getMaxHP()) # displays the object's current hp out of its maximum hp
 	
+	for info_text in $InfoContainer.get_children():
+		info_text.text = Global.getText("@inspect_text_" + info_text.getInfo()) + ": " + Global.getText("@inspect_text_" + info_text.getInfo() + "_" + current_selected.getInspectInfo(info_text.getInfo()))
+	
 	# updates additional elements based on object type
 	match current_selected.getType():
 		"building":
-			if current_selected.getStatus():
-				$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_true") # displays the object's active status
-			else:
-				$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_false") # displays the object's inactive status
+			#if current_selected.getStatus():
+				#$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_true") # displays the object's active status
+			#else:
+				#$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_false") # displays the object's inactive status
 			
 			for button in $ButtonContainer.get_children():
 				if button.getType() == current_selected.getProduction():
