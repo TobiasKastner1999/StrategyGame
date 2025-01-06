@@ -106,6 +106,7 @@ func _on_fog_of_war_fow_updated(new_texture):
 	$MiniMap.setFogTexture(new_texture)
 
 func _on_camera_clear_interface():
+	$Interface/SelectedPanel.clearMultiSelection()
 	$Interface/SelectedPanel.unselect()
 
 

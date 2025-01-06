@@ -9,6 +9,7 @@ func _ready():
 # sets the interface texts to the correct language
 func updateTexts():
 	$ButtonToggle.text = Global.getText("@interface_button_toggle_building")
+	$ButtonBack.text = Global.getText("@interface_button_back")
 
 # sets the panel's properties when it is activated
 func activatePanel(selected):
@@ -34,13 +35,19 @@ func unselect():
 		current_selected.interface_update.disconnect(updateSelectedInterface) # disconnects dynamic updates
 		current_selected = null
 
+func clearMultiSelection():
+	multi_selection = null
+
 func multiSelection(units):
+	multi_selection = units
+
 	unselect()
 	updateTexts()
 	
 	$SelectedName.text = "[b]" + str(units.size()) + " " + Global.getText("@interface_text_selected") + "[/b]"
 	$SelectedHP.visible = false
 	$ButtonToggle.visible = false
+	$ButtonBack.visible = false
 	
 	for unit in units:
 		var button = load("res://Scenes & Scripts/Prefabs/Interface/unit_button.tscn").instantiate()
@@ -84,6 +91,11 @@ func setUpSelectedInterface():
 			"combat":
 				newInfoText("status")
 				$ButtonToggle.visible = false
+		
+		if multi_selection != null:
+			$ButtonBack.visible = true
+		else:
+			$ButtonBack.visible = false
 		
 		updateSelectedInterface() # updates dynamic UI elements
 
@@ -130,3 +142,6 @@ func _on_type_button_hover(type, bol):
 func _on_unit_select(unit):
 	unselect()
 	unit.accessUnit()
+
+func _on_button_back_pressed():
+	multiSelection(multi_selection)
