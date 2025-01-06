@@ -61,6 +61,10 @@ func setUpSelectedInterface():
 				newInfoText("status")
 				newInfoText("resource")
 				$ButtonToggle.visible = false
+			
+			"combat":
+				newInfoText("status")
+				$ButtonToggle.visible = false
 		
 		updateSelectedInterface() # updates dynamic UI elements
 
@@ -80,20 +84,9 @@ func updateSelectedInterface():
 	# updates additional elements based on object type
 	match current_selected.getType():
 		"building":
-			#if current_selected.getStatus():
-				#$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_true") # displays the object's active status
-			#else:
-				#$SelectedStatus.text = Global.getText("@inspect_text_status") + ": " + Global.getText("@inspect_text_status_false") # displays the object's inactive status
-			
 			for button in $ButtonContainer.get_children():
 				if button.getType() == current_selected.getProduction():
 					button.grab_focus() # focus-outlines the button of the currently selected production type
-		
-		"hq":
-			pass
-		
-		"worker":
-			pass
 
 # calls to toggle the selected object's status when the button is pressed
 func _on_button_toggle_pressed():

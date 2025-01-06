@@ -1,9 +1,12 @@
 extends CharacterBody3D
 
+signal unit_menu(unit)
+signal interface_update()
 signal deleted(unit) # to tell the system the unit has been defeated
 
 const TARGET_TYPE = "combat" # the unit's target type
 const TARGET_PRIORITY = ["combat", "worker", "hq", "building"] # the unit's targeting priority based on types
+const DISPLAY_NAME = "@name_unit_ranged"
 
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
@@ -36,6 +39,8 @@ func _physics_process(delta):
 	unit_rotation()
 	animationControl()
 	
+	interface_update.emit()
+	
 
 # receives the path from NavAgent
 func move_to(target_pos):
@@ -48,6 +53,7 @@ func takeDamage(damage, attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
+	interface_update.emit()
 	if hp <= 0: # removes the unit if it's remaining hp is 0 or less
 		Global.updateUnitCount(faction, -1)
 		deleted.emit(self) # tells the system to clear remaining references to the unit
@@ -55,6 +61,25 @@ func takeDamage(damage, attacker):
 	elif active_target == null or TARGET_PRIORITY.find(active_target.getType()) > TARGET_PRIORITY.find(attacker.getType()):
 		priority_movement = false
 		active_target = attacker # causes the unit to fight back if it does not yet have a target
+
+func accessUnit():
+	unit_menu.emit(self)
+
+func getHP():
+	return hp
+
+func getMaxHP():
+	return max_hp
+
+func getInspectInfo(info):
+	match info:
+		"status":
+			if active_target != null:
+				return "fighting"
+			elif velocity != Vector3.ZERO:
+				return "moving"
+			else:
+				return "inactive"
 
 # attack the unit's current target
 func startAttackCooldown():
