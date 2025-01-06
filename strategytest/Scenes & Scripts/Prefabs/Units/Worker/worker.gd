@@ -178,13 +178,13 @@ func takeDamage(damage, attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
+	interface_update.emit()
 	if hp <= 0: # calls the worker's death function if its remaining hp is 0 or less
 		startDeathState()
 	elif target_node == null or target_node.getType() != "combat":
 		priority_movement = false
 		target_node = attacker # causes the worker to fight back if it does not yet have a target
 		setTargetMode(1)
-	interface_update.emit()
 
 func getHP():
 	return hp
@@ -194,6 +194,21 @@ func getMaxHP():
 
 func accessUnit():
 	unit_menu.emit(self)
+
+func getInspectInfo(info):
+	match info:
+		"status":
+			if interaction_state == 1:
+				return "working"
+			elif target_mode == 1:
+				return "fighting"
+			elif velocity != Vector3.ZERO:
+				return "moving"
+			else:
+				return "inactive"
+		
+		"resource":
+			pass
 
 # starts the worker's death state
 func startDeathState():
