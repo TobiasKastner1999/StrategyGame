@@ -23,11 +23,12 @@ func activatePanel(selected):
 
 # unselects a currently selected object
 func unselect():
-	self.visible = false
-	for button in $ButtonContainer.get_children():
-		button.queue_free() # clears all existing buttons
-	current_selected.interface_update.disconnect(updateSelectedInterface) # disconnects dynamic updates
-	current_selected = null
+	if current_selected != null:
+		self.visible = false
+		for button in $ButtonContainer.get_children():
+			button.queue_free() # clears all existing buttons
+		current_selected.interface_update.disconnect(updateSelectedInterface) # disconnects dynamic updates
+		current_selected = null
 
 # sets up the interface objects
 func setUpSelectedInterface():
@@ -52,13 +53,16 @@ func setUpSelectedInterface():
 			
 			"hq":
 				$ButtonToggle.visible = false
+			
+			"worker":
+				$ButtonToggle.visible = false
 		
 		updateSelectedInterface() # updates dynamic UI elements
 
 # updates the dynamic interface components
 func updateSelectedInterface():
 	$SelectedName.text = "[b]" + Global.getText(current_selected.DISPLAY_NAME) + "[/b]" # displays the name
-	$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.hp) + "/" + str(current_selected.MAX_HP) # displays the object's current hp out of its maximum hp
+	$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.getHP()) + "/" + str(current_selected.getMaxHP()) # displays the object's current hp out of its maximum hp
 	
 	# updates additional elements based on object type
 	match current_selected.getType():
@@ -73,6 +77,9 @@ func updateSelectedInterface():
 					button.grab_focus() # focus-outlines the button of the currently selected production type
 		
 		"hq":
+			pass
+		
+		"worker":
 			pass
 
 # calls to toggle the selected object's status when the button is pressed

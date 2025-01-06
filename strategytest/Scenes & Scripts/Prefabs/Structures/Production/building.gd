@@ -82,6 +82,12 @@ func takeDamage(damage, _attacker):
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
 
+func getHP():
+	return hp
+
+func getMaxHP():
+	return MAX_HP
+
 # accesses the building's interface function
 func accessStructure():
 	building_menu.emit(self)

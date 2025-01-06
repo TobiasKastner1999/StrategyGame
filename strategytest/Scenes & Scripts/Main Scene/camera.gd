@@ -1,5 +1,7 @@
 extends Node3D
 
+signal clear_interface()
+
 var start_selection_position =  Vector2()
 var mouse_click_collider_3d_result
 var raycast_mouse_click_3d_result
@@ -98,6 +100,7 @@ func _unhandled_input(event):
 
 # function to select and replace the old selection
 func selectUnits():
+	clear_interface.emit()
 	new_selection = []
 	if mouse_position.distance_to(start_selection_position) < 16:
 		var u = getUnitUnderMouse()
@@ -113,6 +116,9 @@ func selectUnits():
 		for selected in new_selection:
 			selected.select()
 		selection = new_selection
+		
+		if selection.size() == 1:
+			selection[0].accessUnit()
 
 # selects all units of the same type
 func selectType():

@@ -851,6 +851,7 @@ offset_top = -1119.0
 offset_right = -5.0
 offset_bottom = -1119.0
 
+[connection signal="clear_interface" from="Camera" to="." method="_on_camera_clear_interface"]
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
 [connection signal="new_unit" from="Units" to="." method="_on_new_unit"]
 [connection signal="rebake" from="Resources" to="." method="_on_interface_rebake"]

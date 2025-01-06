@@ -1,9 +1,12 @@
 extends CharacterBody3D
 
+signal unit_menu(unit)
+signal interface_update()
 signal deleted(worker) # to tell the system that the worker has been removed
 
 const TARGET_PRIORITY = ["combat", "hq", "building", "worker"] # the worker's targeting priority based on types
 const TARGET_TYPE = "worker" # the worker's combat type
+const DISPLAY_NAME = "@name_unit_worker"
 const MINE_SPEED = 5.0 # the speed at which the worker acquired resources
 const INTERACTION_STATE_MAX = 2 # the maximum value of the worker's interaction state
 const PROXIMITY_DISTANCE = 10.0 # the worker's proximity distance
@@ -181,6 +184,16 @@ func takeDamage(damage, attacker):
 		priority_movement = false
 		target_node = attacker # causes the worker to fight back if it does not yet have a target
 		setTargetMode(1)
+	interface_update.emit()
+
+func getHP():
+	return hp
+
+func getMaxHP():
+	return max_hp
+
+func accessUnit():
+	unit_menu.emit(self)
 
 # starts the worker's death state
 func startDeathState():

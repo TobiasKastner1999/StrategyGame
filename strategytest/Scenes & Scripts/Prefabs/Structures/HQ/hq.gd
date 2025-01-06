@@ -88,6 +88,12 @@ func takeDamage(damage, _attacker):
 		queue_free() # then deletes the hq
 	interface_update.emit()
 
+func getHP():
+	return hp
+
+func getMaxHP():
+	return MAX_HP
+
 # checks for an empty spawn point
 func getEmptySpawn():
 	for point in $SpawnPoints.get_children():

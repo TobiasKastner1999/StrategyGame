@@ -89,6 +89,7 @@ func _on_timer_timeout():
 
 func _on_new_unit(unit):
 	addUnitToFog(unit)
+	unit.unit_menu.connect(_on_building_menu)
 
 # re-sets the interface texts when the game's language is changed
 func _on_language_changed():
@@ -103,3 +104,6 @@ func _on_language_changed():
 func _on_fog_of_war_fow_updated(new_texture):
 	$Map/Map/Bake.get_material_override().next_pass.set_shader_parameter("mask_texture", new_texture)
 	$MiniMap.setFogTexture(new_texture)
+
+func _on_camera_clear_interface():
+	$Interface/SelectedPanel.unselect()
