@@ -107,3 +107,7 @@ func _on_fog_of_war_fow_updated(new_texture):
 
 func _on_camera_clear_interface():
 	$Interface/SelectedPanel.unselect()
+
+
+func _on_camera_multi_select_interface(units):
+	$Interface/SelectedPanel.multiSelection(units)

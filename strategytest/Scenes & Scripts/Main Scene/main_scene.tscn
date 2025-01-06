@@ -702,6 +702,13 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[PR]"
 
+[node name="UnitContainer" type="GridContainer" parent="Interface/SelectedPanel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 36.0
+offset_right = 111.0
+offset_bottom = 211.0
+
 [node name="Indicator" type="Label" parent="Interface"]
 layout_mode = 1
 anchors_preset = 3
@@ -850,6 +857,7 @@ offset_right = -5.0
 offset_bottom = -1119.0
 
 [connection signal="clear_interface" from="Camera" to="." method="_on_camera_clear_interface"]
+[connection signal="multi_select_interface" from="Camera" to="." method="_on_camera_multi_select_interface"]
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
 [connection signal="new_unit" from="Units" to="." method="_on_new_unit"]
 [connection signal="rebake" from="Resources" to="." method="_on_interface_rebake"]

@@ -7,6 +7,10 @@
 	"en": "Quit Game",
 	"de": "Spiel verlassen"
   },
+  "@interface_button_back": {
+	"en": "Back",
+	"de": "Zurück"
+  },
   "@interface_button_continue": {
 	"en": "Back to Game",
 	"de": "Zurück zum Spiel"
@@ -58,6 +62,10 @@
   "@interface_text_faction_red": {
 	"en": "Ashfolk",
 	"de": "Aschenfolk"
+  },
+  "@interface_text_selected": {
+	"en": "Selected",
+	"de": "Ausgewählt"
   },
   "@interface_button_toggle_building": {
 	"en": "Toggle Production",

@@ -1,6 +1,7 @@
 extends Node3D
 
 signal clear_interface()
+signal multi_select_interface(units)
 
 var start_selection_position =  Vector2()
 var mouse_click_collider_3d_result
@@ -118,6 +119,8 @@ func selectUnits():
 		
 		if selection.size() == 1:
 			selection[0].accessUnit()
+		else:
+			multi_select_interface.emit(selection)
 
 # selects all units of the same type
 func selectType():
@@ -130,6 +133,11 @@ func selectType():
 				new_selection.append(unit)
 				unit.select()
 		selection = new_selection
+	
+	if selection.size() == 1:
+		selection[0].accessUnit()
+	else:
+		multi_select_interface.emit(selection)
 
 # call the units that are under the mouse that are selectable
 func getUnitUnderMouse():
