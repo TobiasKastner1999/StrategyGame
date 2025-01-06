@@ -44,46 +44,45 @@ func _physics_process(_delta):
 		$".".position.x -= Balance.cameara_speed
 	if Input.is_action_pressed("right") and $".".position.x < 300:
 		$".".position.x += Balance.cameara_speed
-
+	
+	if !on_ui:
 # deselects the units on click that are not in dragged box
-	mouse_position = get_viewport().get_mouse_position()
-	if Input.is_action_just_pressed("LeftClick") :
-		if $DoubleClickTimer.time_left > 0:
-			double_click = true
-		$DoubleClickTimer.start()
-		selection_box_2d.start_selection_position = mouse_position
-		start_selection_position = mouse_position
-		for selected in selection:
-			if selected != null:
-				selected.deselect()
-		if on_ui == false:
-			selection.clear()
+		mouse_position = get_viewport().get_mouse_position()
+		if Input.is_action_just_pressed("LeftClick") :
+			if $DoubleClickTimer.time_left > 0:
+				double_click = true
+			$DoubleClickTimer.start()
+			selection_box_2d.start_selection_position = mouse_position
+			start_selection_position = mouse_position
+			for selected in selection:
+				if selected != null:
+					selected.deselect()
 
-# selects the units inside the box
-	if Input.is_action_pressed("LeftClick"):
-		selection_box_2d.mouse_position = mouse_position
-		selection_box_2d.box_visible = true
-	else:
-		selection_box_2d.box_visible = false
-	
-	if Input.is_action_just_released("LeftClick"):
-		if double_click and $DoubleClickTimer.time_left > 0:
-			selectType()
-			double_click = false
+		# selects the units inside the box
+		if Input.is_action_pressed("LeftClick"):
+			selection_box_2d.mouse_position = mouse_position
+			selection_box_2d.box_visible = true
 		else:
-			selectUnits()
+			selection_box_2d.box_visible = false
 	
-	# instructs the selected units to move to a given position
-	if Input.is_action_just_pressed("Rightclick") && selection.size() != 0:
-		raycastMouseClick() # checks for the map position the player clicked on
-		var target = getTargetUnderMouse() # checks if the player clicked on a target
-		for selected in selection:
-			if selected.SR == false:
-				return
-			elif target != null: 
-				selected.setAttackTarget(target) # if the player clicked on a unit, instructs the selection to attack it
+		if Input.is_action_just_released("LeftClick"):
+			if double_click and $DoubleClickTimer.time_left > 0:
+				selectType()
+				double_click = false
 			else:
-				selected.setTargetPosition(raycast_mouse_click_3d_result) # otherwise, instructs the selection to move to the clicked position
+				selectUnits()
+	
+		# instructs the selected units to move to a given position
+		if Input.is_action_just_pressed("Rightclick") && selection.size() != 0:
+			raycastMouseClick() # checks for the map position the player clicked on
+			var target = getTargetUnderMouse() # checks if the player clicked on a target
+			for selected in selection:
+				if selected.SR == false:
+					return
+				elif target != null: 
+					selected.setAttackTarget(target) # if the player clicked on a unit, instructs the selection to attack it
+				else:
+					selected.setTargetPosition(raycast_mouse_click_3d_result) # otherwise, instructs the selection to move to the clicked position
 
 # zoom in or out with mousewheel
 func _unhandled_input(event):
