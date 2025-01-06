@@ -51,6 +51,8 @@ func _physics_process(delta):
 		await $UnitBehaviours.runBehaviours(self, delta) # calls the worker's behaviour tree
 		worker_rotation() # permanently sets the direction the worker is facing
 		animationControl() # then plays the correct animation based on the worker's current state
+		
+		interface_update.emit()
 
 # rotates the model to face in the right direction
 func worker_rotation():
@@ -208,7 +210,13 @@ func getInspectInfo(info):
 				return "inactive"
 		
 		"resource":
-			pass
+			match resource[0]:
+				0:
+					return "empty"
+				1:
+					return "zenecium"
+				2:
+					return "ferronite"
 
 # starts the worker's death state
 func startDeathState():

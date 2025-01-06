@@ -59,7 +59,7 @@ func setUpSelectedInterface():
 			
 			"worker":
 				newInfoText("status")
-				#newInfoText("resource")
+				newInfoText("resource")
 				$ButtonToggle.visible = false
 		
 		updateSelectedInterface() # updates dynamic UI elements
