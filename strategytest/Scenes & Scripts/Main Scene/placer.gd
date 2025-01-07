@@ -65,3 +65,10 @@ func placement_check() -> bool:
 	
 	return true
 
+
+
+func _on_building_button_pressed():
+	$Preview.mesh.size = Vector3(23,12,27)
+
+func _on_housing_button_pressed():
+	$Preview.mesh.size = Vector3(15,7,12)

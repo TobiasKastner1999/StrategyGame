@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://daovvhsbialq1"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/mini_map.gd" id="1_pkvyj"]
-[ext_resource type="Texture2D" uid="uid://b6dtu1j332xxy" path="res://Assets/UI/minimaparea.png" id="2_2enkc"]
+[ext_resource type="Texture2D" uid="uid://cpwyd24qu1eg1" path="res://Assets/UI/DesertMap.PNG" id="2_ibgk6"]
 [ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://Assets/UI/blue_dot.png" id="2_wcwke"]
 [ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://Assets/UI/cam.png" id="3_ao8ji"]
 [ext_resource type="Shader" path="res://Assets/fow_sprite_shader.gdshader" id="3_lsynx"]
@@ -36,7 +36,7 @@ offset_bottom = 256.0
 [node name="Background" type="Sprite2D" parent="MarginContainer"]
 position = Vector2(-9.76376e-06, -6.4373e-06)
 scale = Vector2(1.67653, 1.70683)
-texture = ExtResource("2_2enkc")
+texture = ExtResource("2_ibgk6")
 metadata/_edit_lock_ = true
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]

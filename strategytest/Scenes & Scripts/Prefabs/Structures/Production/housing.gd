@@ -54,8 +54,10 @@ func setFaction(f : int):
 	Global.updateUnitLimit(faction, CAPACITY)
 	if faction == 0: # when faction is 0
 		$OL_forge.visible = true # outlaw asset becomes visible
+		$OL_forge/ForgeJoined_001/StaticBody3D/CollisionShape3D.disabled = false
 	elif faction == 1: # when faction is 1
 		$HousingBody.visible = true # new lights asset becomse visible 
+		$HousingColl.disabled = false
 
 # returns the building's current faction
 func getFaction():

@@ -56,6 +56,7 @@ func _on_interface_start_game(faction):
 	$MiniMap/UIFrame.visible = true
 	$Interface/BuildingButton.visible = true
 	$Interface/HousingButton.visible = true
+	$Interface/UpgradeButton.visible = true
 	$MiniMap.visible = true
 	$Counter.visible = true
 	$Interface/ResourceTab.visible = true
@@ -112,3 +113,7 @@ func _on_camera_clear_interface():
 
 func _on_camera_multi_select_interface(units):
 	$Interface/SelectedPanel.multiSelection(units)
+
+
+func _on_upgrade_button_pressed():
+	Balance.upgrade1 = true

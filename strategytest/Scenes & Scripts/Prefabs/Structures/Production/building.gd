@@ -114,8 +114,10 @@ func setFaction(f : int):
 
 	if faction == 0: # when faction is 0
 		$OL_Kaserne_baked.visible = true # outlaw asset becomes visible
+		$OL_Kaserne_baked/Kaserne/StaticBody3D/CollisionShape3D.disabled = false
 	elif faction == 1: # when faction is 1
 		$BuildingBody.visible = true # new lights assets becomes visible
+		$BuildingColl.disabled = false
 # returns the building's current faction
 func getFaction():
 	return faction
@@ -176,3 +178,8 @@ func setGreystate(bol):
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():
 	can_spawn = true
+
+
+func _on_area_3d_body_entered(body):
+	if body.is_in_group("Fighter") and body.faction == Global.player_faction:
+		body.update_stats()

@@ -34,8 +34,15 @@ var speed : float # the unit's movement speed
 @onready var unit_anim = $UnitBody/AnimationPlayer
 # controls the unit's movement and other actions
 func _physics_process(delta):
-	$UnitBehaviours.runBehaviours(self, delta)
+	
+	
+	if Input.is_action_just_pressed("ui_down"):
+		update_stats()
 
+	
+	
+	$UnitBehaviours.runBehaviours(self, delta)
+	
 	unit_rotation()
 	animationControl()
 	
@@ -127,8 +134,19 @@ func setUp(type):
 	await get_tree().physics_frame
 	destination = global_position # sets the initial navigation target to the unit's own position
 
+
+func update_stats():
+	if Balance.upgrade1 == true and faction == Global.player_faction:
+		setUp(0)
+		max_hp = Balance.u_ranged_hp
+		damage_value = Balance.u_ranged_damage
+		hp = max_hp
+		$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
+		$HealthbarContainer/HealthBar.value = hp
+
 # sets the unit's faction to a given value
 func setFaction(f : int):
+	update_stats()
 	faction = f
 	$UnitBody/Armature/Skeleton3D/FighterBake.set_surface_override_material(1, load(Global.getFactionColor(faction)))
 

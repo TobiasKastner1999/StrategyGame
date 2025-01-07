@@ -758,12 +758,21 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -835.0
-offset_top = -120.0
+offset_top = -124.0
 offset_right = -710.0
-offset_bottom = -68.0
+offset_bottom = -72.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Housing"
+
+[node name="UpgradeButton" type="Button" parent="Interface"]
+visible = false
+layout_mode = 0
+offset_left = 1086.0
+offset_top = 1014.0
+offset_right = 1211.0
+offset_bottom = 1066.0
+text = "Upgrade"
 
 [node name="Placer" type="Node3D" parent="Interface"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.74601, -6.16637)
@@ -916,6 +925,9 @@ offset_bottom = -1119.0
 [connection signal="start_game_rebels" from="Interface/FactionSelection" to="Interface" method="_on_faction_selection_start_game_rebels"]
 [connection signal="pressed" from="Interface/SelectedPanel/ButtonToggle" to="Interface/SelectedPanel" method="_on_button_toggle_pressed"]
 [connection signal="pressed" from="Interface/SelectedPanel/ButtonBack" to="Interface/SelectedPanel" method="_on_button_back_pressed"]
+[connection signal="pressed" from="Interface/BuildingButton" to="Interface/Placer" method="_on_building_button_pressed"]
+[connection signal="pressed" from="Interface/HousingButton" to="Interface/Placer" method="_on_housing_button_pressed"]
+[connection signal="pressed" from="Interface/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
 [connection signal="language_changed" from="Options" to="." method="_on_language_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 

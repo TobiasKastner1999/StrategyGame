@@ -2,6 +2,8 @@ extends Control
 
 const FILE = "res://Data/test.json"
 
+var upgrade1 = false
+
 
 # stats of the different Unit types
 @export var ranged_hp = 10
@@ -12,6 +14,19 @@ const FILE = "res://Data/test.json"
 @export var ranged_speed = 20
 @export var ranged_cost = 1
 @export var ranged_production = 10
+
+@export var u_ranged_hp = 20
+@export var u_ranged_damage = 2
+@export var u_ranged_range = 10
+@export var u_ranged_attack_speed = 3
+@export var U_ranged_detection = 20
+@export var u_ranged_speed = 30
+@export var u_ranged_cost = 1
+@export var u_ranged_production = 10
+
+
+
+
 
 @export var scout_hp = 5
 @export var scout_damage = 0.5
@@ -49,6 +64,11 @@ const FILE = "res://Data/test.json"
 @export var worker_speed = 10
 @export var worker_cost = 0
 @export var worker_production = 0
+
+
+
+
+
 
 
 @export var construction_costs = [0, 4, 2] # the construction costs for different types of buildings
