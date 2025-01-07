@@ -117,3 +117,6 @@ func _on_camera_multi_select_interface(units):
 
 func _on_upgrade_button_pressed():
 	Balance.upgrade1 = true
+
+func _on_placer_clear_selection():
+	$Camera.clearSelection()

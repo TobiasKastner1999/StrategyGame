@@ -100,6 +100,10 @@ func _unhandled_input(event):
 				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 					$".".position.y += Balance.camera_zoom_speed
 
+func clearSelection():
+	clear_interface.emit()
+	selection = []
+
 # function to select and replace the old selection
 func selectUnits():
 	clear_interface.emit()

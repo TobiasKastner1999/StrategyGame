@@ -1,4 +1,7 @@
 extends Node3D
+
+signal clearSelection()
+
 var hq_zone
 
 @onready var area: Area3D = $PreviewArea
@@ -68,7 +71,9 @@ func placement_check() -> bool:
 
 
 func _on_building_button_pressed():
+	clearSelection.emit()
 	$Preview.mesh.size = Vector3(23,12,27)
 
 func _on_housing_button_pressed():
+	clearSelection.emit()
 	$Preview.mesh.size = Vector3(15,7,12)

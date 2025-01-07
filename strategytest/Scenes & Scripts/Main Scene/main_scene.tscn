@@ -928,6 +928,7 @@ offset_bottom = -1119.0
 [connection signal="pressed" from="Interface/BuildingButton" to="Interface/Placer" method="_on_building_button_pressed"]
 [connection signal="pressed" from="Interface/HousingButton" to="Interface/Placer" method="_on_housing_button_pressed"]
 [connection signal="pressed" from="Interface/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="clearSelection" from="Interface/Placer" to="." method="_on_placer_clear_selection"]
 [connection signal="language_changed" from="Options" to="." method="_on_language_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
