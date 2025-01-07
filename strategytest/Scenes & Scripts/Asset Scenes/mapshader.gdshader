@@ -39,6 +39,6 @@ void fragment() {
     uv += vec2(distortion, distortion * 0.5);
 
     // Finish up
-    ROUGHNESS = 2.0; // Sand is rough
-    METALLIC = 0.5; // Sand is not metallic
+    ROUGHNESS = 5.0; // Sand is rough
+    METALLIC = 1.3; // Sand is not metallic
 }
