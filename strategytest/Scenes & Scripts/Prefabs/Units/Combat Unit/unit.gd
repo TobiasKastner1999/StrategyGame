@@ -7,6 +7,8 @@ signal deleted(unit) # to tell the system the unit has been defeated
 const TARGET_TYPE = "combat" # the unit's target type
 const TARGET_PRIORITY = ["combat", "worker", "hq", "building"] # the unit's targeting priority based on types
 
+var is_dead = false
+
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
 var active_target : PhysicsBody3D # the enemy target the unit is currently attacking
@@ -57,14 +59,23 @@ func takeDamage(damage, attacker):
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	interface_update.emit()
-	if hp <= 0: # removes the unit if it's remaining hp is 0 or less
-		Global.updateUnitCount(faction, -1)
-		deleted.emit(self) # tells the system to clear remaining references to the unit
-		queue_free() # then deletes the unit
+	if hp <= 0 and is_dead == false: # removes the unit if it's remaining hp is 0 or less
+		is_dead = true
+		startDeathState()
 	elif active_target == null or TARGET_PRIORITY.find(active_target.getType()) > TARGET_PRIORITY.find(attacker.getType()):
 		priority_movement = false
 		active_target = attacker # causes the unit to fight back if it does not yet have a target
 
+
+func startDeathState():
+	
+	deleted.emit(self) # tells the system to clear remaining references to the worker
+	for group in get_groups():
+		remove_from_group(group) # removes the worker from all groups
+	$HealthBarSprite.visible = false
+	$UnitBody/AnimationPlayer.play("OutlawFighterDeath") # starts the death animation
+	await get_tree().create_timer(2).timeout
+	queue_free()
 # calls to access the inspect menu for this unit
 func accessUnit():
 	unit_menu.emit(self)
