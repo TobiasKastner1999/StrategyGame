@@ -24,10 +24,6 @@ var upgrade1 = false
 @export var u_ranged_cost = 1
 @export var u_ranged_production = 10
 
-
-
-
-
 @export var scout_hp = 5
 @export var scout_damage = 0.5
 @export var scout_range = 7.5

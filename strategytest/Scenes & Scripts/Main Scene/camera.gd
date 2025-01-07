@@ -84,6 +84,8 @@ func _physics_process(_delta):
 					selected.setAttackTarget(target) # if the player clicked on a unit, instructs the selection to attack it
 				else:
 					selected.setTargetPosition(raycast_mouse_click_3d_result) # otherwise, instructs the selection to move to the clicked position
+	elif selection_box_2d.box_visible == true:
+		selection_box_2d.box_visible = false
 
 # zoom in or out with mousewheel
 func _unhandled_input(event):
@@ -112,10 +114,12 @@ func selectUnits():
 				b.accessStructure()
 	else:
 		new_selection = getUnitsInBox(start_selection_position, mouse_position)
-	if new_selection.size() != 0:
-		for selected in new_selection:
+	
+	selection = new_selection
+	
+	if selection.size() != 0:
+		for selected in selection:
 			selected.select()
-		selection = new_selection
 		
 		if selection.size() == 1:
 			selection[0].accessUnit()
