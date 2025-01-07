@@ -24,11 +24,11 @@ var nearby_observers = [] # a list of enemy units near the HQ
 
 # called at the start of the game
 func _ready():
-	if faction == 0:
+	if faction == 0: #  when faction is 0 the outlaw assets will be used
 		$OL_Base_unbaked.visible = true
 		$HqBody.visible = false
 		$OL_Base_unbaked/House/StaticBody3D/CollisionShape3D.disabled = false
-	else:
+	else: #  when faction is 1 the ashfolk assets will be used
 		$OL_Base_unbaked.visible = false
 		$HqBody.visible = true
 		$HqColl.disabled = false

@@ -141,18 +141,18 @@ func setUp(type):
 	destination = global_position # sets the initial navigation target to the unit's own position
 
 
-func update_stats():
-	if Balance.upgrade1 == true and faction == Global.player_faction:
-		setUp(0)
-		max_hp = Balance.u_ranged_hp
-		damage_value = Balance.u_ranged_damage
-		hp = max_hp
+func update_stats(): # function to upgrade units
+	if Balance.upgrade1 == true and faction == Global.player_faction: # if global var is active
+		setUp(0) # runs the setUp function again
+		max_hp = Balance.u_ranged_hp # switches the stats to upgraded ones
+		damage_value = Balance.u_ranged_damage # switches the stats to upgraded ones
+		hp = max_hp # switches the stats to upgraded ones
 		$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
-		$HealthbarContainer/HealthBar.value = hp
+		$HealthbarContainer/HealthBar.value = hp # resets value
 
 # sets the unit's faction to a given value
 func setFaction(f : int):
-	update_stats()
+	update_stats() # when spawned check for upgrade and sets stats accordingly
 	faction = f
 
 # changes the color of the unit when selected

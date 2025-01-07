@@ -186,6 +186,6 @@ func _on_spawn_timer_timeout():
 	can_spawn = true
 
 
-func _on_area_3d_body_entered(body):
-	if body.is_in_group("Fighter") and body.faction == Global.player_faction:
-		body.update_stats()
+func _on_area_3d_body_entered(body): # function to upgrade units when entered
+	if body.is_in_group("Fighter") and body.faction == Global.player_faction: # when global var is active and unit is a combatunit
+		body.update_stats() # calls the upgrade function

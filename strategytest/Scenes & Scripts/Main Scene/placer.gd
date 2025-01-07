@@ -71,9 +71,9 @@ func placement_check() -> bool:
 # called when the player presses the building (barracks) construction button
 func _on_building_button_pressed():
 	clearSelection.emit() # calls to clear the player's current selection
-	$Preview.mesh.size = Vector3(23,12,27)
+	$Preview.mesh.size = Vector3(23,12,27) # sets the previewbox size
 
 # called when the player presses the housing construction button
 func _on_housing_button_pressed():
 	clearSelection.emit() # calls to clear the player's current selection
-	$Preview.mesh.size = Vector3(15,7,12)
+	$Preview.mesh.size = Vector3(15,7,12) # sets the previewbox size
