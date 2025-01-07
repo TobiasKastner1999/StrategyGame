@@ -114,6 +114,7 @@ func newInfoText(info):
 
 # updates the dynamic interface components
 func updateSelectedInterface():
+	
 	$SelectedName.text = "[b]" + Global.getText(current_selected.getDisplayName()) + "[/b]" # displays the name
 	$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.getHP()) + "/" + str(current_selected.getMaxHP()) # displays the object's current hp out of its maximum hp
 	

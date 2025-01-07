@@ -12,10 +12,9 @@ var nearby_observers = []
 func _ready():
 	match resource_type: # checks for the node's resource type, and sets the texture color accordingly
 		0:
-			$ResourceBody.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
+			$Scrap.visible = true
 		1:
-			$ResourceBody.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
-
+			$Ore.visible = true
 # removes a resource from the node
 func takeResource():
 	resource -= 1
@@ -69,6 +68,8 @@ func fowReveal(bol):
 # sets the resource's greystate
 func setGreystate(bol):
 	if bol:
-		$ResourceBody.material_overlay = greystate
+		$Ore.material_overlay = greystate
+		$Scrap.material_overlay = greystate
 	else:
-		$ResourceBody.material_overlay = null
+		$Ore.material_overlay = null
+		$Scrap.material_overlay = null

@@ -27,6 +27,9 @@ func _ready():
 	
 	setProductionType(production_type) # sets up the building's unit production
 
+
+
+
 # checks repeatedly if a new unit can be spawned
 func _physics_process(_delta):
 	var spawn_point = getEmptySpawn()
@@ -117,13 +120,23 @@ func setProductionType(type):
 func setFaction(f : int):
 	faction = f # sets the faction
 	$BuildingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
-
-	if faction == 0: # when faction is 0
-		$OL_Kaserne_baked.visible = true # outlaw asset becomes visible
-		$OL_Kaserne_baked/Kaserne/StaticBody3D/CollisionShape3D.disabled = false
-	elif faction == 1: # when faction is 1
+	if faction == 1: # when faction is 0
+		$Kaserne.visible = true # outlaw asset becomes visible
+		$BuildingColl.disabled = true
+		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
+	elif faction == 0: # when faction is 1
 		$BuildingBody.visible = true # new lights assets becomes visible
-		$BuildingColl.disabled = false
+		$OLBarracksCollMain.disabled = true
+		$OLBarracksCollFence1.disabled = true
+		$OLBarracksCollFence2.disabled = true
+		$OLBarracksCollFence3.disabled = true
+		$OLBarracksCollFence4.disabled = true
+		$OLBarracksCollFence5.disabled = true
+		$OLBarracksCollFence6.disabled = true
+		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
+		
+	
+
 # returns the building's current faction
 func getFaction():
 	return faction

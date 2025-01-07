@@ -52,12 +52,14 @@ func setFaction(f : int):
 	faction = f # sets the faction
 	$HousingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
 	Global.updateUnitLimit(faction, CAPACITY)
-	if faction == 0: # when faction is 0
-		$OL_forge.visible = true # outlaw asset becomes visible
-		$OL_forge/ForgeJoined_001/StaticBody3D/CollisionShape3D.disabled = false
-	elif faction == 1: # when faction is 1
+	if faction == 1: # when faction is 0
+		$OLHousingBody.visible = true # outlaw asset becomes visible
+		$OLHousingColl.disabled = false
+		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
+	elif faction == 0: # when faction is 1
 		$HousingBody.visible = true # new lights asset becomse visible 
 		$HousingColl.disabled = false
+		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 
 # returns the building's current faction
 func getFaction():
@@ -78,6 +80,8 @@ func getSize():
 # removes a given unit from the list of the housing's observers
 func clearUnitReferences(unit):
 	fowExit(unit)
+
+
 
 # called when the housing comes into view of a player-controlled unit
 func fowEnter(node):
