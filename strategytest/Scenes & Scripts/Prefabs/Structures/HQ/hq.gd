@@ -27,9 +27,11 @@ func _ready():
 	if faction == 0:
 		$OL_Base_unbaked.visible = true
 		$HqBody.visible = false
+		$OL_Base_unbaked/House/StaticBody3D/CollisionShape3D.disabled = false
 	else:
 		$OL_Base_unbaked.visible = false
 		$HqBody.visible = true
+		$HqColl.disabled = false
 	$HqBody.set_surface_override_material(3, load(Global.getFactionColor(faction))) 
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
