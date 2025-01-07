@@ -6,7 +6,6 @@ signal deleted(unit) # to tell the system the unit has been defeated
 
 const TARGET_TYPE = "combat" # the unit's target type
 const TARGET_PRIORITY = ["combat", "worker", "hq", "building"] # the unit's targeting priority based on types
-const DISPLAY_NAME = "@name_unit_ranged"
 
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
@@ -20,6 +19,7 @@ var path_ind = 0 # the id of the unit's current path position
 var destination : Vector3 # the unit's current navigation target
 var SR 
 
+var display_name : String
 var unit_type : int # the unit's type
 var faction : int # which faction does this unit belong to?
 var max_hp : float # the units maximum hit points
@@ -78,6 +78,9 @@ func getHP():
 func getMaxHP():
 	return max_hp
 
+func getDisplayName():
+	return display_name 
+
 func getInspectInfo(info):
 	match info:
 		"status":
@@ -105,6 +108,7 @@ func focusAtTarget():
 func setUp(type):
 	# sets the various properties from the given values for the unit's type
 	unit_type = type
+	display_name = Global.unit_dict[str(type)]["name"]
 	max_hp = Global.unit_dict[str(type)]["max_hp"]
 	damage_value = Global.unit_dict[str(type)]["damage_value"]
 	attack_range = Global.unit_dict[str(type)]["attack_range"]
@@ -148,14 +152,15 @@ func update_stats():
 func setFaction(f : int):
 	update_stats()
 	faction = f
-	$UnitBody/Armature/Skeleton3D/FighterBake.set_surface_override_material(1, load(Global.getFactionColor(faction)))
 
 # changes the color of the unit when selected
 func select():
+	return
 	$UnitBody/Armature/Skeleton3D/FighterBake.set_surface_override_material(1, load(Global.getSelectedFactionColor(faction)))
 
 # changes the color of the unit when it is deselected
 func deselect():
+	return
 	$UnitBody/Armature/Skeleton3D/FighterBake.set_surface_override_material(1, load(Global.getFactionColor(faction)) )
 
 # sets the unit's movement destination

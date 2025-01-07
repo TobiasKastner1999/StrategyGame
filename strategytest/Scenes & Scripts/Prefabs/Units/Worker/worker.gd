@@ -194,6 +194,9 @@ func getHP():
 func getMaxHP():
 	return max_hp
 
+func getDisplayName():
+	return DISPLAY_NAME
+
 func accessUnit():
 	unit_menu.emit(self)
 

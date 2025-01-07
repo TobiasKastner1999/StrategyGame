@@ -88,6 +88,9 @@ func getHP():
 func getMaxHP():
 	return MAX_HP
 
+func getDisplayName():
+	return DISPLAY_NAME
+
 # accesses the building's interface function
 func accessStructure():
 	building_menu.emit(self)
