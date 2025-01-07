@@ -19,11 +19,10 @@ var on_ui = false
 @onready var mouse_raycast_group
 @onready var mouse_raycast
 
-func _process(_delta):
-	checkUnderMouse($Camera)
-
-
+# called every physics frame
 func _physics_process(_delta):
+	checkUnderMouse($Camera)
+	
 	var mouse_pos = get_viewport().get_mouse_position()
 	var window_size = get_viewport().get_visible_rect().size
 
@@ -100,6 +99,7 @@ func _unhandled_input(event):
 				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 					$".".position.y += Balance.camera_zoom_speed
 
+# clears the current selection of units
 func clearSelection():
 	clear_interface.emit()
 	selection = []

@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-signal unit_menu(unit)
-signal interface_update()
+signal unit_menu(unit) # to open this unit's inspect menu
+signal interface_update() # to update this unit's active inspect menu
 signal deleted(unit) # to tell the system the unit has been defeated
 
 const TARGET_TYPE = "combat" # the unit's target type
@@ -11,15 +11,15 @@ var can_attack = true # can the unit currently attack (is its attack not on cool
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
 var active_target : PhysicsBody3D # the enemy target the unit is currently attacking
 var priority_movement = false # is the unit's movement overridden by a player command
-var current_observers = []
+var current_observers = [] # the enemy units currently observing this unit
 
-var attacking = false
+var attacking = false # is the unit currently attacking?
 var path = [] # the path the unit is navigating on
 var path_ind = 0 # the id of the unit's current path position
 var destination : Vector3 # the unit's current navigation target
 var SR 
 
-var display_name : String
+var display_name : String # the unit's display name id, based on its type
 var unit_type : int # the unit's type
 var faction : int # which faction does this unit belong to?
 var max_hp : float # the units maximum hit points
@@ -35,23 +35,19 @@ var speed : float # the unit's movement speed
 # controls the unit's movement and other actions
 func _physics_process(delta):
 	
-	
 	if Input.is_action_just_pressed("ui_down"):
 		update_stats()
 
-	
-	
 	$UnitBehaviours.runBehaviours(self, delta)
 	
 	unit_rotation()
 	animationControl()
 	
-	interface_update.emit()
+	interface_update.emit() # updates the unit's interface, if active
 	
 
 # receives the path from NavAgent
 func move_to(target_pos):
-	
 	path = navi.get_simple_path(global_transform.origin, target_pos)
 	path_ind = 0
 
@@ -69,27 +65,33 @@ func takeDamage(damage, attacker):
 		priority_movement = false
 		active_target = attacker # causes the unit to fight back if it does not yet have a target
 
+# calls to access the inspect menu for this unit
 func accessUnit():
 	unit_menu.emit(self)
 
+# returns the unit's current HP
 func getHP():
 	return hp
 
+# returns the unit's maximum HP
 func getMaxHP():
 	return max_hp
 
+# returns the unit's display name id
 func getDisplayName():
 	return display_name 
 
+# return information about the unit's state
 func getInspectInfo(info):
 	match info:
+		# returns the unit's current activity status
 		"status":
 			if active_target != null:
-				return "fighting"
+				return "fighting" # returns "fighting" if the unit has an active combat target
 			elif velocity != Vector3.ZERO:
-				return "moving"
+				return "moving" # returns "moving" if the unit is in motion
 			else:
-				return "inactive"
+				return "inactive" # returns "inactive" otherwise
 
 # attack the unit's current target
 func startAttackCooldown():
@@ -176,8 +178,6 @@ func setTargetPosition(target):
 		active_target = null
 		priority_movement = true
 	destination = target
-	
-
 
 # returns the unit's current movement destination
 func getDestination():
@@ -192,12 +192,14 @@ func setAttackTarget(target):
 	if target.is_in_group("CombatTarget") and target.getFaction() != faction:
 		active_target = target # sets the target if the given entity is a valid target and belongs to an enemy faction
 
+# clears references to a defeated unit from this unit
 func checkUnitRemoval(unit):
 	if active_target == unit:
 		clearAttackTarget()
 	if current_observers.has(unit):
 		fowExit(unit)
 
+# clears the unit's attack target
 func clearAttackTarget():
 	active_target = null
 
@@ -310,6 +312,7 @@ func unit_rotation():
 	$UnitBody.rotation.x = rad_to_deg(0) # locks the rotation of x
 	$UnitBody.rotate_object_local(Vector3.UP, PI) # flips the model 
 
+# plays the correct animation based on the unit's state
 func animationControl():
 	if !attacking:
 		if velocity != Vector3.ZERO:
@@ -334,7 +337,7 @@ func _on_area_3d_body_exited(body):
 func _on_timer_timeout():
 	can_attack = true
 
-
+# performs specified actions when a specific animation has concluded
 func _on_animation_player_animation_finished(anim_name):
 	match anim_name:
 		"OutlawFighterRifleFire":

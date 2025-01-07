@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-signal unit_menu(unit)
-signal interface_update()
+signal unit_menu(unit) # to open this worker's inspect menu
+signal interface_update() # to update the worker's open inspect menu
 signal deleted(worker) # to tell the system that the worker has been removed
 
 const TARGET_PRIORITY = ["combat", "hq", "building", "worker"] # the worker's targeting priority based on types
@@ -52,7 +52,7 @@ func _physics_process(delta):
 		worker_rotation() # permanently sets the direction the worker is facing
 		animationControl() # then plays the correct animation based on the worker's current state
 		
-		interface_update.emit()
+		interface_update.emit() # updates the worker's inspect menu
 
 # rotates the model to face in the right direction
 func worker_rotation():
@@ -188,30 +188,37 @@ func takeDamage(damage, attacker):
 		target_node = attacker # causes the worker to fight back if it does not yet have a target
 		setTargetMode(1)
 
+# returns the worker's current HP
 func getHP():
 	return hp
 
+# returns the worker's maximum HP
 func getMaxHP():
 	return max_hp
 
+# returns the worker's display name id
 func getDisplayName():
 	return DISPLAY_NAME
 
+# calls to open the worker's inspect menu
 func accessUnit():
 	unit_menu.emit(self)
 
+# returns information about the worker's current state
 func getInspectInfo(info):
 	match info:
+		# returns information on the worker's current activity status
 		"status":
 			if interaction_state == 1:
-				return "working"
+				return "working" # returns "working" if the worker is currently acquiring resources
 			elif target_mode == 1:
-				return "fighting"
+				return "fighting" # returns "fighting" if the worker is currently in combat mode
 			elif velocity != Vector3.ZERO:
-				return "moving"
+				return "moving" # returns "moving" if the worker is in motion
 			else:
-				return "inactive"
+				return "inactive" # returns "inactive" otherwise
 		
+		# returns information on the resource (if any) the worker is currently carrying
 		"resource":
 			match resource[0]:
 				0:
@@ -344,6 +351,7 @@ func getFaction():
 func getType():
 	return TARGET_TYPE
 
+# returns the worker's unit type id
 func getUnitType():
 	return unit_type
 

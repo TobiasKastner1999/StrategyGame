@@ -7,8 +7,6 @@ var ui = [load("res://Assets/UI/NL_UI.png"),load("res://Assets/UI/OL_UI.png") ] 
 @onready var world_size = Vector2i($Map/Map/MapSize.mesh.size.x, $Map/Map/MapSize.mesh.size.y) # the size of the level's world environment
 @onready var fog_of_war = $Interface/FogOfWar # the node handling the game's fog of war
 
-#var cursor = load()
-
 # called at the start of the game
 func _ready():
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
@@ -84,13 +82,15 @@ func _on_interface_start_game(faction):
 func _on_building_menu(building):
 	$Interface/SelectedPanel.activatePanel(building)
 
+# activates the HQ's shortly after the game start
 func _on_timer_timeout():
 	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT # activates the blue hq
 	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT # activates the red hq
 
+# triggers functions when a new player unit is spawned
 func _on_new_unit(unit):
-	addUnitToFog(unit)
-	unit.unit_menu.connect(_on_building_menu)
+	addUnitToFog(unit) # has the unit tracked by the fog of war
+	unit.unit_menu.connect(_on_building_menu) # connects the unit to the inspect UI
 
 # re-sets the interface texts when the game's language is changed
 func _on_language_changed():
@@ -106,17 +106,18 @@ func _on_fog_of_war_fow_updated(new_texture):
 	$Map/Map/Bake.get_material_override().next_pass.set_shader_parameter("mask_texture", new_texture)
 	$MiniMap.setFogTexture(new_texture)
 
+# clears the inspect interface when the camera calls a new selection
 func _on_camera_clear_interface():
 	$Interface/SelectedPanel.clearMultiSelection()
 	$Interface/SelectedPanel.unselect()
 
-
+# sets up the inspect panel's multi-selection
 func _on_camera_multi_select_interface(units):
 	$Interface/SelectedPanel.multiSelection(units)
-
 
 func _on_upgrade_button_pressed():
 	Balance.upgrade1 = true
 
+# calls to clear the selection when the player presses a construction button
 func _on_placer_clear_selection():
 	$Camera.clearSelection()

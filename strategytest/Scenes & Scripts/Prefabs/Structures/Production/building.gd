@@ -13,7 +13,7 @@ var faction : int # the faction the building belongs to
 var production_type = 0 # which type of unit does the building currently produce?
 var unit_cost : int # how many crystals does each unit from this building cost to produce?
 var spawn_rate : float # how often can the building produce new units?
-var nearby_observers = []
+var nearby_observers = [] # the nearby enemy units currently observing the building
 
 @onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 @onready var hp = Balance.building_hp # the building's current hit points, initially set to the maximum hit points
@@ -82,12 +82,15 @@ func takeDamage(damage, _attacker):
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
 
+# returns the building's current hit points
 func getHP():
 	return hp
 
+# returns the building's maximum hit points
 func getMaxHP():
 	return MAX_HP
 
+# returns the building's display name id
 func getDisplayName():
 	return DISPLAY_NAME
 

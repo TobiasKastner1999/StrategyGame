@@ -17,7 +17,7 @@ var detection_range = 50.0 # the range at which the HQ can detect enemy units
 var nearby_observers = [] # a list of enemy units near the HQ
 
 @onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
-@onready var unit_manager = $".."/Units
+@onready var unit_manager = $".."/Units # the parent node managing the game's combat units
 @onready var hp = Balance.hq_hp # the hq's current hp, initially set to the maximum
 
 @export var faction = 0 # the hq's faction
@@ -88,12 +88,15 @@ func takeDamage(damage, _attacker):
 		queue_free() # then deletes the hq
 	interface_update.emit()
 
+# returns the HQ's current HP
 func getHP():
 	return hp
 
+# returns the HQ's maximum HP
 func getMaxHP():
 	return MAX_HP
 
+# returns the HQ's name id
 func getDisplayName():
 	return DISPLAY_NAME
 

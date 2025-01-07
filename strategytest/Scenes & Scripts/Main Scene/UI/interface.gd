@@ -132,6 +132,5 @@ func getInputMode():
 func _on_faction_selection_start_game_dome():
 	start_game.emit(0)
 
-
 func _on_faction_selection_start_game_rebels():
 	start_game.emit(1)

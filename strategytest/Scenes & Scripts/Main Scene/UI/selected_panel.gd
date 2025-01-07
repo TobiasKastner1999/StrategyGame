@@ -1,7 +1,7 @@
 extends Node
 
 var current_selected # the currently selected node which the interface represents
-var multi_selection = []
+var multi_selection = [] # the current multi-selection
 
 func _ready():
 	updateTexts() # sets the interface texts to the correct language
@@ -13,7 +13,7 @@ func updateTexts():
 
 # sets the panel's properties when it is activated
 func activatePanel(selected):
-	updateTexts()
+	updateTexts() # updates the interface texts
 	
 	unselect() # unselects the currently selected object (if one exists)
 	current_selected = selected # saves the selected object
@@ -25,30 +25,36 @@ func activatePanel(selected):
 # unselects a currently selected object
 func unselect():
 	self.visible = false
+	
+	# removes all temporarily instantiated texts & buttons
 	for button in $UnitContainer.get_children():
 		button.queue_free()
 	for button in $ButtonContainer.get_children():
-		button.queue_free() # clears all existing buttons
+		button.queue_free()
 	for info_text in $InfoContainer.get_children():
 		info_text.queue_free()
+	
 	if current_selected != null:
 		current_selected.interface_update.disconnect(updateSelectedInterface) # disconnects dynamic updates
 		current_selected = null
 
+# clears the stored multi-selection
 func clearMultiSelection():
 	multi_selection = null
 
+# sets up the interface for a multi-selection
 func multiSelection(units):
 	multi_selection = units
 
 	unselect()
 	updateTexts()
 	
-	$SelectedName.text = "[b]" + str(units.size()) + " " + Global.getText("@interface_text_selected") + "[/b]"
+	$SelectedName.text = "[b]" + str(units.size()) + " " + Global.getText("@interface_text_selected") + "[/b]" # displays the total number of selected units
 	$SelectedHP.visible = false
 	$ButtonToggle.visible = false
 	$ButtonBack.visible = false
 	
+	# creates a button for each selected unit, allowing the player to inspect that unit by clicking the button
 	for unit in units:
 		var button = load("res://Scenes & Scripts/Prefabs/Interface/unit_button.tscn").instantiate()
 		$UnitContainer.add_child(button)
@@ -77,21 +83,22 @@ func setUpSelectedInterface():
 						button.change_type.connect(_on_type_button_pressed)
 						button.hover_tooltip.connect(_on_type_button_hover)
 				
-				newInfoText("status")
+				newInfoText("status") # sets up a text for the building's status
 				$ButtonToggle.visible = true
 			
 			"hq":
 				$ButtonToggle.visible = false
 			
 			"worker":
-				newInfoText("status")
-				newInfoText("resource")
+				newInfoText("status") # sets up a text for the worker's status
+				newInfoText("resource") # sets up a text for the worker's carried resource
 				$ButtonToggle.visible = false
 			
 			"combat":
-				newInfoText("status")
+				newInfoText("status") # sets up a text for the unit's status
 				$ButtonToggle.visible = false
 		
+		# enables the back button if there is an active multi-selection
 		if multi_selection != null:
 			$ButtonBack.visible = true
 		else:
@@ -99,6 +106,7 @@ func setUpSelectedInterface():
 		
 		updateSelectedInterface() # updates dynamic UI elements
 
+# creates a new special info text for a given information
 func newInfoText(info):
 	var info_text = load("res://Scenes & Scripts/Prefabs/Interface/selected_info_text.tscn").instantiate()
 	$InfoContainer.add_child(info_text)
@@ -109,6 +117,7 @@ func updateSelectedInterface():
 	$SelectedName.text = "[b]" + Global.getText(current_selected.getDisplayName()) + "[/b]" # displays the name
 	$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.getHP()) + "/" + str(current_selected.getMaxHP()) # displays the object's current hp out of its maximum hp
 	
+	# updates each special info text
 	for info_text in $InfoContainer.get_children():
 		info_text.text = Global.getText("@inspect_text_" + info_text.getInfo()) + ": " + Global.getText("@inspect_text_" + info_text.getInfo() + "_" + current_selected.getInspectInfo(info_text.getInfo()))
 	
@@ -139,9 +148,11 @@ func _on_type_button_hover(type, bol):
 		if $TooltipPanel.current_type == type:
 			$TooltipPanel.visible = false
 
+# calls to access a unit from the multi-selection
 func _on_unit_select(unit):
 	unselect()
 	unit.accessUnit()
 
+# calls to return to the multi-selection from an individual unit
 func _on_button_back_pressed():
 	multiSelection(multi_selection)
