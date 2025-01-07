@@ -6,11 +6,6 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rxa1o"]
 render_priority = 1
 shader = ExtResource("1_tmtd1")
-shader_parameter/dune_scale = 2.0
-shader_parameter/heat_distortion_strength = 0.1
-shader_parameter/time_scale = 1.0
-shader_parameter/low_sand_color = Vector3(3, 1.8, 0.6)
-shader_parameter/high_sand_color = Vector3(0.9, 0.5, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8aof"]
 resource_name = "Material.002"
