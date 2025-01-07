@@ -2,8 +2,8 @@ extends Node
 
 signal rebake() # to rebake the navmesh when a new building is placed
 
-var build_locations = [[Vector3(0.0, 3.9, 175.0), Vector3(-25.0, 3.9, 175.0), Vector3(25.0, 3.9, 175.0)], [Vector3(0.0, 3.9, -175.0), Vector3(-25.0, 3.9, -175.0), Vector3(25.0, 3.9, -175.0)]] # the pre-determined locations where the AI can construct its buildings
-var housing_locations = [[Vector3(0.0, 3.9, 235.0), Vector3(10.0, 3.9, 230.0), Vector3(-10.0, 3.9, 230.0), Vector3(-20.0, 3.9, 225.0), Vector3(20.0, 3.9, 225.0)], [Vector3(0.0, 3.9, -235.0), Vector3(10.0, 3.9, -230.0), Vector3(-10.0, 3.9, -230.0), Vector3(-20.0, 3.9, -225.0), Vector3(20.0, 3.9, -225.0)]]
+var build_locations = [[Vector3(-255.0, -5.5, 235.0), Vector3(-205.0, -5.5, 235.0)], [Vector3(215.0, -7.0, -265.0), Vector3(270.0, -7.0, -265.0)]] # the pre-determined locations where the AI can construct its buildings
+var housing_locations = [[Vector3(-235.0, -5.5, 295.0), Vector3(-265.0, -5.5, 295.0), Vector3(-205.0, -5.5, 295.0)], [Vector3(240.0, -7.0, -330.0), Vector3(270.0, -7.0, -330.0), Vector3(210.0, -7.0, -330.0)]]
 var hq  # the AI's HQ building
 var enemy_hq  # the player's HQ building
 var worker_storage # the AI's workers
@@ -73,16 +73,18 @@ func constructBuilding(building_type):
 			building.transform.origin = build_locations[controlled_faction][0] # places it at the first available location
 			build_locations[controlled_faction].remove_at(0) # then removes that location from the list
 			Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(1)) # subtracts the required crystals from the AI's resources
+			print("constructed barracks")
 		2:
 			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/housing.tscn").instantiate() # instantiates the housing
 			building.transform.origin = housing_locations[controlled_faction][0] # places it at the first available location
 			housing_locations[controlled_faction].remove_at(0) # then removes that location from the list
 			Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(2)) # subtracts the required crystals from the AI's resources
+			print("constructed housing")
 	
 	get_parent().add_child(building)
 	building.setFaction(controlled_faction) # assigns the building's faction
 	building.accessStructure() # accesses the building's interface
-	building.visible = false
+	#building.visible = false
 	rebake.emit() # calls the re-bake the navmesh
 	Global.add_to_list(building.position.x, building.position.z, controlled_faction, building.get_instance_id(), null, building)
 
