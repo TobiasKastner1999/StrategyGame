@@ -42,7 +42,7 @@ func _physics_process(_delta):
 			var worker_id = Global.list[i]["worker"] #gets the worker node
 			Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
 			Global.list[i]["positionY"] = worker_id.global_position.z#updates the position y in dictionary 
-
+# sets value and progress of the Spawn bar
 	$ProductionProgress/ProductionBar.value = $SpawnTimer.time_left
 	if $SpawnTimer.time_left == 0:
 		$ProgressSprite.visible = false
