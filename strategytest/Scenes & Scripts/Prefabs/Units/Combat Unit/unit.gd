@@ -7,8 +7,6 @@ signal deleted(unit) # to tell the system the unit has been defeated
 const TARGET_TYPE = "combat" # the unit's target type
 const TARGET_PRIORITY = ["combat", "worker", "hq", "building", "housing"] # the unit's targeting priority based on types
 
-var is_dead = false
-
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit
 var active_target : PhysicsBody3D # the enemy target the unit is currently attacking
@@ -20,6 +18,7 @@ var path = [] # the path the unit is navigating on
 var path_ind = 0 # the id of the unit's current path position
 var destination : Vector3 # the unit's current navigation target
 var SR 
+var is_awake = true # is the unit awake (i.e. not dying)?
 
 var display_name : String # the unit's display name id, based on its type
 var unit_type : int # the unit's type
@@ -36,16 +35,17 @@ var speed : float # the unit's movement speed
 @onready var unit_anim = $UnitBody/AnimationPlayer
 # controls the unit's movement and other actions
 func _physics_process(delta):
+	if is_awake:
 	
-	if Input.is_action_just_pressed("ui_down"):
-		update_stats()
+		if Input.is_action_just_pressed("ui_down"):
+			update_stats()
 
-	$UnitBehaviours.runBehaviours(self, delta)
+		$UnitBehaviours.runBehaviours(self, delta)
 	
-	unit_rotation()
-	animationControl()
+		unit_rotation()
+		animationControl()
 	
-	interface_update.emit() # updates the unit's interface, if active
+		interface_update.emit() # updates the unit's interface, if active
 	
 
 # receives the path from NavAgent
@@ -59,8 +59,7 @@ func takeDamage(damage, attacker):
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	interface_update.emit()
-	if hp <= 0 and is_dead == false: # removes the unit if it's remaining hp is 0 or less
-		is_dead = true
+	if hp <= 0: # removes the unit if it's remaining hp is 0 or less
 		startDeathState()
 	elif active_target == null or TARGET_PRIORITY.find(active_target.getType()) > TARGET_PRIORITY.find(attacker.getType()):
 		priority_movement = false
@@ -68,14 +67,13 @@ func takeDamage(damage, attacker):
 
 
 func startDeathState():
-	
+	is_awake = false
 	deleted.emit(self) # tells the system to clear remaining references to the worker
 	for group in get_groups():
 		remove_from_group(group) # removes the worker from all groups
 	$HealthBarSprite.visible = false
 	$UnitBody/AnimationPlayer.play("OutlawFighterDeath") # starts the death animation
-	await get_tree().create_timer(2).timeout
-	queue_free()
+
 # calls to access the inspect menu for this unit
 func accessUnit():
 	unit_menu.emit(self)
