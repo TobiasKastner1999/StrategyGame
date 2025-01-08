@@ -11,7 +11,8 @@ func runBehaviour(node):
 			0:
 				targetResource() # targets a resource if the node is not carrying any
 			1:
-				targetHQ() # target's the node's base if it is carrying resources
+				if canDeposit():
+					targetHQ() # target's the node's base if it is carrying resources
 
 # checks if the node has no target
 func hasEmptyTarget():
@@ -71,6 +72,14 @@ func targetKnown():
 	
 	run_node.setTarget(target) # has the node target the intended target
 	run_node.setTargetMode(0)
+
+func canDeposit():
+	var faction = run_node.getFaction()
+	var resource_type = run_node.getResource()[0]
+	
+	if Global.getResource(faction, resource_type) < Global.getMaxResource(faction, resource_type):
+		return true
+	return false
 
 # has the node target its base
 func targetHQ():
