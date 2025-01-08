@@ -802,6 +802,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000671387, 0.0808716, 0.044
 shape = SubResource("BoxShape3D_hw102")
 
 [node name="ResourceTab" type="TextureRect" parent="Interface"]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
