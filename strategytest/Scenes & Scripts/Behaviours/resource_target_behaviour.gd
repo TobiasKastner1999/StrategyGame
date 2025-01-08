@@ -13,6 +13,8 @@ func runBehaviour(node):
 			1:
 				if canDeposit():
 					targetHQ() # target's the node's base if it is carrying resources
+				else:
+					untarget()
 
 # checks if the node has no target
 func hasEmptyTarget():
@@ -85,3 +87,6 @@ func canDeposit():
 func targetHQ():
 	run_node.setTarget(run_node.getHQ())
 	run_node.setTargetMode(0)
+
+func untarget():
+	run_node.clearAttackTarget()
