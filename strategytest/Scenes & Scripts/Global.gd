@@ -4,6 +4,10 @@ const CONSTRUCTION_COSTS = [0, 4, 2] # the construction costs for different type
 
 var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
+
+var faction_zero_resource_limits = [4, 0]
+var faction_one_resource_limits = [4, 0]
+
 var player_faction : int # the faction the player has chosen for the current game
 var list = {} # dictionary to store units and building to project on the minimap
 var list_counter = 1 # sets the start value of the dictionary to 1 instead of 0 
@@ -48,6 +52,13 @@ func getResource(faction, type):
 			return Balance.faction_zero_resources[type]
 		1:
 			return Balance.faction_one_resources[type]
+
+func getMaxResource(faction, type):
+	match faction:
+		0:
+			return faction_zero_resource_limits[type]
+		1:
+			return faction_one_resource_limits[type]
 
 # returns the correct text with the given id in the player's chosen language
 func getText(id):
