@@ -1,15 +1,20 @@
 extends StaticBody3D
 
+
 var material_purple = preload("res://Assets/Materials/material_purple.tres") # the material for a purple resource
 var material_green = preload("res://Assets/Materials/material_green.tres") #  the material for a green resource
-
+@onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 # sets up the new dummy node
 func setUp(type, pos, rot):
 	match type: # sets the correct color material
 		0:
-			$ResourceBody.set_surface_override_material(0, material_purple)
+			$Scrap.visible = true
+			$Scrap.material_overlay = greystate
+			
+			
 		1:
-			$ResourceBody.set_surface_override_material(0, material_green)
+			$Ore.visible = true
+			$Ore.material_overlay = greystate
 	
 	# sets the other properties
 	global_position = pos
