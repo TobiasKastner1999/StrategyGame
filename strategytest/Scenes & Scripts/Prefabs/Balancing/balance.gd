@@ -15,6 +15,7 @@ var upgrade1 = false
 @export var ranged_cost = 1
 @export var ranged_production = 10
 
+# stats of the upgraded ranged unit
 @export var u_ranged_hp = 20
 @export var u_ranged_damage = 2
 @export var u_ranged_range = 10

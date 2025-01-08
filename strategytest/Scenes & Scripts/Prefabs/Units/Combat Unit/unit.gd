@@ -36,15 +36,9 @@ var speed : float # the unit's movement speed
 # controls the unit's movement and other actions
 func _physics_process(delta):
 	if is_awake:
-	
-		if Input.is_action_just_pressed("ui_down"):
-			update_stats()
-
 		$UnitBehaviours.runBehaviours(self, delta)
-	
 		unit_rotation()
 		animationControl()
-	
 		interface_update.emit() # updates the unit's interface, if active
 	
 
