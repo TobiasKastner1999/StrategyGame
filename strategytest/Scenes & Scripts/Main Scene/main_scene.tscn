@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=57 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
@@ -48,13 +48,22 @@ sky = SubResource("Sky_dyptq")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_geksc"]
+load_path = "res://.godot/imported/FullMapBakedWithTexture(1)_Color.png-330af0713c7d4abfce06a75401448abd.s3tc.ctex"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uva0g"]
 render_priority = 0
 shader = ExtResource("5_dxxc2")
 shader_parameter/albedo_a = Vector4(1, 1, 1, 1)
 shader_parameter/albedo_b = Vector4(1, 1, 1, 1)
+shader_parameter/dune_scale = 2.0
+shader_parameter/heat_distortion_strength = 1.0
+shader_parameter/time_scale = 1.0
+shader_parameter/low_sand_color = Vector3(0.8, 0.8, 0.6)
+shader_parameter/high_sand_color = Vector3(0.8, 0.7, 0.5)
 shader_parameter/mask_texture = ExtResource("6_8aatv")
 shader_parameter/texture_a = ExtResource("7_axjv0")
+shader_parameter/texture_b = SubResource("CompressedTexture2D_geksc")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utr4t"]
 next_pass = SubResource("ShaderMaterial_uva0g")

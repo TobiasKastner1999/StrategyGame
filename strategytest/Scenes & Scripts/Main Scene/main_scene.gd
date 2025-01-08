@@ -1,6 +1,6 @@
 extends NavigationRegion3D
-
-
+var unit = preload("res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.tscn")
+var worker = preload("res://Scenes & Scripts/Prefabs/Units/Worker/worker.tscn")
 var camera_positions = [Vector3(-235.0, 0.0, 265.0), Vector3(241.0, 0.0, -299.0)] # hq positions for the camerea to spawn at
 var ui = [load("res://Assets/UI/NL_UI.png"),load("res://Assets/UI/OL_UI.png") ] # ui assets for bot factions
 
