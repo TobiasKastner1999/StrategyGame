@@ -5,7 +5,7 @@ signal interface_update() # to update this unit's active inspect menu
 signal deleted(unit) # to tell the system the unit has been defeated
 
 const TARGET_TYPE = "combat" # the unit's target type
-const TARGET_PRIORITY = ["combat", "worker", "hq", "building", "housing"] # the unit's targeting priority based on types
+const TARGET_PRIORITY = ["combat", "worker", "hq", "building", "forge"] # the unit's targeting priority based on types
 
 var can_attack = true # can the unit currently attack (is its attack not on cooldown)?
 var nearby_enemies = [] # all enemy targets that are currently within range of the unit

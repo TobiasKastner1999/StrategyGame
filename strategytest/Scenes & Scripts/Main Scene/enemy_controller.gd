@@ -74,7 +74,7 @@ func constructBuilding(building_type):
 			build_locations[controlled_faction].remove_at(0) # then removes that location from the list
 			Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(1)) # subtracts the required crystals from the AI's resources
 		2:
-			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/housing.tscn").instantiate() # instantiates the housing
+			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/forge.tscn").instantiate() # instantiates the forge
 			building.transform.origin = housing_locations[controlled_faction][0] # places it at the first available location
 			housing_locations[controlled_faction].remove_at(0) # then removes that location from the list
 			Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(2)) # subtracts the required crystals from the AI's resources

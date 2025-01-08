@@ -86,7 +86,7 @@ func setUpSelectedInterface():
 				newInfoText("status") # sets up a text for the building's status
 				$ButtonToggle.visible = true
 			
-			"housing":
+			"forge":
 				$ButtonToggle.visible = false
 			
 			"hq":

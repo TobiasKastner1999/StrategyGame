@@ -80,7 +80,7 @@ func _input(_event):
 					1:
 						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn")
 					2:
-						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Production/housing.tscn")
+						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Production/forge.tscn")
 				var building_node : Node3D = building_packed_scene.instantiate()
 				get_parent().add_child(building_node)
 
@@ -112,7 +112,7 @@ func updateGamestateInfo():
 
 func setTexts():
 	$BuildingButton.text = Global.getText("@name_building_barracks")
-	$HousingButton.text = Global.getText("@name_building_housing")
+	$HousingButton.text = Global.getText("@name_building_forge")
 
 # ends the game
 func gameEnd(faction):
