@@ -29,7 +29,6 @@ func takeDamage(damage, _attacker):
 	if hp <= 0: # removes the building if it's remaining hp is 0 or less
 		if faction == Global.player_faction:
 			Global.updateBuildingCount(false)
-		Global.updateUnitLimit(faction, -CAPACITY)
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
 
@@ -53,21 +52,10 @@ func getDisplayName():
 func getInspectInfo(info):
 	pass
 
-# toggles the building's production status
-func toggleStatus():
-	function_active = !function_active 
-	$HousingPause.visible = !function_active
-	
-	if function_active:
-		Global.updateUnitLimit(faction, CAPACITY)
-	else:
-		Global.updateUnitLimit(faction, -CAPACITY)
-
 # sets the building's faction to a given value
 func setFaction(f : int):
 	faction = f # sets the faction
 	$HousingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
-	Global.updateUnitLimit(faction, CAPACITY)
 	if faction == 1: # when faction is 0
 		$OLHousingBody.visible = true # outlaw asset becomes visible
 		$OLHousingColl.disabled = false

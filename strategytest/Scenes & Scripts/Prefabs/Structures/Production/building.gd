@@ -6,6 +6,7 @@ signal interface_update() # to update the building's interface display
 const DISPLAY_NAME = "@name_building_barracks" # the building's displayed name
 const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
+const UNIT_CAPACITY = 4
 
 var can_spawn = false # can the building currently produce a new unit?
 var spawn_active = true # is the building's unit production toggled on?
@@ -82,6 +83,7 @@ func takeDamage(damage, _attacker):
 	if hp <= 0: # removes the building if it's remaining hp is 0 or less
 		if faction == Global.player_faction:
 			Global.updateBuildingCount(false)
+			Global.updateUnitLimit(faction, -UNIT_CAPACITY)
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
 
@@ -134,6 +136,7 @@ func setFaction(f : int):
 		$OLBarracksCollFence5.disabled = true
 		$OLBarracksCollFence6.disabled = true
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
+	Global.updateUnitLimit(faction, UNIT_CAPACITY)
 		
 	
 
