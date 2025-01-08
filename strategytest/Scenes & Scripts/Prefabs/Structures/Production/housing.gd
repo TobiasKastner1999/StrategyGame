@@ -4,7 +4,7 @@ signal building_menu(building) # to activate the interface when the building is 
 signal interface_update() # to update the building's interface display
 
 const DISPLAY_NAME = "@name_building_housing" # the building's displayed name
-const TARGET_TYPE = "building" # the building's combat type
+const TARGET_TYPE = "housing" # the building's combat type
 const MAX_HP = 4.0 # the building's maximum hit points
 const CAPACITY = 5 # how many units the building can hold
 
@@ -36,6 +36,22 @@ func takeDamage(damage, _attacker):
 # accesses the building's interface function
 func accessStructure():
 	building_menu.emit(self)
+
+# returns the housing's current HP
+func getHP():
+	return hp
+
+# returns the housing's maximum HP
+func getMaxHP():
+	return MAX_HP
+
+# returns the housing's display name id
+func getDisplayName():
+	return DISPLAY_NAME
+
+# returns the housing's status (it's always active for now)
+func getInspectInfo(info):
+	pass
 
 # toggles the building's production status
 func toggleStatus():
@@ -81,8 +97,6 @@ func getSize():
 func clearUnitReferences(unit):
 	fowExit(unit)
 
-
-
 # called when the housing comes into view of a player-controlled unit
 func fowEnter(node):
 	if node.getFaction() != faction:
@@ -90,7 +104,6 @@ func fowEnter(node):
 
 		fowReveal(true) # enables the visibility of the housing
 		setGreystate(false) # enables the greystate of the housing
-
 
 # called when the housing is no longer in view of a player-controlled unit
 func fowExit(node):

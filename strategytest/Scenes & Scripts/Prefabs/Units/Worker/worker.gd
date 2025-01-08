@@ -4,7 +4,7 @@ signal unit_menu(unit) # to open this worker's inspect menu
 signal interface_update() # to update the worker's open inspect menu
 signal deleted(worker) # to tell the system that the worker has been removed
 
-const TARGET_PRIORITY = ["combat", "hq", "building", "worker"] # the worker's targeting priority based on types
+const TARGET_PRIORITY = ["combat", "hq", "worker", "building", "housing"] # the worker's targeting priority based on types
 const TARGET_TYPE = "worker" # the worker's combat type
 const DISPLAY_NAME = "@name_unit_worker"
 const MINE_SPEED = 5.0 # the speed at which the worker acquired resources
