@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhpj2ia2yfjbc"]
-
-[ext_resource type="PackedScene" uid="uid://sddobt3v7spw" path="res://Assets/Models/Units/rebel_anim.glb" id="1_texbh"]
-
-[node name="rebel_anim" instance=ExtResource("1_texbh")]
