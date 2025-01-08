@@ -60,6 +60,15 @@ func getMaxResource(faction, type):
 		1:
 			return faction_one_resource_limits[type]
 
+func updateResourceCapacity(faction, capacity_a, capacity_b):
+	match faction:
+		0:
+			faction_zero_resource_limits[0] += capacity_a
+			faction_zero_resource_limits[1] += capacity_b
+		1:
+			faction_one_resource_limits[0] += capacity_a
+			faction_one_resource_limits[1] += capacity_b
+
 # returns the correct text with the given id in the player's chosen language
 func getText(id):
 	if language_dict.has(id):

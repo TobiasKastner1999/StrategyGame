@@ -6,6 +6,8 @@ signal interface_update() # to update the forge's interface display
 const DISPLAY_NAME = "@name_building_forge" # the forge's displayed name
 const TARGET_TYPE = "forge" # the forge's combat type
 const MAX_HP = 4.0 # the forge's maximum hit points
+const RESOURCE_CAPACITY_A = 4
+const RESOURCE_CAPACITY_B = 4
 
 var faction : int # the faction the forge belongs to
 var nearby_observers = []
@@ -25,6 +27,7 @@ func takeDamage(damage, _attacker):
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the forge if it's remaining hp is 0 or less
 		if faction == Global.player_faction:
+			Global.updateResourceCapacity(faction, -RESOURCE_CAPACITY_A, -RESOURCE_CAPACITY_B)
 			Global.updateBuildingCount(false)
 		queue_free() # then deletes the forge
 	interface_update.emit() # calls to update the interface with the new health value
@@ -52,6 +55,7 @@ func getInspectInfo(info):
 # sets the forge's faction to a given value
 func setFaction(f : int):
 	faction = f # sets the faction
+	Global.updateResourceCapacity(faction, RESOURCE_CAPACITY_A, RESOURCE_CAPACITY_B)
 	$HousingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct forge color
 	if faction == 1: # when faction is 0
 		$OLHousingBody.visible = true # outlaw asset becomes visible
