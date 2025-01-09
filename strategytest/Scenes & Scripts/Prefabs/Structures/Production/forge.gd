@@ -48,7 +48,7 @@ func getDisplayName():
 
 # returns the forge's status
 func getInspectInfo(info):
-	pass
+	return ""
 
 # sets the forge's faction to a given value
 func setFaction(f : int):

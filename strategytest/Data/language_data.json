@@ -186,5 +186,9 @@
   "@name_unit_sentinel": {
 	"en": "Ash Sentinel",
 	"de": "Aschenwächter"
+  },
+  "@name_unit_worker": {
+	"en": "Worker",
+	"de": "Arbeiter"
   }
 }

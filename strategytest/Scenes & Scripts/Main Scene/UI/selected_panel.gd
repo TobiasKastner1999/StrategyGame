@@ -14,9 +14,8 @@ func updateTexts():
 
 # sets the panel's properties when it is activated
 func activatePanel(selected):
-	updateTexts() # updates the interface texts
-	
 	unselect() # unselects the currently selected object (if one exists)
+	updateTexts() # updates the interface texts
 	current_selected = selected # saves the selected object
 	
 	setUpSelectedInterface() # sets up the interface objects
@@ -25,6 +24,10 @@ func activatePanel(selected):
 
 # unselects a currently selected object
 func unselect():
+	if current_selected != null:
+		current_selected.interface_update.disconnect(updateSelectedInterface) # disconnects dynamic updates
+		current_selected = null
+	
 	self.visible = false
 	
 	# removes all temporarily instantiated texts & buttons
@@ -34,10 +37,6 @@ func unselect():
 		button.queue_free()
 	for info_text in $InfoContainer.get_children():
 		info_text.queue_free()
-	
-	if current_selected != null:
-		current_selected.interface_update.disconnect(updateSelectedInterface) # disconnects dynamic updates
-		current_selected = null
 
 # clears the stored multi-selection
 func clearMultiSelection():
@@ -54,6 +53,7 @@ func multiSelection(units):
 	$SelectedHP.visible = false
 	$ButtonToggle.visible = false
 	$ButtonBack.visible = false
+	$ButtonDrop.visible = false
 	
 	# creates a button for each selected unit, allowing the player to inspect that unit by clicking the button
 	for unit in units:
@@ -66,12 +66,13 @@ func multiSelection(units):
 
 # sets up the interface objects
 func setUpSelectedInterface():
-	$SelectedHP.visible = true
 	if current_selected == null:
 		return # if no selected object exists, does nothing
 	elif current_selected.hp <= 0:
 		unselect() # unselects the object if it is dead / destroyed
 	else:
+		$SelectedName.visible = true
+		$SelectedHP.visible = true
 		$ButtonDrop.visible = false
 		
 		# runs setup based on the object type
@@ -120,7 +121,6 @@ func newInfoText(info):
 
 # updates the dynamic interface components
 func updateSelectedInterface():
-	
 	$SelectedName.text = "[b]" + Global.getText(current_selected.getDisplayName()) + "[/b]" # displays the name
 	$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.getHP()) + "/" + str(current_selected.getMaxHP()) # displays the object's current hp out of its maximum hp
 	

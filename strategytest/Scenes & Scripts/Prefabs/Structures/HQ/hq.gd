@@ -101,6 +101,9 @@ func getMaxHP():
 func getDisplayName():
 	return DISPLAY_NAME
 
+func getInspectInfo(info):
+	return ""
+
 # checks for an empty spawn point
 func getEmptySpawn():
 	for point in $SpawnPoints.get_children():
