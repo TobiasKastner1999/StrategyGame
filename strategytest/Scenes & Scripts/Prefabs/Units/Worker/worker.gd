@@ -220,12 +220,12 @@ func getInspectInfo(info):
 		
 		# returns information on the resource (if any) the worker is currently carrying
 		"resource":
+			if resource == [0,0]:
+				return "empty"
 			match resource[0]:
 				0:
-					return "empty"
-				1:
 					return "zenecium"
-				2:
+				1:
 					return "ferronite"
 
 # starts the worker's death state
