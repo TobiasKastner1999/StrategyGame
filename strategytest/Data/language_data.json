@@ -99,6 +99,34 @@
 	"en": "HP",
 	"de": "Leben"
   },
+  "@inspect_text_damage": {
+	"en": "Damage",
+	"de": "Schaden"
+  },
+  "@inspect_text_range": {
+	"en": "Range",
+	"de": "Reichweite"
+  },
+  "@inspect_text_attack": {
+	"en": "Attack Rate",
+	"de": "Angriffsrate"
+  },
+  "@inspect_text_vision": {
+	"en": "Vision",
+	"de": "Sichtweite"
+  },
+  "@inspect_text_speed": {
+	"en": "Speed",
+	"de": "Geschwindigkeit"
+  },
+  "@inspect_text_cost": {
+	"en": "Cost",
+	"de": "Kosten"
+  },
+  "@inspect_text_production": {
+	"en": "Production",
+	"de": "Produktion"
+  },
   "@inspect_text_status": {
 	"en": "Status",
 	"de": "Status"
@@ -138,10 +166,6 @@
   "@inspect_text_resource_ferronite": {
 	"en": "Ferronite",
 	"de": "Ferronit"
-  },
-  "@inspect_text_production": {
-	"en": "Production",
-	"de": "Produktion"
   },
   "@inspect_text_description_guard": {
 	"en": "The [b]Dome Guards[/b] specialise in quick and simple defensive tactics. The unit is designed to quickly strike at defensive weaknesses and deal heavy damage.",
