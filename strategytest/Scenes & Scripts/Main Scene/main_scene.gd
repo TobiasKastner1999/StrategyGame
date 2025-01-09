@@ -105,8 +105,9 @@ func _on_language_changed():
 
 # updates the map with a new fog of war texture
 func _on_fog_of_war_fow_updated(new_texture):
-	$Map/Map/Bake.get_material_override().next_pass.set_shader_parameter("mask_texture", new_texture)
-	$MiniMap.setFogTexture(new_texture)
+	pass
+	#$Map/Map/Bake.get_material_override().next_pass.set_shader_parameter("mask_texture", new_texture)
+	#$MiniMap.setFogTexture(new_texture)
 
 # clears the inspect interface when the camera calls a new selection
 func _on_camera_clear_interface():
