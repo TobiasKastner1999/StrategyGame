@@ -80,7 +80,7 @@ func setUpSelectedInterface():
 			"building":
 				# sets up the production type selection
 				for type in Global.unit_dict:
-					if type != "worker": 
+					if type != "worker" and Global.unit_dict[type]["faction"] == current_selected.getFaction(): 
 						var button = load("res://Scenes & Scripts/Prefabs/Interface/unit_type_button.tscn").instantiate()
 						$ButtonContainer.add_child(button) # sets up a button for each unit type in the data
 						button.assignType(type) # assigns the button to the correct unit type
