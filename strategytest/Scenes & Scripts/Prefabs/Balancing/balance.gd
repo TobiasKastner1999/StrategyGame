@@ -8,7 +8,7 @@ var upgrade1 = false
 # stats of the different Unit types
 @export var ranged_hp = 10
 @export var ranged_damage = 1
-@export var ranged_range = 10
+@export var ranged_range = 30
 @export var ranged_attack_speed = 2
 @export var ranged_detection = 20
 @export var ranged_speed = 20

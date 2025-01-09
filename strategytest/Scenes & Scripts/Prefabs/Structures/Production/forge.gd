@@ -60,7 +60,7 @@ func setFaction(f : int):
 		$OLHousingColl.disabled = false
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	elif faction == 1: # when faction is 1
-		$HousingBody.visible = true # new lights asset becomse visible 
+		$NLHousingBody.visible = true # new lights asset becomse visible 
 		$ForgeColl.disabled = false
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 
