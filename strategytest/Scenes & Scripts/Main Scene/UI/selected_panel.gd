@@ -10,6 +10,7 @@ func _ready():
 func updateTexts():
 	$ButtonToggle.text = Global.getText("@interface_button_toggle_building")
 	$ButtonBack.text = Global.getText("@interface_button_back")
+	$ButtonDrop.text = Global.getText("@interface_button_drop")
 
 # sets the panel's properties when it is activated
 func activatePanel(selected):
@@ -131,6 +132,12 @@ func updateSelectedInterface():
 			for button in $ButtonContainer.get_children():
 				if button.getType() == current_selected.getProduction():
 					button.grab_focus() # focus-outlines the button of the currently selected production type
+		
+		"worker":
+			if current_selected.getResourceState() == 1:
+				$ButtonDrop.visible = true
+			else:
+				$ButtonDrop.visible = false
 
 # calls to toggle the selected object's status when the button is pressed
 func _on_button_toggle_pressed():
@@ -160,3 +167,6 @@ func _on_unit_select(unit):
 # calls to return to the multi-selection from an individual unit
 func _on_button_back_pressed():
 	multiSelection(multi_selection)
+
+func _on_button_drop_pressed():
+	current_selected.clearResource()

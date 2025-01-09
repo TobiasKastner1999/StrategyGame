@@ -286,6 +286,7 @@ func clearResource():
 	resource = [0,0]
 	if target_node == hq:
 		target_node = null
+		destination = global_position
 
 # returns the worker's currently carried resource
 func getResource():
