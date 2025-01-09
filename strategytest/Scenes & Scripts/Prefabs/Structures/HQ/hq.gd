@@ -24,13 +24,12 @@ var nearby_observers = [] # a list of enemy units near the HQ
 
 # called at the start of the game
 func _ready():
-	if faction == 1: #  when faction is 0 the outlaw assets will be used
+	if faction == 0: #  when faction is 0 the outlaw assets will be used
 		$OL_Base_unbaked.visible = true
 		$HqBody.visible = false
 		$HqColl.disabled = true
 	else: #  when faction is 1 the ashfolk assets will be used
 		$OL_Base_unbaked.visible = false
-		$HqBody.visible = true
 		$OLHQColl.disabled = true
 	$HqBody.set_surface_override_material(3, load(Global.getFactionColor(faction))) 
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp

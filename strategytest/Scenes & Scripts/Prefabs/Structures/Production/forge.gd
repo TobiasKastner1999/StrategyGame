@@ -55,11 +55,11 @@ func setFaction(f : int):
 	faction = f # sets the faction
 	Global.updateResourceCapacity(faction, Balance.housing_resource_cap_a, Balance.housing_resource_cap_b)
 	$HousingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct forge color
-	if faction == 1: # when faction is 0
+	if faction == 0: # when faction is 0
 		$OLHousingBody.visible = true # outlaw asset becomes visible
 		$OLHousingColl.disabled = false
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
-	elif faction == 0: # when faction is 1
+	elif faction == 1: # when faction is 1
 		$HousingBody.visible = true # new lights asset becomse visible 
 		$ForgeColl.disabled = false
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
