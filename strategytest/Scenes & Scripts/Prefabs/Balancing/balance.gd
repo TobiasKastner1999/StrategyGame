@@ -66,19 +66,31 @@ var upgrade1 = false
 @export var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 @export var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 @export var unit_max = [0, 0] # how many units can a faction currently have at max?
+@export var resource = 4 # how many resources can be mined
+
+
 
 @export var building_hp = 8 # health for building
 @export var building_spawn_delay = 1 # delay when units are spawned
+@export var building_unit_capacity = 4
+
+@export var housing_hp = 4
+@export var housing_resource_cap_a = 4
+@export var housing_resource_cap_b = 4
+
+@export var hq_spawn_delay = 10.0 # how often will new workers spawn?
+@export var worker_limit = 4 # how many workers can spawn at most?
+@export var hq_hp = 20.0 # the hq's maximum hp
+
+
 @export var cameara_speed = 0.5 # camera sensitivity
 @export var camera_zoom_speed = 5 # speed for zooming
 @export var camera_zoom_up_limit = 60 # upper limit for cam zoom
 @export var camera_zoom_down_limit = 20 # lower limit for cam zoom
 
 
-@export var hq_spawn_delay = 10.0 # how often will new workers spawn?
-@export var worker_limit = 4 # how many workers can spawn at most?
-@export var hq_hp = 20.0 # the hq's maximum hp
-@export var resource = 4 # how many resources can be mined
+
+
 
 
 

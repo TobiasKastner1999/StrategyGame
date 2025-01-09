@@ -23,7 +23,7 @@ var nearby_observers = [] # the nearby enemy units currently observing the build
 # prepares to spawn a new unit when first built
 func _ready():
 
-	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
+	$HealthbarContainer/HealthBar.max_value = Balance.building_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	
 	setProductionType(production_type) # sets up the building's unit production
@@ -93,7 +93,7 @@ func getHP():
 
 # returns the building's maximum hit points
 func getMaxHP():
-	return MAX_HP
+	return Balance.building_hp
 
 # returns the building's display name id
 func getDisplayName():

@@ -5,19 +5,17 @@ signal interface_update() # to update the forge's interface display
 
 const DISPLAY_NAME = "@name_building_forge" # the forge's displayed name
 const TARGET_TYPE = "forge" # the forge's combat type
-const MAX_HP = 4.0 # the forge's maximum hit points
-const RESOURCE_CAPACITY_A = 4
-const RESOURCE_CAPACITY_B = 4
+
 
 var faction : int # the faction the forge belongs to
 var nearby_observers = []
 
 @onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
-@onready var hp = MAX_HP # the forge's current hit points, initially set to the maximum hit points
+@onready var hp = Balance.housing_hp # the forge's current hit points, initially set to the maximum hit points
 
 # initially sets up the forge's health bar
 func _ready():
-	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
+	$HealthbarContainer/HealthBar.max_value = Balance.housing_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 
 # causes the forge to take a given amount of damage
@@ -27,7 +25,7 @@ func takeDamage(damage, _attacker):
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the forge if it's remaining hp is 0 or less
 		if faction == Global.player_faction:
-			Global.updateResourceCapacity(faction, -RESOURCE_CAPACITY_A, -RESOURCE_CAPACITY_B)
+			Global.updateResourceCapacity(faction, -Balance.housing_resource_cap_a, -Balance.housing_resource_cap_b)
 			Global.updateBuildingCount(false)
 		queue_free() # then deletes the forge
 	interface_update.emit() # calls to update the interface with the new health value
@@ -42,7 +40,7 @@ func getHP():
 
 # returns the forge's maximum HP
 func getMaxHP():
-	return MAX_HP
+	return Balance.housing_hp
 
 # returns the forge's display name id
 func getDisplayName():
@@ -55,7 +53,7 @@ func getInspectInfo(info):
 # sets the forge's faction to a given value
 func setFaction(f : int):
 	faction = f # sets the faction
-	Global.updateResourceCapacity(faction, RESOURCE_CAPACITY_A, RESOURCE_CAPACITY_B)
+	Global.updateResourceCapacity(faction, Balance.housing_resource_cap_a, Balance.housing_resource_cap_b)
 	$HousingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct forge color
 	if faction == 1: # when faction is 0
 		$OLHousingBody.visible = true # outlaw asset becomes visible
