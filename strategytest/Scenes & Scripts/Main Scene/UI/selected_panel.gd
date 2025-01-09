@@ -72,6 +72,8 @@ func setUpSelectedInterface():
 	elif current_selected.hp <= 0:
 		unselect() # unselects the object if it is dead / destroyed
 	else:
+		$ButtonDrop.visible = false
+		
 		# runs setup based on the object type
 		match current_selected.getType():
 			"building":
@@ -152,12 +154,21 @@ func _on_type_button_pressed(type):
 # toggles the tooltip panel on hover over a selection type
 func _on_type_button_hover(type, bol):
 	if bol:
+		$SelectedName.visible = false
+		$SelectedHP.visible = false
+		$InfoContainer.visible = false
 		$TooltipPanel.visible = true
+		$TooltipDescription.visible = true
 		$TooltipPanel.setType(type)
+		$TooltipDescription.text = Global.getText(Global.unit_dict[str(type)]["info_text"])
 	
 	else:
 		if $TooltipPanel.current_type == type:
 			$TooltipPanel.visible = false
+			$TooltipDescription.visible = false
+			$SelectedName.visible = true
+			$SelectedHP.visible = true
+			$InfoContainer.visible = true
 
 # calls to access a unit from the multi-selection
 func _on_unit_select(unit):

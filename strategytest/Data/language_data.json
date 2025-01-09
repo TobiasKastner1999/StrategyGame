@@ -60,13 +60,12 @@
 	"de": "Wähle deine Fraktion!"
   },
   "@interface_text_faction_blue": {
-	"en": "Ashfolk",
-	"de": "Aschenfolk"
-  },
-  "@interface_text_faction_red": {
-
 	"en": "Nova Lumina",
 	"de": "Nova Lumina"
+  },
+  "@interface_text_faction_red": {
+	"en": "Ashfolk",
+	"de": "Aschenfolk"
   },
   "@interface_text_selected": {
 	"en": "Selected",
@@ -144,6 +143,22 @@
 	"en": "Production",
 	"de": "Produktion"
   },
+  "@inspect_text_description_guard": {
+	"en": "The [b]Dome Guards[/b] specialise in quick and simple defensive tactics. The unit is designed to quickly strike at defensive weaknesses and deal heavy damage.",
+	"de": "Die [b]Kuppelwächter[/b] sind auf eine schnelle und einfache Verteidigungs-Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und großen Schaden anzurichten."
+  },
+  "@inspect_text_description_titan": {
+	"en": "The [b]Dome Titans[/b] specialise in slow and accurate defence. The unit is designed to identify and eliminate weaknesses in the defence.",
+	"de": "Die [b]Kuppeltitanen[/b] sind auf eine langsame und genaue Verteidigung spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung zu erkennen und auszubessern"
+  },
+  "@inspect_text_description_runner": {
+	"en": "The [b]Dust Runners[/b] specialise in fast and aggressive tactics. The unit is designed to quickly exploit weak points in the defence and deal damage.",
+	"de": "Die [b]Wüstenläufer[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und Schaden anzurichten."
+  },
+  "@inspect_text_description_sentinel": {
+	"en": "The [b]Ash Sentinels[/b] specialise in fast and aggressive tactics. The unit is designed to exploit weak points in the defence and deal major damage.",
+	"de": "Die [b]Aschenwächter[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung auszunutzen und großen Schaden anzurichten."
+  },
   "@name_building_hq": {
 	"en": "Main Base",
 	"de": "Basis"
@@ -156,24 +171,20 @@
 	"en": "Forge",
 	"de": "Schmiede"
   },
-  "@name_unit_ranged": {
-	"en": "Ranged",
-	"de": "Fernkämpfer"
+  "@name_unit_guard": {
+	"en": "Dome Guard",
+	"de": "Kuppelwächter"
   },
-  "@name_unit_scout": {
-	"en": "Scout",
-	"de": "Kundschafter"
+  "@name_unit_titan": {
+	"en": "Dome Titan",
+	"de": "Kuppeltitan"
   },
-  "@name_unit_melee": {
-	"en": "Melee",
-	"de": "Nahkämpfer"
+  "@name_unit_runner": {
+	"en": "Dust Runner",
+	"de": "Wüstenläufer"
   },
-  "@name_unit_sniper": {
-	"en": "Sniper",
-	"de": "Scharfschütze"
-  },
-  "@name_unit_worker": {
-	"en": "Worker",
-	"de": "Arbeiter"
+  "@name_unit_sentinel": {
+	"en": "Ash Sentinel",
+	"de": "Aschenwächter"
   }
 }
