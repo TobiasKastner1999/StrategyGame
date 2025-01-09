@@ -1,0 +1,27 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://chgfhufeks0wp"]
+
+[ext_resource type="Shader" path="res://Assets/fow_terrain.gdshader" id="1_37lql"]
+[ext_resource type="Texture2D" uid="uid://chuskcnc8fqrb" path="res://Assets/testmask.png" id="2_7lnc5"]
+[ext_resource type="Texture2D" uid="uid://8fp5r7lvixka" path="res://Assets/texture_fow.png" id="3_n8lr3"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_geksc"]
+load_path = "res://.godot/imported/FullMapBakedWithTexture(1)_Color.png-330af0713c7d4abfce06a75401448abd.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uva0g"]
+render_priority = 0
+shader = ExtResource("1_37lql")
+shader_parameter/albedo_a = Vector4(1, 1, 1, 1)
+shader_parameter/albedo_b = Vector4(1, 1, 1, 1)
+shader_parameter/dune_scale = 2.0
+shader_parameter/heat_distortion_strength = 1.0
+shader_parameter/time_scale = 1.0
+shader_parameter/low_sand_color = Vector3(0.8, 0.8, 0.6)
+shader_parameter/high_sand_color = Vector3(0.8, 0.7, 0.5)
+shader_parameter/mask_texture = ExtResource("2_7lnc5")
+shader_parameter/texture_a = ExtResource("3_n8lr3")
+shader_parameter/texture_b = SubResource("CompressedTexture2D_geksc")
+
+[resource]
+next_pass = SubResource("ShaderMaterial_uva0g")
+transparency = 1
+blend_mode = 3
