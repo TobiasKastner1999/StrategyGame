@@ -8,7 +8,8 @@ func runBehaviour(node):
 	
 	match getTargetType(): # checks what type of target the node is targeting
 		0:
-			depositResource() # if the target is the base, deposits the resource
+			if canDeposit():
+				depositResource() # if the target is the base, deposits the resource
 		1:
 			match checkInteractionState(): # if the target is a resource, checks the interaction state
 				0:
@@ -27,6 +28,14 @@ func getTargetType():
 			_:
 				return 0 # returns 0 otherwise (if the node is targeting its base)
 	return null # returns null if the node has no target
+
+func canDeposit():
+	var faction = run_node.getFaction()
+	var resource_type = run_node.getResource()[0]
+	
+	if Global.getResource(faction, resource_type) < Global.getMaxResource(faction, resource_type):
+		return true
+	return false
 
 # deposits the node's carried resource at the base
 func depositResource():
