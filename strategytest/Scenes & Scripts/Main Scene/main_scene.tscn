@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cd55jchj02hn4"]
+[gd_scene load_steps=59 format=3 uid="uid://cd55jchj02hn4"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/main_scene.gd" id="1_i5xym"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/camera.gd" id="2_6i5cw"]
@@ -165,6 +165,12 @@ albedo_color = Color(0.870588, 0.517647, 0.407843, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7xrfe"]
 size = Vector2(5492, 919)
+
+[sub_resource type="Theme" id="Theme_7s7v3"]
+default_font_size = 10
+
+[sub_resource type="Theme" id="Theme_t78bm"]
+default_font_size = 10
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_samg3"]
 render_priority = 0
@@ -564,6 +570,7 @@ grow_vertical = 0
 script = ExtResource("12_x7t4o")
 
 [node name="SelectedName" type="RichTextLabel" parent="Interface/SelectedPanel"]
+visible = false
 layout_mode = 0
 offset_left = 11.0
 offset_top = 9.0
@@ -573,6 +580,7 @@ bbcode_enabled = true
 text = "[b]Name[/b]"
 
 [node name="SelectedHP" type="RichTextLabel" parent="Interface/SelectedPanel"]
+visible = false
 layout_mode = 0
 offset_left = 12.0
 offset_top = 36.0
@@ -580,7 +588,19 @@ offset_right = 262.0
 offset_bottom = 61.0
 text = "HP"
 
+[node name="TooltipDescription" type="RichTextLabel" parent="Interface/SelectedPanel"]
+visible = false
+layout_mode = 0
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 164.0
+offset_bottom = 171.0
+theme = SubResource("Theme_7s7v3")
+bbcode_enabled = true
+text = "Die [b]Dome Guards[/b] sind auf eine schnelle und einfache Verteidigungs-Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und großen Schaden anzurichten."
+
 [node name="InfoContainer" type="VBoxContainer" parent="Interface/SelectedPanel"]
+visible = false
 layout_mode = 0
 offset_left = 11.0
 offset_top = 61.0
@@ -597,7 +617,7 @@ offset_bottom = 241.0
 [node name="ButtonToggle" type="Button" parent="Interface/SelectedPanel"]
 visible = false
 layout_mode = 0
-offset_left = 165.0
+offset_left = 190.0
 offset_top = 13.0
 offset_right = 340.0
 offset_bottom = 63.0
@@ -625,9 +645,9 @@ text_overrun_behavior = 3
 visible = false
 layout_mode = 0
 offset_left = 10.0
-offset_top = 106.0
+offset_top = 152.0
 offset_right = 210.0
-offset_bottom = 206.0
+offset_bottom = 212.0
 script = ExtResource("22_jg3nw")
 
 [node name="TooltipHP" type="RichTextLabel" parent="Interface/SelectedPanel/TooltipPanel"]
@@ -636,49 +656,61 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -100.0
-offset_bottom = -75.0
+offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_t78bm")
 bbcode_enabled = true
 text = "[HP]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="TooltipDamage" type="RichTextLabel" parent="Interface/SelectedPanel/TooltipPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 25.0
+offset_top = 15.0
 offset_right = -100.0
-offset_bottom = -50.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_t78bm")
 bbcode_enabled = true
 text = "[DP]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="TooltipRange" type="RichTextLabel" parent="Interface/SelectedPanel/TooltipPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 50.0
+offset_top = 30.0
 offset_right = -100.0
-offset_bottom = -25.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_t78bm")
 bbcode_enabled = true
 text = "[RA]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="TooltipAttackRate" type="RichTextLabel" parent="Interface/SelectedPanel/TooltipPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 75.0
+offset_top = 45.0
 offset_right = -100.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_t78bm")
 bbcode_enabled = true
 text = "[AR]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="TooltipVision" type="RichTextLabel" parent="Interface/SelectedPanel/TooltipPanel"]
 layout_mode = 1
@@ -686,11 +718,14 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 100.0
-offset_bottom = -75.0
+offset_bottom = -45.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_t78bm")
 bbcode_enabled = true
 text = "[VI]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="TooltipSpeed" type="RichTextLabel" parent="Interface/SelectedPanel/TooltipPanel"]
 layout_mode = 1
@@ -698,12 +733,15 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 100.0
-offset_top = 25.0
-offset_bottom = -50.0
+offset_top = 15.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_t78bm")
 bbcode_enabled = true
 text = "[SP]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="TooltipCost" type="RichTextLabel" parent="Interface/SelectedPanel/TooltipPanel"]
 layout_mode = 1
@@ -711,12 +749,15 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 100.0
-offset_top = 50.0
-offset_bottom = -25.0
+offset_top = 30.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_t78bm")
 bbcode_enabled = true
 text = "[CO]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="TooltipProduction" type="RichTextLabel" parent="Interface/SelectedPanel/TooltipPanel"]
 layout_mode = 1
@@ -724,11 +765,14 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 100.0
-offset_top = 75.0
+offset_top = 45.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_t78bm")
 bbcode_enabled = true
 text = "[PR]"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="UnitContainer" type="GridContainer" parent="Interface/SelectedPanel"]
 layout_mode = 0
