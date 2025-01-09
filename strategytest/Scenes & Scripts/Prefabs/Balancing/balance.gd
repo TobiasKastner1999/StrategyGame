@@ -18,7 +18,7 @@ var upgrade1 = false
 # stats of the upgraded ranged unit
 @export var u_ranged_hp = 20
 @export var u_ranged_damage = 2
-@export var u_ranged_range = 10
+@export var u_ranged_range = 30
 @export var u_ranged_attack_speed = 3
 @export var U_ranged_detection = 20
 @export var u_ranged_speed = 30

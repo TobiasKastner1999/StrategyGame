@@ -2,8 +2,8 @@ extends Node
 
 signal rebake() # to rebake the navmesh when a new building is placed
 
-var build_locations = [[Vector3(-255.0, -6.5, 235.0), Vector3(-205.0, -6.5, 235.0)], [Vector3(215.0, -6.0, -265.0), Vector3(270.0, -6.0, -265.0)]] # the pre-determined locations where the AI can construct its buildings
-var housing_locations = [[Vector3(-235.0, -6.5, 295.0), Vector3(-265.0, -6.5, 295.0), Vector3(-205.0, -6.5, 295.0)], [Vector3(240.0, -7.0, -330.0), Vector3(270.0, -7.0, -330.0), Vector3(210.0, -7.0, -330.0)]]
+var build_locations = [[Vector3(-60.0, -6.5, 120.0), Vector3(-100.0, -6.5, 110.0)], [Vector3(100.0, -6.0, -190.0), Vector3(100.0, -6.0, -150.0)]] # the pre-determined locations where the AI can construct its buildings
+var housing_locations = [[Vector3(-140.0, -6.5, 145.0), Vector3(-120.0, -6.5, 145.0), Vector3(-100.0, -6.5, 145.0)], [Vector3(200.0, -7.0, -120.0), Vector3(180.0, -7.0, -120.0), Vector3(160.0, -7.0, -125.0)]]
 var hq  # the AI's HQ building
 var enemy_hq  # the player's HQ building
 var worker_storage # the AI's workers

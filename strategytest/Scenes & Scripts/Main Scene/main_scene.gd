@@ -3,8 +3,8 @@ var unit = preload("res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.tscn")
 var worker = preload("res://Scenes & Scripts/Prefabs/Units/Worker/worker.tscn") # preloads scene to avoid lagspikes
 var baracks = preload("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn") # preloads scene to avoid lagspikes
 var housing = preload("res://Scenes & Scripts/Prefabs/Structures/Production/forge.tscn") # preloads scene to avoid lagspikes
-var camera_positions = [Vector3(-235.0, 0.0, 265.0), Vector3(241.0, 0.0, -299.0)] # hq positions for the camerea to spawn at
-var ui = [load("res://Assets/UI/NL_UI.png"),load("res://Assets/UI/OL_UI.png") ] # ui assets for bot factions
+var camera_positions = [Vector3(-155.0, 0.0, 200.0), Vector3(100.0, 0.0, -55.0)] # hq positions for the camerea to spawn at
+var ui = [load("res://Assets/UI/OL_UI.png"),load("res://Assets/UI/NL_UI.png") ] # ui assets for bot factions
 
 @onready var world_size = Vector2i($Map/Map/MapSize.mesh.size.x, $Map/Map/MapSize.mesh.size.y) # the size of the level's world environment
 @onready var fog_of_war = $Interface/FogOfWar # the node handling the game's fog of war
@@ -71,6 +71,10 @@ func _on_interface_start_game(faction):
 	$MiniMap/UIFrame.texture = ui[faction]
 	$Camera.position.y = 60
 
+	if Global.player_faction == 0:
+		$Interface/ResourceTab/NlUiRes.visible = false
+	elif Global.player_faction == 1:
+		$Interface/ResourceTab/NlUiRes.visible = true
 
 	for hq in get_tree().get_nodes_in_group("HQ"):
 		if hq.getFaction() == faction:

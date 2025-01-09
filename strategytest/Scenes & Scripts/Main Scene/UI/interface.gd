@@ -31,6 +31,7 @@ var building_placer_location : Vector3 = Vector3.ZERO
 
 # switches to buildingmode
 func _ready():
+
 	interface_btn_building.pressed.connect(func() -> void: interface_input_mode = 1)
 	interface_btn_housing.pressed.connect(func() -> void: interface_input_mode = 2)
 	interface_input_mode = 0
