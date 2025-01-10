@@ -6,7 +6,7 @@ extends CanvasLayer
 var mouse_over_map = false # value for checking if mouse is over the minimap
 var zoom # value for the camerazoom
 @onready var mouse = $MarginContainer/MouseIndicator # characterbody that will follow the mouse
-@onready var main_cam := $"../Camera" # camera of main scene
+@onready var main_cam := $"../CameraBody" # camera of main scene
 @onready var unit_sprite = $MarginContainer/BaseFriendly # HQ Blue
 @onready var unit_sprite2 = $MarginContainer/BaseEnemy # HQ Red
 @onready var cam_sprite = $MarginContainer/Cam # Cam indicator sprite

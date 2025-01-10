@@ -23,8 +23,8 @@ func addUnitToFog(unit_node):
 
 # attempts to remove a deleted unit from the camera's selection
 func _on_units_delete_selection(unit):
-	if $Camera.selection.has(unit):
-		$Camera.selection.erase(unit) # removes the unit if it is in the camera's current selection
+	if $CameraBody/Camera.selection.has(unit):
+		$CameraBody/Camera.selection.erase(unit) # removes the unit if it is in the camera's current selection
 	fog_of_war.attemptRemoveUnit(unit) # also attempts to remove the unit from the fog of war system
 	$HQBlue.clearUnitReferences(unit)
 	$HQRed.clearUnitReferences(unit)
@@ -67,9 +67,9 @@ func _on_interface_start_game(faction):
 	# sets up the AI controllers
 	$FactionBlueController.setUp()
 	$FactionRedController.setUp()
-	$Camera.global_position = camera_positions[faction] # warps the camera to the chosen HQ's location
+	$CameraBody.global_position = camera_positions[faction] # warps the camera to the chosen HQ's location
 	$MiniMap/UIFrame.texture = ui[faction]
-	$Camera.position.y = 60
+	$CameraBody.position.y = 60
 
 	if Global.player_faction == 0:
 		$Interface/ResourceTab/NlUiRes.visible = false
@@ -126,4 +126,4 @@ func _on_upgrade_button_pressed():
 
 # calls to clear the selection when the player presses a construction button
 func _on_placer_clear_selection():
-	$Camera.clearSelection()
+	$CameraBody/Camera.clearSelection()

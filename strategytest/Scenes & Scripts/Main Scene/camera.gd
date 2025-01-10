@@ -23,27 +23,9 @@ var on_ui = false
 func _physics_process(_delta):
 	checkUnderMouse($Camera)
 	
-	var mouse_pos = get_viewport().get_mouse_position()
-	var window_size = get_viewport().get_visible_rect().size
 
-# camera movement when mouse near window border or WASD
-	if mouse_pos.x < 10 and $".".position.x > -210:
-		$".".position.x -= Balance.cameara_speed
-	elif mouse_pos.x > window_size.x - 10 and $".".position.x < 140:
-		$".".position.x += Balance.cameara_speed
-	if mouse_pos.y < 10 and $".".position.z > -100:
-		$".".position.z -= Balance.cameara_speed
-	elif mouse_pos.y > window_size.y - 10 and $".".position.z < 210:
-		$".".position.z += Balance.cameara_speed
 
-	if Input.is_action_pressed("front") and $".".position.z > -100:
-		$".".position.z -= Balance.cameara_speed
-	if Input.is_action_pressed("back") and $".".position.z < 170:
-		$".".position.z += Balance.cameara_speed
-	if Input.is_action_pressed("left") and $".".position.x > -210:
-		$".".position.x -= Balance.cameara_speed
-	if Input.is_action_pressed("right") and $".".position.x < 140:
-		$".".position.x += Balance.cameara_speed
+
 	
 	if !on_ui:
 # deselects the units on click that are not in dragged box
@@ -237,7 +219,7 @@ func checkUnderMouse(camera):
 	var result = space.intersect_ray(rayQuery) # gets the object the ray collides with
 	if result.size()<1: # limits the collider
 		return
-	if $"../Interface".interface_input_mode == 0: # checks if buildingmode is on
+	if $"../../Interface".interface_input_mode == 0: # checks if buildingmode is on
 		if result.collider.is_in_group("resource") and result.collider.visible == true: # called when mouse above crystal
 			Global.setCursor("res://Assets/UI/CursorHarvest.png") # sets the cursor
 		elif result.collider.is_in_group("Selectable") and result.collider.faction != Global.player_faction and result.collider.visible == true: # checks for enemy units
