@@ -107,19 +107,19 @@ func delete_dot():
 # limitations for the cam sprite so it cant leave the minimap
 func minimap_limits():
 	# limits for the cam sprite on the x-axis 
-	if not cam_sprite.position.x <= -300 and not cam_sprite.position.x >= 300:
+	if not cam_sprite.position.x <= -200 and not cam_sprite.position.x >= 200:
 		cam_sprite.position.x = main_cam.position.x
-	if cam_sprite.position.x <= -300:
-		cam_sprite.position.x = -299
-	if cam_sprite.position.x >= 300:
-		cam_sprite.position.x = 299
+	if cam_sprite.position.x <= -200:
+		cam_sprite.position.x = -199
+	if cam_sprite.position.x >= 200:
+		cam_sprite.position.x = 199
 	# limits for the cam sprite on the y-axis 
-	if not cam_sprite.position.y <= -300 and not cam_sprite.position.y >= 300:
+	if not cam_sprite.position.y <= -200 and not cam_sprite.position.y >= 200:
 		cam_sprite.position.y = main_cam.position.z
-	if cam_sprite.position.y <= -300:
-		cam_sprite.position.y = -299
-	if cam_sprite.position.y >= 300:
-		cam_sprite.position.y = 299
+	if cam_sprite.position.y <= -200:
+		cam_sprite.position.y = -199
+	if cam_sprite.position.y >= 200:
+		cam_sprite.position.y = 199
 
 # scale the vision sprite when cam zooms in/oout
 func minimap_zoom():

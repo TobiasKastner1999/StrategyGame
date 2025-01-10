@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://daovvhsbialq1"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/mini_map.gd" id="1_pkvyj"]
-[ext_resource type="Texture2D" uid="uid://cpwyd24qu1eg1" path="res://Assets/UI/DesertMap.PNG" id="2_ibgk6"]
+[ext_resource type="Texture2D" uid="uid://cjkb7ldyr7a0w" path="res://Assets/UI/Minimap.PNG" id="2_84fo1"]
 [ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://Assets/UI/blue_dot.png" id="2_wcwke"]
 [ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://Assets/UI/cam.png" id="3_ao8ji"]
 [ext_resource type="Shader" path="res://Assets/fow_sprite_shader.gdshader" id="3_lsynx"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://8fp5r7lvixka" path="res://Assets/texture_fow.png" id="9_eerus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
-size = Vector2(566.667, 566.667)
+size = Vector2(400, 400)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1leb5"]
 size = Vector2(10, 10)
@@ -34,10 +34,9 @@ offset_right = 256.0
 offset_bottom = 256.0
 
 [node name="Background" type="Sprite2D" parent="MarginContainer"]
-position = Vector2(-9.76376e-06, -6.4373e-06)
-scale = Vector2(1.67653, 1.70683)
-texture = ExtResource("2_ibgk6")
-metadata/_edit_lock_ = true
+position = Vector2(-7.62939e-06, 3.8147e-06)
+scale = Vector2(1.1583, 1.15607)
+texture = ExtResource("2_84fo1")
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]
 visible = false

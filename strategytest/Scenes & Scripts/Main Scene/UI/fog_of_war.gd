@@ -32,7 +32,7 @@ func fogTick():
 # generates a new fog of war from a given rectangle
 func newFog(new_rect):
 	map_rect = new_rect
-	map_rect.size /= 2
+	map_rect.size /= 4
 	viewport.size = map_rect.size # matches the viewport to the new rectangle
 	(viewport.get_parent() as SubViewportContainer).size = map_rect.size
 	camera.position = Vector2.ZERO + map_rect.size * 0.5 # sets the camera's position to the middle of the rectangle
