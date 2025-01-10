@@ -1,226 +1,227 @@
 {
   "@interface_button_start_game": {
-    "en": "Start Game",
-    "de": "Spiel starten"
+	"en": "Start Game",
+	"de": "Spiel starten"
   },
   "@interface_button_quit_game": {
-    "en": "Quit Game",
-    "de": "Spiel verlassen"
+	"en": "Quit Game",
+	"de": "Spiel verlassen"
   },
   "@interface_button_back": {
-    "en": "Back",
-    "de": "Zurück"
+	"en": "Back",
+	"de": "Zurück"
   },
   "@interface_button_continue": {
-    "en": "Back to Game",
-    "de": "Zurück zum Spiel"
+	"en": "Back to Game",
+	"de": "Zurück zum Spiel"
   },
   "@interface_button_main_menu": {
-    "en": "Back to Main Menu",
-    "de": "Zurück zum Hauptmenü"
+	"en": "Back to Main Menu",
+	"de": "Zurück zum Hauptmenü"
   },
   "@interface_button_menu": {
-    "en": "Back to Menu",
-    "de": "Zurück zum Menü"
+	"en": "Back to Menu",
+	"de": "Zurück zum Menü"
   },
   "@interface_button_pause_menu": {
-    "en": "Pause Menu",
-    "de": "Pausenmenü"
+	"en": "Pause Menu",
+	"de": "Pausenmenü"
   },
   "@interface_button_settings": {
-    "en": "Settings",
-    "de": "Einstellungen"
+	"en": "Settings",
+	"de": "Einstellungen"
   },
   "@interface_button_credits": {
-    "en": "Credits",
-    "de": "Credits"
+	"en": "Credits",
+	"de": "Credits"
   },
   "@interface_button_building": {
-    "en": "Barracks",
-    "de": "Kaserne"
+	"en": "Barracks",
+	"de": "Kaserne"
   },
   "@interface_button_forge": {
-    "en": "Forge",
-    "de": "Schmiede"
+	"en": "Forge",
+	"de": "Schmiede"
   },
   "@interface_button_drop": {
-    "en": "Discard",
-    "de": "Abwerfen"
+	"en": "Discard",
+	"de": "Abwerfen"
   },
   "@interface_text_music_settings": {
-    "en": "Music Volume",
-    "de": "Musiklautstärke"
+	"en": "Music Volume",
+	"de": "Musiklautstärke"
   },
   "@interface_text_sound_settings": {
-    "en": "Sound Volume",
-    "de": "Tonlautstärke"
+	"en": "Sound Volume",
+	"de": "Tonlautstärke"
   },
   "@interface_text_choose_faction": {
-    "en": "Choose your Faction!",
-    "de": "Wähle deine Fraktion!"
+	"en": "Choose your Faction!",
+	"de": "Wähle deine Fraktion!"
   },
   "@interface_text_faction_blue": {
-    "en": "Nova Lumina",
-    "de": "Nova Lumina"
+	"en": "Ashfolk",
+	"de": "Aschenfolk"
   },
   "@interface_text_faction_red": {
-    "en": "Ashfolk",
-    "de": "Aschenfolk"
+
+	"en": "Nova Lumina",
+	"de": "Nova Lumina"
   },
   "@interface_text_selected": {
-    "en": "Selected",
-    "de": "Ausgewählt"
+	"en": "Selected",
+	"de": "Ausgewählt"
   },
   "@interface_button_toggle_building": {
-    "en": "Toggle Production",
-    "de": "Produktion umschalten"
+	"en": "Toggle Production",
+	"de": "Produktion umschalten"
   },
   "@game_over_win": {
-    "en": "Victory!",
-    "de": "Du hast gewonnen!"
+	"en": "Victory!",
+	"de": "Du hast gewonnen!"
   },
   "@game_over_loss": {
-    "en": "Game Over! You lost...",
-    "de": "Du hast verloren..."
+	"en": "Game Over! You lost...",
+	"de": "Du hast verloren..."
   },
   "@state_info_units": {
-    "en": "Combat Units",
-    "de": "Kampfeinheiten"
+	"en": "Combat Units",
+	"de": "Kampfeinheiten"
   },
   "@state_info_workers": {
-    "en": "Workers",
-    "de": "Arbeiter"
+	"en": "Workers",
+	"de": "Arbeiter"
   },
   "@state_info_buildings": {
-    "en": "Buildings",
-    "de": "Gebäude"
+	"en": "Buildings",
+	"de": "Gebäude"
   },
   "@inspect_text_hp": {
-    "en": "HP",
-    "de": "Leben"
+	"en": "HP",
+	"de": "Leben"
   },
   "@inspect_text_damage": {
-    "en": "Damage",
-    "de": "Schaden"
+	"en": "Damage",
+	"de": "Schaden"
   },
   "@inspect_text_range": {
-    "en": "Range",
-    "de": "Reichweite"
+	"en": "Range",
+	"de": "Reichweite"
   },
   "@inspect_text_attack": {
-    "en": "Attack Rate",
-    "de": "Angriffsrate"
+	"en": "Attack Rate",
+	"de": "Angriffsrate"
   },
   "@inspect_text_vision": {
-    "en": "Vision",
-    "de": "Sichtweite"
+	"en": "Vision",
+	"de": "Sichtweite"
   },
   "@inspect_text_speed": {
-    "en": "Speed",
-    "de": "Geschwindigkeit"
+	"en": "Speed",
+	"de": "Geschwindigkeit"
   },
   "@inspect_text_cost": {
-    "en": "Cost",
-    "de": "Kosten"
+	"en": "Cost",
+	"de": "Kosten"
   },
   "@inspect_text_production": {
-    "en": "Production",
-    "de": "Produktion"
+	"en": "Production",
+	"de": "Produktion"
   },
   "@inspect_text_status": {
-    "en": "Status",
-    "de": "Status"
+	"en": "Status",
+	"de": "Status"
   },
   "@inspect_text_status_active": {
-    "en": "Active",
-    "de": "Aktiv"
+	"en": "Active",
+	"de": "Aktiv"
   },
   "@inspect_text_status_inactive": {
-    "en": "Inactive",
-    "de": "Inaktiv"
+	"en": "Inactive",
+	"de": "Inaktiv"
   },
   "@inspect_text_status_moving": {
-    "en": "Moving",
-    "de": "In Bewegung"
+	"en": "Moving",
+	"de": "In Bewegung"
   },
   "@inspect_text_status_fighting": {
-    "en": "Fighting",
-    "de": "Im Kampf"
+	"en": "Fighting",
+	"de": "Im Kampf"
   },
   "@inspect_text_status_working": {
-    "en": "Working",
-    "de": "Arbeitet"
+	"en": "Working",
+	"de": "Arbeitet"
   },
   "@inspect_text_resource": {
-    "en": "Resource",
-    "de": "Ressource"
+	"en": "Resource",
+	"de": "Ressource"
   },
   "@inspect_text_resource_empty": {
-    "en": "-",
-    "de": "-"
+	"en": "-",
+	"de": "-"
   },
   "@inspect_text_resource_zenecium": {
-    "en": "Zenecium",
-    "de": "Zenezium"
+	"en": "Zenecium",
+	"de": "Zenezium"
   },
   "@inspect_text_resource_ferronite": {
-    "en": "Ferronite",
-    "de": "Ferronit"
+	"en": "Ferronite",
+	"de": "Ferronit"
   },
   "@inspect_text_description_guard": {
-    "en": "The [b]Dome Guards[/b] specialise in quick and simple defensive tactics. The unit is designed to quickly strike at defensive weaknesses and deal heavy damage.",
-    "de": "Die [b]Kuppelwächter[/b] sind auf eine schnelle und einfache Verteidigungs-Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und großen Schaden anzurichten."
+	"en": "The [b]Dome Guards[/b] specialise in quick and simple defensive tactics. The unit is designed to quickly strike at defensive weaknesses and deal heavy damage.",
+	"de": "Die [b]Kuppelwächter[/b] sind auf eine schnelle und einfache Verteidigungs-Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und großen Schaden anzurichten."
   },
   "@inspect_text_description_titan": {
-    "en": "The [b]Dome Titans[/b] specialise in slow and accurate defence. The unit is designed to identify and eliminate weaknesses in the defence.",
-    "de": "Die [b]Kuppeltitanen[/b] sind auf eine langsame und genaue Verteidigung spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung zu erkennen und auszubessern"
+	"en": "The [b]Dome Titans[/b] specialise in slow and accurate defence. The unit is designed to identify and eliminate weaknesses in the defence.",
+	"de": "Die [b]Kuppeltitanen[/b] sind auf eine langsame und genaue Verteidigung spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung zu erkennen und auszubessern"
   },
   "@inspect_text_description_runner": {
-    "en": "The [b]Dust Runners[/b] specialise in fast and aggressive tactics. The unit is designed to quickly exploit weak points in the defence and deal damage.",
-    "de": "Die [b]Wüstenläufer[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und Schaden anzurichten."
+	"en": "The [b]Dust Runners[/b] specialise in fast and aggressive tactics. The unit is designed to quickly exploit weak points in the defence and deal damage.",
+	"de": "Die [b]Wüstenläufer[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und Schaden anzurichten."
   },
   "@inspect_text_description_sentinel": {
-    "en": "The [b]Ash Sentinels[/b] specialise in fast and aggressive tactics. The unit is designed to exploit weak points in the defence and deal major damage.",
-    "de": "Die [b]Aschenwächter[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung auszunutzen und großen Schaden anzurichten."
+	"en": "The [b]Ash Sentinels[/b] specialise in fast and aggressive tactics. The unit is designed to exploit weak points in the defence and deal major damage.",
+	"de": "Die [b]Aschenwächter[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung auszunutzen und großen Schaden anzurichten."
   },
   "@inspect_text_description_barracks": {
-    "en": "The forge can be used to upgrade units with Ferronite. It also increases the capacity of collectable resources.",
-    "de": "Über die Schmiede können Kampfeinheiten mit Ferronit verbessert werden. Sie erhöht außerdem die Kapazitäten für alle Ressourcen."
+	"en": "The forge can be used to upgrade units with Ferronite. It also increases the capacity of collectable resources.",
+	"de": "Über die Schmiede können Kampfeinheiten mit Ferronit verbessert werden. Sie erhöht außerdem die Kapazitäten für alle Ressourcen."
   },
   "@inspect_text_description_forge": {
-    "en": "The barracks are used for the production of all units and increase the unit capacity.",
-    "de": "Über die Kaserne können Kampfeinheiten trainiert werden. Die Anzahl der Kasernen bestimmt auch die maximale Anzahl an Kampfeinheiten."
+	"en": "The barracks are used for the production of all units and increase the unit capacity.",
+	"de": "Über die Kaserne können Kampfeinheiten trainiert werden. Die Anzahl der Kasernen bestimmt auch die maximale Anzahl an Kampfeinheiten."
   },
   "@name_building_hq": {
-    "en": "Main Base",
-    "de": "Basis"
+	"en": "Main Base",
+	"de": "Basis"
   },
   "@name_building_barracks": {
-    "en": "Barracks",
-    "de": "Kaserne"
+	"en": "Barracks",
+	"de": "Kaserne"
   },
   "@name_building_forge": {
-    "en": "Forge",
-    "de": "Schmiede"
+	"en": "Forge",
+	"de": "Schmiede"
   },
   "@name_unit_guard": {
-    "en": "Dome Guard",
-    "de": "Kuppelwächter"
+	"en": "Dome Guard",
+	"de": "Kuppelwächter"
   },
   "@name_unit_titan": {
-    "en": "Dome Titan",
-    "de": "Kuppeltitan"
+	"en": "Dome Titan",
+	"de": "Kuppeltitan"
   },
   "@name_unit_runner": {
-    "en": "Dust Runner",
-    "de": "Wüstenläufer"
+	"en": "Dust Runner",
+	"de": "Wüstenläufer"
   },
   "@name_unit_sentinel": {
-    "en": "Ash Sentinel",
-    "de": "Aschenwächter"
+	"en": "Ash Sentinel",
+	"de": "Aschenwächter"
   },
   "@name_unit_worker": {
-    "en": "Worker",
-    "de": "Arbeiter"
+	"en": "Worker",
+	"de": "Arbeiter"
   }
 }
