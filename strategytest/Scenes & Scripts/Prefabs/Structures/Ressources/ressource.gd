@@ -7,14 +7,25 @@ var nearby_observers = []
 
 @onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 @export var resource_type : int # the type of resource this node contains
+@export var faction_skin: int # sets the skin based on the faction
 
 # called when the node is first initialized
 func _ready():
+
 	match resource_type: # checks for the node's resource type, and sets the texture color accordingly
 		0:
 			$Scrap.visible = true
 		1:
 			$Ore.visible = true
+	match faction_skin:
+		0:
+			pass
+		1:
+			$OreGreen.visible = true
+			$Scrap.visible = false
+
+
+
 # removes a resource from the node
 func takeResource():
 	resource -= 1
