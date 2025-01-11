@@ -71,9 +71,19 @@ func _on_interface_start_game(faction):
 	$MiniMap/UIFrame.texture = ui[faction]
 	$CameraBody.position.y = 60
 
-	if Global.player_faction == 0:
+	if Global.player_faction == 0: # sets asseets for ui based on faction 0
 		$Interface/ResourceTab/NlUiRes.visible = false
-	elif Global.player_faction == 1:
+		$Interface/BuildingButton.texture_normal = load("res://Assets/UI/OL_Kaserne_UI.png") # baracks button normal
+		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/OL_Kaserne_UI_pressed.png") # barracks button pressed
+		$Interface/HousingButton.texture_normal = load("res://Assets/UI/OL_Forge_UI.png") # forge button normal
+		$Interface/HousingButton.texture_pressed = load("res://Assets/UI/OL_Forge_UI_pressed.png") # forge button pressed
+		
+		
+	elif Global.player_faction == 1: # sets asseets for ui based on faction 1
+		$Interface/BuildingButton.texture_normal = load("res://Assets/UI/OL_Kaserne_UI.png") # baracks button normal
+		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/OL_Kaserne_UI_pressed.png") # barracks button pressed
+		$Interface/HousingButton.texture_normal = load("res://Assets/UI/NL_Forge_UI.png") # forge button normal
+		$Interface/HousingButton.texture_pressed = load("res://Assets/UI/NL_Forge_UI_pressed.png") # forge button pressed
 		$Interface/ResourceTab/NlUiRes.visible = true
 
 	for hq in get_tree().get_nodes_in_group("HQ"):

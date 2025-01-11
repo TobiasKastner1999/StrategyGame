@@ -6,8 +6,8 @@ signal start_game(faction) # tells the game the player has chosen a faction
 var hq : Node3D
 
 @onready var node_building_placer: Node3D = $Placer
-@onready var interface_btn_building:Button = $BuildingButton
-@onready var interface_btn_housing:Button = $HousingButton
+@onready var interface_btn_building:TextureButton = $BuildingButton
+@onready var interface_btn_housing:TextureButton = $HousingButton
 @onready var interface_label_building: Label = $Indicator
 
 # seperation between normal and building mode
@@ -36,7 +36,7 @@ func _ready():
 	interface_btn_housing.pressed.connect(func() -> void: interface_input_mode = 2)
 	interface_input_mode = 0
 	
-	setTexts()
+	#setTexts()
 
 func _physics_process(_delta):
 	updateGamestateInfo()
@@ -111,9 +111,9 @@ func updateGamestateInfo():
 	$ResourceTab/ResourceAmount2.text = str(Global.getResource(Global.player_faction, 1)) + "/" + str(Global.getMaxResource(Global.player_faction, 1)) + "\n" # updates the recourse tab
 	$GamestateInfo.text = state_text
 
-func setTexts():
-	$BuildingButton.text = Global.getText("@name_building_barracks")
-	$HousingButton.text = Global.getText("@name_building_forge")
+#func setTexts():
+	#$BuildingButton.text = Global.getText("@name_building_barracks")
+	#$HousingButton.text = Global.getText("@name_building_forge")
 
 # ends the game
 func gameEnd(faction):
