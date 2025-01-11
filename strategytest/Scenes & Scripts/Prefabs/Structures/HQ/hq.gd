@@ -48,6 +48,11 @@ func _process(_delta):
 			Global.list[i]["positionX"] = worker_id.global_position.x # updates the position x in dictionary 
 			Global.list[i]["positionY"] = worker_id.global_position.z # updates the position y in dictionary 
 
+func _physics_process(delta):
+	Global.healthbar_rotation($HealthBarSprite)
+
+
+
 # spawns a new worker
 func spawnWorker(spawn_point):
 	can_spawn = false # makes further spawns unavailable

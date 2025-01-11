@@ -47,6 +47,7 @@ var selected = false
 
 # controls the worker's behaviour
 func _physics_process(delta):
+	Global.healthbar_rotation($HealthBarSprite)
 	if is_awake:
 		await $UnitBehaviours.runBehaviours(self, delta) # calls the worker's behaviour tree
 		worker_rotation() # permanently sets the direction the worker is facing

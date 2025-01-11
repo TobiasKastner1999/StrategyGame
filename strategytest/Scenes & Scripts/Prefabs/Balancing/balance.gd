@@ -6,6 +6,7 @@ var upgrade1 = false
 
 
 # stats of the different Unit types
+# basic unit for both factions
 @export var ranged_hp = 10
 @export var ranged_damage = 1
 @export var ranged_range = 30
@@ -25,15 +26,17 @@ var upgrade1 = false
 @export var u_ranged_cost = 1
 @export var u_ranged_production = 10
 
+# ash sentinel
 @export var scout_hp = 5
 @export var scout_damage = 0.5
-@export var scout_range = 7.5
+@export var scout_range = 10
 @export var scout_attack_speed = 3
 @export var scout_detection = 40
 @export var scout_speed = 25
 @export var scout_cost = 1
 @export var scout_production = 5
 
+# not used
 @export var sniper_hp = 3
 @export var sniper_damage = 5
 @export var sniper_range = 20
@@ -43,15 +46,17 @@ var upgrade1 = false
 @export var sniper_cost = 3
 @export var sniper_production = 15
 
+# dome titan 
 @export var melee_hp = 15
 @export var melee_damage = 2
-@export var melee_range = 5
+@export var melee_range = 10
 @export var melee_attack_speed = 2
 @export var melee_detection = 15
 @export var melee_speed = 20
 @export var melee_cost = 2
 @export var melee_production = 10
 
+# worker stats
 @export var worker_hp = 5
 @export var resources_mined = 1
 @export var worker_damage = 1
@@ -63,7 +68,7 @@ var upgrade1 = false
 @export var worker_production = 0
 
 @export var construction_costs = [0, 4, 2] # the construction costs for different types of buildings
-@export var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
+@export var faction_zero_resources = [8, 6] # faction 0's balances in the different resources
 @export var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 @export var unit_max = [0, 0] # how many units can a faction currently have at max?
 @export var resource = 4 # how many resources can be mined

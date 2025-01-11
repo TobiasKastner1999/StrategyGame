@@ -17,6 +17,7 @@ var selected_language : String = "en" # the language currently selected by the p
 var unit_max = [4, 4] # how many units can a faction currently have at max?
 var unit_count = [0, 0] # how many units does each faction currently have?
 var player_building_count : int = 0 # how many building's has the player constructed?
+var cam = null
 
 @onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_data.json")) # a dictionary of the different unit types and their properties
 @onready var language_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/language_data.json")) # a dictionary of the different translation of texts in different languages
@@ -118,5 +119,6 @@ func add_to_list(positionX, positionY, faction, id, dot, worker):
 	Global.list[list_counter] = {"positionX" : positionX, "positionY" : positionY, "faction" : faction , "id" : id, "dot": dot, "worker" : worker}
 	list_counter += 1
 
-
+func healthbar_rotation(healthbar):
+	healthbar.look_at(cam)
 

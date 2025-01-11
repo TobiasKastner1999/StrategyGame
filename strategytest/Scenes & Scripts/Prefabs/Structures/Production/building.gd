@@ -33,6 +33,8 @@ func _ready():
 
 # checks repeatedly if a new unit can be spawned
 func _physics_process(_delta):
+	Global.healthbar_rotation($HealthBarSprite)
+	Global.healthbar_rotation($ProgressSprite)
 	var spawn_point = getEmptySpawn()
 	if can_spawn and spawn_active and spawn_point != null and Global.getResource(faction, 1) >= unit_cost and Global.getUnitCount(faction) < Global.getUnitLimit(faction):
 		spawnUnit(spawn_point) # spawns a new unit if the building is able to, and the player has the crystals required

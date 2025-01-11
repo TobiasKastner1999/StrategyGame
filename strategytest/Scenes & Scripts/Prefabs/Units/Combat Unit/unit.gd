@@ -35,6 +35,7 @@ var speed : float # the unit's movement speed
 @onready var unit_anim = $UnitBody/AnimationPlayer
 # controls the unit's movement and other actions
 func _physics_process(delta):
+	Global.healthbar_rotation($HealthBarSprite)
 	if is_awake:
 		$UnitBehaviours.runBehaviours(self, delta)
 		unit_rotation()

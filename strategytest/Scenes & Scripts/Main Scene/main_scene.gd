@@ -12,9 +12,10 @@ var ui = [load("res://Assets/UI/OL_UI.png"),load("res://Assets/UI/NL_UI.png") ] 
 # called at the start of the game
 func _ready():
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
-	
+	Global.cam = $CameraBody.position
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
+	Global.cam = $CameraBody.position
 	$Counter.set_text("Faction 0 Resources: " + str(Global.faction_zero_resources) + " Faction 1 Resources: " + str(Global.faction_one_resources) + "   " + "FPS: " + str(Engine.get_frames_per_second()))
 
 # adds a unit to the fog of war system

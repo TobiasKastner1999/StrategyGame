@@ -18,6 +18,9 @@ func _ready():
 	$HealthbarContainer/HealthBar.max_value = Balance.housing_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 
+func _physics_process(delta):
+	Global.healthbar_rotation($HealthBarSprite)
+
 # causes the forge to take a given amount of damage
 func takeDamage(damage, _attacker):
 	hp -= damage # subtracts the damage taken from the current hp
