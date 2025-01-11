@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://8fp5r7lvixka" path="res://Assets/texture_fow.png" id="9_eerus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
-size = Vector2(400, 400)
+size = Vector2(298.667, 268.667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1leb5"]
 size = Vector2(10, 10)
@@ -34,8 +34,8 @@ offset_right = 256.0
 offset_bottom = 256.0
 
 [node name="Background" type="Sprite2D" parent="MarginContainer"]
-position = Vector2(-7.62939e-06, 3.8147e-06)
-scale = Vector2(1.1583, 1.15607)
+position = Vector2(-11, -1.5)
+scale = Vector2(0.864865, 0.818883)
 texture = ExtResource("2_84fo1")
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]
@@ -54,7 +54,7 @@ texture = ExtResource("5_oa4x0")
 metadata/_edit_lock_ = true
 
 [node name="MinimapColl" type="CollisionShape2D" parent="MarginContainer/MinimapRegion"]
-position = Vector2(-2.28882e-05, -2.28882e-05)
+position = Vector2(-11, -6.5)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_186kj")
 metadata/_edit_lock_ = true
@@ -80,3 +80,13 @@ texture = ExtResource("9_eerus")
 [node name="Cam" type="Sprite2D" parent="MarginContainer"]
 scale = Vector2(2, 2)
 texture = ExtResource("3_ao8ji")
+
+[node name="BlueDot" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(132.738, -146.461)
+texture = ExtResource("2_wcwke")
+
+[node name="BlueDot2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-137.019, 118.967)
+texture = ExtResource("2_wcwke")
