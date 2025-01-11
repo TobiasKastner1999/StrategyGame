@@ -18,18 +18,25 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "front", "back")
 	var direction = ($Camera.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() # sets the direction and corrects to cams current rotation 
 	# sets the limts and moves the camera when mouse is on the border of the screen
-	if mouse_pos.x < 10 and $".".position.x > -210: # left border
+	if mouse_pos.x < 10 and $".".position.x > -212: # left border
 		direction = $Camera.transform.basis * Vector3(-1,0,0).normalized()
-	elif mouse_pos.x > window_size.x - 10 and $".".position.x < 140: # right border
+	elif mouse_pos.x > window_size.x - 10 and $".".position.x < 212: # right border
 		direction = $Camera.transform.basis * Vector3(1,0,0).normalized()
-	if mouse_pos.y < 10 and $".".position.z > -100: # top border
+	if mouse_pos.y < 10 and $".".position.z > -212: # top border
 		direction = $Camera.transform.basis * Vector3(0,0,-1).normalized()
-	elif mouse_pos.y > window_size.y - 10 and $".".position.z < 210: # bottom border
+	elif mouse_pos.y > window_size.y - 10 and $".".position.z < 212: # bottom border
 		direction = $Camera.transform.basis * Vector3(0,0,1).normalized()
 	# moves the body
+	#if $".".position.x < 140 and $".".position.x > -210 and $".".position.z > -100 and $".".position.z < 210:
 	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
+		if $".".position.x < 212 and $".".position.x > -212:
+			velocity.x = direction.x * speed
+		else:
+			velocity.x = -direction.x * speed
+		if $".".position.z > -212 and $".".position.z < 212:
+			velocity.z = direction.z * speed
+		else:
+			velocity.z = -direction.z * speed
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
