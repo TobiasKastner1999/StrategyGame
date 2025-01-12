@@ -28,9 +28,6 @@ func _ready():
 	
 	setProductionType(production_type) # sets up the building's unit production
 
-
-
-
 # checks repeatedly if a new unit can be spawned
 func _physics_process(_delta):
 	Global.healthbar_rotation($HealthBarSprite)
@@ -139,8 +136,6 @@ func setFaction(f : int):
 		$OLBarracksCollFence6.disabled = true
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	Global.updateUnitLimit(faction, UNIT_CAPACITY)
-		
-	
 
 # returns the building's current faction
 func getFaction():

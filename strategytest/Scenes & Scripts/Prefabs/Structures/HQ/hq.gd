@@ -6,13 +6,15 @@ signal building_menu(hq) # to activate the interface when the building is clicke
 signal interface_update() # to update the interface while the HQ is selected
 
 const TARGET_TYPE = "hq" # the hq's target type
-const SPAWN_DELAY = 10.0 # how often will new workers spawn?
 const MAX_WORKERS = 4 # how many workers can spawn at most?
 const MAX_HP = 20.0 # the hq's maximum hp
 const DISPLAY_NAME = "@name_building_hq" # the HQ's name tag
 
 var current_workers = 0 # how many workers are currently alive?
+var spawn_active = true
 var can_spawn = false # can the hq spawn a new worker?
+var spawn_delay : float
+var spawn_cost : int
 var detection_range = 50.0 # the range at which the HQ can detect enemy units
 var nearby_observers = [] # a list of enemy units near the HQ
 
@@ -34,13 +36,16 @@ func _ready():
 	$HqBody.set_surface_override_material(3, load(Global.getFactionColor(faction))) 
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
-	$SpawnTimer.start(Balance.hq_spawn_delay) # prepares to spawn the first worker
+	
+	spawn_delay = Global.unit_dict["worker"]["production_speed"]
+	spawn_cost = Global.unit_dict["worker"]["resource_cost"]
+	$SpawnTimer.start(spawn_delay)
 
 func _physics_process(delta):
 	Global.healthbar_rotation($HealthBarSprite)
 	
 	var spawn_point = getEmptySpawn()
-	if spawn_point != null and can_spawn and current_workers < Balance.worker_limit:
+	if spawn_point != null and can_spawn and spawn_active and current_workers < Balance.worker_limit:
 		spawnWorker(spawn_point) # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
 
 	for i in Global.list:#iterates through the list
@@ -52,7 +57,7 @@ func _physics_process(delta):
 # spawns a new worker
 func spawnWorker(spawn_point):
 	can_spawn = false # makes further spawns unavailable
-	$SpawnTimer.start(Balance.hq_spawn_delay) # starts the delay for the next spawn
+	$SpawnTimer.start(spawn_delay) # starts the delay for the next spawn
 	current_workers += 1 # saves the new number of workers
 	
 	var worker = load("res://Scenes & Scripts/Prefabs/Units/Worker/worker.tscn").instantiate() # instantiates a new worker object
@@ -102,12 +107,22 @@ func getMaxHP():
 func getDisplayName():
 	return DISPLAY_NAME
 
+func toggleStatus():
+	spawn_active = !spawn_active
+
 func getInspectInfo(info):
-	return ""
+	match info:
+		"status":
+			if spawn_active:
+				return "active"
+			else:
+				return "inactive"
 
 func spawnStartingWorkers():
 	spawnWorker($SpawnPoints.get_children()[0].global_position)
 	spawnWorker($SpawnPoints.get_children()[1].global_position)
+	if faction == Global.player_faction:
+		spawn_active = false
 
 # checks for an empty spawn point
 func getEmptySpawn():

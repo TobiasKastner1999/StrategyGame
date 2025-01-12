@@ -64,8 +64,8 @@ var upgrade1 = false
 @export var worker_attack_speed = 3
 @export var worker_detection = 15
 @export var worker_speed = 10
-@export var worker_cost = 0
-@export var worker_production = 0
+@export var worker_cost = 1
+@export var worker_production = 20.0
 
 @export var construction_costs = [0, 4, 2] # the construction costs for different types of buildings
 @export var faction_zero_resources = [0, 0] # faction 0's balances in the different resources

@@ -94,7 +94,8 @@ func setUpSelectedInterface():
 				$ButtonToggle.visible = false
 			
 			"hq":
-				$ButtonToggle.visible = false
+				newInfoText("status")
+				$ButtonToggle.visible = true
 			
 			"worker":
 				newInfoText("status") # sets up a text for the worker's status
