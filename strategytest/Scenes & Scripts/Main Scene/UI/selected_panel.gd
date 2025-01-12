@@ -191,5 +191,7 @@ func _on_button_drop_pressed():
 	current_selected.clearResource()
 
 func _on_button_upgrade_pressed():
-	Balance.upgrade1 = true
-	updateSelectedInterface()
+	if Global.getResource(Global.player_faction, 1) >= Global.getUpgradeCost():
+		Global.updateResource(Global.player_faction, 1, -Global.getUpgradeCost())
+		Balance.upgrade1 = true
+		updateSelectedInterface()
