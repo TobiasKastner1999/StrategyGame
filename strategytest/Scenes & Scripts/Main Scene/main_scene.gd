@@ -78,6 +78,7 @@ func _on_interface_start_game(faction):
 		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/OL_Kaserne_UI_pressed.png") # barracks button pressed
 		$Interface/HousingButton.texture_normal = load("res://Assets/UI/OL_Forge_UI.png") # forge button normal
 		$Interface/HousingButton.texture_pressed = load("res://Assets/UI/OL_Forge_UI_pressed.png") # forge button pressed
+		$Interface/ResourceTab/Icon1.texture = load("res://Assets/Models/Map/Scrap.png")
 		
 		
 	elif Global.player_faction == 1: # sets asseets for ui based on faction 1
@@ -85,6 +86,7 @@ func _on_interface_start_game(faction):
 		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/OL_Kaserne_UI_pressed.png") # barracks button pressed
 		$Interface/HousingButton.texture_normal = load("res://Assets/UI/NL_Forge_UI.png") # forge button normal
 		$Interface/HousingButton.texture_pressed = load("res://Assets/UI/NL_Forge_UI_pressed.png") # forge button pressed
+		$Interface/ResourceTab/Icon1.texture = load("res://Assets/UI/zenecium.png")
 		$Interface/ResourceTab/NlUiRes.visible = true
 
 	for hq in get_tree().get_nodes_in_group("HQ"):

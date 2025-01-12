@@ -159,6 +159,10 @@
     "en": "-",
     "de": "-"
   },
+  "@inspect_text_resource_scrap": {
+    "en": "Scrap",
+    "de": "Altmetall"
+  },
   "@inspect_text_resource_zenecium": {
     "en": "Zenecium",
     "de": "Zenezium"

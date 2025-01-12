@@ -225,7 +225,11 @@ func getInspectInfo(info):
 				return "empty"
 			match resource[0]:
 				0:
-					return "zenecium"
+					match faction:
+						0:
+							return "scrap"
+						1:
+							return "zenecium"
 				1:
 					return "ferronite"
 
