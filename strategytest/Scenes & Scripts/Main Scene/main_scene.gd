@@ -105,6 +105,9 @@ func _on_building_menu(building):
 func _on_timer_timeout():
 	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT # activates the blue hq
 	$HQRed.process_mode = Node.PROCESS_MODE_INHERIT # activates the red hq
+	
+	$HQBlue.spawnStartingWorkers()
+	$HQRed.spawnStartingWorkers()
 
 # triggers functions when a new player unit is spawned
 func _on_new_unit(unit):

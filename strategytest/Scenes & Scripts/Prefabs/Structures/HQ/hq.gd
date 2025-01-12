@@ -36,8 +36,9 @@ func _ready():
 	$HealthbarContainer/HealthBar.value = hp
 	$SpawnTimer.start(Balance.hq_spawn_delay) # prepares to spawn the first worker
 
-# checks repeatedly to spawn new workers
-func _process(_delta):
+func _physics_process(delta):
+	Global.healthbar_rotation($HealthBarSprite)
+	
 	var spawn_point = getEmptySpawn()
 	if spawn_point != null and can_spawn and current_workers < Balance.worker_limit:
 		spawnWorker(spawn_point) # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
@@ -47,11 +48,6 @@ func _process(_delta):
 			var worker_id = Global.list[i]["worker"] #gets the worker node
 			Global.list[i]["positionX"] = worker_id.global_position.x # updates the position x in dictionary 
 			Global.list[i]["positionY"] = worker_id.global_position.z # updates the position y in dictionary 
-
-func _physics_process(delta):
-	Global.healthbar_rotation($HealthBarSprite)
-
-
 
 # spawns a new worker
 func spawnWorker(spawn_point):
@@ -108,6 +104,10 @@ func getDisplayName():
 
 func getInspectInfo(info):
 	return ""
+
+func spawnStartingWorkers():
+	spawnWorker($SpawnPoints.get_children()[0].global_position)
+	spawnWorker($SpawnPoints.get_children()[1].global_position)
 
 # checks for an empty spawn point
 func getEmptySpawn():
