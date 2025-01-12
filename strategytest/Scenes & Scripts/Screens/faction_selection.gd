@@ -8,8 +8,8 @@ func _ready():
 
 func setTexts():
 	$Label.text = Global.getText("@interface_text_choose_faction")
-	$BlueFaction.text = Global.getText("@interface_text_faction_blue")
-	$RedFaction.text = Global.getText("@interface_text_faction_red")
+	$BlueFaction.text = Global.getText("@interface_text_faction_red")
+	$RedFaction.text = Global.getText("@interface_text_faction_blue")
 
 func _on_blue_faction_pressed():
 	start_game_Dome.emit() # emits button for interface 
