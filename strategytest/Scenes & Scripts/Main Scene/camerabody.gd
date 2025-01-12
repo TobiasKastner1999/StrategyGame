@@ -29,14 +29,9 @@ func _physics_process(delta):
 	# moves the body
 	#if $".".position.x < 140 and $".".position.x > -210 and $".".position.z > -100 and $".".position.z < 210:
 	if direction:
-		if $".".position.x < 212 and $".".position.x > -212:
-			velocity.x = direction.x * speed
-		else:
-			velocity.x = -direction.x * speed
-		if $".".position.z > -212 and $".".position.z < 212:
-			velocity.z = direction.z * speed
-		else:
-			velocity.z = -direction.z * speed
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+
 	else:
 		velocity.x = lerp(velocity.x, direction.x * speed, delta * 7.0)
 		velocity.z = lerp(velocity.z, direction.z * speed, delta * 7.0)
