@@ -122,18 +122,19 @@ func setFaction(f : int):
 	faction = f # sets the faction
 	$BuildingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
 	if faction == 0: # when faction is 0
-		$Kaserne.visible = true # outlaw asset becomes visible
+		$OLBarracks.visible = true # outlaw asset becomes visible
 		$BuildingColl.disabled = true
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	elif faction == 1: # when faction is 1
-		$BuildingBody.visible = true # new lights assets becomes visible
-		$OLBarracksCollMain.disabled = true
-		$OLBarracksCollFence1.disabled = true
-		$OLBarracksCollFence2.disabled = true
-		$OLBarracksCollFence3.disabled = true
-		$OLBarracksCollFence4.disabled = true
-		$OLBarracksCollFence5.disabled = true
-		$OLBarracksCollFence6.disabled = true
+		$NLBarracks.visible = true # new lights assets becomes visible
+		
+		#$OLBarracksCollMain.disabled = true
+		#$OLBarracksCollFence1.disabled = true
+		#$OLBarracksCollFence2.disabled = true
+		#$OLBarracksCollFence3.disabled = true
+		#$OLBarracksCollFence4.disabled = true
+		#$OLBarracksCollFence5.disabled = true
+		#$OLBarracksCollFence6.disabled = true
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	Global.updateUnitLimit(faction, UNIT_CAPACITY)
 

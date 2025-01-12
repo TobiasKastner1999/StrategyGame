@@ -81,7 +81,7 @@ func _on_interface_start_game(faction):
 		
 		
 	elif Global.player_faction == 1: # sets asseets for ui based on faction 1
-		$Interface/BuildingButton.texture_normal = load("res://Assets/UI/OL_Kaserne_UI.png") # baracks button normal
+		$Interface/BuildingButton.texture_normal = load("res://Assets/UI/NL_barracks_UI.png") # baracks button normal
 		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/OL_Kaserne_UI_pressed.png") # barracks button pressed
 		$Interface/HousingButton.texture_normal = load("res://Assets/UI/NL_Forge_UI.png") # forge button normal
 		$Interface/HousingButton.texture_pressed = load("res://Assets/UI/NL_Forge_UI_pressed.png") # forge button pressed
