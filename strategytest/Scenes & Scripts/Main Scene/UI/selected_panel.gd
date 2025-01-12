@@ -11,6 +11,7 @@ func updateTexts():
 	$ButtonToggle.text = Global.getText("@interface_button_toggle_building")
 	$ButtonBack.text = Global.getText("@interface_button_back")
 	$ButtonDrop.text = Global.getText("@interface_button_drop")
+	$ButtonUpgrade.text = Global.getText("@interface_button_upgrade")
 
 # sets the panel's properties when it is activated
 func activatePanel(selected):
@@ -74,6 +75,7 @@ func setUpSelectedInterface():
 		$SelectedName.visible = true
 		$SelectedHP.visible = true
 		$ButtonDrop.visible = false
+		$ButtonUpgrade.visible = false
 		
 		# runs setup based on the object type
 		match current_selected.getType():
@@ -92,6 +94,8 @@ func setUpSelectedInterface():
 			
 			"forge":
 				$ButtonToggle.visible = false
+				if !Balance.upgrade1:
+					$ButtonUpgrade.visible = true
 			
 			"hq":
 				newInfoText("status")
@@ -135,6 +139,9 @@ func updateSelectedInterface():
 			for button in $ButtonContainer.get_children():
 				if button.getType() == current_selected.getProduction():
 					button.grab_focus() # focus-outlines the button of the currently selected production type
+		"forge":
+			if Balance.upgrade1:
+				$ButtonUpgrade.visible = false
 		
 		"worker":
 			if current_selected.getResourceState() == 1:
@@ -182,3 +189,7 @@ func _on_button_back_pressed():
 
 func _on_button_drop_pressed():
 	current_selected.clearResource()
+
+func _on_button_upgrade_pressed():
+	Balance.upgrade1 = true
+	updateSelectedInterface()

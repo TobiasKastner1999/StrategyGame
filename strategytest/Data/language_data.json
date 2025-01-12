@@ -47,6 +47,14 @@
     "en": "Discard",
     "de": "Abwerfen"
   },
+  "@interface_button_upgrade": {
+    "en": "Upgrade Units",
+    "de": "Kampfeinheiten verbessern"
+  },
+  "@interface_button_toggle_building": {
+    "en": "Toggle Production",
+    "de": "Produktion umschalten"
+  },
   "@interface_text_music_settings": {
     "en": "Music Volume",
     "de": "Musiklautstärke"
@@ -70,10 +78,6 @@
   "@interface_text_selected": {
     "en": "Selected",
     "de": "Ausgewählt"
-  },
-  "@interface_button_toggle_building": {
-    "en": "Toggle Production",
-    "de": "Produktion umschalten"
   },
   "@game_over_win": {
     "en": "Victory!",
