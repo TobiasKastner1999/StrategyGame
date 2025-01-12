@@ -36,12 +36,13 @@ func takeResource():
 func getResourceType():
 	return resource_type
 
+# returns the faction this resource is useable by
 func getFaction(caller_faction):
 	match resource_type:
 		0:
-			return faction
+			return faction # for primary resources, returns the resource's designated faction
 		1:
-			return caller_faction
+			return caller_faction # for secondary (universal) resources, always returns the caller's faction
 
 # returns the resource node's node type
 func getType():

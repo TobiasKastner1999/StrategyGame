@@ -95,10 +95,10 @@ func setUpSelectedInterface():
 			"forge":
 				$ButtonToggle.visible = false
 				if !Balance.upgrade1:
-					$ButtonUpgrade.visible = true
+					$ButtonUpgrade.visible = true # displays the upgrade button if the upgrade has not yet been purchased
 			
 			"hq":
-				newInfoText("status")
+				newInfoText("status") # sets up a text for the HQ's status
 				$ButtonToggle.visible = true
 			
 			"worker":
@@ -141,7 +141,7 @@ func updateSelectedInterface():
 					button.grab_focus() # focus-outlines the button of the currently selected production type
 		"forge":
 			if Balance.upgrade1:
-				$ButtonUpgrade.visible = false
+				$ButtonUpgrade.visible = false # checks if the upgrade button should be hidden (if the upgrade has been purchased)
 		
 		"worker":
 			if current_selected.getResourceState() == 1:
@@ -187,10 +187,13 @@ func _on_unit_select(unit):
 func _on_button_back_pressed():
 	multiSelection(multi_selection)
 
+# calls for the worker to drop their carried resource if the drop button is pressed
 func _on_button_drop_pressed():
 	current_selected.clearResource()
 
+# attempts to upgrade the player's combat units if the upgrade button is pressed
 func _on_button_upgrade_pressed():
+	# only performs the upgrade if the player actually has enough resources as well
 	if Global.getResource(Global.player_faction, 1) >= Global.getUpgradeCost():
 		Global.updateResource(Global.player_faction, 1, -Global.getUpgradeCost())
 		Balance.upgrade1 = true

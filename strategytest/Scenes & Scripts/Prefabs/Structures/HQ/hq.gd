@@ -13,8 +13,8 @@ const DISPLAY_NAME = "@name_building_hq" # the HQ's name tag
 var current_workers = 0 # how many workers are currently alive?
 var spawn_active = true
 var can_spawn = false # can the hq spawn a new worker?
-var spawn_delay : float
-var spawn_cost : int
+var spawn_delay : float # the workers' spawn timer
+var spawn_cost : int # the workers' resource cost
 var detection_range = 50.0 # the range at which the HQ can detect enemy units
 var nearby_observers = [] # a list of enemy units near the HQ
 
@@ -37,16 +37,18 @@ func _ready():
 	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	
+	# grabs the worker spawning parameters from the Global data and starts the spawn timer
 	spawn_delay = Global.unit_dict["worker"]["production_speed"]
 	spawn_cost = Global.unit_dict["worker"]["resource_cost"]
 	$SpawnTimer.start(spawn_delay)
 
+# called on every physics frame
 func _physics_process(delta):
 	Global.healthbar_rotation($HealthBarSprite)
 	
 	var spawn_point = getEmptySpawn()
 	if spawn_point != null and can_spawn and spawn_active and current_workers < Balance.worker_limit and Global.getResource(faction, 0) >= spawn_cost:
-		spawnWorker(spawn_point) # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
+		spawnWorker(spawn_point) # spawns a new worker if a spawn is available, the hq is active, the player has the requisite amount of resources, and the number of workers has not yet reached the cap
 
 	for i in Global.list:#iterates through the list
 		if Global.list[i]["worker"] != null:
@@ -111,21 +113,24 @@ func getDisplayName():
 func toggleStatus():
 	spawn_active = !spawn_active
 
+# returns information about the HQ's current state
 func getInspectInfo(info):
 	match info:
+		# returns information about the HQ's status
 		"status":
 			if spawn_active:
-				return "active"
+				return "active" # returns "active" if the HQ is currently actively producing workers
 			else:
-				return "inactive"
+				return "inactive" # returns "inactive" otherwise, if the HQ's production is idle
 	return ""
 
+# spawns two initial workers for the player at the start of the game
 func spawnStartingWorkers():
 	spawnWorker($SpawnPoints.get_children()[0].global_position)
 	spawnWorker($SpawnPoints.get_children()[1].global_position)
 	Global.updateResource(faction, 0, 2 * spawn_cost)
 	if faction == Global.player_faction:
-		spawn_active = false
+		spawn_active = false # then disables further worker production from the player's HQ
 
 # checks for an empty spawn point
 func getEmptySpawn():

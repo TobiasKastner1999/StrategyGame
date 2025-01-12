@@ -399,7 +399,7 @@ func _on_range_area_body_entered(body):
 	if body.is_in_group("FowObject") and faction == Global.player_faction:
 		body.fowEnter(self) # triggers the objects fow detection
 	if body.is_in_group("resource") and !known_resources.has(body) and body.getFaction(faction) == faction:
-		known_resources.append(body)
+		known_resources.append(body) # adds the object to the list of known resources if it is a resource that the worker's faction can utilize
 	elif body.is_in_group("CombatTarget") and body.getFaction() != faction:
 		nearby_enemies.append(body) # adds the object to the list of nearby enemies if it is a valid target and belongs to an enemy faction
 		if priority_movement:

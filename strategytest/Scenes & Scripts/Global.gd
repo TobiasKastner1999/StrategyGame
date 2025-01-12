@@ -1,7 +1,7 @@
 extends Node3D
 
 const CONSTRUCTION_COSTS = [0, 4, 2] # the construction costs for different types of buildings
-const UPGRADE_COST = 4
+const UPGRADE_COST = 4 # the resource cost required to upgrade the combat units
 
 var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
@@ -55,6 +55,7 @@ func getResource(faction, type):
 		1:
 			return Balance.faction_one_resources[type]
 
+# returns a given faction's maximum possible balance of a given resource
 func getMaxResource(faction, type):
 	match faction:
 		0:
@@ -62,6 +63,7 @@ func getMaxResource(faction, type):
 		1:
 			return faction_one_resource_limits[type]
 
+# modifies a given faction's maximum possible balance of a given resource by a given value
 func updateResourceCapacity(faction, capacity_a, capacity_b):
 	match faction:
 		0:
@@ -71,6 +73,7 @@ func updateResourceCapacity(faction, capacity_a, capacity_b):
 			faction_one_resource_limits[0] += capacity_a
 			faction_one_resource_limits[1] += capacity_b
 
+# returns the combat unit upgrade cost
 func getUpgradeCost():
 	return UPGRADE_COST
 
