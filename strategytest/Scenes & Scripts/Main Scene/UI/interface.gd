@@ -135,3 +135,15 @@ func _on_faction_selection_start_game_dome():
 
 func _on_faction_selection_start_game_rebels():
 	start_game.emit(1)
+
+func _on_building_button_mouse_entered():
+	$ConstructionTooltip.updateTooltip(true, 1)
+
+func _on_building_button_mouse_exited():
+	$ConstructionTooltip.updateTooltip(false, 1)
+
+func _on_housing_button_mouse_entered():
+	$ConstructionTooltip.updateTooltip(true, 2)
+
+func _on_housing_button_mouse_exited():
+	$ConstructionTooltip.updateTooltip(false, 2)
