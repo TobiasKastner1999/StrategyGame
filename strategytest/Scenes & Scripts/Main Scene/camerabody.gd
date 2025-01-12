@@ -43,5 +43,5 @@ func _physics_process(delta):
 func _input(event):
 	if Input.is_action_pressed("Rightclick"):
 		if event is InputEventMouseMotion:
-			$Camera.rotate_y(-event.relative.x * 0.02)
+			$Camera.rotate_y(-event.relative.x * 0.002)
 
