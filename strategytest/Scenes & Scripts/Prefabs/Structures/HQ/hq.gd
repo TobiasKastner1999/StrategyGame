@@ -45,7 +45,7 @@ func _physics_process(delta):
 	Global.healthbar_rotation($HealthBarSprite)
 	
 	var spawn_point = getEmptySpawn()
-	if spawn_point != null and can_spawn and spawn_active and current_workers < Balance.worker_limit:
+	if spawn_point != null and can_spawn and spawn_active and current_workers < Balance.worker_limit and Global.getResource(faction, 0) >= spawn_cost:
 		spawnWorker(spawn_point) # spawns a new worker if a spawn is available and the number of workers has not yet reached the cap
 
 	for i in Global.list:#iterates through the list
@@ -56,6 +56,7 @@ func _physics_process(delta):
 
 # spawns a new worker
 func spawnWorker(spawn_point):
+	Global.updateResource(faction, 0, -spawn_cost)
 	can_spawn = false # makes further spawns unavailable
 	$SpawnTimer.start(spawn_delay) # starts the delay for the next spawn
 	current_workers += 1 # saves the new number of workers
@@ -117,10 +118,12 @@ func getInspectInfo(info):
 				return "active"
 			else:
 				return "inactive"
+	return ""
 
 func spawnStartingWorkers():
 	spawnWorker($SpawnPoints.get_children()[0].global_position)
 	spawnWorker($SpawnPoints.get_children()[1].global_position)
+	Global.updateResource(faction, 0, 2 * spawn_cost)
 	if faction == Global.player_faction:
 		spawn_active = false
 
