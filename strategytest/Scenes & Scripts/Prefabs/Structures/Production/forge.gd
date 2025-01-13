@@ -66,6 +66,7 @@ func inResearch():
 
 func startResearch():
 	researching = true
+	Global.setResearchQueue(faction, true)
 	$ResearchTimer.start(RESEARCH_DURATION)
 	$ProgressbarContainer/ProgressBar.max_value = RESEARCH_DURATION
 	$ProgressbarContainer/ProgressBar.value = RESEARCH_DURATION
@@ -73,6 +74,7 @@ func startResearch():
 
 func abortAction():
 	researching = false
+	Global.setResearchQueue(faction, false)
 	$ResearchTimer.stop()
 	$ProgressSprite.visible = false
 	Global.updateResource(faction, 1, int(ceil(float(Global.getUpgradeCost()) / 2)))
@@ -137,6 +139,7 @@ func setGreystate(bol):
 
 func _on_research_timer_timeout():
 	researching = false
+	Global.setResearchQueue(faction, false)
 	$ProgressSprite.visible = false
 	Balance.upgrade1 = true
 	interface_update.emit()

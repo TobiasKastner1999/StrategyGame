@@ -17,6 +17,8 @@ var selected_language : String = "en" # the language currently selected by the p
 
 var unit_max = [4, 4] # how many units can a faction currently have at max?
 var unit_count = [0, 0] # how many units does each faction currently have?
+var units_queued = [0, 0]
+var upgrade_queued = [false, false]
 var player_building_count : int = 0 # how many building's has the player constructed?
 var cam = null
 
@@ -76,6 +78,12 @@ func updateResourceCapacity(faction, capacity_a, capacity_b):
 # returns the combat unit upgrade cost
 func getUpgradeCost():
 	return UPGRADE_COST
+
+func getResearchQueue(faction):
+	return upgrade_queued[faction]
+
+func setResearchQueue(faction, bol):
+	upgrade_queued[faction] = bol
 
 # returns the correct text with the given id in the player's chosen language
 func getText(id):

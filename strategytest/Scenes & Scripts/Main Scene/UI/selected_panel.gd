@@ -210,7 +210,7 @@ func _on_button_drop_pressed():
 # attempts to upgrade the player's combat units if the upgrade button is pressed
 func _on_button_upgrade_pressed():
 	# only performs the upgrade if the player actually has enough resources as well
-	if Global.getResource(Global.player_faction, 1) >= Global.getUpgradeCost() and !current_selected.inResearch():
+	if Global.getResource(Global.player_faction, 1) >= Global.getUpgradeCost() and !current_selected.inResearch() and !Global.getResearchQueue(Global.player_faction):
 		Global.updateResource(Global.player_faction, 1, -Global.getUpgradeCost())
 		current_selected.startResearch()
 		updateSelectedInterface()
