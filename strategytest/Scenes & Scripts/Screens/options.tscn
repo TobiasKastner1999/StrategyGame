@@ -1,25 +1,40 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7exd2o303ini"]
+[gd_scene load_steps=19 format=3 uid="uid://c7exd2o303ini"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/options.gd" id="1_171km"]
-[ext_resource type="Texture2D" uid="uid://ctdtednikbgdm" path="res://Assets/UI/UI_button.png" id="2_jooug"]
+[ext_resource type="StyleBox" uid="uid://bychxe1rrbgvf" path="res://Assets/UI/button_normal_style_box.tres" id="2_jpwkt"]
 [ext_resource type="PackedScene" uid="uid://dg54ll1jfet6s" path="res://Scenes & Scripts/Screens/settings_slider.tscn" id="2_u5ebn"]
 [ext_resource type="Texture2D" uid="uid://v4n1snu8m3m2" path="res://Assets/UI/british flag.png" id="3_6amwa"]
+[ext_resource type="StyleBox" uid="uid://txvbonrq1j7c" path="res://Assets/UI/button_pressed_style_box.tres" id="3_niotg"]
 [ext_resource type="Texture2D" uid="uid://u2xvlp6swmse" path="res://Assets/UI/german flag.png" id="4_tv2vt"]
+[ext_resource type="Texture2D" uid="uid://d0xaxlhionxq8" path="res://Assets/UI/UI_arrowleft.png" id="5_s3rwp"]
+[ext_resource type="Texture2D" uid="uid://24auggf7v5ut" path="res://Assets/UI/UI_arrowleft_pressed.png" id="6_4jwsw"]
+[ext_resource type="Texture2D" uid="uid://cdti7bdu86euc" path="res://Assets/UI/UI_arrowright.png" id="7_6ljn0"]
+[ext_resource type="Texture2D" uid="uid://dcotge43fmeef" path="res://Assets/UI/UI_arrowright_pressed.png" id="8_j76v5"]
+[ext_resource type="Texture2D" uid="uid://cbrtalomghy1x" path="res://Assets/UI/UI_border.png" id="11_xl3ky"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yymab"]
-texture = ExtResource("2_jooug")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l0qfb"]
+texture = ExtResource("5_s3rwp")
+region_rect = Rect2(527.085, 88.0974, 877.223, 892.413)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_amxvf"]
-size = Vector2(40, 40)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hamjx"]
+texture = ExtResource("6_4jwsw")
+region_rect = Rect2(515.692, 95.6924, 888.615, 892.413)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lky5h"]
-size = Vector2(40, 40)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d3u0h"]
+texture = ExtResource("7_6ljn0")
+region_rect = Rect2(515.692, 95.6924, 888.615, 884.818)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_i2gqk"]
-size = Vector2(40, 40)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vb2ca"]
+texture = ExtResource("8_j76v5")
+region_rect = Rect2(519.997, 98.2103, 877.728, 888.816)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_scalf"]
-size = Vector2(50, 50)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_goeoy"]
+texture = ExtResource("7_6ljn0")
+region_rect = Rect2(515.692, 95.6924, 888.615, 884.818)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_enqmn"]
+texture = ExtResource("8_j76v5")
+region_rect = Rect2(519.997, 98.2103, 877.728, 888.816)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oopl1"]
 size = Vector2(50, 50)
@@ -36,10 +51,11 @@ offset_left = 64.0
 offset_top = 87.0
 offset_right = 364.0
 offset_bottom = 147.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_yymab")
+theme_override_styles/normal = ExtResource("2_jpwkt")
+theme_override_styles/hover = ExtResource("2_jpwkt")
+theme_override_styles/pressed = ExtResource("3_niotg")
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 682.0
 offset_top = 245.0
@@ -52,6 +68,9 @@ offset_left = 105.0
 offset_top = 25.0
 offset_right = 405.0
 offset_bottom = 85.0
+theme_override_styles/normal = ExtResource("2_jpwkt")
+theme_override_styles/hover = ExtResource("2_jpwkt")
+theme_override_styles/pressed = ExtResource("3_niotg")
 
 [node name="QuitButtons" type="Button" parent="Panel"]
 layout_mode = 0
@@ -59,6 +78,9 @@ offset_left = 108.0
 offset_top = 479.0
 offset_right = 408.0
 offset_bottom = 539.0
+theme_override_styles/normal = ExtResource("2_jpwkt")
+theme_override_styles/hover = ExtResource("2_jpwkt")
+theme_override_styles/pressed = ExtResource("3_niotg")
 
 [node name="MusicContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -97,21 +119,25 @@ layout_mode = 2
 [node name="SettingsSlider10" parent="Panel/MusicContainer" instance=ExtResource("2_u5ebn")]
 layout_mode = 2
 
-[node name="MusicPlusButton" type="TextureButton" parent="Panel"]
+[node name="MusicMinusButton" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 55.0
 offset_top = 152.0
 offset_right = 95.0
 offset_bottom = 192.0
-texture_normal = SubResource("PlaceholderTexture2D_amxvf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l0qfb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_l0qfb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hamjx")
 
-[node name="MusicMinusButton" type="TextureButton" parent="Panel"]
+[node name="MusicPlusButton" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 415.0
 offset_top = 153.0
 offset_right = 455.0
 offset_bottom = 193.0
-texture_normal = SubResource("PlaceholderTexture2D_lky5h")
+theme_override_styles/normal = SubResource("StyleBoxTexture_d3u0h")
+theme_override_styles/hover = SubResource("StyleBoxTexture_d3u0h")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vb2ca")
 
 [node name="SoundContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 0
@@ -150,21 +176,25 @@ layout_mode = 2
 [node name="SettingsSlider10" parent="Panel/SoundContainer" instance=ExtResource("2_u5ebn")]
 layout_mode = 2
 
-[node name="SoundMinusButton" type="TextureButton" parent="Panel"]
+[node name="SoundMinusButton" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 58.0
 offset_top = 260.0
 offset_right = 98.0
 offset_bottom = 300.0
-texture_normal = SubResource("PlaceholderTexture2D_i2gqk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l0qfb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_l0qfb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hamjx")
 
-[node name="SoundPlusButton" type="TextureButton" parent="Panel"]
+[node name="SoundPlusButton" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 416.0
 offset_top = 260.0
 offset_right = 456.0
 offset_bottom = 300.0
-texture_normal = SubResource("PlaceholderTexture2D_i2gqk")
+theme_override_styles/normal = SubResource("StyleBoxTexture_goeoy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_goeoy")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_enqmn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 visible = false
@@ -195,10 +225,12 @@ offset_top = 361.0
 offset_right = 363.0
 offset_bottom = 421.0
 
-[node name="LanguageLeft" type="TextureButton" parent="Panel/LanguageSelection"]
+[node name="LanguageLeft" type="Button" parent="Panel/LanguageSelection"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_scalf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_goeoy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_goeoy")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_enqmn")
 
 [node name="FlagSlot" type="TextureRect" parent="Panel/LanguageSelection"]
 custom_minimum_size = Vector2(100, 60)
@@ -226,12 +258,17 @@ offset_top = 115.0
 offset_right = 464.0
 offset_bottom = 138.0
 
+[node name="UiBorder" type="Sprite2D" parent="."]
+position = Vector2(944.5, 548.5)
+scale = Vector2(0.736979, 0.682407)
+texture = ExtResource("11_xl3ky")
+
 [connection signal="close" from="." to="." method="_on_close"]
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="Panel/ContinueButtons" to="." method="_on_continue_buttons_pressed"]
 [connection signal="pressed" from="Panel/QuitButtons" to="." method="_on_quit_buttons_pressed"]
-[connection signal="pressed" from="Panel/MusicPlusButton" to="." method="_on_music_plus_button_pressed"]
-[connection signal="pressed" from="Panel/MusicMinusButton" to="." method="_on_music_minus_button_pressed"]
+[connection signal="pressed" from="Panel/MusicMinusButton" to="." method="_on_music_plus_button_pressed"]
+[connection signal="pressed" from="Panel/MusicPlusButton" to="." method="_on_music_minus_button_pressed"]
 [connection signal="pressed" from="Panel/SoundMinusButton" to="." method="_on_sound_minus_button_pressed"]
 [connection signal="pressed" from="Panel/SoundPlusButton" to="." method="_on_sound_plus_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/GermanFlag" to="." method="_on_german_flag_pressed"]

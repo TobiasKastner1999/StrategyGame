@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ut6cde7ie7n"]
+[gd_scene load_steps=4 format=3 uid="uid://ut6cde7ie7n"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/end_screen.gd" id="1_d6x33"]
+[ext_resource type="StyleBox" uid="uid://bychxe1rrbgvf" path="res://Assets/UI/button_normal_style_box.tres" id="2_vqowr"]
+[ext_resource type="StyleBox" uid="uid://txvbonrq1j7c" path="res://Assets/UI/button_pressed_style_box.tres" id="3_hgbg6"]
 
 [node name="EndScreen" type="Control"]
 process_mode = 3
@@ -35,5 +37,8 @@ offset_top = 400.0
 offset_right = 1077.0
 offset_bottom = 538.0
 theme_override_font_sizes/font_size = 31
+theme_override_styles/normal = ExtResource("2_vqowr")
+theme_override_styles/hover = ExtResource("2_vqowr")
+theme_override_styles/pressed = ExtResource("3_hgbg6")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
