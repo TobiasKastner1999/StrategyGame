@@ -51,6 +51,10 @@
     "en": "Upgrade Units",
     "de": "Kampfeinheiten verbessern"
   },
+  "@interface_button_abort_research": {
+    "en": "Abort Research",
+    "de": "Forschung abbrechen"
+  },
   "@interface_button_toggle_building": {
     "en": "Toggle Production",
     "de": "Produktion umschalten"
@@ -154,6 +158,10 @@
   "@inspect_text_status_working": {
     "en": "Working",
     "de": "Arbeitet"
+  },
+  "@inspect_text_status_research": {
+    "en": "Researching",
+    "de": "In Forschung"
   },
   "@inspect_text_resource": {
     "en": "Resource",

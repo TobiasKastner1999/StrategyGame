@@ -55,6 +55,7 @@ func multiSelection(units):
 	$ButtonToggle.visible = false
 	$ButtonBack.visible = false
 	$ButtonDrop.visible = false
+	$ButtonUpgrade.visible = false
 	
 	# creates a button for each selected unit, allowing the player to inspect that unit by clicking the button
 	for unit in units:
@@ -93,6 +94,7 @@ func setUpSelectedInterface():
 				$ButtonToggle.visible = true
 			
 			"forge":
+				newInfoText("status")
 				$ButtonToggle.visible = false
 				if !Balance.upgrade1:
 					$ButtonUpgrade.visible = true # displays the upgrade button if the upgrade has not yet been purchased
@@ -194,7 +196,7 @@ func _on_button_drop_pressed():
 # attempts to upgrade the player's combat units if the upgrade button is pressed
 func _on_button_upgrade_pressed():
 	# only performs the upgrade if the player actually has enough resources as well
-	if Global.getResource(Global.player_faction, 1) >= Global.getUpgradeCost():
+	if Global.getResource(Global.player_faction, 1) >= Global.getUpgradeCost() and !current_selected.inResearch():
 		Global.updateResource(Global.player_faction, 1, -Global.getUpgradeCost())
-		Balance.upgrade1 = true
+		current_selected.startResearch()
 		updateSelectedInterface()

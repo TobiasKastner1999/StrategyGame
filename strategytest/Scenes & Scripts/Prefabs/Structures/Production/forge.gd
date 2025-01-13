@@ -5,8 +5,9 @@ signal interface_update() # to update the forge's interface display
 
 const DISPLAY_NAME = "@name_building_forge" # the forge's displayed name
 const TARGET_TYPE = "forge" # the forge's combat type
+const RESEARCH_DURATION = 30.0
 
-
+var researching = false
 var faction : int # the faction the forge belongs to
 var nearby_observers = []
 
@@ -51,7 +52,20 @@ func getDisplayName():
 
 # returns the forge's status
 func getInspectInfo(info):
+	match info:
+		"status":
+			if researching:
+				return "research"
+			else:
+				return "inactive"
 	return ""
+
+func inResearch():
+	return researching
+
+func startResearch():
+	researching = true
+	$ResearchTimer.start(RESEARCH_DURATION)
 
 # sets the forge's faction to a given value
 func setFaction(f : int):
@@ -109,3 +123,8 @@ func setGreystate(bol):
 		$HousingBody.material_overlay = greystate
 	else:
 		$HousingBody.material_overlay = null
+
+func _on_research_timer_timeout():
+	researching = false
+	Balance.upgrade1 = true
+	interface_update.emit()
