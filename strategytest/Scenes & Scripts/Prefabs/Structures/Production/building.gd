@@ -121,6 +121,7 @@ func startProductionTimer():
 	$ProductionProgress/ProductionBar.value = spawn_rate
 	$ProgressSprite.visible = true
 	$SpawnTimer.start(spawn_rate)
+	interface_update.emit()
 
 # sets the building's unit production type
 func setProductionType(type):
@@ -159,7 +160,9 @@ func getType():
 func getInspectInfo(info):
 	match info:
 		"status":
-			if spawn_active:
+			if !$SpawnTimer.is_stopped():
+				return "production"
+			elif spawn_active:
 				return "active"
 			else:
 				return "inactive"
@@ -213,6 +216,7 @@ func _on_spawn_timer_timeout():
 	else:
 		spawn_queued = true
 	$SpawnTimer.stop()
+	interface_update.emit()
 
 func _on_area_3d_body_entered(body): # function to upgrade units when entered
 	if body.is_in_group("Fighter") and body.faction == Global.player_faction: # when global var is active and unit is a combatunit

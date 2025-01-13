@@ -126,7 +126,9 @@ func getInspectInfo(info):
 	match info:
 		# returns information about the HQ's status
 		"status":
-			if spawn_active:
+			if !$SpawnTimer.is_stopped():
+				return "production"
+			elif spawn_active:
 				return "active" # returns "active" if the HQ is currently actively producing workers
 			else:
 				return "inactive" # returns "inactive" otherwise, if the HQ's production is idle
@@ -144,6 +146,7 @@ func startProductionTimer():
 	$ProgressbarContainer/ProgressBar.value = spawn_delay
 	$ProgressSprite.visible = true
 	$SpawnTimer.start(spawn_delay)
+	interface_update.emit()
 
 # checks for an empty spawn point
 func getEmptySpawn():
@@ -243,3 +246,4 @@ func _on_spawn_timer_timeout():
 	else:
 		spawn_queued = true
 	$SpawnTimer.stop()
+	interface_update.emit()
