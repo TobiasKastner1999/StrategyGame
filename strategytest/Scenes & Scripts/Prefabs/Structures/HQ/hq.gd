@@ -12,7 +12,7 @@ const DISPLAY_NAME = "@name_building_hq" # the HQ's name tag
 
 var current_workers = 0 # how many workers are currently alive?
 var spawn_active = true
-var can_spawn = false # can the hq spawn a new worker?
+var spawn_queued = false
 var spawn_delay : float # the workers' spawn timer
 var spawn_cost : int # the workers' resource cost
 var detection_range = 50.0 # the range at which the HQ can detect enemy units
@@ -40,17 +40,23 @@ func _ready():
 	# grabs the worker spawning parameters from the Global data and starts the spawn timer
 	spawn_delay = Global.unit_dict["worker"]["production_speed"]
 	spawn_cost = Global.unit_dict["worker"]["resource_cost"]
-	$SpawnTimer.start(spawn_delay)
 
 # called on every physics frame
 func _physics_process(delta):
 	Global.healthbar_rotation($HealthBarSprite)
-	
-	var spawn_point = getEmptySpawn()
-	if spawn_point != null and can_spawn and spawn_active and current_workers < Balance.worker_limit and Global.getResource(faction, 0) >= spawn_cost:
-		spawnWorker(spawn_point) # spawns a new worker if a spawn is available, the hq is active, the player has the requisite amount of resources, and the number of workers has not yet reached the cap
+	if spawn_queued:
+		var spawn_point = getEmptySpawn()
+		if spawn_point != null:
+			spawn_queued = false
+			spawnWorker(spawn_point)
+	if $SpawnTimer.is_stopped() and !spawn_queued:
+		if spawn_active and current_workers < Balance.worker_limit and Global.getResource(faction, 0) >= spawn_cost:
+			Global.updateResource(faction, 0, -spawn_cost)
+			startProductionTimer()
+	elif !$SpawnTimer.is_stopped():
+		$ProgressbarContainer/ProgressBar.value = $SpawnTimer.time_left
 
-	for i in Global.list:#iterates through the list
+	for i in Global.list: #iterates through the list
 		if Global.list[i]["worker"] != null:
 			var worker_id = Global.list[i]["worker"] #gets the worker node
 			Global.list[i]["positionX"] = worker_id.global_position.x # updates the position x in dictionary 
@@ -58,9 +64,6 @@ func _physics_process(delta):
 
 # spawns a new worker
 func spawnWorker(spawn_point):
-	Global.updateResource(faction, 0, -spawn_cost)
-	can_spawn = false # makes further spawns unavailable
-	$SpawnTimer.start(spawn_delay) # starts the delay for the next spawn
 	current_workers += 1 # saves the new number of workers
 	
 	var worker = load("res://Scenes & Scripts/Prefabs/Units/Worker/worker.tscn").instantiate() # instantiates a new worker object
@@ -112,6 +115,11 @@ func getDisplayName():
 
 func toggleStatus():
 	spawn_active = !spawn_active
+	if !spawn_active:
+		if !$SpawnTimer.is_stopped():
+			$SpawnTimer.stop()
+			$ProgressSprite.visible = false
+			Global.updateResource(faction, 0, int(ceil(float(spawn_cost) / 2)))
 
 # returns information about the HQ's current state
 func getInspectInfo(info):
@@ -128,9 +136,14 @@ func getInspectInfo(info):
 func spawnStartingWorkers():
 	spawnWorker($SpawnPoints.get_children()[0].global_position)
 	spawnWorker($SpawnPoints.get_children()[1].global_position)
-	Global.updateResource(faction, 0, 2 * spawn_cost)
 	if faction == Global.player_faction:
 		spawn_active = false # then disables further worker production from the player's HQ
+
+func startProductionTimer():
+	$ProgressbarContainer/ProgressBar.max_value = spawn_delay
+	$ProgressbarContainer/ProgressBar.value = spawn_delay
+	$ProgressSprite.visible = true
+	$SpawnTimer.start(spawn_delay)
 
 # checks for an empty spawn point
 func getEmptySpawn():
@@ -223,4 +236,10 @@ func _on_worker_deleted(worker):
 
 # makes a new worker spawn available when the spawn delay ends
 func _on_spawn_timer_timeout():
-	can_spawn = true
+	$ProgressSprite.visible = false
+	var spawn_point = getEmptySpawn()
+	if spawn_point != null:
+		spawnWorker(spawn_point)
+	else:
+		spawn_queued = true
+	$SpawnTimer.stop()
