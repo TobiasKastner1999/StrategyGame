@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://deo0ua1rlxe0o"]
 
-[ext_resource type="Texture2D" uid="uid://ctdtednikbgdm" path="res://Assets/UI/UI_button.png" id="1_33j1q"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Interface/unit_button.gd" id="1_bwxl2"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l8qag"]
-texture = ExtResource("1_33j1q")
+[ext_resource type="StyleBox" uid="uid://bychxe1rrbgvf" path="res://Assets/UI/button_normal_style_box.tres" id="1_gd3wc"]
+[ext_resource type="StyleBox" uid="uid://txvbonrq1j7c" path="res://Assets/UI/button_pressed_style_box.tres" id="2_dgaif"]
 
 [node name="UnitButton" type="Button"]
 custom_minimum_size = Vector2(100, 35)
-theme_override_styles/normal = SubResource("StyleBoxTexture_l8qag")
+theme_override_styles/normal = ExtResource("1_gd3wc")
+theme_override_styles/hover = ExtResource("1_gd3wc")
+theme_override_styles/pressed = ExtResource("2_dgaif")
 text = "test"
 script = ExtResource("1_bwxl2")
 

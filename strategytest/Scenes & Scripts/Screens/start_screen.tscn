@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://wkpqihr2k85a"]
+[gd_scene load_steps=6 format=3 uid="uid://wkpqihr2k85a"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/start_screen.gd" id="1_8y2io"]
+[ext_resource type="FontFile" uid="uid://dtjgc0seiabku" path="res://Assets/UI/Fonts/Bruce Forever.ttf" id="2_hqvy8"]
 [ext_resource type="PackedScene" uid="uid://c7exd2o303ini" path="res://Scenes & Scripts/Screens/options.tscn" id="2_syotr"]
+[ext_resource type="StyleBox" uid="uid://bychxe1rrbgvf" path="res://Assets/UI/button_normal_style_box.tres" id="2_tb8s0"]
+[ext_resource type="StyleBox" uid="uid://txvbonrq1j7c" path="res://Assets/UI/button_pressed_style_box.tres" id="3_jwh1l"]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_8y2io")
@@ -15,33 +18,48 @@ offset_left = 100.0
 offset_top = 446.0
 offset_right = 400.0
 offset_bottom = 506.0
+theme_override_fonts/font = ExtResource("2_hqvy8")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = ExtResource("2_tb8s0")
+theme_override_styles/hover = ExtResource("2_tb8s0")
+theme_override_styles/pressed = ExtResource("3_jwh1l")
 
 [node name="Options" type="Button" parent="."]
 offset_left = 100.0
 offset_top = 559.0
 offset_right = 400.0
 offset_bottom = 619.0
+theme_override_fonts/font = ExtResource("2_hqvy8")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = ExtResource("2_tb8s0")
+theme_override_styles/hover = ExtResource("2_tb8s0")
+theme_override_styles/pressed = ExtResource("3_jwh1l")
 
 [node name="Credits" type="Button" parent="."]
 offset_left = 100.0
 offset_top = 673.0
 offset_right = 400.0
 offset_bottom = 733.0
+theme_override_fonts/font = ExtResource("2_hqvy8")
+theme_override_styles/normal = ExtResource("2_tb8s0")
+theme_override_styles/hover = ExtResource("2_tb8s0")
+theme_override_styles/pressed = ExtResource("3_jwh1l")
 
 [node name="Quit" type="Button" parent="."]
 offset_left = 100.0
 offset_top = 775.0
 offset_right = 400.0
 offset_bottom = 835.0
+theme_override_fonts/font = ExtResource("2_hqvy8")
+theme_override_styles/normal = ExtResource("2_tb8s0")
+theme_override_styles/hover = ExtResource("2_tb8s0")
+theme_override_styles/pressed = ExtResource("3_jwh1l")
 
 [node name="OptionMenu" parent="." instance=ExtResource("2_syotr")]
 visible = false
 
 [node name="MenuButton" parent="OptionMenu" index="0"]
 visible = false
-
-[node name="Panel" parent="OptionMenu" index="1"]
-visible = true
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Options" to="." method="_on_options_pressed"]

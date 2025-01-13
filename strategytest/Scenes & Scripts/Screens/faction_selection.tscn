@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cgnn6igsps6mn"]
+[gd_scene load_steps=5 format=3 uid="uid://cgnn6igsps6mn"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/faction_selection.gd" id="1_kdl8j"]
+[ext_resource type="StyleBox" uid="uid://bychxe1rrbgvf" path="res://Assets/UI/button_normal_style_box.tres" id="2_ihw28"]
+[ext_resource type="StyleBox" uid="uid://txvbonrq1j7c" path="res://Assets/UI/button_pressed_style_box.tres" id="3_d88s6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_o7w5b"]
 line_spacing = 10.0
@@ -34,6 +36,9 @@ offset_left = 541.0
 offset_top = 372.0
 offset_right = 778.0
 offset_bottom = 501.0
+theme_override_styles/normal = ExtResource("2_ihw28")
+theme_override_styles/hover = ExtResource("2_ihw28")
+theme_override_styles/pressed = ExtResource("3_d88s6")
 
 [node name="RedFaction" type="Button" parent="."]
 layout_mode = 0
@@ -41,6 +46,9 @@ offset_left = 1087.0
 offset_top = 365.0
 offset_right = 1324.0
 offset_bottom = 494.0
+theme_override_styles/normal = ExtResource("2_ihw28")
+theme_override_styles/hover = ExtResource("2_ihw28")
+theme_override_styles/pressed = ExtResource("3_d88s6")
 
 [connection signal="pressed" from="BlueFaction" to="." method="_on_blue_faction_pressed"]
 [connection signal="pressed" from="RedFaction" to="." method="_on_red_faction_pressed"]
