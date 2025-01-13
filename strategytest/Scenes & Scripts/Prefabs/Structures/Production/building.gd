@@ -6,9 +6,9 @@ signal interface_update() # to update the building's interface display
 const DISPLAY_NAME = "@name_building_barracks" # the building's displayed name
 const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
-const UNIT_CAPACITY = 4
+const UNIT_CAPACITY = 4 # how many units does this building allow for the player to train in total?
 
-var spawn_queued = false
+var spawn_queued = false # is a combat unit currently queued to be spawned?
 var spawn_active = true # is the building's unit production toggled on?
 var faction : int # the faction the building belongs to
 var production_type = 0 # which type of unit does the building currently produce?
@@ -33,16 +33,22 @@ func _physics_process(_delta):
 	Global.healthbar_rotation($HealthBarSprite)
 	Global.healthbar_rotation($ProgressSprite)
 	
+	# if a combat unit is queued to be spawned
 	if spawn_queued:
 		var spawn_point = getEmptySpawn()
 		if spawn_point != null:
 			spawn_queued = false
-			spawnUnit(spawn_point)
-			Global.updateQueuedUnitCount(faction, -1)
+			spawnUnit(spawn_point) # spawns the unit if there is an empty spawn point
+			Global.updateQueuedUnitCount(faction, -1) # removes the unit from the global queue
+	
+	# if no spawn is queued, and no unit is currently being produced
 	if $SpawnTimer.is_stopped() and !spawn_queued:
+		# queues a new spawn if the player has enough resouces, has room for more units, and the building is toggled on
 		if spawn_active and Global.getFullUnitCount(faction) < Global.getUnitLimit(faction) and Global.getResource(faction, 1) >= unit_cost:
-			Global.updateResource(faction, 1, -unit_cost)
+			Global.updateResource(faction, 1, -unit_cost) # immediately removes the cost
 			startProductionTimer()
+	
+	# updates the production progress bar otherwise
 	elif !$SpawnTimer.is_stopped():
 		$ProductionProgress/ProductionBar.value = $SpawnTimer.time_left
 
@@ -51,10 +57,6 @@ func _physics_process(_delta):
 			var worker_id = Global.list[i]["worker"] #gets the worker node
 			Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
 			Global.list[i]["positionY"] = worker_id.global_position.z#updates the position y in dictionary 
-# sets value and progress of the Spawn bar
-	$ProductionProgress/ProductionBar.value = $SpawnTimer.time_left
-	if $SpawnTimer.time_left == 0:
-		$ProgressSprite.visible = false
 
 # spawns a new unit
 func spawnUnit(spawn_point):
@@ -118,22 +120,25 @@ func toggleStatus():
 			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
 			Global.updateQueuedUnitCount(faction, -1)
 
+# starts the production of a new unit
 func startProductionTimer():
+	# sets up the timer bar
 	$ProductionProgress/ProductionBar.max_value = spawn_rate
 	$ProductionProgress/ProductionBar.value = spawn_rate
 	$ProgressSprite.visible = true
 	$SpawnTimer.start(spawn_rate)
-	Global.updateQueuedUnitCount(faction, 1)
+	Global.updateQueuedUnitCount(faction, 1) # queues the in-production unit
 	interface_update.emit()
 
 # sets the building's unit production type
 func setProductionType(type):
 	if spawn_active:
+		# cancels the active production, if it is
 		if !$SpawnTimer.is_stopped():
 			$SpawnTimer.stop()
 			$ProgressSprite.visible = false
-			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
-			Global.updateQueuedUnitCount(faction, -1)
+			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2))) # refunds half the production cost, rounded up
+			Global.updateQueuedUnitCount(faction, -1) # removes the unit from the queue
 	
 	production_type = type
 	unit_cost = Global.unit_dict[str(type)]["resource_cost"] # sets the production variables
@@ -202,7 +207,6 @@ func fowReveal(bol):
 	if visible != bol:
 		visible = bol
 
-
 # sets the greystate of the building
 func setGreystate(bol):
 	if bol:
@@ -210,18 +214,19 @@ func setGreystate(bol):
 	else:
 		$BuildingBody.material_overlay = null
 
-# makes a new spawn available once the delay expires
+# attempts to spawn a new unit once the timer expires
 func _on_spawn_timer_timeout():
 	$ProgressSprite.visible = false
 	var spawn_point = getEmptySpawn()
 	if spawn_point != null:
-		spawnUnit(spawn_point)
-		Global.updateQueuedUnitCount(faction, -1)
+		spawnUnit(spawn_point) # spawns the unit if there is an empty spawn point
+		Global.updateQueuedUnitCount(faction, -1) # removes the unit from the global queue
 	else:
-		spawn_queued = true
+		spawn_queued = true # otherwise, queues up a later spawn
 	$SpawnTimer.stop()
 	interface_update.emit()
 
+# when another object comes near the building
 func _on_area_3d_body_entered(body): # function to upgrade units when entered
 	if body.is_in_group("Fighter") and body.faction == Global.player_faction: # when global var is active and unit is a combatunit
 		body.update_stats() # calls the upgrade function
