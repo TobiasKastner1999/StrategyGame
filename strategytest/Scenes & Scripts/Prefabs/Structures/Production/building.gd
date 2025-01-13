@@ -114,7 +114,7 @@ func toggleStatus():
 		if !$SpawnTimer.is_stopped():
 			$SpawnTimer.stop()
 			$ProgressSprite.visible = false
-			Global.updateResource(faction, 0, int(ceil(float(unit_cost) / 2)))
+			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
 
 func startProductionTimer():
 	$ProductionProgress/ProductionBar.max_value = spawn_rate
@@ -129,7 +129,7 @@ func setProductionType(type):
 		if !$SpawnTimer.is_stopped():
 			$SpawnTimer.stop()
 			$ProgressSprite.visible = false
-			Global.updateResource(faction, 0, int(ceil(float(unit_cost) / 2)))
+			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
 	
 	production_type = type
 	unit_cost = Global.unit_dict[str(type)]["resource_cost"] # sets the production variables

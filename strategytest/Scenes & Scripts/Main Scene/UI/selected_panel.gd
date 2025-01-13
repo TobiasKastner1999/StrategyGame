@@ -12,6 +12,7 @@ func updateTexts():
 	$ButtonBack.text = Global.getText("@interface_button_back")
 	$ButtonDrop.text = Global.getText("@interface_button_drop")
 	$ButtonUpgrade.text = Global.getText("@interface_button_upgrade")
+	$ButtonAbort.text = Global.getText("@interface_button_abort_research")
 
 # sets the panel's properties when it is activated
 func activatePanel(selected):
@@ -56,6 +57,7 @@ func multiSelection(units):
 	$ButtonBack.visible = false
 	$ButtonDrop.visible = false
 	$ButtonUpgrade.visible = false
+	$ButtonAbort.visible = false
 	
 	# creates a button for each selected unit, allowing the player to inspect that unit by clicking the button
 	for unit in units:
@@ -77,6 +79,7 @@ func setUpSelectedInterface():
 		$SelectedHP.visible = true
 		$ButtonDrop.visible = false
 		$ButtonUpgrade.visible = false
+		$ButtonAbort.visible = false
 		
 		# runs setup based on the object type
 		match current_selected.getType():
@@ -96,8 +99,12 @@ func setUpSelectedInterface():
 			"forge":
 				newInfoText("status")
 				$ButtonToggle.visible = false
-				if !Balance.upgrade1:
+				if current_selected.inResearch():
+					$ButtonAbort.visible = true
+					$ButtonUpgrade.visible = false
+				elif !Balance.upgrade1:
 					$ButtonUpgrade.visible = true # displays the upgrade button if the upgrade has not yet been purchased
+					$ButtonAbort.visible = false
 			
 			"hq":
 				newInfoText("status") # sets up a text for the HQ's status
@@ -142,8 +149,15 @@ func updateSelectedInterface():
 				if button.getType() == current_selected.getProduction():
 					button.grab_focus() # focus-outlines the button of the currently selected production type
 		"forge":
-			if Balance.upgrade1:
-				$ButtonUpgrade.visible = false # checks if the upgrade button should be hidden (if the upgrade has been purchased)
+			if current_selected.inResearch():
+				$ButtonAbort.visible = true
+				$ButtonUpgrade.visible = false
+			elif !Balance.upgrade1:
+				$ButtonUpgrade.visible = true # displays the upgrade button if the upgrade has not yet been purchased
+				$ButtonAbort.visible = false
+			else:
+				$ButtonUpgrade.visible = false
+				$ButtonAbort.visible = false
 		
 		"worker":
 			if current_selected.getResourceState() == 1:
@@ -202,4 +216,4 @@ func _on_button_upgrade_pressed():
 		updateSelectedInterface()
 
 func _on_button_abort_pressed():
-	pass # Replace with function body.
+	current_selected.abortAction()

@@ -71,6 +71,13 @@ func startResearch():
 	$ProgressbarContainer/ProgressBar.value = RESEARCH_DURATION
 	$ProgressSprite.visible = true
 
+func abortAction():
+	researching = false
+	$ResearchTimer.stop()
+	$ProgressSprite.visible = false
+	Global.updateResource(faction, 1, int(ceil(float(Global.getUpgradeCost()) / 2)))
+	interface_update.emit()
+
 # sets the forge's faction to a given value
 func setFaction(f : int):
 	faction = f # sets the faction

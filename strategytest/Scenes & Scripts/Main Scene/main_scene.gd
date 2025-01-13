@@ -16,7 +16,7 @@ func _ready():
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
 	Global.cam = $CameraBody.position
-	$Counter.set_text("Faction 0 Resources: " + str(Global.faction_zero_resources) + " Faction 1 Resources: " + str(Global.faction_one_resources) + "   " + "FPS: " + str(Engine.get_frames_per_second()))
+	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second()))
 
 # adds a unit to the fog of war system
 func addUnitToFog(unit_node):
