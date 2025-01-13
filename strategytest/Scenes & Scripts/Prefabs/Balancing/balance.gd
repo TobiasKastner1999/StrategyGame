@@ -14,7 +14,7 @@ var upgrade1 = false
 @export var ranged_detection = 20
 @export var ranged_speed = 20
 @export var ranged_cost = 1
-@export var ranged_production = 10
+@export var ranged_production = 5
 
 # stats of the upgraded ranged unit
 @export var u_ranged_hp = 20
@@ -24,7 +24,7 @@ var upgrade1 = false
 @export var U_ranged_detection = 20
 @export var u_ranged_speed = 30
 @export var u_ranged_cost = 1
-@export var u_ranged_production = 10
+@export var u_ranged_production = 5
 
 # ash sentinel
 @export var scout_hp = 5
@@ -34,7 +34,7 @@ var upgrade1 = false
 @export var scout_detection = 40
 @export var scout_speed = 25
 @export var scout_cost = 1
-@export var scout_production = 5
+@export var scout_production = 2.5
 
 # not used
 @export var sniper_hp = 3
@@ -44,7 +44,7 @@ var upgrade1 = false
 @export var sniper_detection = 30
 @export var sniper_speed = 15
 @export var sniper_cost = 3
-@export var sniper_production = 15
+@export var sniper_production = 7.5
 
 # dome titan 
 @export var melee_hp = 15
@@ -54,7 +54,7 @@ var upgrade1 = false
 @export var melee_detection = 15
 @export var melee_speed = 20
 @export var melee_cost = 2
-@export var melee_production = 10
+@export var melee_production = 5
 
 # worker stats
 @export var worker_hp = 5
@@ -65,7 +65,7 @@ var upgrade1 = false
 @export var worker_detection = 15
 @export var worker_speed = 10
 @export var worker_cost = 1
-@export var worker_production = 20.0
+@export var worker_production = 10.0
 
 @export var construction_costs = [0, 4, 2] # the construction costs for different types of buildings
 @export var faction_zero_resources = [8, 6] # faction 0's balances in the different resources

@@ -8,7 +8,7 @@
 [node name="UnitButton" type="Button"]
 custom_minimum_size = Vector2(100, 35)
 theme_override_fonts/font = ExtResource("1_th28l")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("1_gd3wc")
 theme_override_styles/hover = ExtResource("1_gd3wc")
 theme_override_styles/pressed = ExtResource("2_dgaif")

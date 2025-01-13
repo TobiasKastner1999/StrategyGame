@@ -23,6 +23,7 @@ func _ready():
 func _physics_process(delta):
 	$ProgressbarContainer/ProgressBar.value = $ResearchTimer.time_left
 	Global.healthbar_rotation($HealthBarSprite)
+	Global.healthbar_rotation($ProgressSprite)
 
 # causes the forge to take a given amount of damage
 func takeDamage(damage, _attacker):

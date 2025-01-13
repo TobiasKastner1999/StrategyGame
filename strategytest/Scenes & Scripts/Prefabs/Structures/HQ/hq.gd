@@ -44,7 +44,7 @@ func _ready():
 # called on every physics frame
 func _physics_process(delta):
 	Global.healthbar_rotation($HealthBarSprite)
-	
+	Global.healthbar_rotation($ProgressSprite)
 	# if a worker is queued to be spawned
 	if spawn_queued:
 		var spawn_point = getEmptySpawn()
