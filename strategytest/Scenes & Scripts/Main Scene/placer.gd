@@ -89,6 +89,8 @@ func _on_housing_button_pressed():
 	clearSelection.emit() # calls to clear the player's current selection
 	$Preview.mesh = AssetLibrary.nl_housing_mesh
 	$Preview.scale = Vector3(0.2, 0.3, 0.208)
+	$Preview.position = Vector3(4.64,0, -1.133)
+	$Preview.rotation_degrees = Vector3(0, 0, 0)
 	#$Preview.mesh.size = Vector3(15,7,12) # sets the previewbox size
 
 func _on_wall_button_pressed():

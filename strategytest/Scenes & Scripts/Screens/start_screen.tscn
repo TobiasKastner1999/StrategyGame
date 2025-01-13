@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://wkpqihr2k85a"]
+[gd_scene load_steps=7 format=3 uid="uid://wkpqihr2k85a"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/start_screen.gd" id="1_8y2io"]
+[ext_resource type="Texture2D" uid="uid://dv7j4x1tdpbwe" path="res://Assets/UI/CoverGrafic.png" id="2_15767"]
 [ext_resource type="FontFile" uid="uid://dtjgc0seiabku" path="res://Assets/UI/Fonts/Bruce Forever.ttf" id="2_hqvy8"]
 [ext_resource type="PackedScene" uid="uid://c7exd2o303ini" path="res://Scenes & Scripts/Screens/options.tscn" id="2_syotr"]
 [ext_resource type="StyleBox" uid="uid://bychxe1rrbgvf" path="res://Assets/UI/button_normal_style_box.tres" id="2_tb8s0"]
@@ -9,15 +10,20 @@
 [node name="StartScreen" type="Node2D"]
 script = ExtResource("1_8y2io")
 
+[node name="CoverGrafic" type="Sprite2D" parent="."]
+position = Vector2(963, 539)
+texture = ExtResource("2_15767")
+
 [node name="Panel" type="Panel" parent="."]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="Start" type="Button" parent="."]
-offset_left = 100.0
-offset_top = 446.0
-offset_right = 400.0
-offset_bottom = 506.0
+offset_left = 776.0
+offset_top = 449.0
+offset_right = 1076.0
+offset_bottom = 509.0
 theme_override_fonts/font = ExtResource("2_hqvy8")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = ExtResource("2_tb8s0")
@@ -25,10 +31,10 @@ theme_override_styles/hover = ExtResource("2_tb8s0")
 theme_override_styles/pressed = ExtResource("3_jwh1l")
 
 [node name="Options" type="Button" parent="."]
-offset_left = 100.0
-offset_top = 559.0
-offset_right = 400.0
-offset_bottom = 619.0
+offset_left = 773.0
+offset_top = 576.0
+offset_right = 1073.0
+offset_bottom = 636.0
 theme_override_fonts/font = ExtResource("2_hqvy8")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = ExtResource("2_tb8s0")
@@ -36,10 +42,10 @@ theme_override_styles/hover = ExtResource("2_tb8s0")
 theme_override_styles/pressed = ExtResource("3_jwh1l")
 
 [node name="Credits" type="Button" parent="."]
-offset_left = 100.0
-offset_top = 673.0
-offset_right = 400.0
-offset_bottom = 733.0
+offset_left = 776.0
+offset_top = 698.0
+offset_right = 1076.0
+offset_bottom = 758.0
 theme_override_fonts/font = ExtResource("2_hqvy8")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = ExtResource("2_tb8s0")
@@ -47,10 +53,10 @@ theme_override_styles/hover = ExtResource("2_tb8s0")
 theme_override_styles/pressed = ExtResource("3_jwh1l")
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 100.0
-offset_top = 775.0
-offset_right = 400.0
-offset_bottom = 835.0
+offset_left = 773.0
+offset_top = 809.0
+offset_right = 1073.0
+offset_bottom = 869.0
 theme_override_fonts/font = ExtResource("2_hqvy8")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = ExtResource("2_tb8s0")
@@ -62,6 +68,16 @@ visible = false
 
 [node name="MenuButton" parent="OptionMenu" index="0"]
 visible = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = 166.0
+offset_top = 126.0
+offset_right = 1818.0
+offset_bottom = 301.0
+theme_override_font_sizes/font_size = 150
+text = "Glass and Dust"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Options" to="." method="_on_options_pressed"]

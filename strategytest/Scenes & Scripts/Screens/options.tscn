@@ -250,16 +250,16 @@ texture_normal = SubResource("PlaceholderTexture2D_oopl1")
 
 [node name="LabelSound" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 222.0
-offset_top = 230.0
-offset_right = 466.0
-offset_bottom = 253.0
+offset_left = 155.0
+offset_top = 222.0
+offset_right = 399.0
+offset_bottom = 245.0
 
 [node name="LabelMusic" type="Label" parent="Panel"]
 layout_mode = 0
-offset_left = 222.0
+offset_left = 161.0
 offset_top = 115.0
-offset_right = 464.0
+offset_right = 403.0
 offset_bottom = 138.0
 
 [node name="UiBorder" type="Sprite2D" parent="Panel"]
