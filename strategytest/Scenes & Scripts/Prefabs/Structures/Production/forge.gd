@@ -20,6 +20,7 @@ func _ready():
 	$HealthbarContainer/HealthBar.value = hp
 
 func _physics_process(delta):
+	$ProgressbarContainer/ProgressBar.value = $ResearchTimer.time_left
 	Global.healthbar_rotation($HealthBarSprite)
 
 # causes the forge to take a given amount of damage
@@ -66,6 +67,9 @@ func inResearch():
 func startResearch():
 	researching = true
 	$ResearchTimer.start(RESEARCH_DURATION)
+	$ProgressbarContainer/ProgressBar.max_value = RESEARCH_DURATION
+	$ProgressbarContainer/ProgressBar.value = RESEARCH_DURATION
+	$ProgressSprite.visible = true
 
 # sets the forge's faction to a given value
 func setFaction(f : int):
@@ -126,5 +130,6 @@ func setGreystate(bol):
 
 func _on_research_timer_timeout():
 	researching = false
+	$ProgressSprite.visible = false
 	Balance.upgrade1 = true
 	interface_update.emit()
