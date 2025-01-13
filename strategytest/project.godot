@@ -31,6 +31,10 @@ window/size/mode=3
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://Assets/UI/CursorNormal.png"
 
+[gui]
+
+theme/custom_font="res://Assets/UI/Fonts/Bruce Forever.ttf"
+
 [input]
 
 LeftClick={
