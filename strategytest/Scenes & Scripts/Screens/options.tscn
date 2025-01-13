@@ -1,9 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7exd2o303ini"]
+[gd_scene load_steps=12 format=3 uid="uid://c7exd2o303ini"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/options.gd" id="1_171km"]
+[ext_resource type="Texture2D" uid="uid://ctdtednikbgdm" path="res://Assets/UI/UI_button.png" id="2_jooug"]
 [ext_resource type="PackedScene" uid="uid://dg54ll1jfet6s" path="res://Scenes & Scripts/Screens/settings_slider.tscn" id="2_u5ebn"]
 [ext_resource type="Texture2D" uid="uid://v4n1snu8m3m2" path="res://Assets/UI/british flag.png" id="3_6amwa"]
 [ext_resource type="Texture2D" uid="uid://u2xvlp6swmse" path="res://Assets/UI/german flag.png" id="4_tv2vt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yymab"]
+texture = ExtResource("2_jooug")
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_amxvf"]
 size = Vector2(40, 40)
@@ -32,6 +36,7 @@ offset_left = 64.0
 offset_top = 87.0
 offset_right = 364.0
 offset_bottom = 147.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_yymab")
 
 [node name="Panel" type="Panel" parent="."]
 visible = false

@@ -1,13 +1,17 @@
 [gd_scene load_steps=2 format=3 uid="uid://dg54ll1jfet6s"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ixmjh"]
-size = Vector2(25, 40)
+[ext_resource type="Texture2D" uid="uid://c03vpkae0pxku" path="res://Assets/UI/dot grey.png" id="1_paiwm"]
 
 [node name="SettingsSlider" type="TextureButton"]
+modulate = Color(0.517647, 0.517647, 0.517647, 1)
 custom_minimum_size = Vector2(25, 40)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1863.0
+offset_bottom = -987.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = SubResource("PlaceholderTexture2D_ixmjh")
+texture_normal = ExtResource("1_paiwm")
+ignore_texture_size = true
+stretch_mode = 0

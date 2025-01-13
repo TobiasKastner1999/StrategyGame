@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Interface/unit_type_button.gd" id="1_8kikr"]
 
-[node name="UnitTypeButton" type="Button"]
+[node name="UnitTypeButton" type="TextureButton"]
 custom_minimum_size = Vector2(100, 25)
-text = "Test"
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("1_8kikr")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
