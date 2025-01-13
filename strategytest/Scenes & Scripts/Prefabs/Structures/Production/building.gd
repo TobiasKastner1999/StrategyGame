@@ -38,8 +38,9 @@ func _physics_process(_delta):
 		if spawn_point != null:
 			spawn_queued = false
 			spawnUnit(spawn_point)
+			Global.updateQueuedUnitCount(faction, -1)
 	if $SpawnTimer.is_stopped() and !spawn_queued:
-		if spawn_active and Global.getUnitCount(faction) < Global.getUnitLimit(faction) and Global.getResource(faction, 1) >= unit_cost:
+		if spawn_active and Global.getFullUnitCount(faction) < Global.getUnitLimit(faction) and Global.getResource(faction, 1) >= unit_cost:
 			Global.updateResource(faction, 1, -unit_cost)
 			startProductionTimer()
 	elif !$SpawnTimer.is_stopped():
@@ -115,12 +116,14 @@ func toggleStatus():
 			$SpawnTimer.stop()
 			$ProgressSprite.visible = false
 			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
+			Global.updateQueuedUnitCount(faction, -1)
 
 func startProductionTimer():
 	$ProductionProgress/ProductionBar.max_value = spawn_rate
 	$ProductionProgress/ProductionBar.value = spawn_rate
 	$ProgressSprite.visible = true
 	$SpawnTimer.start(spawn_rate)
+	Global.updateQueuedUnitCount(faction, 1)
 	interface_update.emit()
 
 # sets the building's unit production type
@@ -130,6 +133,7 @@ func setProductionType(type):
 			$SpawnTimer.stop()
 			$ProgressSprite.visible = false
 			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
+			Global.updateQueuedUnitCount(faction, -1)
 	
 	production_type = type
 	unit_cost = Global.unit_dict[str(type)]["resource_cost"] # sets the production variables
@@ -186,7 +190,6 @@ func fowEnter(node):
 		fowReveal(true) # enables the visibility of the building
 		setGreystate(false) # dusables the greystate of the building
 
-
 # called when the building is no longer in view of a player-controlled unit
 func fowExit(node):
 	if nearby_observers.has(node):
@@ -213,6 +216,7 @@ func _on_spawn_timer_timeout():
 	var spawn_point = getEmptySpawn()
 	if spawn_point != null:
 		spawnUnit(spawn_point)
+		Global.updateQueuedUnitCount(faction, -1)
 	else:
 		spawn_queued = true
 	$SpawnTimer.stop()

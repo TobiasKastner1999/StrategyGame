@@ -110,6 +110,15 @@ func updateUnitCount(faction, value):
 func getUnitCount(faction):
 	return unit_count[faction]
 
+func updateQueuedUnitCount(faction, value):
+	units_queued[faction] += value
+
+func getQueuedUnitCount(faction):
+	return units_queued[faction]
+
+func getFullUnitCount(faction):
+	return (unit_count[faction] + units_queued[faction])
+
 # updates a faction's maximum number of units
 func updateUnitLimit(faction, value):
 	Balance.unit_max[faction] += value
