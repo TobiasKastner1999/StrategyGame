@@ -130,6 +130,8 @@ func setUp(type):
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_yellow.tres"))
 		1:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
+			$OutlawGunVehicleBaked.visible = true
+			$UnitBody.visible = false
 		2:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
 		3:
@@ -315,6 +317,9 @@ func unit_rotation():
 	$UnitBody.look_at(nav) # looks at the next position
 	$UnitBody.rotation.x = rad_to_deg(0) # locks the rotation of x
 	$UnitBody.rotate_object_local(Vector3.UP, PI) # flips the model 
+	$OutlawGunVehicleBaked.look_at(nav) # looks at the next position
+	$OutlawGunVehicleBaked.rotation.x = rad_to_deg(0) # locks the rotation of x
+	$OutlawGunVehicleBaked.rotate_object_local(Vector3.UP, PI) # flips the model 
 
 # plays the correct animation based on the unit's state
 func animationControl():
@@ -326,9 +331,19 @@ func animationControl():
 
 	if unit_anim.current_animation == "OutlawFighterRun": # when the worker is playing the walk animation the particles are emitted
 		$UnitBody/Armature/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels2/WheelsBake/Particles.emitting = true
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels2/WheelsBake/Particles2.emitting = true
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels/WheelsBake/Particles.emitting = true
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels/WheelsBake/Particles2.emitting = true
+		
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels2/AnimationPlayer.play("WheelRotation")
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels/AnimationPlayer.play("WheelRotation")
 	else: #  when walking stops the particles stop spawning
 		$UnitBody/Armature/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false # stops particles
-
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels2/WheelsBake/Particles.emitting = false
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels2/WheelsBake/Particles2.emitting = false
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels/WheelsBake/Particles.emitting = false
+		$OutlawGunVehicleBaked/OL_GunVehicleWheels/WheelsBake/Particles2.emitting = false
 
 # when an object leaves the unit's detection range
 func _on_area_3d_body_exited(body):
