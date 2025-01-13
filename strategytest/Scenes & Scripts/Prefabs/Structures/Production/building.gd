@@ -8,7 +8,7 @@ const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
 const UNIT_CAPACITY = 4
 
-var can_spawn = false # can the building currently produce a new unit?
+var spawn_queued = false
 var spawn_active = true # is the building's unit production toggled on?
 var faction : int # the faction the building belongs to
 var production_type = 0 # which type of unit does the building currently produce?
@@ -22,9 +22,9 @@ var nearby_observers = [] # the nearby enemy units currently observing the build
 
 # prepares to spawn a new unit when first built
 func _ready():
-
 	$HealthbarContainer/HealthBar.max_value = Balance.building_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
+	$SpawnTimer.stop()
 	
 	setProductionType(production_type) # sets up the building's unit production
 
@@ -32,11 +32,20 @@ func _ready():
 func _physics_process(_delta):
 	Global.healthbar_rotation($HealthBarSprite)
 	Global.healthbar_rotation($ProgressSprite)
-	var spawn_point = getEmptySpawn()
-	if can_spawn and spawn_active and spawn_point != null and Global.getResource(faction, 1) >= unit_cost and Global.getUnitCount(faction) < Global.getUnitLimit(faction):
-		spawnUnit(spawn_point) # spawns a new unit if the building is able to, and the player has the crystals required
+	
+	if spawn_queued:
+		var spawn_point = getEmptySpawn()
+		if spawn_point != null:
+			spawn_queued = false
+			spawnUnit(spawn_point)
+	if $SpawnTimer.is_stopped() and !spawn_queued:
+		if spawn_active and Global.getUnitCount(faction) < Global.getUnitLimit(faction) and Global.getResource(faction, 1) >= unit_cost:
+			Global.updateResource(faction, 1, -unit_cost)
+			startProductionTimer()
+	elif !$SpawnTimer.is_stopped():
+		$ProductionProgress/ProductionBar.value = $SpawnTimer.time_left
 
-	for i in Global.list:#iterates through the list
+	for i in Global.list: #iterates through the list
 		if Global.list[i]["worker"] != null:
 			var worker_id = Global.list[i]["worker"] #gets the worker node
 			Global.list[i]["positionX"] = worker_id.global_position.x #updates the position x in dictionary 
@@ -48,11 +57,7 @@ func _physics_process(_delta):
 
 # spawns a new unit
 func spawnUnit(spawn_point):
-	can_spawn = false # temporarily disables new spawns
-	Global.updateResource(faction, 1, -unit_cost) # subtracts the unit's crystal cost from the player's balance
 	Global.updateUnitCount(faction, 1)
-	$SpawnTimer.start(spawn_rate) # starts spawn delay
-	$ProgressSprite.visible = true
 	var new_unit = load("res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.tscn").instantiate() # instantiates the unit
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
@@ -104,18 +109,30 @@ func accessStructure():
 
 # toggles the building's production status
 func toggleStatus():
-	spawn_active = !spawn_active # toggle's spawn from this building
-	$BuildingPause.visible = !spawn_active # sets the visibility of the pause animation appropriately
+	spawn_active = !spawn_active
+	if !spawn_active:
+		if !$SpawnTimer.is_stopped():
+			$SpawnTimer.stop()
+			$ProgressSprite.visible = false
+			Global.updateResource(faction, 0, int(ceil(float(unit_cost) / 2)))
 
-# sets the building's unit production type
-func setProductionType(type):
-	production_type = type
-	unit_cost = Global.unit_dict[str(type)]["resource_cost"] # sets the production variables
-	spawn_rate = Global.unit_dict[str(type)]["production_speed"]
+func startProductionTimer():
 	$ProductionProgress/ProductionBar.max_value = spawn_rate
 	$ProductionProgress/ProductionBar.value = spawn_rate
 	$ProgressSprite.visible = true
-	$SpawnTimer.start(spawn_rate) # then (re-)starts the production timer
+	$SpawnTimer.start(spawn_rate)
+
+# sets the building's unit production type
+func setProductionType(type):
+	if spawn_active:
+		if !$SpawnTimer.is_stopped():
+			$SpawnTimer.stop()
+			$ProgressSprite.visible = false
+			Global.updateResource(faction, 0, int(ceil(float(unit_cost) / 2)))
+	
+	production_type = type
+	unit_cost = Global.unit_dict[str(type)]["resource_cost"] # sets the production variables
+	spawn_rate = Global.unit_dict[str(type)]["production_speed"]
 
 # sets the building's faction to a given value
 func setFaction(f : int):
@@ -127,14 +144,6 @@ func setFaction(f : int):
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	elif faction == 1: # when faction is 1
 		$NLBarracks.visible = true # new lights assets becomes visible
-		
-		#$OLBarracksCollMain.disabled = true
-		#$OLBarracksCollFence1.disabled = true
-		#$OLBarracksCollFence2.disabled = true
-		#$OLBarracksCollFence3.disabled = true
-		#$OLBarracksCollFence4.disabled = true
-		#$OLBarracksCollFence5.disabled = true
-		#$OLBarracksCollFence6.disabled = true
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	Global.updateUnitLimit(faction, UNIT_CAPACITY)
 
@@ -197,8 +206,13 @@ func setGreystate(bol):
 
 # makes a new spawn available once the delay expires
 func _on_spawn_timer_timeout():
-	can_spawn = true
-
+	$ProgressSprite.visible = false
+	var spawn_point = getEmptySpawn()
+	if spawn_point != null:
+		spawnUnit(spawn_point)
+	else:
+		spawn_queued = true
+	$SpawnTimer.stop()
 
 func _on_area_3d_body_entered(body): # function to upgrade units when entered
 	if body.is_in_group("Fighter") and body.faction == Global.player_faction: # when global var is active and unit is a combatunit
