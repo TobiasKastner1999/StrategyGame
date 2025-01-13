@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://daovvhsbialq1"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/UI/mini_map.gd" id="1_pkvyj"]
-[ext_resource type="Texture2D" uid="uid://cjkb7ldyr7a0w" path="res://Assets/UI/Minimap.PNG" id="2_84fo1"]
+[ext_resource type="Texture2D" uid="uid://cjkb7ldyr7a0w" path="res://Assets/UI/minimap.png" id="2_84fo1"]
 [ext_resource type="Texture2D" uid="uid://c75na0rh42g0s" path="res://Assets/UI/blue_dot.png" id="2_wcwke"]
 [ext_resource type="Texture2D" uid="uid://clec6tcb8lmh7" path="res://Assets/UI/cam.png" id="3_ao8ji"]
 [ext_resource type="Shader" path="res://Assets/fow_sprite_shader.gdshader" id="3_lsynx"]
@@ -34,8 +34,8 @@ offset_right = 256.0
 offset_bottom = 256.0
 
 [node name="Background" type="Sprite2D" parent="MarginContainer"]
-position = Vector2(-11, -1.5)
-scale = Vector2(0.864865, 0.818883)
+position = Vector2(-9.53674e-07, -4.00001)
+scale = Vector2(0.736661, 0.742557)
 texture = ExtResource("2_84fo1")
 
 [node name="Tank" type="Sprite2D" parent="MarginContainer"]
@@ -82,11 +82,9 @@ scale = Vector2(2, 2)
 texture = ExtResource("3_ao8ji")
 
 [node name="BlueDot" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(132.738, -146.461)
 texture = ExtResource("2_wcwke")
 
 [node name="BlueDot2" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-137.019, 118.967)
 texture = ExtResource("2_wcwke")
