@@ -200,3 +200,6 @@ func _on_button_upgrade_pressed():
 		Global.updateResource(Global.player_faction, 1, -Global.getUpgradeCost())
 		current_selected.startResearch()
 		updateSelectedInterface()
+
+func _on_button_abort_pressed():
+	pass # Replace with function body.
