@@ -67,7 +67,7 @@ var upgrade1 = false
 @export var worker_cost = 1
 @export var worker_production = 10.0
 
-@export var construction_costs = [0, 4, 2] # the construction costs for different types of buildings
+@export var construction_costs = [0, 0, 0, 0] # the construction costs for different types of buildings
 @export var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 @export var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 @export var unit_max = [0, 0] # how many units can a faction currently have at max?
@@ -82,6 +82,9 @@ var upgrade1 = false
 @export var housing_hp = 4
 @export var housing_resource_cap_a = 4
 @export var housing_resource_cap_b = 4
+
+@export var wall_hp = 4
+
 
 @export var hq_spawn_delay = 10.0 # how often will new workers spawn?
 @export var worker_limit = 4 # how many workers can spawn at most?

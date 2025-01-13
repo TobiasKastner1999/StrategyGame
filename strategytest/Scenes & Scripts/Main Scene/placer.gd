@@ -71,9 +71,29 @@ func placement_check() -> bool:
 # called when the player presses the building (barracks) construction button
 func _on_building_button_pressed():
 	clearSelection.emit() # calls to clear the player's current selection
-	$Preview.mesh.size = Vector3(23,12,27) # sets the previewbox size
+	if Global.player_faction == 0:
+		$Preview.mesh = AssetLibrary.ol_barracks_mesh
+		$Preview.position = Vector3(-12.838,-0.354, -12.339 )
+		$Preview.scale = Vector3(-0.02, -1.57, -0.03)
+		$Preview.rotation_degrees = Vector3(-45, 0, -180)
+	if Global.player_faction == 1:
+		$Preview.mesh = AssetLibrary.nl_barracks_mesh
+		$Preview.position = Vector3(-13.205,0.479, 2.924)
+		$Preview.scale = Vector3(-4.03, -4.89, -4.03)
+		$Preview.rotation_degrees = Vector3(0, -87.9, -90)
+
+	#$Preview.mesh.size = Vector3(23,12,27) # sets the previewbox size
 
 # called when the player presses the housing construction button
 func _on_housing_button_pressed():
 	clearSelection.emit() # calls to clear the player's current selection
-	$Preview.mesh.size = Vector3(15,7,12) # sets the previewbox size
+	$Preview.mesh = AssetLibrary.nl_housing_mesh
+	$Preview.scale = Vector3(0.2, 0.3, 0.208)
+	#$Preview.mesh.size = Vector3(15,7,12) # sets the previewbox size
+
+func _on_wall_button_pressed():
+	clearSelection.emit() # calls to clear the player's current selection
+	$Preview.mesh = AssetLibrary.nl_wall_mesh
+	$Preview.scale = Vector3(0.1, 0.1, 0.1)
+	$Preview.position = Vector3(-17.4, 0.168, 6.856)
+	#$Preview.mesh.size = Vector3(7,3,14) # sets the previewbox size

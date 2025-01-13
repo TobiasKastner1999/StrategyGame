@@ -75,12 +75,12 @@ func _unhandled_input(event):
 			#$".".rotate_y(-event.relative.x * 0.02)
 
 
-	if $Camera.fov > Balance.camera_zoom_down_limit:
+	if $Camera.fov > Balance.camera_zoom_down_limit and $"../../Interface".interface_input_mode == 0:
 		if event is InputEventMouseButton:
 			if event.is_pressed():
 				if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 					$Camera.fov -=Balance.camera_zoom_speed
-	if $Camera.fov < Balance.camera_zoom_up_limit:
+	if $Camera.fov < Balance.camera_zoom_up_limit and $"../../Interface".interface_input_mode == 0:
 		if event is InputEventMouseButton:
 			if event.is_pressed():
 				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:

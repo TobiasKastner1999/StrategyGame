@@ -85,6 +85,7 @@ func _on_interface_start_game(faction):
 		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/NL_barracks_UI_pressed.png") # barracks button pressed
 		$Interface/HousingButton.texture_normal = load("res://Assets/UI/NL_Forge_UI.png") # forge button normal
 		$Interface/HousingButton.texture_pressed = load("res://Assets/UI/NL_Forge_UI_pressed.png") # forge button pressed
+		$Interface/WallButton.visible = true
 		$Interface/ResourceTab/Icon1.texture = load("res://Assets/UI/zenecium.png")
 		$Interface/ResourceTab/NlUiRes.visible = true
 

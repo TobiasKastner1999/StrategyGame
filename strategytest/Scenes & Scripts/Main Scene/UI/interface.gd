@@ -8,6 +8,7 @@ var hq : Node3D
 @onready var node_building_placer: Node3D = $Placer
 @onready var interface_btn_building:TextureButton = $BuildingButton
 @onready var interface_btn_housing:TextureButton = $HousingButton
+@onready var interface_btn_wall:TextureButton = $WallButton
 @onready var interface_label_building: Label = $Indicator
 
 # seperation between normal and building mode
@@ -34,6 +35,8 @@ func _ready():
 
 	interface_btn_building.pressed.connect(func() -> void: interface_input_mode = 1)
 	interface_btn_housing.pressed.connect(func() -> void: interface_input_mode = 2)
+	interface_btn_wall.pressed.connect(func() -> void: interface_input_mode = 3)
+	
 	interface_input_mode = 0
 	
 	#setTexts()
@@ -67,6 +70,19 @@ func _physics_process(_delta):
 		building_placer_can_place = false
 		building_placer_location = Vector3.ZERO
 
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed() and interface_input_mode != 0:
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				$Placer.rotation.y += rad_to_deg(PI/4)
+	if event is InputEventMouseButton:
+		if event.is_pressed() and interface_input_mode != 0:
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				$Placer.rotation.y -= rad_to_deg(PI/4)
+
+
+
 # places the building with click and keeps building mode on when shift is pressed
 func _input(_event):
 	if Input.is_action_just_released("LeftClick"):
@@ -82,8 +98,13 @@ func _input(_event):
 						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn")
 					2:
 						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Production/forge.tscn")
+					3:
+						building_packed_scene = load("res://Scenes & Scripts/Prefabs/Structures/Defense/wall.tscn")
 				var building_node : Node3D = building_packed_scene.instantiate()
+				building_node.rotation = $Placer.rotation
 				get_parent().add_child(building_node)
+				$Placer.rotation = Vector3(0,0,0)
+				
 
 				
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
@@ -100,7 +121,9 @@ func _input(_event):
 	
 	if Input.is_action_just_pressed("Rightclick") and interface_input_mode != 0:
 		interface_input_mode = 0
-
+		$Placer/Preview.scale = Vector3(1,1,1)
+		$Placer/Preview.position = Vector3(0,0,0)
+		$Placer.rotation = Vector3(0,0,0)
 # updates the Gamestatinfotext 
 func updateGamestateInfo():
 	var state_text = ""

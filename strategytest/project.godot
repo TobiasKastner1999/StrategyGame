@@ -22,6 +22,7 @@ config/icon="res://Assets/UI/Nox. Games Logo transparent.png"
 Global="*res://Scenes & Scripts/Global.gd"
 Sound="*res://Scenes & Scripts/Prefabs/Sound/Sound.tscn"
 Balance="*res://Scenes & Scripts/Prefabs/Balancing/balance.gd"
+AssetLibrary="*res://Scenes & Scripts/Asset Scenes/asset_library.tscn"
 
 [display]
 
