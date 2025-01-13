@@ -75,16 +75,16 @@ func _unhandled_input(event):
 			#$".".rotate_y(-event.relative.x * 0.02)
 
 
-	if $".".position.y > Balance.camera_zoom_down_limit:
+	if $Camera.fov > Balance.camera_zoom_down_limit:
 		if event is InputEventMouseButton:
 			if event.is_pressed():
 				if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-					$".".position.y -= Balance.camera_zoom_speed
-	if $".".position.y < Balance.camera_zoom_up_limit:
+					$Camera.fov -=Balance.camera_zoom_speed
+	if $Camera.fov < Balance.camera_zoom_up_limit:
 		if event is InputEventMouseButton:
 			if event.is_pressed():
 				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-					$".".position.y += Balance.camera_zoom_speed
+					$Camera.fov += Balance.camera_zoom_speed
 
 # clears the current selection of units
 func clearSelection():

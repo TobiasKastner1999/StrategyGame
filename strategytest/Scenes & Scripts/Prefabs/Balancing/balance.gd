@@ -90,8 +90,8 @@ var upgrade1 = false
 
 @export var cameara_speed = 0.5 # camera sensitivity
 @export var camera_zoom_speed = 5 # speed for zooming
-@export var camera_zoom_up_limit = 60 # upper limit for cam zoom
-@export var camera_zoom_down_limit = 20 # lower limit for cam zoom
+@export var camera_zoom_up_limit = 75 # upper limit for cam zoom
+@export var camera_zoom_down_limit = 30 # lower limit for cam zoom
 
 
 
