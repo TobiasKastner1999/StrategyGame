@@ -151,9 +151,25 @@ func setFaction(f : int):
 	if faction == 0: # when faction is 0
 		$OLBarracks.visible = true # outlaw asset becomes visible
 		$BuildingColl.disabled = true
+		$NLBarracksCollMain.disabled = true
+		$NLBarracksCollMain2.disabled = true
+		$NLBarracksFence.disabled = true
+		$NLBarracksFence2.disabled = true
+		$NLBarracksFence3.disabled = true
+		$NLBarracksFence4.disabled = true
+		$NLBarracksFence5.disabled = true
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	elif faction == 1: # when faction is 1
 		$NLBarracks.visible = true # new lights assets becomes visible
+		$OLBarracksCollMain.disabled = true
+		$OLBarracksCollFence1.disabled = true
+		$OLBarracksCollFence2.disabled = true
+		$OLBarracksCollFence3.disabled = true
+		$OLBarracksCollFence4.disabled = true
+		$OLBarracksCollFence5.disabled = true
+		$OLBarracksCollFence6.disabled = true
+		
+		
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	Global.updateUnitLimit(faction, UNIT_CAPACITY)
 
