@@ -6,8 +6,8 @@ const UPGRADE_COST = 4 # the resource cost required to upgrade the combat units
 var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 
-var faction_zero_resource_limits = [4, 0]
-var faction_one_resource_limits = [4, 0]
+var faction_zero_resource_limits = [4, 0] # faction 0's maximum capacity of the different resources
+var faction_one_resource_limits = [4, 0] # faction 1's maximum capacity of the different resources
 
 var player_faction : int # the faction the player has chosen for the current game
 var list = {} # dictionary to store units and building to project on the minimap
@@ -17,8 +17,8 @@ var selected_language : String = "en" # the language currently selected by the p
 
 var unit_max = [4, 4] # how many units can a faction currently have at max?
 var unit_count = [0, 0] # how many units does each faction currently have?
-var units_queued = [0, 0]
-var upgrade_queued = [false, false]
+var units_queued = [0, 0] # how many units does each faction currently have in active production?
+var upgrade_queued = [false, false] # are the factions currently researching an upgrade?
 var player_building_count : int = 0 # how many building's has the player constructed?
 var cam = null
 
@@ -79,9 +79,11 @@ func updateResourceCapacity(faction, capacity_a, capacity_b):
 func getUpgradeCost():
 	return UPGRADE_COST
 
+# returns whether or not a given faction is currently researching an upgrade
 func getResearchQueue(faction):
 	return upgrade_queued[faction]
 
+# sets a given faction's upgrade research state to a given value
 func setResearchQueue(faction, bol):
 	upgrade_queued[faction] = bol
 
@@ -110,12 +112,15 @@ func updateUnitCount(faction, value):
 func getUnitCount(faction):
 	return unit_count[faction]
 
+# updates the number of a given faction's in-production units by a given value
 func updateQueuedUnitCount(faction, value):
 	units_queued[faction] += value
 
+# returns a given faction's number of in-production units
 func getQueuedUnitCount(faction):
 	return units_queued[faction]
 
+# returns a given faction's full unit count, including active units and in-production units
 func getFullUnitCount(faction):
 	return (unit_count[faction] + units_queued[faction])
 

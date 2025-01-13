@@ -5,11 +5,11 @@ signal interface_update() # to update the forge's interface display
 
 const DISPLAY_NAME = "@name_building_forge" # the forge's displayed name
 const TARGET_TYPE = "forge" # the forge's combat type
-const RESEARCH_DURATION = 30.0
+const RESEARCH_DURATION = 30.0 # how long does it take for the forge to research an upgrade?
 
-var researching = false
+var researching = false # is the forge currently researching an upgrade?
 var faction : int # the faction the forge belongs to
-var nearby_observers = []
+var nearby_observers = [] # a list of enemy units near the forge
 
 @onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 @onready var hp = Balance.housing_hp # the forge's current hit points, initially set to the maximum hit points
@@ -19,6 +19,7 @@ func _ready():
 	$HealthbarContainer/HealthBar.max_value = Balance.housing_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 
+# called on every physics frame
 func _physics_process(delta):
 	$ProgressbarContainer/ProgressBar.value = $ResearchTimer.time_left
 	Global.healthbar_rotation($HealthBarSprite)
@@ -61,23 +62,26 @@ func getInspectInfo(info):
 				return "inactive"
 	return ""
 
+# returns the forge's current research activity state
 func inResearch():
 	return researching
 
+# starts the forge's research
 func startResearch():
 	researching = true
-	Global.setResearchQueue(faction, true)
+	Global.setResearchQueue(faction, true) # queues the research globally to prevent other allied forges from queueing it as well
 	$ResearchTimer.start(RESEARCH_DURATION)
 	$ProgressbarContainer/ProgressBar.max_value = RESEARCH_DURATION
 	$ProgressbarContainer/ProgressBar.value = RESEARCH_DURATION
 	$ProgressSprite.visible = true
 
+# aborts the forge's current research
 func abortAction():
 	researching = false
 	Global.setResearchQueue(faction, false)
 	$ResearchTimer.stop()
 	$ProgressSprite.visible = false
-	Global.updateResource(faction, 1, int(ceil(float(Global.getUpgradeCost()) / 2)))
+	Global.updateResource(faction, 1, int(ceil(float(Global.getUpgradeCost()) / 2))) # refunds half of the research cost, rounded up
 	interface_update.emit()
 
 # sets the forge's faction to a given value
@@ -137,6 +141,7 @@ func setGreystate(bol):
 	else:
 		$HousingBody.material_overlay = null
 
+# applies the research once the timer expires
 func _on_research_timer_timeout():
 	researching = false
 	Global.setResearchQueue(faction, false)
