@@ -15,3 +15,4 @@ script = ExtResource("1_ctku1")
 [node name="SoundStreamer" type="AudioStreamPlayer3D" parent="."]
 
 [node name="MusicStreamer" type="AudioStreamPlayer3D" parent="."]
+volume_db = -80.0

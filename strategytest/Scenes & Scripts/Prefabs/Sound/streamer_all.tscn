@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://7j0r2i0nps0v"]
+[gd_scene load_steps=2 format=3 uid="uid://7j0r2i0nps0v"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Sound/streamer_all.gd" id="1_c7x57"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+script = ExtResource("1_c7x57")
