@@ -30,6 +30,8 @@ func _on_units_delete_selection(unit):
 	$HQBlue.clearUnitReferences(unit)
 	$HQRed.clearUnitReferences(unit)
 	$Resources.clearUnitReferences(unit)
+	for prop in $Map/Props.get_children():
+		prop.fowExit(unit)
 	
 	for building in get_tree().get_nodes_in_group("building"):
 		building.clearUnitReferences(unit)
