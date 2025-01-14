@@ -2,6 +2,9 @@ extends Control
 
 signal fow_updated(new_texture) # to tell the system that the fog of war has changed
 
+const MIN_SIZE = 0.1
+const SHRINK_FACTOR = 0.5
+
 var stored_dissolved_positions = [] # a list of positions that have already been dissolved previously
 var main_image # the fog's main image
 var main_texture # the texture of the main image
@@ -9,6 +12,7 @@ var export_texture # the exported texture generated from the current fog of war
 var map_rect # the rectangle of the fog of war map
 var dissolve_sprite = preload("res://Assets/fog_dissolve.png") # the fog dissolve texture
 var units_data = {} # the data of each tracked unit
+var dying_units = []
 
 @onready var camera = $SubViewportContainer/SubViewport/Camera2D # the sub-scene's camera
 @onready var viewport = $SubViewportContainer/SubViewport # the viewport holding the fog of war
@@ -81,16 +85,24 @@ func addUnit(unit_node):
 # attempts to remove a tracked unit
 func attemptRemoveUnit(unit):
 	if units_data.keys().has(unit.get_instance_id()): # if the given unit is actually being tracked
-		units_data[unit.get_instance_id()][1].queue_free() # removes the associated sprite
-		units_data.erase(unit.get_instance_id()) # then removes the matching data
+		dying_units.append(unit.get_instance_id())
+		#units_data[unit.get_instance_id()][1].queue_free() # removes the associated sprite
+		#units_data.erase(unit.get_instance_id()) # then removes the matching data
 
 # updates the data state for all tracked units
 func processUnitData():
 	# { unit_id : [tracked_node, sprite_node]}
 	for unit_id in units_data.keys():
 		var unit_data = units_data[unit_id] # grabs the data
-		var pos_to_2D = fog_sprite.get_rect().get_center() + Vector2(unit_data[0].global_position.x, unit_data[0].global_position.z) / 2 # updates the scaled 2D position
-		unit_data[1].set_position(pos_to_2D) # moves the sprite to that position
+		if dying_units.has(unit_id):
+			if unit_data[1].scale.x <= MIN_SIZE:
+				units_data[unit_id][1].queue_free() # removes the associated sprite
+				units_data.erase(unit_id) # then removes the matching data
+			else:
+				unit_data[1].scale *= SHRINK_FACTOR
+		else:
+			var pos_to_2D = fog_sprite.get_rect().get_center() + Vector2(unit_data[0].global_position.x, unit_data[0].global_position.z) / 2 # updates the scaled 2D position
+			unit_data[1].set_position(pos_to_2D) # moves the sprite to that position
 
 # dissolves the fog of war around each tracked unit
 func dissolveForUnits():
