@@ -1,6 +1,6 @@
 extends Node3D
 
-var nearby_observers = []
+var nearby_observers = [] # a list of player-controlled units near the object
 
 @onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 
