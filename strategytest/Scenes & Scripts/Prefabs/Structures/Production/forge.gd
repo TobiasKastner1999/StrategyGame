@@ -31,6 +31,8 @@ func takeDamage(damage, _attacker):
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the forge if it's remaining hp is 0 or less
+		Sound.play_sound("res://Sounds/DestroyBuildingSound.mp3", $".")
+		await get_tree().create_timer(0.5).timeout
 		if faction == Global.player_faction:
 			Global.updateResourceCapacity(faction, -Balance.housing_resource_cap_a, -Balance.housing_resource_cap_b)
 			Global.updateBuildingCount(false)

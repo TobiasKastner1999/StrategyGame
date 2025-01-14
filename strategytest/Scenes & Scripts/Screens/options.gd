@@ -39,6 +39,7 @@ func _on_continue_buttons_pressed():
 
 func _on_quit_buttons_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
+	await get_tree().create_timer(0.5).timeout
 	get_tree().paused = false # upause the game so that the startscreen isnt frozen
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/start_screen.tscn") # changes scene to startscreen
 
@@ -59,14 +60,14 @@ func _on_music_plus_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if music_slider_counter <= 10: # limits the slider
 		music_slider_counter += 1 # increases the slider counter that hide/unhide the sliders
-		Sound.music_volume += 10
+		Sound.music_volume -= 10
 	checkMusic() # updates the visual sliders of music settings
 
 func _on_music_minus_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if music_slider_counter >= 0: # limits the slider
 		music_slider_counter -= 1 # decreases the slider counter that hide/unhide the sliders
-		Sound.music_volume -= 10
+		Sound.music_volume += 10
 	checkMusic() # updates the visual sliders of music settings
 
 func checkMusic(): # function to update the sliders on the menu

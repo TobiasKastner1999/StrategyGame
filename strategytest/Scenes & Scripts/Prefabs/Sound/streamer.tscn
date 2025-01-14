@@ -1,3 +1,9 @@
-[gd_scene format=3 uid="uid://bnyyqlx1wdfq1"]
+[gd_scene load_steps=3 format=3 uid="uid://bnyyqlx1wdfq1"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Sound/streamer.gd" id="1_hjpcr"]
+[ext_resource type="AudioStream" uid="uid://la5jylahi6ya" path="res://Sounds/BackgroundMusicVariante1.mp3" id="1_ojpc6"]
 
 [node name="SoundStreamer" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_ojpc6")
+volume_db = -70.0
+script = ExtResource("1_hjpcr")

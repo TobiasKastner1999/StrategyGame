@@ -103,6 +103,7 @@ func _input(_event):
 				var building_node : Node3D = building_packed_scene.instantiate()
 				building_node.rotation = $Placer.rotation
 				get_parent().add_child(building_node)
+				Sound.play_sound("res://Sounds/PlaceBuildingSound.mp3", $Placer/Preview)
 				$Placer.rotation = Vector3(0,0,0)
 				
 

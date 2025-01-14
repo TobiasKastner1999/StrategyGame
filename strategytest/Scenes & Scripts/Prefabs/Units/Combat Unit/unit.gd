@@ -102,6 +102,15 @@ func startAttackCooldown():
 	can_attack = false # disables the unit's attack
 	$AttackCooldown.start(attack_speed) # starts the attack cooldown
 	unit_anim.play("OutlawFighterRifleFire")
+	match unit_type:
+		0:
+			if faction == 0:
+				Sound.play_sound("res://Sounds/GunShot_Ashfolk.mp3",$"." )
+			else:
+				Sound.play_sound("res://Sounds/GunShot_NewLights.mp3",$"." )
+		1:
+			pass
+			Sound.play_sound("res://Sounds/GunShot_NewLights.mp3",$"." )
 	$AttackAnim/AnimationPlayer.play("attack")
 	attacking = true
 

@@ -88,9 +88,12 @@ func takeDamage(damage, _attacker):
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	if hp <= 0: # removes the building if it's remaining hp is 0 or less
+		Sound.play_sound("res://Sounds/DestroyBuildingSound.mp3", $".")
+		await get_tree().create_timer(0.5).timeout
 		if faction == Global.player_faction:
 			Global.updateBuildingCount(false)
 			Global.updateUnitLimit(faction, -UNIT_CAPACITY)
+			
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
 
