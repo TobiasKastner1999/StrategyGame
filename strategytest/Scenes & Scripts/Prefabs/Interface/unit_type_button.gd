@@ -29,6 +29,7 @@ func getType():
 
 # calls to change unit type production when the button is pressed
 func _on_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	change_type.emit(unit_type)
 
 # calls to display the tooltip panel when the button is hovered

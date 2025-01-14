@@ -12,7 +12,9 @@ func setTexts():
 	$RedFaction.text = Global.getText("@interface_text_faction_blue")
 
 func _on_blue_faction_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	start_game_Dome.emit() # emits button for interface 
 
 func _on_red_faction_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	start_game_rebels.emit()  # emits button for interface 

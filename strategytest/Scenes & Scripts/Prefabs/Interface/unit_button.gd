@@ -11,4 +11,5 @@ func setUnit(new_unit):
 
 # selects the represented unit when the player presses the button
 func _on_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	unit_select.emit(unit)

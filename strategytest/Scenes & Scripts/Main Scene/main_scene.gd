@@ -72,6 +72,7 @@ func _on_interface_start_game(faction):
 	$CameraBody.position.y = 60
 
 	if Global.player_faction == 0: # sets asseets for ui based on faction 0
+		Sound.play_music("res://Sounds/BackgroundMusicVariante1.mp3",$CameraBody )
 		$Interface/ResourceTab/NlUiRes.visible = false
 		$Interface/BuildingButton.texture_normal = load("res://Assets/UI/OL_Kaserne_UI.png") # baracks button normal
 		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/OL_Kaserne_UI_pressed.png") # barracks button pressed
@@ -81,6 +82,7 @@ func _on_interface_start_game(faction):
 		
 		
 	elif Global.player_faction == 1: # sets asseets for ui based on faction 1
+		Sound.play_music("res://Sounds/BackgroundMusicVariante3.mp3", $CameraBody)
 		$Interface/BuildingButton.texture_normal = load("res://Assets/UI/NL_barracks_UI.png") # baracks button normal
 		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/NL_barracks_UI_pressed.png") # barracks button pressed
 		$Interface/HousingButton.texture_normal = load("res://Assets/UI/NL_Forge_UI.png") # forge button normal

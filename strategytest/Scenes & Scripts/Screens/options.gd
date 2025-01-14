@@ -22,6 +22,7 @@ func setTexts():
 func _process(_delta):
 	checkFlag() # perma updates the current flag of the language icon
 	if Input.is_action_just_pressed("escape") and $".".visible == true: # activates when visible ans escape pressed
+		Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 		if $Panel.visible == false:
 			$Panel.visible = true # when menu is hidden unhide it
 			get_tree().paused = true # pause the game
@@ -31,17 +32,20 @@ func _process(_delta):
 
 
 func _on_continue_buttons_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	$Panel.visible = false # hides the menu when continued
 	get_tree().paused = false # unpauses the game when button is used
 	close.emit()
 
 func _on_quit_buttons_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	get_tree().paused = false # upause the game so that the startscreen isnt frozen
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/start_screen.tscn") # changes scene to startscreen
 
 
 
 func _on_menu_button_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if $Panel.visible == false:
 		$Panel.visible = true # when menu is hidden unhide it
 		get_tree().paused = true # pause the game
@@ -52,12 +56,14 @@ func _on_menu_button_pressed():
 
 
 func _on_music_plus_button_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if music_slider_counter <= 10: # limits the slider
 		music_slider_counter += 1 # increases the slider counter that hide/unhide the sliders
 		Sound.music_volume += 10
 	checkMusic() # updates the visual sliders of music settings
 
 func _on_music_minus_button_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if music_slider_counter >= 0: # limits the slider
 		music_slider_counter -= 1 # decreases the slider counter that hide/unhide the sliders
 		Sound.music_volume -= 10
@@ -73,12 +79,14 @@ func checkMusic(): # function to update the sliders on the menu
 			button.visible = false # hides the sliders outside range
 
 func _on_sound_minus_button_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if sound_slider_counter <= 10: # limits the slider
 		sound_slider_counter += 1 # increases the slider counter that hide/unhide the sliders
 		Sound.sound_volume += 10
 	checkSound() # updates the visual sliders of music settings
 
 func _on_sound_plus_button_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if sound_slider_counter <= 10: # limits the slider
 		sound_slider_counter -= 1 # increases the slider counter that hide/unhide the sliders
 		Sound.sound_volume += 10
@@ -105,10 +113,12 @@ func checkFlag(): # updates the flag icon in language selection
 		$Panel/LanguageSelection/FlagSlot.texture = load("res://Assets/UI/german flag.png")
 
 func _on_language_left_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	$Panel/VBoxContainer.visible = true # open the drop down for languages
 
 # sets the language to german
 func _on_german_flag_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	language = 1 
 	Global.selected_language = "de"
 	$Panel/VBoxContainer.visible = false
@@ -116,11 +126,13 @@ func _on_german_flag_pressed():
 
 # sets the language to english
 func _on_british_flag_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	language = 0
 	Global.selected_language = "en"
 	$Panel/VBoxContainer.visible = false
 	language_changed.emit()
 
 func _on_close():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if $MenuButton.visible == false:
 		$Panel.visible = true

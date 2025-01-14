@@ -167,11 +167,13 @@ func updateSelectedInterface():
 
 # calls to toggle the selected object's status when the button is pressed
 func _on_button_toggle_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	current_selected.toggleStatus()
 	updateSelectedInterface() # also updates the dynamic interface
 
 # calls to update the building's production type when one of the buttons is pressed
 func _on_type_button_pressed(type):
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	current_selected.setProductionType(type)
 	updateSelectedInterface() # also updates the dynamic interface
 
@@ -196,19 +198,23 @@ func _on_type_button_hover(type, bol):
 
 # calls to access a unit from the multi-selection
 func _on_unit_select(unit):
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	unselect()
 	unit.accessUnit()
 
 # calls to return to the multi-selection from an individual unit
 func _on_button_back_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	multiSelection(multi_selection)
 
 # calls for the worker to drop their carried resource if the drop button is pressed
 func _on_button_drop_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	current_selected.clearResource()
 
 # attempts to upgrade the player's combat units if the upgrade button is pressed
 func _on_button_upgrade_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	# only performs the upgrade if the player actually has enough resources as well
 	if Global.getResource(Global.player_faction, 1) >= Global.getUpgradeCost() and !current_selected.inResearch() and !Global.getResearchQueue(Global.player_faction):
 		Global.updateResource(Global.player_faction, 1, -Global.getUpgradeCost())
@@ -216,4 +222,5 @@ func _on_button_upgrade_pressed():
 		updateSelectedInterface()
 
 func _on_button_abort_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	current_selected.abortAction()

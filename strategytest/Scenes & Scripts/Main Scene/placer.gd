@@ -70,6 +70,7 @@ func placement_check() -> bool:
 
 # called when the player presses the building (barracks) construction button
 func _on_building_button_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	clearSelection.emit() # calls to clear the player's current selection
 	if Global.player_faction == 0:
 		$Preview.mesh = AssetLibrary.ol_barracks_mesh
@@ -86,6 +87,7 @@ func _on_building_button_pressed():
 
 # called when the player presses the housing construction button
 func _on_housing_button_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	clearSelection.emit() # calls to clear the player's current selection
 	$Preview.mesh = AssetLibrary.nl_housing_mesh
 	$Preview.scale = Vector3(0.2, 0.3, 0.208)
@@ -94,6 +96,7 @@ func _on_housing_button_pressed():
 	#$Preview.mesh.size = Vector3(15,7,12) # sets the previewbox size
 
 func _on_wall_button_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	clearSelection.emit() # calls to clear the player's current selection
 	$Preview.mesh = AssetLibrary.nl_wall_mesh
 	$Preview.scale = Vector3(0.1, 0.1, 0.1)

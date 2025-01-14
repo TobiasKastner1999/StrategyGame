@@ -13,21 +13,26 @@ func setTexts():
 
 
 func _on_start_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$".")
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Main Scene/main_scene.tscn")# switch scene to main
 
 func _on_options_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	$OptionMenu.visible = true # makes the optionsmenu visible
 
 
 func _on_quit_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	get_tree().quit()#  ends the game
 
 
 func _on_credits_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/credits.tscn") # switch to the credits
 
 
 func _on_option_menu_close():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	$OptionMenu.visible = false # hides the menu
 
 func _on_language_changed():

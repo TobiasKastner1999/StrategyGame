@@ -102,7 +102,7 @@ func startMiningState():
 	$MiningTimer.start(MINE_SPEED)
 	await get_tree().create_timer(1).timeout
 	if Global.player_faction == faction:
-		Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3")
+		Sound.play_sound("res://Sounds/MiningSound_Rebells_FreeSoundCommunity.mp3",$"." )
 
 # advanced the worker's interaction state
 func advanceInteractionState():
@@ -254,6 +254,7 @@ func startAttackCooldown():
 	can_attack = false # disables the worker's attack
 	$AttackTimer.start(attack_speed) # starts the attack cooldown
 	worker_anim.play("OutlawWorkerAttack") # plays the attack animation if the worker is mining
+
 	attacking = true
 
 # sets the target's position as the movement destination

@@ -13,25 +13,36 @@ var music_volume = 0
 
 
 
-func play_sound(sound):
+func play_sound(sound, node):
 	var new_streamer = load("res://Scenes & Scripts/Prefabs/Sound/streamer.tscn").instantiate() # loades the streamer
-	$".".add_child(new_streamer) # creates a new streamer
+	node.add_child(new_streamer) # creates a new streamer
 	var loaded_sound = load(sound)
 	new_streamer.stream = loaded_sound # sets the sound to given value
 	new_streamer.play() # starts the stream
 	await new_streamer.finished # wait for the sound to end
 	new_streamer.queue_free() # deletes the streamer
 	
-func play_music(music):
+func play_music(music,node):
 	var new_streamer = load("res://Scenes & Scripts/Prefabs/Sound/streamer.tscn").instantiate() # loades the streamer
 	temp = new_streamer
-	$".".add_child(new_streamer) # creates a new streamer
-	new_streamer.volume = music_volume
+	node.add_child(new_streamer) # creates a new streamer
+	#new_streamer.volume = music_volume
 	var loaded_music = load(music)
 	new_streamer.stream = loaded_music # sets the sound to given value
 	new_streamer.play() # starts the stream
 	await new_streamer.finished  # wait for the sound to end
-	play_music(music) # then uses itself to create loop
+	play_music(music, node) # then uses itself to create loop
+
+func play_sound_all(sound, node):
+	var new_streamer = load("res://Scenes & Scripts/Prefabs/Sound/streamer_all.tscn").instantiate() # loades the streamer
+	node.add_child(new_streamer) # creates a new streamer
+	var loaded_sound = load(sound)
+	new_streamer.stream = loaded_sound # sets the sound to given value
+	new_streamer.play() # starts the stream
+	await new_streamer.finished # wait for the sound to end
+	new_streamer.queue_free() # deletes the streamer
+
+
 
 func stop_music_loop(): # function to end the loop from previous function when music is finished
 	if temp != null: 
