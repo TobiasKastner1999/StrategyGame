@@ -1,8 +1,5 @@
 extends CanvasLayer
 
-
-
-
 var mouse_over_map = false # value for checking if mouse is over the minimap
 var zoom # value for the camerazoom
 @onready var mouse = $MarginContainer/MouseIndicator # characterbody that will follow the mouse
@@ -12,18 +9,13 @@ var zoom # value for the camerazoom
 @onready var cam_sprite = $MarginContainer/Cam # Cam indicator sprite
 @onready var tank = $"../HQBlue" # test unit
 
-
 func _ready():
-	
-
 	# sets the positions of the hqs on the minimap
 	unit_sprite.position = Vector2($"../HQBlue".position.x, $"../HQBlue".position.z)
 	unit_sprite2.position = Vector2($"../HQRed".position.x, $"../HQRed".position.z)
 	
-	
 	# visualizes the zoom 
 	zoom = main_cam.position.y
-
 
 func _process(_delta):
 	# first entry -> test unit
@@ -38,8 +30,6 @@ func _process(_delta):
 	minimap_limits()
 	minimap_clickable()
 	check_visibility()
-
-
 
 # spawns a dot on the minimap based on faction and add the value to the dictionary
 func dot_for_worker(dot):
@@ -82,7 +72,6 @@ func check_visibility():
 		else: 
 			$MarginContainer/BaseEnemy.visible = true # sets the dot visible
 
-
 # sets the texture red and spawns the dot
 func add_unit_red(dot):
 	for i in Global.list.size():
@@ -101,8 +90,6 @@ func delete_dot():
 	for i in Global.list:
 		if Global.list[i]["worker"] == null:
 			Global.list[i]["dot"].texture = null
-
-
 
 # limitations for the cam sprite so it cant leave the minimap
 func minimap_limits():
@@ -132,7 +119,6 @@ func minimap_zoom():
 			cam_sprite.scale -=Vector2(0.1, 0.1)
 			zoom = main_cam.position.y
 
-
 func minimap_clickable():
 	# when the mouse enters the area of minimap the var turns true and if you click the camera moves to the position given
 	# via a characterbody2d that is constantly following the mouse and
@@ -151,5 +137,5 @@ func minimap_clickable():
 func setFogTexture(new_texture):
 	var fow = $MarginContainer/FogOfWar
 	fow.set_texture(new_texture)
-	var scale_factor = 256.0 / (float)(new_texture.get_height()) # determines the factor by which the new texture might be oversized
-	fow.scale = Vector2(3 * scale_factor, 3 * scale_factor) # sets the scale to remain within bounds
+	var scale_factor = 428.197 / (float)(new_texture.get_height()) # determines the factor by which the new texture might be oversized
+	fow.scale = Vector2(scale_factor, scale_factor) # sets the scale to remain within bounds
