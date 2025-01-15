@@ -1,0 +1,119 @@
+[gd_scene load_steps=3 format=3 uid="uid://vnki2nx7clor"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Main Scene/resource_manager.gd" id="1_rsfv3"]
+[ext_resource type="PackedScene" uid="uid://kfr5nk4l557f" path="res://Scenes & Scripts/Prefabs/Structures/Ressources/ressource.tscn" id="2_dk65d"]
+
+[node name="Resources" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 25.6142)
+script = ExtResource("1_rsfv3")
+
+[node name="Ressource" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.9509, -0.624841, 0, 0.624841, 3.9509, 0, 0, 0, 4, -26.358, -1.30925, 39.0798)
+visible = false
+resource_type = 1
+
+[node name="Ressource10" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.9509, -0.624841, 0, 0.624841, 3.9509, 0, 0, 0, 4, -26.358, 3.82687, -369.242)
+visible = false
+resource_type = 1
+
+[node name="Ressource11" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.9509, -0.624841, 0, 0.624841, 3.9509, 0, 0, 0, 4, -0.276031, -8.88829, -216.209)
+visible = false
+resource_type = 1
+
+[node name="Ressource12" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.9509, -0.624841, 0, 0.624841, 3.9509, 0, 0, 0, 4, 123.075, -12.7062, -40.6537)
+visible = false
+resource_type = 1
+
+[node name="Ressource13" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.9509, -0.624841, 0, 0.624841, 3.9509, 0, 0, 0, 4, 301.692, -3.24606, 6.03235)
+visible = false
+resource_type = 1
+
+[node name="Ressource14" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.9509, -0.624841, 0, 0.624841, 3.9509, 0, 0, 0, 4, -233.385, 6.85113, -318.807)
+visible = false
+resource_type = 1
+
+[node name="Ressource6" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.8587, -0.610261, 0.859078, 0.624841, 3.9509, 0, -0.848531, 0.134197, 3.90666, -261.973, -9.76373, -73.4228)
+visible = false
+resource_type = 1
+
+[node name="Ressource7" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.8587, -0.610261, 0.859078, 0.624841, 3.9509, 0, -0.848531, 0.134197, 3.90666, -94.8225, -8.95443, -24.8636)
+visible = false
+resource_type = 1
+
+[node name="Ressource8" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.8587, -0.610261, 0.859078, 0.624841, 3.9509, 0, -0.848531, 0.134197, 3.90666, 67.9609, -8.95443, 173.724)
+visible = false
+resource_type = 1
+
+[node name="Ressource9" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.8587, -0.610261, 0.859078, 0.624841, 3.9509, 0, -0.848531, 0.134197, 3.90666, -302.104, -3.39652, 314.278)
+visible = false
+resource_type = 1
+
+[node name="Ressource2" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -82.5517, -8.32412, 280.044)
+visible = false
+
+[node name="Ressource3" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -82.7825, -7.94331, 176.592)
+visible = false
+
+[node name="Ressource5" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -361.838, -9.83724, 117.992)
+visible = false
+
+[node name="Ressource4" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.93164, 0.736354, 0, -0.736354, 3.93164, 0, 0, 0, 4, -203.881, -7.22789, 51.2961)
+visible = false
+
+[node name="Ressource15" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.93164, 0.736354, 0, -0.736354, 3.93164, 0, 0, 0, 4, 379.912, -10.2959, -192.687)
+visible = false
+faction = 1
+
+[node name="Ressource16" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.93164, 0.736354, 0, -0.736354, 3.93164, 0, 0, 0, 4, 294.622, -11.1878, -131.64)
+visible = false
+faction = 1
+
+[node name="Ressource17" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.77183, 0.706424, -1.12883, -0.736354, 3.93164, 0, 1.10954, 0.207805, 3.83741, 183.587, -14.9252, -163.281)
+visible = false
+faction = 1
+
+[node name="Ressource18" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(0.366516, 0.0686444, 3.98258, -0.736354, 3.93164, 2.8591e-08, -3.91452, -0.733147, 0.372889, 109.608, -10.5936, -248.82)
+visible = false
+faction = 1
+
+[node name="Ressource19" parent="." instance=ExtResource("2_dk65d")]
+transform = Transform3D(3.36859, 0.6309, 2.06266, -0.736354, 3.93164, 2.00912e-08, -2.02741, -0.379713, 3.42716, 43.3742, -3.59406, -405.502)
+visible = false
+faction = 1
+
+[connection signal="expended" from="Ressource" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource10" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource11" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource12" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource13" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource14" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource6" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource7" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource8" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource9" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource2" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource3" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource5" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource4" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource15" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource16" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource17" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource18" to="." method="_on_ressource_expended"]
+[connection signal="expended" from="Ressource19" to="." method="_on_ressource_expended"]
