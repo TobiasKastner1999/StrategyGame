@@ -35,6 +35,10 @@
 	"en": "Credits",
 	"de": "Credits"
   },
+  "@interface_button_skip_video": {
+	"en": "skip",
+	"de": "überspringen"
+  },
   "@interface_button_building": {
 	"en": "Barracks",
 	"de": "Kaserne"
