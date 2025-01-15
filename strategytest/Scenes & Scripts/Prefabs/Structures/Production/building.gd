@@ -172,14 +172,13 @@ func setFaction(f : int):
 		$OLBarracksCollFence4.disabled = true
 		$OLBarracksCollFence5.disabled = true
 		$OLBarracksCollFence6.disabled = true
-		
-		
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	
+	# sets up the correct initial unit production type
 	Global.updateUnitLimit(faction, UNIT_CAPACITY)
 	for unit_id in Global.unit_dict.keys():
 		if Global.unit_dict[unit_id]["faction"] == faction:
-			setProductionType(int(unit_id))
+			setProductionType(int(unit_id)) # sets the first unit of the controlled faction as the new production
 			return
 
 # returns the building's current faction

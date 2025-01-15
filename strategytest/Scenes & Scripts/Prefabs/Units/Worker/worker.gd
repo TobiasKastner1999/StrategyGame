@@ -279,6 +279,7 @@ func focusAtTarget():
 func getNearbyEnemies():
 	return nearby_enemies
 
+# causes the worker to exit combat mode
 func leaveCombatMode():
 	if target_mode == 1:
 		target_mode = 0
@@ -325,12 +326,14 @@ func getResourceState():
 func getActiveTarget():
 	return target_node
 
+# called when another unit dies
 func checkUnitRemoval(unit):
 	if target_node == unit:
-		clearAttackTarget()
+		clearAttackTarget() # clears attack target if the other unit was the worker's target
 	if current_observers.has(unit):
-		fowExit(unit)
+		fowExit(unit) # removes the unit from the worker's observers
 
+# clears the worker's attack target
 func clearAttackTarget():
 	target_node = null
 	target_mode = 0
@@ -355,6 +358,7 @@ func getKnownResources():
 func removeResourceKnowledge(removed_resource):
 	if known_resources.has(removed_resource):
 		known_resources.erase(removed_resource)
+	# if the worker was targeting the resource, also resets the workers target & destination
 	if target_node == removed_resource:
 		target_node = null
 		destination = global_position
