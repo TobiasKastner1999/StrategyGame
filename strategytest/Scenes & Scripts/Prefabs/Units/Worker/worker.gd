@@ -395,8 +395,6 @@ func deselect():
 
 # called when the worker comes into view of a player-controlled unit
 func fowEnter(node):
-	if faction == 1:
-		print("Observed!")
 	fowReveal(true) # makes the worker visible
 	if node.getFaction() != faction:
 		current_observers.append(node) # adds the player unit to the worker's observers

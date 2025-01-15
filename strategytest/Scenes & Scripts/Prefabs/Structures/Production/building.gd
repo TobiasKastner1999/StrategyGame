@@ -174,7 +174,12 @@ func setFaction(f : int):
 		
 		
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
+	
 	Global.updateUnitLimit(faction, UNIT_CAPACITY)
+	for unit_id in Global.unit_dict.keys():
+		if Global.unit_dict[unit_id]["faction"] == faction:
+			setProductionType(int(unit_id))
+			return
 
 # returns the building's current faction
 func getFaction():

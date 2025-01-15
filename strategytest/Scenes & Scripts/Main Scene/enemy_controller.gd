@@ -83,7 +83,6 @@ func constructBuilding(building_type):
 	
 	get_parent().add_child(building)
 	building.setFaction(controlled_faction) # assigns the building's faction
-	building.accessStructure() # accesses the building's interface
 	building.visible = false
 	rebake.emit() # calls the re-bake the navmesh
 	Global.add_to_list(building.position.x, building.position.z, controlled_faction, building.get_instance_id(), null, building)
