@@ -121,7 +121,7 @@ func _on_new_unit(unit):
 # re-sets the interface texts when the game's language is changed
 func _on_language_changed():
 	$Options.setTexts()
-	$Interface.setTexts()
+	#$Interface.setTexts()
 	$Interface/FactionSelection.setTexts()
 	$Interface/EndScreen.setTexts()
 	$Interface/SelectedPanel.updateTexts()

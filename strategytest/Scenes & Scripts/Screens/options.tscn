@@ -82,6 +82,7 @@ offset_left = 108.0
 offset_top = 479.0
 offset_right = 408.0
 offset_bottom = 539.0
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = ExtResource("2_jpwkt")
 theme_override_styles/hover = ExtResource("2_jpwkt")
 theme_override_styles/pressed = ExtResource("3_niotg")

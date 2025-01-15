@@ -12,6 +12,7 @@ var nearby_enemies = [] # all enemy targets that are currently within range of t
 var active_target : PhysicsBody3D # the enemy target the unit is currently attacking
 var priority_movement = false # is the unit's movement overridden by a player command
 var current_observers = [] # the enemy units currently observing this unit
+var is_walking = false
 
 var attacking = false # is the unit currently attacking?
 var path = [] # the path the unit is navigating on
@@ -335,7 +336,24 @@ func animationControl():
 	if !attacking:
 		if velocity != Vector3.ZERO:
 			unit_anim.play("OutlawFighterRun") # plays the walk animation if they are moving
+			if is_walking == false and $".".visible == true: # checks when the unit is moving and visible on the map
+				is_walking = true
+				if faction == 1: # sets the walk sound based on faction and type
+					match unit_type:
+						0:
+							$WalkStreamer.stream = load("res://Sounds/Walk_NewLights_Light.mp3")
+						1:
+							$WalkStreamer.stream = load("res://Sounds/Walk_NewLights_Heavy.mp3")
+				elif faction == 0: # sets the walk sound based on faction and type
+					match unit_type:
+						0:
+							$WalkStreamer.stream = load("res://Sounds/Walk_Ashfolk.mp3")
+						3:
+							$WalkStreamer.stream = load("res://Sounds/CarSound_NewLights.mp3")
+				$WalkStreamer.play() # startet den streamer
 		else:
+			is_walking = false # resets check
+			$WalkStreamer.stop() # stops the streamer
 			unit_anim.play("OutlawFighterIdle") # plays the idle animation otherwise
 
 	if unit_anim.current_animation == "OutlawFighterRun": # when the worker is playing the walk animation the particles are emitted
