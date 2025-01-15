@@ -7,8 +7,10 @@ func _ready():
 func setTexts():
 	$Button.text = Global.getText("@interface_button_quit_game")
 
+
 func setText():
 	$GameOverText.text = text # sets text to given value
+
 
 func _on_button_pressed(): # ends the game
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )

@@ -18,7 +18,7 @@ func setTexts():
 	if Global.selected_language == "en":
 		$VideoStreamPlayer.stream = load("res://Videos/Trailer-Englisch.ogv")
 	elif Global.selected_language == "de":
-		$VideoStreamPlayer.stream = load("res://Videos/Intro Deutsch.ogv")
+		$VideoStreamPlayer.stream = load("res://Videos/Intro-Deutsch.ogv")
 
 
 

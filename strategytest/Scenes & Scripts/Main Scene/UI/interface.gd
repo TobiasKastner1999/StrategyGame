@@ -144,9 +144,15 @@ func gameEnd(faction):
 	for c in get_children():
 		c.visible = false # hides all UI elements
 	if faction == Global.player_faction:
-		$EndScreen.text = Global.getText("@game_over_loss") # sets end screen text if the player was defeated
+		if Global.player_faction == 0:
+			$EndScreen.text = Global.getText("@game_over_loss_OL") # sets end screen text if the player was defeated
+		else:
+			$EndScreen.text = Global.getText("@game_over_loss_NL") # sets end screen text if the player was defeated
 	else:
-		$EndScreen.text = Global.getText("@game_over_win") # sets end screen text if the player won the game
+		if Global.player_faction == 1:
+			$EndScreen.text = Global.getText("@game_over_win_OL") # sets end screen text if the player won the game
+		else:
+			$EndScreen.text = Global.getText("@game_over_win_NL") # sets end screen text if the player won the game
 	$EndScreen.visible = true # enables end screen visibility
 	$EndScreen.setText()
 

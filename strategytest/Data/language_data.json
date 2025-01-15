@@ -81,19 +81,27 @@
   },
   "@interface_text_faction_red": {
 	"en": "Ashfolk",
-	"de": "Aschenfolk"
+	"de": "Aschenvolk"
   },
   "@interface_text_selected": {
 	"en": "Selected",
 	"de": "Ausgewählt"
   },
-  "@game_over_win": {
-	"en": "Victory!",
-	"de": "Du hast gewonnen!"
+  "@game_over_win_OL": {
+	"en": "[center][color=green]Victory! \nYou have captured the Dome![/color][/center]",
+	"de": "[center][color=green]Du hast gewonnen!\n Die Kuppel wurde eingenommen![/color][/center]"
   },
-  "@game_over_loss": {
-	"en": "Game Over! You lost...",
-	"de": "Du hast verloren..."
+  "@game_over_win_NL": {
+	"en": "[center][color=green]Victory!\n The Dome stands![/color][/center]",
+	"de": "[center][color=green]Du hast gewonnen!\n Die Kuppel wurde verteidigt![/color][/center]"
+  },
+  "@game_over_loss_OL": {
+	"en": "[center][color=red]You have failed! \n The Ashfolk has perished![/color][/center]",
+	"de": "[center][color=red]Du hast versagt! \n Das Aschenvvolk[/color][/center]"
+  },
+  "@game_over_loss_NL": {
+	"en": "[center][color=red]You have failed! \n The Dome has fallen![/color][/center]",
+	"de": "[center][color=red]Du hast versagt! \n Die Kuppel wurde eingenommen![/color][/center]"
   },
   "@state_info_units": {
 	"en": "Combat Units",
