@@ -266,6 +266,10 @@ func focusAtTarget():
 func getNearbyEnemies():
 	return nearby_enemies
 
+func leaveCombatMode():
+	if target_mode == 1:
+		target_mode = 0
+
 # returns the unit's targeting priority
 func getTargetPriority():
 	return TARGET_PRIORITY
