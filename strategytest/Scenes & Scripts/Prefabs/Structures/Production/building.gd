@@ -87,6 +87,7 @@ func takeDamage(damage, _attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
+	Sound.under_Attack()
 	if hp <= 0: # removes the building if it's remaining hp is 0 or less
 		Sound.play_sound("res://Sounds/DestroyBuildingSound.mp3", $".")
 		await get_tree().create_timer(0.5).timeout

@@ -193,6 +193,7 @@ func takeDamage(damage, attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
+	Sound.under_Attack()
 	interface_update.emit()
 	if hp <= 0: # calls the worker's death function if its remaining hp is 0 or less
 		startDeathState()

@@ -29,6 +29,7 @@ func takeDamage(damage, _attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
+	Sound.under_Attack()
 	if hp <= 0: # removes the forge if it's remaining hp is 0 or less
 		Sound.play_sound("res://Sounds/DestroyBuildingSound.mp3", $".")
 		if faction == Global.player_faction:
