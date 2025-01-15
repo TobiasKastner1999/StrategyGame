@@ -22,6 +22,7 @@ func _on_options_pressed():
 	$OptionMenu.visible = true # makes the optionsmenu visible
 
 
+
 func _on_quit_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	await get_tree().create_timer(0.5).timeout

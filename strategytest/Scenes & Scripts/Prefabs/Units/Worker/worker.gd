@@ -29,6 +29,7 @@ var hp : float # the worker's current hit points
 var can_attack = true # can the worker currently attack (is its attack not on cooldown)?
 var attacking = false # is the worker playing its attack animation?
 var is_awake = true # is the worker currently actively acting?
+var is_walking = false
 
 var unit_type : String # the worker's type
 var faction : int # which faction does this worker belong to?
@@ -55,6 +56,7 @@ func _physics_process(delta):
 		
 		interface_update.emit() # updates the worker's inspect menu
 
+
 # rotates the model to face in the right direction
 func worker_rotation():
 	var nav = $NavAgent.get_next_path_position() # position where the worker moves next on his path to the final destination
@@ -69,7 +71,17 @@ func animationControl():
 			worker_anim.play("OutlawWorkerHarvest") # plays the attack animation if the worker is mining
 		elif velocity != Vector3.ZERO:
 			worker_anim.play("OutlawWorkerJog") # plays the walk animation if they are moving
+			if is_walking == false and $".".visible == true:
+				is_walking = true
+				if faction == 0:
+					$WalkStreamer.stream = load("res://Sounds/Walk_Ashfolk.mp3")
+				elif faction == 1:
+					$WalkStreamer.stream = load("res://Sounds/Walk_Ashfolk.mp3")
+				$WalkStreamer.play()
+			
 		else:
+			is_walking = false
+			$WalkStreamer.stop()
 			worker_anim.play("OutlawWorkerIdle") # plays the idle animation otherwise
 	
 	if worker_anim.current_animation == "OutlawWorkerJog": # when the worker is playing the walk animation the particles are emitted

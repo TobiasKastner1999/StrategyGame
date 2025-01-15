@@ -8,7 +8,7 @@ extends Control
 var temp = null # temporary save streamer
 var sound_volume = -30
 var music_volume = -30
-
+var walk_sounds = [load("res://Sounds/Walk_Ashfolk.mp3"), load("res://Sounds/Walk_NewLights_Heavy.mp3"),load("res://Sounds/Walk_NewLights_Light.mp3")]
 
 
 
@@ -47,7 +47,6 @@ func play_sound_all(sound, node):
 
 func play_walk(sound, node):
 	var new_streamer = load("res://Scenes & Scripts/Prefabs/Sound/streamer.tscn").instantiate() # loades the streamer
-	temp = new_streamer
 	node.add_child(new_streamer) # creates a new streamer
 	#new_streamer.volume = music_volume
 	var loaded_walk = load(sound)

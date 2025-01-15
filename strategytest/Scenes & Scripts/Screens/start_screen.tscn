@@ -25,7 +25,7 @@ offset_top = 449.0
 offset_right = 1076.0
 offset_bottom = 509.0
 theme_override_fonts/font = ExtResource("2_hqvy8")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = ExtResource("2_tb8s0")
 theme_override_styles/hover = ExtResource("2_tb8s0")
 theme_override_styles/pressed = ExtResource("3_jwh1l")
@@ -36,7 +36,7 @@ offset_top = 576.0
 offset_right = 1073.0
 offset_bottom = 636.0
 theme_override_fonts/font = ExtResource("2_hqvy8")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = ExtResource("2_tb8s0")
 theme_override_styles/hover = ExtResource("2_tb8s0")
 theme_override_styles/pressed = ExtResource("3_jwh1l")
@@ -47,7 +47,7 @@ offset_top = 698.0
 offset_right = 1076.0
 offset_bottom = 758.0
 theme_override_fonts/font = ExtResource("2_hqvy8")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = ExtResource("2_tb8s0")
 theme_override_styles/hover = ExtResource("2_tb8s0")
 theme_override_styles/pressed = ExtResource("3_jwh1l")
@@ -58,7 +58,7 @@ offset_top = 809.0
 offset_right = 1073.0
 offset_bottom = 869.0
 theme_override_fonts/font = ExtResource("2_hqvy8")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = ExtResource("2_tb8s0")
 theme_override_styles/hover = ExtResource("2_tb8s0")
 theme_override_styles/pressed = ExtResource("3_jwh1l")
@@ -68,6 +68,13 @@ visible = false
 
 [node name="MenuButton" parent="OptionMenu" index="0"]
 visible = false
+
+[node name="Panel" parent="OptionMenu" index="1"]
+visible = true
+offset_left = 1219.0
+offset_top = 355.0
+offset_right = 1738.0
+offset_bottom = 960.0
 
 [node name="Label" type="Label" parent="."]
 offset_left = 166.0
