@@ -103,6 +103,7 @@ func takeDamage(damage, _attacker):
 	hp -= damage # subtracts the damage taken from the current hp
 	$HealthBarSprite.visible = true
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
+	Sound.under_Attack()
 	if hp <= 0: # removes the hq if it's remaining hp is 0 or less
 		destruction.emit(faction) # notifies that the game has ended
 		queue_free() # then deletes the hq

@@ -10,8 +10,9 @@ var sound_volume = -30
 var music_volume = -30
 var walk_sounds = [load("res://Sounds/Walk_Ashfolk.mp3"), load("res://Sounds/Walk_NewLights_Heavy.mp3"),load("res://Sounds/Walk_NewLights_Light.mp3")]
 
-
-
+func under_Attack():
+	if $AttackSound.playing == false:
+		$AttackSound.play()
 
 func play_sound(sound, node):
 	var new_streamer = load("res://Scenes & Scripts/Prefabs/Sound/streamer.tscn").instantiate() # loades the streamer
