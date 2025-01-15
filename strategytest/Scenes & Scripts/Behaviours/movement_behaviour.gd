@@ -57,7 +57,7 @@ func setProximityDistance():
 			if run_node.getActiveTarget() != null:
 				return run_node.getAttackRange() # proximity is set to the unit's attack range if the unit is moving towards a combat target
 			else:
-				return (run_node.getAttackRange() / 2.0) # proximity is set to half the unit's attack range otherwise
+				return (5.0) # proximity is set to half the unit's attack range otherwise
 		"worker":
 			if run_node.getActiveTarget() == null:
 				return 2.0
