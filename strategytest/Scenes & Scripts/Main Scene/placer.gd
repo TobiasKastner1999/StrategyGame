@@ -74,9 +74,9 @@ func _on_building_button_pressed():
 	clearSelection.emit() # calls to clear the player's current selection
 	if Global.player_faction == 0:
 		$Preview.mesh = AssetLibrary.ol_barracks_mesh
-		$Preview.position = Vector3(-12.838,-0.354, -12.339 )
-		$Preview.scale = Vector3(-0.02, -1.57, -0.03)
-		$Preview.rotation_degrees = Vector3(-45, 0, -180)
+		$Preview.position = Vector3(-10.22,3.945, -6.885 )
+		$Preview.scale = Vector3(5.5, 6.06, 5.5)
+		$Preview.rotation_degrees = Vector3(0, -90, 0)
 	if Global.player_faction == 1:
 		$Preview.mesh = AssetLibrary.nl_barracks_mesh
 		$Preview.position = Vector3(-13.205,0.479, 2.924)
