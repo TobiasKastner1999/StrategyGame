@@ -17,8 +17,8 @@ func _ready():
 func _process(_delta):
 	Global.cam = $CameraBody.position
 	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second()))
-	if Input.is_action_just_pressed("shift"):
-		gameEnd(1)
+	#if Input.is_action_just_pressed("shift"):
+		#gameEnd(0)
 
 # adds a unit to the fog of war system
 func addUnitToFog(unit_node):
