@@ -1,5 +1,6 @@
 extends Node2D
 
+
 func _ready():
 	setTexts() #  sets the starting language
 
@@ -15,6 +16,9 @@ func setTexts():
 func _on_start_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$".")
 	await get_tree().create_timer(0.5).timeout
+	$VideoStreamPlayer.visible = true
+	$VideoStreamPlayer.play()
+	await $VideoStreamPlayer.finished
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Main Scene/main_scene.tscn")# switch scene to main
 
 func _on_options_pressed():
