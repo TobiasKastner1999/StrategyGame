@@ -215,6 +215,10 @@
 	"en": "The forge can be used to upgrade units with Ferronite. It also increases the capacity of collectable resources.",
 	"de": "Über die Schmiede können Kampfeinheiten mit Ferronit verbessert werden. Sie erhöht außerdem die Kapazitäten für alle Ressourcen."
   },
+  "@inspect_text_description_wall": {
+	"en": "The wall is only used for defence and attracts aggro in dangerous situations.",
+	"de": "Die Mauer dient ausschließlich der Verteidigung und zieht in brenzligen Situationen die Aggro auf sich."
+  },
   "@name_building_hq": {
 	"en": "Main Base",
 	"de": "Basis"
@@ -226,6 +230,10 @@
   "@name_building_forge": {
 	"en": "Forge",
 	"de": "Schmiede"
+  },
+  "@name_building_wall": {
+	"en": "Wall",
+	"de": "Mauer"
   },
   "@name_unit_guard": {
 	"en": "Dome Guard",

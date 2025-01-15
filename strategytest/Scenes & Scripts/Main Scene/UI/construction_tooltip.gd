@@ -16,6 +16,9 @@ func updateTooltip(active, type):
 			2:
 				$TextName.text = "[b]" + Global.getText("@name_building_forge") + "[/b]"
 				$TextDescription.text = Global.getText("@inspect_text_description_forge")
+			3:
+				$TextName.text = "[b]" + Global.getText("@name_building_wall") + "[/b]"
+				$TextDescription.text = Global.getText("@inspect_text_description_wall")
 		
 		$TextCost.text = "[b]" + Global.getText("@inspect_text_cost") + ":[/b] " + str(Global.getConstructionCost(type))
 		visible = true
