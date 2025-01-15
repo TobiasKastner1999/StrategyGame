@@ -171,3 +171,11 @@ func _on_housing_button_mouse_entered():
 
 func _on_housing_button_mouse_exited():
 	$ConstructionTooltip.updateTooltip(false, 2)
+
+
+func _on_wall_button_mouse_entered():
+	$ConstructionTooltip.updateTooltip(true, 3)
+
+
+func _on_wall_button_mouse_exited():
+	$ConstructionTooltip.updateTooltip(false, 3)
