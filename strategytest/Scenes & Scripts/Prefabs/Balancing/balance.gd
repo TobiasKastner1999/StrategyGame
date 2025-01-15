@@ -7,13 +7,13 @@ var upgrade1 = false
 
 # stats of the different Unit types
 # basic unit for both factions
-@export var ranged_hp = 10
-@export var ranged_damage = 1
-@export var ranged_range = 30
+@export var ranged_hp = 230
+@export var ranged_damage = 30
+@export var ranged_range = 22
 @export var ranged_attack_speed = 2
-@export var ranged_detection = 20
-@export var ranged_speed = 20
-@export var ranged_cost = 1
+@export var ranged_detection = 25
+@export var ranged_speed = 10
+@export var ranged_cost = 70
 @export var ranged_production = 5
 
 # stats of the upgraded ranged unit
@@ -27,13 +27,13 @@ var upgrade1 = false
 @export var u_ranged_production = 5
 
 # ash sentinel
-@export var scout_hp = 5
-@export var scout_damage = 0.5
-@export var scout_range = 10
-@export var scout_attack_speed = 3
-@export var scout_detection = 40
-@export var scout_speed = 25
-@export var scout_cost = 1
+@export var scout_hp = 450
+@export var scout_damage = 60
+@export var scout_range = 22
+@export var scout_attack_speed = 2
+@export var scout_detection = 25
+@export var scout_speed = 10
+@export var scout_cost = 140
 @export var scout_production = 2.5
 
 # not used
@@ -47,48 +47,51 @@ var upgrade1 = false
 @export var sniper_production = 7.5
 
 # dome titan 
-@export var melee_hp = 15
-@export var melee_damage = 2
-@export var melee_range = 10
+@export var melee_hp = 550
+@export var melee_damage = 80
+@export var melee_range = 20
 @export var melee_attack_speed = 2
-@export var melee_detection = 15
-@export var melee_speed = 20
-@export var melee_cost = 2
+@export var melee_detection = 20
+@export var melee_speed = 8.5
+@export var melee_cost = 180
 @export var melee_production = 5
 
 # worker stats
-@export var worker_hp = 5
-@export var resources_mined = 1
-@export var worker_damage = 1
-@export var worker_range = 5
-@export var worker_attack_speed = 3
-@export var worker_detection = 15
+@export var worker_hp = 100
+@export var worker_damage = 5
+@export var worker_range = 20
+@export var worker_attack_speed = 2
+@export var worker_detection = 20
 @export var worker_speed = 10
-@export var worker_cost = 1
+@export var worker_cost = 30
 @export var worker_production = 10.0
 
-@export var construction_costs = [0, 4, 2, 2] # the construction costs for different types of buildings
+
+
+@export var resources_mined = 100
+@export var construction_costs = [0, 400, 500, 150] # the construction costs for different types of buildings
 @export var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 @export var faction_one_resources = [0, 0] # faction 1's balances in the different resources
-@export var unit_max = [0, 0] # how many units can a faction currently have at max?
-@export var resource = 4 # how many resources can be mined
+@export var unit_max = [4, 4] # how many units can a faction currently have at max?
+@export var resource = 1000 # how many resources can be mined
+@export var faction_zero_resource_limits = [1000, 0] # faction 0's maximum capacity of the different resources
+@export var faction_one_resource_limits = [1000, 0] # faction 1's maximum capacity of the different resources
+@export var upgrade_cost = 4
 
-
-
-@export var building_hp = 8 # health for building
+@export var building_hp = 1100 # health for building
 @export var building_spawn_delay = 1 # delay when units are spawned
 @export var building_unit_capacity = 4
 
-@export var housing_hp = 4
-@export var housing_resource_cap_a = 4
-@export var housing_resource_cap_b = 4
+@export var housing_hp = 800
+@export var housing_resource_cap_a = 500
+@export var housing_resource_cap_b = 500
 
-@export var wall_hp = 4
+@export var wall_hp = 700
 
 
 @export var hq_spawn_delay = 10.0 # how often will new workers spawn?
 @export var worker_limit = 4 # how many workers can spawn at most?
-@export var hq_hp = 20.0 # the hq's maximum hp
+@export var hq_hp = 1900 # the hq's maximum hp
 
 
 @export var cameara_speed = 0.5 # camera sensitivity
@@ -156,3 +159,4 @@ func setValues():
 	Global.unit_dict["worker"]["speed"] = worker_speed
 	Global.unit_dict["worker"]["resource_cost"] = worker_cost
 	Global.unit_dict["worker"]["production_speed"] = worker_production
+	

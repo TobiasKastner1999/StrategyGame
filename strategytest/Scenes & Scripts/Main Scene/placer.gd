@@ -101,4 +101,5 @@ func _on_wall_button_pressed():
 	$Preview.mesh = AssetLibrary.nl_wall_mesh
 	$Preview.scale = Vector3(0.1, 0.1, 0.1)
 	$Preview.position = Vector3(-17.4, 0.168, 6.856)
+	$Preview.rotation_degrees = Vector3(0, 0, 0)
 	#$Preview.mesh.size = Vector3(7,3,14) # sets the previewbox size

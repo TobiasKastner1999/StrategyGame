@@ -15,7 +15,7 @@ var SR
 var interaction_state = 0 # which state of its object interaction is the worker currently in?
 var path = [] # the navigation path the worker is traveling on
 var path_ind = 0 # the index of the worker's current path node
-var resource = [0, 0] # what type of resource is the worker carrying, and how much of it?
+var resource = [0,0] # what type of resource is the worker carrying, and how much of it?
 var nearby_enemies = [] # all enemy targets that are currently within range of the worker
 var known_resources = [] # an array of all resource nodes the worker has discovered
 var current_observers = []
@@ -370,7 +370,6 @@ func getHQ():
 # sets the worker's faction to a given value
 func setFaction(f : int):
 	faction = f
-	
 	if destination == null:
 		destination = global_position # if the worker is first set up, also sets up the movement variable
 

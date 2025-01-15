@@ -57,5 +57,5 @@ func finishAcquisition():
 	run_node.advanceInteractionState()
 	
 	if is_instance_valid(resource):
-		run_node.setResource([resource.getResourceType(), 1]) # adds resource to the node if the resource target still exists
+		run_node.setResource([resource.getResourceType(), Balance.resources_mined]) # adds resource to the node if the resource target still exists
 		resource.takeResource()

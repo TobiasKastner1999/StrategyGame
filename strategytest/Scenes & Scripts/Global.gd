@@ -1,13 +1,9 @@
 extends Node3D
 
-const CONSTRUCTION_COSTS = [0, 4, 2] # the construction costs for different types of buildings
-const UPGRADE_COST = 4 # the resource cost required to upgrade the combat units
 
 var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 
-var faction_zero_resource_limits = [4, 0] # faction 0's maximum capacity of the different resources
-var faction_one_resource_limits = [4, 0] # faction 1's maximum capacity of the different resources
 
 var player_faction : int # the faction the player has chosen for the current game
 var list = {} # dictionary to store units and building to project on the minimap
@@ -15,7 +11,7 @@ var list_counter = 1 # sets the start value of the dictionary to 1 instead of 0
 
 var selected_language : String = "en" # the language currently selected by the player
 
-var unit_max = [4, 4] # how many units can a faction currently have at max?
+
 var unit_count = [0, 0] # how many units does each faction currently have?
 var units_queued = [0, 0] # how many units does each faction currently have in active production?
 var upgrade_queued = [false, false] # are the factions currently researching an upgrade?
@@ -61,23 +57,23 @@ func getResource(faction, type):
 func getMaxResource(faction, type):
 	match faction:
 		0:
-			return faction_zero_resource_limits[type]
+			return Balance.faction_zero_resource_limits[type]
 		1:
-			return faction_one_resource_limits[type]
+			return Balance.faction_one_resource_limits[type]
 
 # modifies a given faction's maximum possible balance of a given resource by a given value
 func updateResourceCapacity(faction, capacity_a, capacity_b):
 	match faction:
 		0:
-			faction_zero_resource_limits[0] += capacity_a
-			faction_zero_resource_limits[1] += capacity_b
+			Balance.faction_zero_resource_limits[0] += capacity_a
+			Balance.faction_zero_resource_limits[1] += capacity_b
 		1:
-			faction_one_resource_limits[0] += capacity_a
-			faction_one_resource_limits[1] += capacity_b
+			Balance.faction_one_resource_limits[0] += capacity_a
+			Balance.faction_one_resource_limits[1] += capacity_b
 
 # returns the combat unit upgrade cost
 func getUpgradeCost():
-	return UPGRADE_COST
+	return Balance.upgrade_cost
 
 # returns whether or not a given faction is currently researching an upgrade
 func getResearchQueue(faction):

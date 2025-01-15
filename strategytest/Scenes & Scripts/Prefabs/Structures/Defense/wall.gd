@@ -54,19 +54,10 @@ func getMaxHP():
 func getDisplayName():
 	return DISPLAY_NAME
 
-
-
-
-
-
-
-
-
 # sets the forge's faction to a given value
 func setFaction(f : int):
 	faction = f # sets the faction
-	Global.updateResourceCapacity(faction, Balance.housing_resource_cap_a, Balance.housing_resource_cap_b)
-	#$HousingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct forge color
+	#Global.updateResourceCapacity(faction, Balance.housing_resource_cap_a, Balance.housing_resource_cap_b)
 	if faction == 0: # when faction is 0
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	elif faction == 1: # when faction is 1

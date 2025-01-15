@@ -26,7 +26,7 @@ func _ready():
 
 # removes a resource from the node
 func takeResource():
-	resource -= 1
+	resource -= Balance.resources_mined
 	# checks if the resource is empty now
 	if resource <= 0:
 		expended.emit(self) # calls to remove references
