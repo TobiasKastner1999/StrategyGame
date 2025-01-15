@@ -354,6 +354,9 @@ func getKnownResources():
 func removeResourceKnowledge(removed_resource):
 	if known_resources.has(removed_resource):
 		known_resources.erase(removed_resource)
+	if target_node == removed_resource:
+		target_node = null
+		destination = global_position
 
 # returns the worker's HQ
 func getHQ():
