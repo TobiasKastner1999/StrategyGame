@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjs47rad6yb1w"]
+
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/Enemy Controller/enemy_controller.gd" id="1_xe6f0"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/Enemy Controller/worker_control_behaviour.gd" id="2_rj6q3"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/Enemy Controller/combat_unit_control_behaviour.gd" id="3_hlndn"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/Enemy Controller/building_control_behaviour.gd" id="4_jx2lf"]
+[ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/Enemy Controller/construction_control_behaviour.gd" id="5_ykhqj"]
+
+[node name="FactionController" type="Node3D"]
+script = ExtResource("1_xe6f0")
+
+[node name="WorkerControlBehaviour" type="Node" parent="."]
+script = ExtResource("2_rj6q3")
+
+[node name="CombatUnitControlBehaviour" type="Node" parent="."]
+script = ExtResource("3_hlndn")
+
+[node name="BuildingControlBehaviour" type="Node" parent="."]
+script = ExtResource("4_jx2lf")
+
+[node name="ConstructionControlBehaviour" type="Node" parent="."]
+script = ExtResource("5_ykhqj")
