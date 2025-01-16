@@ -24,10 +24,11 @@ color = Color(0.2, 0.2, 0.2, 1)
 
 [node name="ControlDescription" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 624.0
-offset_top = 164.0
-offset_right = 1330.0
-offset_bottom = 913.0
+offset_left = 620.0
+offset_top = 5.0
+offset_right = 1326.0
+offset_bottom = 754.0
+theme_override_font_sizes/normal_font_size = 25
 bbcode_enabled = true
 
 [node name="Continue" type="Button" parent="."]
@@ -43,8 +44,10 @@ theme_override_styles/pressed = ExtResource("3_12ery")
 [node name="Mission" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 529.0
-offset_top = 868.0
+offset_top = 759.0
 offset_right = 1392.0
 offset_bottom = 1074.0
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
 
 [connection signal="pressed" from="Continue" to="." method="_on_button_pressed"]
