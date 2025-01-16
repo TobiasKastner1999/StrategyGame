@@ -14,6 +14,9 @@ var worker_storage # the AI's workers
 @onready var resources = $".."/Resources # the resources
 
 func _ready():
+	for behaviour in get_children():
+		behaviour.setControlled(self)
+	
 	# disables the player HQ until the timer in main scene enables the HQ after 0.1 sec
 	# delay is for minimap updating
 	if Global.player_faction == 0:
@@ -23,6 +26,11 @@ func _ready():
 
 # issues AI commands
 func _physics_process(_delta):
+	$WorkerControlBehaviour.runBehaviour()
+	$CombatUnitControlBehaviour.runBehaviour()
+	$BuildingControlBehaviour.runBehaviour()
+	$ConstructionControlBehaviour.runBehaviour()
+	
 	# checks if any workers need new instructions
 	for worker in worker_storage.get_children():
 		if !worker.isActive():
@@ -37,6 +45,42 @@ func _physics_process(_delta):
 		constructBuilding(2) # constructs a new housing if the AI needs more unit room, has enough crystals, and there are empty plots left
 	elif build_locations[controlled_faction].size() > 0 and Global.getResource(controlled_faction, 0) >= Global.getConstructionCost(1):
 		constructBuilding(1) # otherwise constructs a new barracks if the AI has enough crystals and there are construction plots left
+
+# called once the player has selected a faction
+func setUp():
+	if controlled_faction == Global.player_faction:
+		queue_free() # removes the AI controller if it would control the player's faction
+	findHQs() # otherwise, sets up the AI's reference points
+
+# sets up AI's hq reference points
+func findHQs():
+	for node in get_tree().get_nodes_in_group("HQ"):
+		if node.getFaction() == controlled_faction: # finds the HQ belonging to the AI's controlled faction
+			hq = node
+			worker_storage = hq.getWorkers()
+		else:
+			enemy_hq = node # the other hq then must belong to the enemy
+
+func getFaction():
+	return controlled_faction
+
+func getWorkers():
+	return worker_storage
+
+func getUnits():
+	var temp_units = unit_storage.get_children()
+	for unit in temp_units:
+		if unit.getFaction() != controlled_faction:
+			temp_units.erase(unit)
+	return temp_units
+
+func getBuildings():
+	var buildings_temp = get_tree().get_nodes_in_group("Building")
+	for building in buildings_temp:
+		if building.getFaction() != controlled_faction:
+			buildings_temp.erase(building)
+	buildings_temp.append(hq)
+	return buildings_temp
 
 # sets a new destination for a worker
 func setWorkerDestination(worker):
@@ -86,18 +130,3 @@ func constructBuilding(building_type):
 	building.visible = false
 	rebake.emit() # calls the re-bake the navmesh
 	Global.add_to_list(building.position.x, building.position.z, controlled_faction, building.get_instance_id(), null, building)
-
-# called once the player has selected a faction
-func setUp():
-	if controlled_faction == Global.player_faction:
-		queue_free() # removes the AI controller if it would control the player's faction
-	findHQs() # otherwise, sets up the AI's reference points
-
-# sets up AI's hq reference points
-func findHQs():
-	for node in get_tree().get_nodes_in_group("HQ"):
-		if node.getFaction() == controlled_faction: # finds the HQ belonging to the AI's controlled faction
-			hq = node
-			worker_storage = hq.getWorkers()
-		else:
-			enemy_hq = node # the other hq then must belong to the enemy
