@@ -270,10 +270,18 @@
 "@name_faction_OL": {
 "en" :"Join the Ashfolk - the rebels fighting for their freedom! As a human being in a world of destruction, you need adaptability, courage and solidarity. Your goal: overthrow the dome and bring down the system! Fight with the Ashfolk for a better future and join the resistance! " ,
 "de" :"Schließe dich den Ashfolk an - den Rebellen, die für ihre Freiheit kämpfen! Als Mensch in einer Welt der Zerstörung brauchst du Anpassungsfähigkeit, Mut und Solidarität. Dein Ziel: Die Kuppel stürzen und das System zu Fall bringen! Kämpfe mit den Ashfolk für eine bessere Zukunft und schließe dich dem Widerstand an! "
+},
+"@name_controls": {
+"en" :"Join the Ashfolk - the rebels fighting for their freedom! As a human being in a world of destruction, you need adaptability, courage and solidarity. Your goal: overthrow the dome and bring down the system! Fight with the Ashfolk for a better future and join the resistance! " ,
+"de" :"Schließe dich den Ashfolk an - den Rebellen, die für ihre Freiheit kämpfen! Als Mensch in einer Welt der Zerstörung brauchst du Anpassungsfähigkeit, Mut und Solidarität. Dein Ziel: Die Kuppel stürzen und das System zu Fall bringen! Kämpfe mit den Ashfolk für eine bessere Zukunft und schließe dich dem Widerstand an! "
+},
+"@interface_text_controls_done": {
+"en" :"Continue",
+"de" :"Fortfahren"
+},
+"@interface_text_mission_description": {
+"en" :"test",
+"de" :"test"
 }
-
-
-
-
 
 }

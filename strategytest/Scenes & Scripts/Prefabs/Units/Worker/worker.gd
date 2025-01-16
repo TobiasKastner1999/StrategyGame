@@ -46,6 +46,14 @@ var speed : float # the worker's movement speed
 
 var selected = false
 
+
+func _ready():
+	if faction == 0:
+		$OutlawWorker.visible = true
+	elif faction == 1:
+		$NewLightsWorker.visible = true
+
+
 # controls the worker's behaviour
 func _physics_process(delta):
 	Global.healthbar_rotation($HealthBarSprite)

@@ -99,7 +99,7 @@ func _on_wall_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	clearSelection.emit() # calls to clear the player's current selection
 	$Preview.mesh = AssetLibrary.nl_wall_mesh
-	$Preview.scale = Vector3(0.1, 0.1, 0.1)
-	$Preview.position = Vector3(-17.4, 0.168, 6.856)
+	$Preview.scale = Vector3(0.4, 0.4, 0.4)
+	$Preview.position = Vector3(-71.4, 0.168, 22.856)
 	$Preview.rotation_degrees = Vector3(0, 0, 0)
 	#$Preview.mesh.size = Vector3(7,3,14) # sets the previewbox size

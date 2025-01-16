@@ -54,7 +54,8 @@ func gameEnd(faction):
 
 # once the player chooses a faction at the start of the game
 func _on_interface_start_game(faction):
-	get_tree().paused = false # ends the game's freeze state
+	$Controls.visible = true
+	
 	# then toggles the visibility of various UI elements
 	$Options.visible = true
 	

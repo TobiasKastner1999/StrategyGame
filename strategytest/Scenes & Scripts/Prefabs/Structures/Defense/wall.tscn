@@ -66,12 +66,12 @@ viewport_path = NodePath("HealthbarContainer")
 script = ExtResource("1_feoyo")
 
 [node name="WallBody" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -17.4004, 0.168396, 6.85558)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -71.8814, 0.168396, 22.6689)
 mesh = SubResource("ArrayMesh_gnh4j")
 skeleton = NodePath("")
 
 [node name="WallColl" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -17.4004, 0.168396, 6.85558)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -71.8814, 0.168396, 22.6689)
 shape = SubResource("ConcavePolygonShape3D_w18m5")
 
 [node name="HealthbarContainer" type="SubViewport" parent="."]
