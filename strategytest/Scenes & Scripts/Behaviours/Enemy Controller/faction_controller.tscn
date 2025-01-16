@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/Enemy Controller/building_control_behaviour.gd" id="4_jx2lf"]
 [ext_resource type="Script" path="res://Scenes & Scripts/Behaviours/Enemy Controller/construction_control_behaviour.gd" id="5_ykhqj"]
 
-[node name="FactionBlueController" type="Node3D"]
+[node name="FactionController" type="Node3D"]
 script = ExtResource("1_xe6f0")
 
 [node name="WorkerControlBehaviour" type="Node" parent="."]
