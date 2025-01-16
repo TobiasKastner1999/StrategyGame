@@ -31,11 +31,17 @@ var attack_speed : float # the rate at which the unit attacks
 var detection_range : float # the distance at which the unit can detect other units
 var speed : float # the unit's movement speed
 
+
+
+
+
 @onready var hp = max_hp # the unit's current hp, starting as its maximum hp
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the unit's movement
 @onready var unit_anim = $UnitBody/AnimationPlayer
 # controls the unit's movement and other actions
 func _physics_process(delta):
+	#if Input.is_action_just_pressed("shift"):
+		#print()
 	Global.healthbar_rotation($HealthBarSprite)
 	if is_awake:
 		$UnitBehaviours.runBehaviours(self, delta)
@@ -152,7 +158,7 @@ func setUp(type):
 	$HealthbarContainer/HealthBar.value = hp
 	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
 	$RangeArea/RangeColl.shape.radius = detection_range
-	$AttackAnim.mesh = $AttackAnim.mesh.duplicate()
+	#$AttackAnim.mesh = $AttackAnim.mesh.duplicate()
 	
 	await get_tree().physics_frame
 	destination = global_position # sets the initial navigation target to the unit's own position

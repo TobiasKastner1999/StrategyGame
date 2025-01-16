@@ -63,5 +63,18 @@
 	"resource_cost": 1,
 	"production_speed": "20.0",
 	"info_text": null
+  },
+  "worker_robot": {
+	"faction": 2,
+	"name": "@name_unit_worker",
+	"max_hp": "2.0",
+	"damage_value": "0.5",
+	"attack_range": "5.0",
+	"attack_speed": "5.0",
+	"detection_range": "20.0",
+	"speed": "10.0",
+	"resource_cost": 1,
+	"production_speed": "20.0",
+	"info_text": null
   }
 }

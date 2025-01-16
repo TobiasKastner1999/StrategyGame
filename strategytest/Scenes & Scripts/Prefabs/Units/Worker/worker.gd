@@ -42,7 +42,8 @@ var speed : float # the worker's movement speed
 
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the worker's movement
 @onready var hq = $".." # the hq the worker belongs to
-@onready var worker_anim = $OutlawWorker/AnimationPlayer #  animationplayer for the model
+@onready var worker_anim = $OutlawWorker/AnimationPlayer #  animationplayer for the ol model
+@onready var worker_anim_nl = $NewLightsWorker/AnimationPlayer #  animationplayer for the nl model
 
 var selected = false
 
@@ -75,9 +76,13 @@ func animationControl():
 	if !attacking:
 		if interaction_state == 1:
 			worker_anim.play("OutlawWorkerHarvest") # plays the attack animation if the worker is mining
+			worker_anim_nl.play("LightSoldierHarvest")
+			$NewLightsWorker/Armature/Skeleton3D/BoneAttachment3D/NL_Pickaxe.visible = true
+			$NewLightsWorker/Armature/Skeleton3D/BoneAttachment3D/NL_rifle.visible = false
 			
 		elif velocity != Vector3.ZERO:
 			worker_anim.play("OutlawWorkerJog") # plays the walk animation if they are moving
+			worker_anim_nl.play("LightSoldierRun")
 			if is_walking == false and $".".visible == true:
 				is_walking = true
 				if faction == 0:
@@ -90,11 +95,16 @@ func animationControl():
 			is_walking = false
 			$WalkStreamer.stop()
 			worker_anim.play("OutlawWorkerIdle") # plays the idle animation otherwise
+			worker_anim_nl.play("LightSoldierIdle")
 	
 	if worker_anim.current_animation == "OutlawWorkerJog": # when the worker is playing the walk animation the particles are emitted
 		$OutlawWorker/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
 	else: #  when walking stops the particles stop spawning
-		$OutlawWorker/OutlawWorker/Skeleton3D/BoneAttachment3D2.emitting = false # stops particles
+		$OutlawWorker/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false # stops particles
+	if worker_anim_nl.current_animation == "LightSoldierRun": # when the worker is playing the walk animation the particles are emitted
+		$NewLightsWorker/Armature/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
+	else: #  when walking stops the particles stop spawning
+		$NewLightsWorker/Armature/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = false # stops particles
 
 # sets up the worker and its properties when it is spawned
 func setUp(type):
@@ -262,7 +272,8 @@ func startDeathState():
 		remove_from_group(group) # removes the worker from all groups
 	
 	$HealthBarSprite.visible = false
-	$OutlawWorker/AnimationPlayer.play("OutlawWorkerDeath") # starts the death animation
+	worker_anim.play("OutlawWorkerDeath") # starts the death animation
+	worker_anim_nl.play("LightSoldierDeath")
 
 # sets attack target (has no effect for the worker)
 func setAttackTarget(target):
@@ -275,6 +286,7 @@ func startAttackCooldown():
 	can_attack = false # disables the worker's attack
 	$AttackTimer.start(attack_speed) # starts the attack cooldown
 	worker_anim.play("OutlawWorkerAttack") # plays the attack animation if the worker is mining
+	worker_anim_nl.play("LightSoldierAttack")
 
 	attacking = true
 
@@ -380,10 +392,10 @@ func setFaction(f : int):
 	faction = f
 	if destination == null:
 		destination = global_position # if the worker is first set up, also sets up the movement variable
-	#if faction == 0:
-		#$OutlawWorker.visible = true
-	#elif faction == 1:
-		#$NewLightsWorker.visible = true
+	if faction == 0:
+		$OutlawWorker.visible = true
+	elif faction == 1:
+		$NewLightsWorker.visible = true
 
 # returns the worker's current faction
 func getFaction():
@@ -461,4 +473,8 @@ func _on_animation_player_animation_finished(anim_name):
 		"OutlawWorkerAttack":
 			attacking = false # lets the worker play other animations again once their attack animation has run
 		"OutlawWorkerDeath":
+			queue_free() # deletes the worker once their death animation has finished
+		"LightSoldierAttack":
+			attacking = false # lets the worker play other animations again once their attack animation has run
+		"LightSoldierDeath":
 			queue_free() # deletes the worker once their death animation has finished

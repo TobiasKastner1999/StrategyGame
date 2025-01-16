@@ -14,9 +14,9 @@ func getRequiredResource():
 
 func newResourceTarget(node, target):
 	pass
-	var resource_list = controller.getHQ().getResources() # gets all resources that are near the HQ
-	if resource_list.size() == 0:
-		resource_list = controller.getResources().get_children() # if there are no resources left near the HQ, gets all resources on the map instead
+	#var resource_list = controller.getHQ().getResources() # gets all resources that are near the HQ
+	#if resource_list.size() == 0:
+		#resource_list = controller.getResources().get_children() # if there are no resources left near the HQ, gets all resources on the map instead
 	#if resource_list.size() > 0:
 		#for resource in resource_list:
 			#if resource.getFaction(controlled_faction) != controlled_faction:

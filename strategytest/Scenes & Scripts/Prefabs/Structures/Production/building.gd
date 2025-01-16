@@ -64,8 +64,9 @@ func spawnUnit(spawn_point):
 	var new_unit = load("res://Scenes & Scripts/Prefabs/Units/Combat Unit/unit.tscn").instantiate() # instantiates the unit
 	unit_storage.add_child(new_unit) # adds the unit to the correct node
 	new_unit.global_position = spawn_point # moves the unit to the correct spawn position
-	new_unit.setUp(production_type) # sets up the unit's properties based on the building's production type
 	new_unit.setFaction(faction) # assigns the spawned unit to the building's faction
+	new_unit.setUp(production_type) # sets up the unit's properties based on the building's production type
+
 
 	
 	if faction != Global.player_faction:

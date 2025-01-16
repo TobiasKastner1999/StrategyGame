@@ -6,15 +6,15 @@ var upgrade1 = false
 
 
 # stats of the different Unit types
-# basic unit for both factions
-@export var ranged_hp = 230
-@export var ranged_damage = 30
-@export var ranged_range = 22
-@export var ranged_attack_speed = 2
-@export var ranged_detection = 25
-@export var ranged_speed = 10
-@export var ranged_cost = 70
-@export var ranged_production = 5
+# stats for the dome guard
+@export var Guard_hp = 35
+@export var Guard_damage = 3
+@export var Guard_range = 22
+@export var Guard_attack_speed = 2
+@export var Guard_detection = 25
+@export var Guard_speed = 10
+@export var Guard_cost = 50
+@export var Guard_production = 20
 
 # stats of the upgraded ranged unit
 @export var u_ranged_hp = 20
@@ -26,45 +26,55 @@ var upgrade1 = false
 @export var u_ranged_cost = 1
 @export var u_ranged_production = 5
 
+# titan stats
+@export var titan_hp = 50
+@export var titan_damage = 8
+@export var titan_range = 20
+@export var titan_attack_speed = 2
+@export var titan_detection = 20
+@export var titan_speed = 8.5
+@export var titan_cost = 150
+@export var titan_production = 40
+
+# dust runner
+@export var runner_hp = 190
+@export var runner_damage = 40
+@export var runner_range = 20
+@export var runner_attack_speed = 2
+@export var runner_detection = 20
+@export var runner_speed = 12
+@export var runner_cost = 40
+@export var runner_production = 20
+
 # ash sentinel
-@export var scout_hp = 450
-@export var scout_damage = 60
-@export var scout_range = 22
-@export var scout_attack_speed = 2
-@export var scout_detection = 25
-@export var scout_speed = 10
-@export var scout_cost = 140
-@export var scout_production = 2.5
-
-# not used
-@export var sniper_hp = 3
-@export var sniper_damage = 5
-@export var sniper_range = 20
-@export var sniper_attack_speed = 5
-@export var sniper_detection = 30
-@export var sniper_speed = 15
-@export var sniper_cost = 3
-@export var sniper_production = 7.5
-
-# dome titan 
-@export var melee_hp = 550
-@export var melee_damage = 80
-@export var melee_range = 20
-@export var melee_attack_speed = 2
-@export var melee_detection = 20
-@export var melee_speed = 8.5
-@export var melee_cost = 180
-@export var melee_production = 5
+@export var sentinel_hp = 450
+@export var sentinel_damage = 60
+@export var sentinel_range = 22
+@export var sentinel_attack_speed = 2
+@export var sentinel_detection = 25
+@export var sentinel_speed = 10
+@export var sentinel_cost = 140
+@export var sentinel_production = 30
 
 # worker stats
-@export var worker_hp = 100
-@export var worker_damage = 5
+@export var worker_hp = 80
+@export var worker_damage = 10
 @export var worker_range = 20
 @export var worker_attack_speed = 2
 @export var worker_detection = 20
 @export var worker_speed = 10
-@export var worker_cost = 30
+@export var worker_cost = 25
 @export var worker_production = 10.0
+
+# stats for the New lights worker
+@export var worker_robot_hp = 20
+@export var worker_robot_damage = 5
+@export var worker_robot_range = 20
+@export var worker_robot_attack_speed = 2
+@export var worker_robot_detection = 20
+@export var worker_robot_speed = 10
+@export var worker_robot_cost = 30
+@export var worker_robot_production = 10.0
 
 
 
@@ -115,41 +125,41 @@ func _ready():
 
 # sets the values of the dictionary to be the same as balance editor
 func setValues():
-	Global.unit_dict["0"]["max_hp"] = ranged_hp
-	Global.unit_dict["0"]["damage_value"] = ranged_damage
-	Global.unit_dict["0"]["attack_range"] = ranged_range
-	Global.unit_dict["0"]["attack_speed"] = ranged_attack_speed
-	Global.unit_dict["0"]["detection_range"] = ranged_detection
-	Global.unit_dict["0"]["speed"] = ranged_speed
-	Global.unit_dict["0"]["resource_cost"] = ranged_cost
-	Global.unit_dict["0"]["production_speed"] = ranged_production
+	Global.unit_dict["0"]["max_hp"] = Guard_hp
+	Global.unit_dict["0"]["damage_value"] =  Guard_damage
+	Global.unit_dict["0"]["attack_range"] =  Guard_range
+	Global.unit_dict["0"]["attack_speed"] =  Guard_attack_speed
+	Global.unit_dict["0"]["detection_range"] = Guard_detection
+	Global.unit_dict["0"]["speed"] =  Guard_speed
+	Global.unit_dict["0"]["resource_cost"] =  Guard_cost
+	Global.unit_dict["0"]["production_speed"] =  Guard_production
 	
-	Global.unit_dict["1"]["max_hp"] = scout_hp
-	Global.unit_dict["1"]["damage_value"] = scout_damage
-	Global.unit_dict["1"]["attack_range"] = scout_range
-	Global.unit_dict["1"]["attack_speed"] = scout_attack_speed
-	Global.unit_dict["1"]["detection_range"] = scout_detection
-	Global.unit_dict["1"]["speed"] = scout_speed
-	Global.unit_dict["1"]["resource_cost"] = scout_cost
-	Global.unit_dict["1"]["production_speed"] = scout_production
+	Global.unit_dict["1"]["max_hp"] = titan_hp
+	Global.unit_dict["1"]["damage_value"] = titan_damage
+	Global.unit_dict["1"]["attack_range"] = titan_range
+	Global.unit_dict["1"]["attack_speed"] = titan_attack_speed
+	Global.unit_dict["1"]["detection_range"] = titan_detection
+	Global.unit_dict["1"]["speed"] = titan_speed
+	Global.unit_dict["1"]["resource_cost"] = titan_cost
+	Global.unit_dict["1"]["production_speed"] = titan_production
 	
-	Global.unit_dict["2"]["max_hp"] = sniper_hp
-	Global.unit_dict["2"]["damage_value"] = sniper_damage
-	Global.unit_dict["2"]["attack_range"] = sniper_range
-	Global.unit_dict["2"]["attack_speed"] = sniper_attack_speed
-	Global.unit_dict["2"]["detection_range"] = sniper_detection
-	Global.unit_dict["2"]["speed"] = sniper_speed
-	Global.unit_dict["2"]["resource_cost"] = sniper_cost
-	Global.unit_dict["2"]["production_speed"] = sniper_production
+	Global.unit_dict["2"]["max_hp"] = runner_hp
+	Global.unit_dict["2"]["damage_value"] = runner_damage
+	Global.unit_dict["2"]["attack_range"] = runner_range
+	Global.unit_dict["2"]["attack_speed"] = runner_attack_speed
+	Global.unit_dict["2"]["detection_range"] = runner_detection
+	Global.unit_dict["2"]["speed"] = runner_speed
+	Global.unit_dict["2"]["resource_cost"] = runner_cost
+	Global.unit_dict["2"]["production_speed"] = runner_production
 	
-	Global.unit_dict["3"]["max_hp"] = melee_hp
-	Global.unit_dict["3"]["damage_value"] = melee_damage
-	Global.unit_dict["3"]["attack_range"] = melee_range
-	Global.unit_dict["3"]["attack_speed"] = melee_attack_speed
-	Global.unit_dict["3"]["detection_range"] = melee_detection
-	Global.unit_dict["3"]["speed"] = melee_speed
-	Global.unit_dict["3"]["resource_cost"] = melee_cost
-	Global.unit_dict["3"]["production_speed"] = melee_production
+	Global.unit_dict["3"]["max_hp"] = sentinel_hp
+	Global.unit_dict["3"]["damage_value"] = sentinel_damage
+	Global.unit_dict["3"]["attack_range"] = sentinel_range
+	Global.unit_dict["3"]["attack_speed"] = sentinel_attack_speed
+	Global.unit_dict["3"]["detection_range"] = sentinel_detection
+	Global.unit_dict["3"]["speed"] = sentinel_speed
+	Global.unit_dict["3"]["resource_cost"] = sentinel_cost
+	Global.unit_dict["3"]["production_speed"] = sentinel_production
 	
 	Global.unit_dict["worker"]["max_hp"] = worker_hp
 	Global.unit_dict["worker"]["damage_value"] = worker_damage
@@ -160,3 +170,12 @@ func setValues():
 	Global.unit_dict["worker"]["resource_cost"] = worker_cost
 	Global.unit_dict["worker"]["production_speed"] = worker_production
 	
+	Global.unit_dict["worker_robot"]["max_hp"] = worker_robot_hp
+	Global.unit_dict["worker_robot"]["damage_value"] = worker_robot_damage
+	Global.unit_dict["worker_robot"]["attack_range"] = worker_robot_range
+	Global.unit_dict["worker_robot"]["attack_speed"] = worker_robot_attack_speed
+	Global.unit_dict["worker_robot"]["detection_range"] = worker_robot_detection
+	Global.unit_dict["worker_robot"]["speed"] = worker_robot_speed
+	Global.unit_dict["worker_robot"]["resource_cost"] = worker_robot_cost
+	Global.unit_dict["worker_robot"]["production_speed"] = worker_robot_production
+
