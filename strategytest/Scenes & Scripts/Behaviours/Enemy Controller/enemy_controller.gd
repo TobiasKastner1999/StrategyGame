@@ -82,6 +82,9 @@ func getBuildings():
 	buildings_temp.append(hq)
 	return buildings_temp
 
+func getResources():
+	return resources
+
 # sets a new destination for a worker
 func setWorkerDestination(worker):
 	var resource_list = hq.getResources() # gets all resources that are near the HQ
