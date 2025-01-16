@@ -47,12 +47,6 @@ var speed : float # the worker's movement speed
 var selected = false
 
 
-func _ready():
-	if faction == 0:
-		$OutlawWorker.visible = true
-	elif faction == 1:
-		$NewLightsWorker.visible = true
-
 
 # controls the worker's behaviour
 func _physics_process(delta):
@@ -71,12 +65,17 @@ func worker_rotation():
 	$OutlawWorker/OutlawWorker.look_at(nav) # looks at the next position
 	$OutlawWorker/OutlawWorker.rotation.x = rad_to_deg(90) # locks the rotation of x
 	$OutlawWorker/OutlawWorker.rotate_object_local(Vector3.UP, PI) # flips the model 
+	$NewLightsWorker/Armature.look_at(nav) # looks at the next position
+	$NewLightsWorker/Armature.rotation.x = rad_to_deg(90) # locks the rotation of x
+	$NewLightsWorker/Armature.rotate_object_local(Vector3.UP, PI) # flips the model 
+
 
 # controls the worker's animation
 func animationControl():
 	if !attacking:
 		if interaction_state == 1:
 			worker_anim.play("OutlawWorkerHarvest") # plays the attack animation if the worker is mining
+			
 		elif velocity != Vector3.ZERO:
 			worker_anim.play("OutlawWorkerJog") # plays the walk animation if they are moving
 			if is_walking == false and $".".visible == true:
@@ -99,6 +98,7 @@ func animationControl():
 
 # sets up the worker and its properties when it is spawned
 func setUp(type):
+
 	# sets the various properties from the given values for the worker's type
 	unit_type = type
 	max_hp = Global.unit_dict[str(type)]["max_hp"]
@@ -380,6 +380,10 @@ func setFaction(f : int):
 	faction = f
 	if destination == null:
 		destination = global_position # if the worker is first set up, also sets up the movement variable
+	#if faction == 0:
+		#$OutlawWorker.visible = true
+	#elif faction == 1:
+		#$NewLightsWorker.visible = true
 
 # returns the worker's current faction
 func getFaction():
