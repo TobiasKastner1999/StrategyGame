@@ -1,239 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgnn6igsps6mn"]
+[gd_scene load_steps=8 format=3 uid="uid://cgnn6igsps6mn"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/faction_selection.gd" id="1_kdl8j"]
 [ext_resource type="FontFile" uid="uid://dtjgc0seiabku" path="res://Assets/UI/Fonts/Bruce Forever.ttf" id="2_htbxe"]
-[ext_resource type="Texture2D" uid="uid://oc2igugdnjbn" path="res://Assets/UI/Fraktionsbild Ashfolk.webp" id="3_it2by"]
-[ext_resource type="Texture2D" uid="uid://c0dac76hfe2pe" path="res://Assets/UI/Fraktionsbild NewLights.webp" id="4_kplml"]
+[ext_resource type="Texture2D" uid="uid://c2iblhvas3bna" path="res://Assets/UI/OL_SelectScreen.png" id="3_27w16"]
+[ext_resource type="Texture2D" uid="uid://l4x3h3xr10d3" path="res://Assets/UI/NL_SelectScreen.png" id="4_tb5cu"]
 [ext_resource type="Texture2D" uid="uid://dm1005tfglbav" path="res://Assets/UI/NL_Logo_gold.png" id="5_cuto7"]
 [ext_resource type="Texture2D" uid="uid://wlrwbet4b0wf" path="res://Assets/UI/OL_Logo.png" id="6_l18lv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_o7w5b"]
 line_spacing = 10.0
-font_size = 30
-
-[sub_resource type="Animation" id="Animation_5sgj0"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BlueFaction:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1, -1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BlueFaction:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1412, 1085)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("RedFaction:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(958, 1077)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RedFaction:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(961, 2)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BlueFaction:top_level")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Label:visibility_layer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-
-[sub_resource type="Animation" id="Animation_n7c63"]
-resource_name = "hover_NL"
-length = 0.3
-step = 0.005
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RedFaction:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(958, 1077), Vector2(1427, 1077)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("RedFaction:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(961, 2), Vector2(492, 2)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BlueFaction:size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(955, 1085), Vector2(490, 1085)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BlueFaction:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-1, -1), Vector2(-1, -1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Label:visibility_layer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.01),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_vyhxc"]
-resource_name = "hover_OL"
-length = 0.3
-step = 0.005
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BlueFaction:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-1, -1), Vector2(-1, -1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BlueFaction:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(955, 1085), Vector2(1228, 1085)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BlueFaction:top_level")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("RedFaction:size")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(958, 1077), Vector2(691, 1077)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("RedFaction:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(961, 2), Vector2(1228, 2)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Label:visibility_layer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.01),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_er7d2"]
-_data = {
-"RESET": SubResource("Animation_5sgj0"),
-"hover_NL": SubResource("Animation_n7c63"),
-"hover_OL": SubResource("Animation_vyhxc")
-}
+font_size = 50
 
 [node name="FactionSelection" type="Control"]
 process_mode = 3
@@ -263,57 +39,47 @@ autowrap_mode = 2
 
 [node name="BlueFaction" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 1411.0
-offset_bottom = 1084.0
-texture_normal = ExtResource("3_it2by")
+offset_left = 975.0
+offset_top = 2.0
+offset_right = 1923.0
+offset_bottom = 1087.0
+texture_normal = ExtResource("3_27w16")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="RedFaction" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 961.0
+offset_left = 6.0
 offset_top = 2.0
-offset_right = 1919.0
+offset_right = 972.0
 offset_bottom = 1079.0
-texture_normal = ExtResource("4_kplml")
+texture_normal = ExtResource("4_tb5cu")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="FactionAnimatorOL" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_er7d2")
-}
-
-[node name="FactionAnimatorNL" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_er7d2")
-}
-
 [node name="FactionDescriptionOL" type="RichTextLabel" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 195.0
-offset_top = 835.0
-offset_right = 702.0
-offset_bottom = 1046.0
+offset_left = 996.0
+offset_top = 587.0
+offset_right = 1503.0
+offset_bottom = 1054.0
+theme_override_font_sizes/normal_font_size = 25
 
 [node name="FactionDescriptionNL" type="RichTextLabel" parent="."]
-visible = false
 layout_mode = 0
-offset_left = 1183.0
-offset_top = 830.0
-offset_right = 1690.0
-offset_bottom = 1041.0
+offset_left = 449.0
+offset_top = 595.0
+offset_right = 956.0
+offset_bottom = 1062.0
+theme_override_font_sizes/normal_font_size = 25
 
 [node name="NlLogoGold" type="Sprite2D" parent="."]
-position = Vector2(1724, 112)
+position = Vector2(194, 110)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_cuto7")
 
 [node name="OlLogo" type="Sprite2D" parent="."]
-position = Vector2(194, 109)
+position = Vector2(1726, 112)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("6_l18lv")
 

@@ -76,6 +76,7 @@ func startDeathState():
 		remove_from_group(group) # removes the worker from all groups
 	$HealthBarSprite.visible = false
 	$UnitBody/AnimationPlayer.play("OutlawFighterDeath") # starts the death animation
+	$NL_Heavy/AnimationPlayer.play("HeavyDefenseUnitDeath")
 
 # calls to access the inspect menu for this unit
 func accessUnit():
@@ -110,6 +111,7 @@ func startAttackCooldown():
 	can_attack = false # disables the unit's attack
 	$AttackCooldown.start(attack_speed) # starts the attack cooldown
 	unit_anim.play("OutlawFighterRifleFire")
+	$NL_Heavy/AnimationPlayer.play("HeavyDefenseUnitAttack")
 	match unit_type:
 		0:
 			if faction == 0:
@@ -147,13 +149,16 @@ func setUp(type):
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_yellow.tres"))
 		1:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
-			$OutlawGunVehicleBaked.visible = true
+			$NL_Heavy.visible = true
 			$UnitBody.visible = false
 		2:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
 		3:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_orange.tres"))
-	
+			$OutlawGunVehicleBaked.visible = true
+			$UnitBody.visible = false
+
+
 	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
@@ -337,12 +342,15 @@ func unit_rotation():
 	$OutlawGunVehicleBaked.look_at(nav) # looks at the next position
 	$OutlawGunVehicleBaked.rotation.x = rad_to_deg(0) # locks the rotation of x
 	$OutlawGunVehicleBaked.rotate_object_local(Vector3.UP, PI) # flips the model 
-
+	$NL_Heavy.look_at(nav) # looks at the next position
+	$NL_Heavy.rotation.x = rad_to_deg(0) # locks the rotation of x
+	$NL_Heavy.rotate_object_local(Vector3.UP, PI) # flips the model 
 # plays the correct animation based on the unit's state
 func animationControl():
 	if !attacking:
 		if velocity != Vector3.ZERO:
 			unit_anim.play("OutlawFighterRun") # plays the walk animation if they are moving
+			$NL_Heavy/AnimationPlayer.play("HeavyDefenseUnitWalk")
 			if is_walking == false and $".".visible == true: # checks when the unit is moving and visible on the map
 				is_walking = true
 				if faction == 1: # sets the walk sound based on faction and type
@@ -362,6 +370,7 @@ func animationControl():
 			is_walking = false # resets check
 			$WalkStreamer.stop() # stops the streamer
 			unit_anim.play("OutlawFighterIdle") # plays the idle animation otherwise
+			$NL_Heavy/AnimationPlayer.play("HeavyDefenseUnitIdle")
 
 	if unit_anim.current_animation == "OutlawFighterRun": # when the worker is playing the walk animation the particles are emitted
 		$UnitBody/Armature/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
@@ -396,4 +405,8 @@ func _on_animation_player_animation_finished(anim_name):
 		"OutlawFighterRifleFire":
 			attacking = false # lets the unit play other animations again once their attack animation has run
 		"OutlawFighterDeath":
+			queue_free() # deletes the unit once their death animation has finished
+		"HeavyDefenseUnitAttack":
+			attacking = false # lets the unit play other animations again once their attack animation has run
+		"HeavyDefenseUnitDeath":
 			queue_free() # deletes the unit once their death animation has finished

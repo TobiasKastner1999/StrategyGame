@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ut6cde7ie7n"]
+[gd_scene load_steps=7 format=3 uid="uid://ut6cde7ie7n"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/end_screen.gd" id="1_d6x33"]
 [ext_resource type="Texture2D" uid="uid://d2bytqu8fom6r" path="res://Assets/UI/OL_VictoryScreen.png" id="2_2oxbw"]
 [ext_resource type="FontFile" uid="uid://dtjgc0seiabku" path="res://Assets/UI/Fonts/Bruce Forever.ttf" id="2_kwaly"]
 [ext_resource type="StyleBox" uid="uid://bychxe1rrbgvf" path="res://Assets/UI/button_normal_style_box.tres" id="2_vqowr"]
 [ext_resource type="StyleBox" uid="uid://txvbonrq1j7c" path="res://Assets/UI/button_pressed_style_box.tres" id="3_hgbg6"]
+[ext_resource type="Texture2D" uid="uid://dctyemnicg6gs" path="res://Assets/UI/NL_VictoryScreen.png" id="6_5dgfo"]
 
 [node name="EndScreen" type="Control"]
 process_mode = 3
@@ -16,10 +17,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_d6x33")
 
-[node name="BackgroundSprite" type="Sprite2D" parent="."]
+[node name="DomeFallen" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(959, 542)
 scale = Vector2(0.746875, 0.751389)
 texture = ExtResource("2_2oxbw")
+
+[node name="RebelsCrushed" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(958.5, 541)
+scale = Vector2(0.748047, 0.75)
+texture = ExtResource("6_5dgfo")
 
 [node name="Background" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.380392)

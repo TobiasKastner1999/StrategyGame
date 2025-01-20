@@ -11,6 +11,14 @@ func setTexts():
 func setText():
 	$GameOverText.text = text # sets text to given value
 
+func setScreen(screen):
+	match screen:
+		0:
+			$DomeFallen.visible = true
+			$RebelsCrushed.visible = false
+		1:
+			$RebelsCrushed.visible = true
+			$DomeFallen.visible = false
 
 func _on_button_pressed(): # ends the game
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
