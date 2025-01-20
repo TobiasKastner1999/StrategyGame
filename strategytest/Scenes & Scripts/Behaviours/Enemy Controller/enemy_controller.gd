@@ -61,6 +61,12 @@ func findHQs():
 		else:
 			enemy_hq = node # the other hq then must belong to the enemy
 
+func getHQ():
+	return hq
+
+func getEnemyHQ():
+	return enemy_hq
+
 func getFaction():
 	return controlled_faction
 
@@ -84,6 +90,9 @@ func getBuildings():
 
 func getResources():
 	return resources
+
+func getRequiredResource():
+	return 1
 
 # sets a new destination for a worker
 func setWorkerDestination(worker):
