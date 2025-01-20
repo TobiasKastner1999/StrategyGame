@@ -20,7 +20,7 @@ func newResourceTarget(node, target):
 		for resource in resource_list:
 			if resource.getFaction(controlled_faction) != controlled_faction or resource.getResourceType() != target:
 				resource_list.erase(resource) # removes all resources the controlled faction cannot use from the list
-		if resource_list.size() != 0:
+		if resource_list.size() > 0:
 			node.setTarget(resource_list[randi_range(0, resource_list.size() - 1)]) # sends the worker to a random resource from the list
 
 func setControlled(node):
