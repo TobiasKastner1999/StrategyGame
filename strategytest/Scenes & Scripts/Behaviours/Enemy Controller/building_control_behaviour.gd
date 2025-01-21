@@ -15,7 +15,7 @@ func runBehaviour():
 				controlForge(building)
 
 func controlHQ(hq):
-	pass
+	return
 
 func controlBarracks(barracks):
 	pass

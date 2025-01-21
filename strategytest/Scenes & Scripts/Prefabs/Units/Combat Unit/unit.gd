@@ -172,7 +172,7 @@ func setUp(type):
 
 
 func update_stats(): # function to upgrade units
-	if Balance.upgrade1 == true and faction == Global.player_faction: # if global var is active
+	if Balance.upgrade1[faction] == true: # if global var is active
 		setUp(0) # runs the setUp function again
 		max_hp = Balance.u_ranged_hp # switches the stats to upgraded ones
 		damage_value = Balance.u_ranged_damage # switches the stats to upgraded ones

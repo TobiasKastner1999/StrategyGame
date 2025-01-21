@@ -150,5 +150,5 @@ func _on_research_timer_timeout():
 	researching = false
 	Global.setResearchQueue(faction, false)
 	$ProgressSprite.visible = false
-	Balance.upgrade1 = true
+	Balance.upgrade1[faction] = true
 	interface_update.emit()

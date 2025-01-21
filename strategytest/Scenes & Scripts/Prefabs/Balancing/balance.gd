@@ -2,7 +2,7 @@ extends Control
 
 const FILE = "res://Data/test.json"
 
-var upgrade1 = false
+var upgrade1 = [false, false]
 
 
 # stats of the different Unit types

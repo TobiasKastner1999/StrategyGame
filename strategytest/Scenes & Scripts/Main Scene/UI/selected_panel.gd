@@ -102,7 +102,7 @@ func setUpSelectedInterface():
 				if current_selected.inResearch():
 					$ButtonAbort.visible = true
 					$ButtonUpgrade.visible = false
-				elif !Balance.upgrade1:
+				elif !Balance.upgrade1[Global.player_faction]:
 					$ButtonUpgrade.visible = true # displays the upgrade button if the upgrade has not yet been purchased
 					$ButtonAbort.visible = false
 			
@@ -152,7 +152,7 @@ func updateSelectedInterface():
 			if current_selected.inResearch():
 				$ButtonAbort.visible = true
 				$ButtonUpgrade.visible = false
-			elif !Balance.upgrade1:
+			elif !Balance.upgrade1[Global.player_faction]:
 				$ButtonUpgrade.visible = true # displays the upgrade button if the upgrade has not yet been purchased
 				$ButtonAbort.visible = false
 			else:
