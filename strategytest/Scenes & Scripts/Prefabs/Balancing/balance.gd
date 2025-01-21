@@ -7,14 +7,14 @@ var upgrade1 = [false, false]
 
 # stats of the different Unit types
 # stats for the dome guard
-@export var Guard_hp = 35
-@export var Guard_damage = 3
-@export var Guard_range = 22
+@export var Guard_hp = 70
+@export var Guard_damage = 5
+@export var Guard_range = 15
 @export var Guard_attack_speed = 2
-@export var Guard_detection = 25
-@export var Guard_speed = 10
-@export var Guard_cost = 50
-@export var Guard_production = 20
+@export var Guard_detection = 20
+@export var Guard_speed = 15
+@export var Guard_cost = 80
+@export var Guard_production = 30
 
 # stats of the upgraded ranged unit
 @export var u_ranged_hp = 20
@@ -27,39 +27,39 @@ var upgrade1 = [false, false]
 @export var u_ranged_production = 5
 
 # titan stats
-@export var titan_hp = 50
+@export var titan_hp = 150
 @export var titan_damage = 8
-@export var titan_range = 20
-@export var titan_attack_speed = 5.4
-@export var titan_detection = 20
+@export var titan_range = 5
+@export var titan_attack_speed = 4
+@export var titan_detection = 15
 @export var titan_speed = 8.5
 @export var titan_cost = 150
 @export var titan_production = 40
 
 # dust runner
-@export var runner_hp = 190
-@export var runner_damage = 40
+@export var runner_hp = 80
+@export var runner_damage = 6
 @export var runner_range = 20
 @export var runner_attack_speed = 2
 @export var runner_detection = 20
-@export var runner_speed = 12
+@export var runner_speed = 15
 @export var runner_cost = 40
 @export var runner_production = 20
 
 # ash sentinel
-@export var sentinel_hp = 450
-@export var sentinel_damage = 60
-@export var sentinel_range = 22
+@export var sentinel_hp = 120
+@export var sentinel_damage = 9
+@export var sentinel_range = 20
 @export var sentinel_attack_speed = 2
-@export var sentinel_detection = 25
-@export var sentinel_speed = 10
-@export var sentinel_cost = 140
+@export var sentinel_detection = 20
+@export var sentinel_speed = 20
+@export var sentinel_cost = 130
 @export var sentinel_production = 30
 
 # worker stats
-@export var worker_hp = 80
-@export var worker_damage = 10
-@export var worker_range = 20
+@export var worker_hp = 50
+@export var worker_damage = 5
+@export var worker_range = 5
 @export var worker_attack_speed = 2
 @export var worker_detection = 20
 @export var worker_speed = 10
@@ -67,8 +67,8 @@ var upgrade1 = [false, false]
 @export var worker_production = 10.0
 
 # stats for the New lights worker
-@export var worker_robot_hp = 20
-@export var worker_robot_damage = 5
+@export var worker_robot_hp = 50
+@export var worker_robot_damage = 4
 @export var worker_robot_range = 20
 @export var worker_robot_attack_speed = 2
 @export var worker_robot_detection = 20
@@ -84,24 +84,24 @@ var upgrade1 = [false, false]
 @export var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 @export var unit_max = [4, 4] # how many units can a faction currently have at max?
 @export var resource = 1000 # how many resources can be mined
-@export var faction_zero_resource_limits = [1000, 0] # faction 0's maximum capacity of the different resources
-@export var faction_one_resource_limits = [1000, 0] # faction 1's maximum capacity of the different resources
-@export var upgrade_cost = 4
+@export var faction_zero_resource_limits = [0, 0] # faction 0's maximum capacity of the different resources
+@export var faction_one_resource_limits = [0, 0] # faction 1's maximum capacity of the different resources
+@export var upgrade_cost = 400
 
-@export var building_hp = 1100 # health for building
+@export var building_hp = 110 # health for building
 @export var building_spawn_delay = 1 # delay when units are spawned
 @export var building_unit_capacity = 4
 
-@export var housing_hp = 800
+@export var housing_hp = 130
 @export var housing_resource_cap_a = 500
 @export var housing_resource_cap_b = 500
 
-@export var wall_hp = 700
+@export var wall_hp = 100
 
 
 @export var hq_spawn_delay = 10.0 # how often will new workers spawn?
 @export var worker_limit = 4 # how many workers can spawn at most?
-@export var hq_hp = 1900 # the hq's maximum hp
+@export var hq_hp = 220 # the hq's maximum hp
 
 
 @export var cameara_speed = 0.5 # camera sensitivity
