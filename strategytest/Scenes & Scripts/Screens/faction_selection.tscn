@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/faction_selection.gd" id="1_kdl8j"]
 [ext_resource type="FontFile" uid="uid://dtjgc0seiabku" path="res://Assets/UI/Fonts/Bruce Forever.ttf" id="2_htbxe"]
-[ext_resource type="Texture2D" uid="uid://c2iblhvas3bna" path="res://Assets/UI/OL_SelectScreen.png" id="3_27w16"]
-[ext_resource type="Texture2D" uid="uid://l4x3h3xr10d3" path="res://Assets/UI/NL_SelectScreen.png" id="4_tb5cu"]
+[ext_resource type="Texture2D" uid="uid://dbc83qswagwde" path="res://Assets/UI/Fraktionsauswahl Bild rechts.png" id="3_uejlw"]
+[ext_resource type="Texture2D" uid="uid://dblmamufe50gb" path="res://Assets/UI/Fraktionsauswahl Bild links.png" id="4_5bqdm"]
 [ext_resource type="Texture2D" uid="uid://dm1005tfglbav" path="res://Assets/UI/NL_Logo_gold.png" id="5_cuto7"]
 [ext_resource type="Texture2D" uid="uid://wlrwbet4b0wf" path="res://Assets/UI/OL_Logo.png" id="6_l18lv"]
 
@@ -42,8 +42,8 @@ layout_mode = 0
 offset_left = 975.0
 offset_top = 2.0
 offset_right = 1923.0
-offset_bottom = 1087.0
-texture_normal = ExtResource("3_27w16")
+offset_bottom = 1081.0
+texture_normal = ExtResource("3_uejlw")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -53,7 +53,7 @@ offset_left = 6.0
 offset_top = 2.0
 offset_right = 972.0
 offset_bottom = 1079.0
-texture_normal = ExtResource("4_tb5cu")
+texture_normal = ExtResource("4_5bqdm")
 ignore_texture_size = true
 stretch_mode = 0
 
