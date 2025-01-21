@@ -74,12 +74,12 @@ func _on_building_button_pressed():
 	clearSelection.emit() # calls to clear the player's current selection
 	if Global.player_faction == 0:
 		$Preview.mesh = AssetLibrary.ol_barracks_mesh
-		$Preview.position = Vector3(-10.22,3.945, -6.885 )
+		$Preview.position = Vector3(0,3.945, 0 )
 		$Preview.scale = Vector3(5.5, 6.06, 5.5)
 		$Preview.rotation_degrees = Vector3(0, -90, 0)
 	if Global.player_faction == 1:
 		$Preview.mesh = AssetLibrary.nl_barracks_mesh
-		$Preview.position = Vector3(-13.205,0.479, 2.924)
+		$Preview.position = Vector3(0,0.479, 0)
 		$Preview.scale = Vector3(-4.03, -4.89, -4.03)
 		$Preview.rotation_degrees = Vector3(0, -87.9, -90)
 
@@ -91,7 +91,7 @@ func _on_housing_button_pressed():
 	clearSelection.emit() # calls to clear the player's current selection
 	$Preview.mesh = AssetLibrary.nl_housing_mesh
 	$Preview.scale = Vector3(0.2, 0.3, 0.208)
-	$Preview.position = Vector3(4.64,0, -1.133)
+	$Preview.position = Vector3(0,0,0)
 	$Preview.rotation_degrees = Vector3(0, 0, 0)
 	#$Preview.mesh.size = Vector3(15,7,12) # sets the previewbox size
 
