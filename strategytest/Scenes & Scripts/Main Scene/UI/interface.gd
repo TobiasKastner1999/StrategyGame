@@ -152,11 +152,11 @@ func gameEnd(faction):
 			$EndScreen.setScreen(0)
 	else:
 		if Global.player_faction == 1:
-			$EndScreen.text = Global.getText("@game_over_win_OL") # sets end screen text if the player won the game
-			$EndScreen.setScreen(0)
-		else:
 			$EndScreen.text = Global.getText("@game_over_win_NL") # sets end screen text if the player won the game
 			$EndScreen.setScreen(1)
+		else:
+			$EndScreen.text = Global.getText("@game_over_win_OL") # sets end screen text if the player won the game
+			$EndScreen.setScreen(0)
 	$EndScreen.visible = true # enables end screen visibility
 	$EndScreen.setText()
 
