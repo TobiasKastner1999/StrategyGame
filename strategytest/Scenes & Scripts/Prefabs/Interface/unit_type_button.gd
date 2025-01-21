@@ -21,9 +21,12 @@ func _ready():
 # sets the button's unit type
 func assignType(type):
 	unit_type = int(type)
+	
 	#text = Global.getText(Global.unit_dict[type]["name"]) # also displays the correct name of the unit
 	texture_normal = Global.unit_dict[type]["texture_normal"]
 	texture_pressed = Global.unit_dict[type]["texture_pressed"]
+	if unit_type == 0:
+		queue_free()
 
 # returns the unit type represented by this button
 func getType():

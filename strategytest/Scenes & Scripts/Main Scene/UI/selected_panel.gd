@@ -174,6 +174,7 @@ func _on_button_toggle_pressed():
 # calls to update the building's production type when one of the buttons is pressed
 func _on_type_button_pressed(type):
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
+	current_selected.toggleStatus_on()
 	current_selected.setProductionType(type)
 	updateSelectedInterface() # also updates the dynamic interface
 

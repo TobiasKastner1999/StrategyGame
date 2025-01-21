@@ -76,7 +76,7 @@ func startDeathState():
 		remove_from_group(group) # removes the worker from all groups
 	$HealthBarSprite.visible = false
 	$UnitBody/AnimationPlayer.play("OutlawFighterDeath") # starts the death animation
-	$NL_Heavy/AnimationPlayer.play("HeavyDefenseUnitDeath")
+	$NL_Heavy/HeavyAnim.play("HeavyDefenseUnitDeath")
 
 # calls to access the inspect menu for this unit
 func accessUnit():
@@ -109,21 +109,22 @@ func getInspectInfo(info):
 # attack the unit's current target
 func startAttackCooldown():
 	can_attack = false # disables the unit's attack
+	attacking = true
 	$AttackCooldown.start(attack_speed) # starts the attack cooldown
 	unit_anim.play("OutlawFighterRifleFire")
-	$NL_Heavy/AnimationPlayer.play("HeavyDefenseUnitAttack")
+	$NL_Heavy/HeavyAnim.play("HeavyDefenseUnitAttack")
 	match unit_type:
-		0:
-			if faction == 0:
-				Sound.play_sound("res://Sounds/GunShot_Ashfolk.mp3",$"." )
-			else:
-				Sound.play_sound("res://Sounds/GunShot_NewLights.mp3",$"." )
 		1:
-			pass
 			Sound.play_sound("res://Sounds/GunShot_NewLights.mp3",$"." )
+		2:
+			Sound.play_sound("res://Sounds/GunShot_Ashfolk.mp3",$"." )
+		3:
+			Sound.play_sound("res://Sounds/GunShot_Ashfolk.mp3",$"." )
 	$AttackAnim/AnimationPlayer.play("attack")
 	attacking = true
-
+	await $NL_Heavy/HeavyAnim.animation_finished
+	
+	
 # sets the target's position as the movement destination
 func focusAtTarget():
 	if active_target != null:
@@ -151,6 +152,7 @@ func setUp(type):
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
 			$NL_Heavy.visible = true
 			$UnitBody.visible = false
+			$HealthBarSprite.position.y = 3
 		2:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
 		3:
@@ -350,13 +352,14 @@ func animationControl():
 	if !attacking:
 		if velocity != Vector3.ZERO:
 			unit_anim.play("OutlawFighterRun") # plays the walk animation if they are moving
-			$NL_Heavy/AnimationPlayer.play("HeavyDefenseUnitWalk")
+			$NL_Heavy/HeavyAnim.play("HeavyDefenseUnitWalk")
 			if is_walking == false and $".".visible == true: # checks when the unit is moving and visible on the map
 				is_walking = true
 				if faction == 1: # sets the walk sound based on faction and type
 					match unit_type:
 						0:
 							$WalkStreamer.stream = load("res://Sounds/Walk_NewLights_Light.mp3")
+							
 						1:
 							$WalkStreamer.stream = load("res://Sounds/Walk_NewLights_Heavy.mp3")
 				elif faction == 0: # sets the walk sound based on faction and type
@@ -370,7 +373,7 @@ func animationControl():
 			is_walking = false # resets check
 			$WalkStreamer.stop() # stops the streamer
 			unit_anim.play("OutlawFighterIdle") # plays the idle animation otherwise
-			$NL_Heavy/AnimationPlayer.play("HeavyDefenseUnitIdle")
+			$NL_Heavy/HeavyAnim.play("HeavyDefenseUnitIdle")
 
 	if unit_anim.current_animation == "OutlawFighterRun": # when the worker is playing the walk animation the particles are emitted
 		$UnitBody/Armature/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
@@ -403,10 +406,16 @@ func _on_timer_timeout():
 func _on_animation_player_animation_finished(anim_name):
 	match anim_name:
 		"OutlawFighterRifleFire":
-			attacking = false # lets the unit play other animations again once their attack animation has run
+			if faction == 0:
+				attacking = false # lets the unit play other animations again once their attack animation has run
 		"OutlawFighterDeath":
 			queue_free() # deletes the unit once their death animation has finished
+
+
+func _on_heavy_anim_animation_finished(anim_name):
+	match anim_name:
 		"HeavyDefenseUnitAttack":
-			attacking = false # lets the unit play other animations again once their attack animation has run
+			if faction == 1:
+				attacking = false # lets the unit play other animations again once their attack animation has run
 		"HeavyDefenseUnitDeath":
 			queue_free() # deletes the unit once their death animation has finished

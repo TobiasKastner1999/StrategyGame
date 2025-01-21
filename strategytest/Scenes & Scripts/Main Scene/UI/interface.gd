@@ -131,8 +131,8 @@ func updateGamestateInfo():
 	state_text += "[b]" + Global.getText("@state_info_units") + ":[/b] " + str(Global.getUnitCount(Global.player_faction)) + "/" + str(Global.getUnitLimit(Global.player_faction)) + "\n"
 	state_text += "[b]" + Global.getText("@state_info_workers") + ":[/b]: " + hq.getWorkerNum() + "\n"
 	state_text += "[b]" + Global.getText("@state_info_buildings") + ":[/b] " + str(Global.getBuildingCount())
-	$ResourceTab/ResourceAmount1.text = str(Global.getResource(Global.player_faction, 0)) + "/" + str(Global.getMaxResource(Global.player_faction, 0)) + "\n" # updates the recourse tab
-	$ResourceTab/ResourceAmount2.text = str(Global.getResource(Global.player_faction, 1)) + "/" + str(Global.getMaxResource(Global.player_faction, 1)) + "\n" # updates the recourse tab
+	$ResourceTab/ResourceAmount1.text = "[center]" + str(Global.getResource(Global.player_faction, 0)) + "/" + str(Global.getMaxResource(Global.player_faction, 0)) + "\n" + "[/center]" # updates the recourse tab
+	$ResourceTab/ResourceAmount2.text = "[center]" + str(Global.getResource(Global.player_faction, 1)) + "/" + str(Global.getMaxResource(Global.player_faction, 1)) + "\n" + "[/center]"# updates the recourse tab
 	$GamestateInfo.text = state_text
 
 #func setTexts():

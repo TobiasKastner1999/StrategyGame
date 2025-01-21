@@ -22,6 +22,7 @@ var nearby_observers = [] # the nearby enemy units currently observing the build
 
 # prepares to spawn a new unit when first built
 func _ready():
+	toggleStatus()
 	$HealthbarContainer/HealthBar.max_value = Balance.building_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	$SpawnTimer.stop()
@@ -125,6 +126,15 @@ func toggleStatus():
 			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
 			Global.updateQueuedUnitCount(faction, -1)
 
+func toggleStatus_on():
+	spawn_active = !spawn_active
+	#if !spawn_active:
+		#if !$SpawnTimer.is_stopped():
+			#$SpawnTimer.stop()
+			#$ProgressSprite.visible = false
+			#Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
+			#Global.updateQueuedUnitCount(faction, -1)
+
 # starts the production of a new unit
 func startProductionTimer():
 	# sets up the timer bar
@@ -174,7 +184,9 @@ func setFaction(f : int):
 		$OLBarracksCollFence5.disabled = true
 		$OLBarracksCollFence6.disabled = true
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
-	
+		
+		if faction != Global.player_faction:
+			toggleStatus_on()
 	# sets up the correct initial unit production type
 	Global.updateUnitLimit(faction, UNIT_CAPACITY)
 	for unit_id in Global.unit_dict.keys():

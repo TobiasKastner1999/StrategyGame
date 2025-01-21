@@ -1074,14 +1074,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -108.0
-offset_top = -7.5
+offset_left = -119.0
+offset_top = -3.5
 offset_right = -11.0
-offset_bottom = 24.5
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("28_kv8hy")
 theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
 tab_size = 0
 
 [node name="ResourceAmount2" type="RichTextLabel" parent="Interface/ResourceTab"]
@@ -1091,14 +1092,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 96.0
-offset_top = -9.5
-offset_right = 192.0
-offset_bottom = 24.5
+offset_left = 85.0
+offset_top = -4.5
+offset_right = 194.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("28_kv8hy")
 theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
 tab_size = 0
 text_direction = 1
 
@@ -1107,7 +1109,7 @@ visible = false
 offset_right = 145.0
 offset_bottom = 40.0
 theme_override_fonts/font = ExtResource("28_kv8hy")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 25
 text = "Kristalle:"
 
 [node name="Options" parent="." instance=ExtResource("20_x38bj")]

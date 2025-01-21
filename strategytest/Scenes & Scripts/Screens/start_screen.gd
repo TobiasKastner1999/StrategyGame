@@ -16,9 +16,9 @@ func setTexts():
 	$Quit.text = Global.getText("@interface_button_quit_game")
 	$Skip.text = Global.getText("@interface_button_skip_video")
 	if Global.selected_language == "en":
-		$VideoStreamPlayer.stream = load("res://Videos/Trailer-Englisch.ogv")
+		$VideoStreamPlayer.stream = load("res://Videos/Intro final Englisch.ogv")
 	elif Global.selected_language == "de":
-		$VideoStreamPlayer.stream = load("res://Videos/Intro-Deutsch.ogv")
+		$VideoStreamPlayer.stream = load("res://Videos/Intro final Deutsch.ogv")
 
 
 
