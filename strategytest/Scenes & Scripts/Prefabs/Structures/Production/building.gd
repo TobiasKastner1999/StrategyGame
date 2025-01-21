@@ -126,7 +126,7 @@ func toggleStatus():
 			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
 			Global.updateQueuedUnitCount(faction, -1)
 
-# toggles the building's production status
+# sets the building's production status to a specific value
 func setStatus(status):
 	spawn_active = status
 	if !spawn_active:

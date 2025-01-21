@@ -10,7 +10,6 @@ func runBehaviour():
 	if upgradeConditionsFulfilled():
 		pursueUpgrade()
 	controlForge()
-	balanceBuildingProduction()
 
 func upgradeConditionsFulfilled():
 	if Global.getUnitCount(controlled_faction) >= UPGRADE_TRESHOLD and !Balance.upgrade1[controlled_faction]:
@@ -24,12 +23,9 @@ func pursueUpgrade():
 		if building.getType() == "building":
 			building.setStatus(false)
 
-func balanceBuildingProduction():
-	pass
-
 func controlForge():
 	if pursuing_upgrade and Global.getResource(controlled_faction, 1) >= Global.getUpgradeCost():
-		for building in controller.getBuilding():
+		for building in controller.getBuildings():
 			if building.getType() == "forge":
 				building.startResearch()
 				Global.updateResource(controlled_faction, 1, -Global.getUpgradeCost())

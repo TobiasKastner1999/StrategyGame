@@ -11,6 +11,8 @@ var constructed_buildings = []
 var construction_locations = [[0, [Vector3(-105.0, -3.2, 105.0), Vector3(-90.0, -3.2, 145.0), Vector3(-60.0, -3.2, 115.0)], [Vector3(-130.0, -4.0, 140.0), Vector3(-140.0, -4.0, 100.0), Vector3(-60.0, -4.0, 140.0)], 3], \
 							  [0, [Vector3(110.0, -2.1, -145.0), Vector3(160.0, -2.1, -110.0), Vector3(100.0, -2.1, -185.0)], [Vector3(182.0, 0.0, -120.0), Vector3(200.0, 0.0, -110.0), Vector3(200.0, 0.0, -130.0)], [Vector3(179.29, -1.1, -88.52), Vector3(122.03, -1.1, -98.5), Vector3(69.673, -1.1, -191.89)] ] ]
 var wall_rotations = [Vector3(0.0, -99.6, 0.0), Vector3(0.0, -136.9, 0.0), Vector3(0.0, 154.3, 0.0)]
+var unit_types = []
+var type_index = 0
 
 func runBehaviour():
 	if canConstruct():
@@ -34,6 +36,11 @@ func constructNext():
 	match construct:
 		1:
 			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn").instantiate()
+			building.setProductionType(int(unit_types[type_index]))
+			if type_index < (unit_types.size() - 1):
+				type_index += 1
+			else:
+				type_index = 0
 		2:
 			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/forge.tscn").instantiate()
 		3:
@@ -46,7 +53,7 @@ func constructNext():
 	main.add_child(building)
 	Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(construct))
 	building.setFaction(controlled_faction) # assigns the building's faction
-	#building.visible = false
+	building.visible = false
 	navmesh_rebake.emit() # calls the re-bake the navmesh
 	Global.add_to_list(building.position.x, building.position.z, controlled_faction, building.get_instance_id(), null, building)
 	constructed_buildings.append(construct)
@@ -81,3 +88,7 @@ func setControlled(node):
 	controlled_faction = controller.getFaction()
 	
 	setUpConstructionQueue()
+	
+	for unit in Global.unit_dict.keys():
+		if !(unit.begins_with("worker")) and Global.unit_dict[unit]["faction"] == controlled_faction:
+			unit_types.append(unit)
