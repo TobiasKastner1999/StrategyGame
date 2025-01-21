@@ -7,7 +7,8 @@ func runBehaviour():
 	for worker in controller.getWorkers().get_children():
 		if !worker.isActive():
 			var required = getRequiredResource()
-			newResourceTarget(worker, required)
+			if required != null:
+				newResourceTarget(worker, required)
 
 func getRequiredResource():
 	return controller.getRequiredResource()
@@ -19,6 +20,7 @@ func newResourceTarget(node, target):
 	if resource_list.size() > 0:
 		for resource in resource_list:
 			if resource.getFaction(controlled_faction) != controlled_faction or resource.getResourceType() != target:
+				print(resource)
 				resource_list.erase(resource) # removes all resources the controlled faction cannot use from the list
 		if resource_list.size() > 0:
 			node.setTarget(resource_list[randi_range(0, resource_list.size() - 1)]) # sends the worker to a random resource from the list

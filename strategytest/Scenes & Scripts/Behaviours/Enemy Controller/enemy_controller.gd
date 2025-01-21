@@ -2,6 +2,8 @@ extends Node
 
 signal rebake() # to rebake the navmesh when a new building is placed
 
+const BUILDINGS_THRESHOLD = 5
+
 var build_locations = [[Vector3(-60.0, -6.5, 120.0), Vector3(-100.0, -6.5, 110.0)], [Vector3(100.0, -6.0, -190.0), Vector3(100.0, -6.0, -150.0)]] # the pre-determined locations where the AI can construct its buildings
 var housing_locations = [[Vector3(-140.0, -6.5, 145.0), Vector3(-120.0, -6.5, 145.0), Vector3(-100.0, -6.5, 145.0)], [Vector3(200.0, -7.0, -120.0), Vector3(180.0, -7.0, -120.0), Vector3(160.0, -7.0, -125.0)]]
 var hq  # the AI's HQ building
@@ -82,7 +84,18 @@ func getResources():
 	return resources
 
 func getRequiredResource():
-	return 0
+	if (Global.getResource(controlled_faction, 0) >= Global.getMaxResource(controlled_faction, 0)) and (Global.getResource(controlled_faction, 1) >= Global.getMaxResource(controlled_faction, 1)):
+		return null
+	elif Global.getResource(controlled_faction, 0) >= Global.getMaxResource(controlled_faction, 0):
+		return 1
+	elif Global.getResource(controlled_faction, 1) >= Global.getMaxResource(controlled_faction, 1):
+		return 0
+	elif getBuildings().size() < BUILDINGS_THRESHOLD:
+		return 0
+	elif Global.getFullUnitCount(controlled_faction) < Global.getUnitLimit(controlled_faction):
+		return 1
+	else:
+		return 2
 
 # issues new commands to a combat unit
 func issueUnitCommand(unit):
