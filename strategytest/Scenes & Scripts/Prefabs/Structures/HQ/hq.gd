@@ -262,3 +262,6 @@ func _on_spawn_timer_timeout():
 		spawn_queued = true # otherwise, queues the worker up to be spawned later on
 	$SpawnTimer.stop()
 	interface_update.emit()
+
+func doom():
+	takeDamage(9999, $Workers)

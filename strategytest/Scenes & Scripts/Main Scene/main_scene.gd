@@ -57,7 +57,8 @@ func _on_interface_start_game(faction):
 	
 	# then toggles the visibility of various UI elements
 	$Options.visible = true
-	
+	$DoomTimer/TimeLeft.visible = true
+	$DoomTimer.start()
 	$Interface/FactionSelection.visible = false
 	$MiniMap/UIFrame.visible = true
 	$Interface/BuildingButton.visible = true

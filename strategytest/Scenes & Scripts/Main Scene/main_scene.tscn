@@ -590,7 +590,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_f8ghw")
-metadata/_edit_lock_ = true
 
 [node name="FogOfWar" parent="Interface" instance=ExtResource("10_lnqnp")]
 layout_mode = 1
@@ -1142,6 +1141,19 @@ transform = Transform3D(169.739, 0, 0, 0, 169.739, 0, 0, 0, 169.739, -3.79283, -
 mesh = SubResource("ArrayMesh_5qxcm")
 skeleton = NodePath("")
 
+[node name="DoomTimer" type="Timer" parent="."]
+wait_time = 1200.0
+
+[node name="TimeLeft" type="Label" parent="DoomTimer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -139.5
+offset_right = 139.5
+offset_bottom = 78.0
+grow_horizontal = 2
+
 [connection signal="clear_interface" from="CameraBody/Camera" to="." method="_on_camera_clear_interface"]
 [connection signal="multi_select_interface" from="CameraBody/Camera" to="." method="_on_camera_multi_select_interface"]
 [connection signal="delete_selection" from="Units" to="." method="_on_units_delete_selection"]
@@ -1178,6 +1190,7 @@ skeleton = NodePath("")
 [connection signal="clearSelection" from="Interface/Placer" to="." method="_on_placer_clear_selection"]
 [connection signal="language_changed" from="Options" to="." method="_on_language_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DoomTimer" to="Interface" method="_on_doom_timer_timeout"]
 
 [editable path="MiniMap"]
 [editable path="Options"]

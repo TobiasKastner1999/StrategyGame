@@ -5,6 +5,7 @@ signal start_game(faction) # tells the game the player has chosen a faction
 
 var hq : Node3D
 
+
 @onready var node_building_placer: Node3D = $Placer
 @onready var interface_btn_building:TextureButton = $BuildingButton
 @onready var interface_btn_housing:TextureButton = $HousingButton
@@ -42,6 +43,10 @@ func _ready():
 	#setTexts()
 
 func _physics_process(_delta):
+	var remaining_time = $"../DoomTimer".time_left
+	var minutes = int(remaining_time) / 60
+	var seconds = int(remaining_time) % 60
+	$"../DoomTimer/TimeLeft".text = "%02d:%02d" % [minutes, seconds]
 	updateGamestateInfo()
 	
 	if interface_input_mode != 0:
@@ -189,3 +194,7 @@ func _on_wall_button_mouse_entered():
 
 func _on_wall_button_mouse_exited():
 	$ConstructionTooltip.updateTooltip(false, 3)
+
+
+func _on_doom_timer_timeout():
+	$"../HQBlue".doom()
