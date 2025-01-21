@@ -126,14 +126,18 @@ func toggleStatus():
 			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
 			Global.updateQueuedUnitCount(faction, -1)
 
+# toggles the building's production status
+func setStatus(status):
+	spawn_active = status
+	if !spawn_active:
+		if !$SpawnTimer.is_stopped():
+			$SpawnTimer.stop()
+			$ProgressSprite.visible = false
+			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
+			Global.updateQueuedUnitCount(faction, -1)
+
 func toggleStatus_on():
 	spawn_active = !spawn_active
-	#if !spawn_active:
-		#if !$SpawnTimer.is_stopped():
-			#$SpawnTimer.stop()
-			#$ProgressSprite.visible = false
-			#Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
-			#Global.updateQueuedUnitCount(faction, -1)
 
 # starts the production of a new unit
 func startProductionTimer():

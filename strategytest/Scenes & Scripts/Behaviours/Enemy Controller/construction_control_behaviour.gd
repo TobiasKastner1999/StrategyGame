@@ -46,7 +46,7 @@ func constructNext():
 	main.add_child(building)
 	Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(construct))
 	building.setFaction(controlled_faction) # assigns the building's faction
-	building.visible = false
+	#building.visible = false
 	navmesh_rebake.emit() # calls the re-bake the navmesh
 	Global.add_to_list(building.position.x, building.position.z, controlled_faction, building.get_instance_id(), null, building)
 	constructed_buildings.append(construct)

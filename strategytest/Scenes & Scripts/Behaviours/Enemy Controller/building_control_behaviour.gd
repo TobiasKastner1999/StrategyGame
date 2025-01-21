@@ -1,27 +1,39 @@
 extends Node
 
+const UPGRADE_TRESHOLD = 4
+
 var controller : Node3D
 var controlled_faction : int
+var pursuing_upgrade = false
 
 func runBehaviour():
-	var buildings = controller.getBuildings()
-	for building in buildings:
-		match building.getType():
-			"HQ":
-				controlHQ(building)
-			"building":
-				controlBarracks(building)
-			"forge":
-				controlForge(building)
+	if upgradeConditionsFulfilled():
+		pursueUpgrade()
+	controlForge()
+	balanceBuildingProduction()
 
-func controlHQ(hq):
-	return
+func upgradeConditionsFulfilled():
+	if Global.getUnitCount(controlled_faction) >= UPGRADE_TRESHOLD and !Balance.upgrade1[controlled_faction]:
+		return true
+	return false
 
-func controlBarracks(barracks):
+func pursueUpgrade():
+	pursuing_upgrade = true
+	
+	for building in controller.getBuildings():
+		if building.getType() == "building":
+			building.setStatus(false)
+
+func balanceBuildingProduction():
 	pass
 
-func controlForge(forge):
-	pass
+func controlForge():
+	if pursuing_upgrade and Global.getResource(controlled_faction, 1) >= Global.getUpgradeCost():
+		for building in controller.getBuilding():
+			if building.getType() == "forge":
+				building.startResearch()
+				Global.updateResource(controlled_faction, 1, -Global.getUpgradeCost())
+				return
 
 func setControlled(node):
 	controller = node

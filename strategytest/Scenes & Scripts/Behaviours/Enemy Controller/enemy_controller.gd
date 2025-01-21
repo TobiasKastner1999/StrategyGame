@@ -91,26 +91,5 @@ func issueUnitCommand(unit):
 	else:
 		unit.setTargetPosition(enemy_hq.global_position) # otherwise instructs the unit to move towards the HQ
 
-# builds a new building
-func constructBuilding(building_type):
-	var building # sets up variable for the new building
-	match building_type:
-		1:
-			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn").instantiate() # instantiates the barracks
-			building.transform.origin = build_locations[controlled_faction][0] # places it at the first available location
-			build_locations[controlled_faction].remove_at(0) # then removes that location from the list
-			Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(1)) # subtracts the required crystals from the AI's resources
-		2:
-			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/forge.tscn").instantiate() # instantiates the forge
-			building.transform.origin = housing_locations[controlled_faction][0] # places it at the first available location
-			housing_locations[controlled_faction].remove_at(0) # then removes that location from the list
-			Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(2)) # subtracts the required crystals from the AI's resources
-	
-	get_parent().add_child(building)
-	building.setFaction(controlled_faction) # assigns the building's faction
-	building.visible = false
-	rebake.emit() # calls the re-bake the navmesh
-	Global.add_to_list(building.position.x, building.position.z, controlled_faction, building.get_instance_id(), null, building)
-
 func _on_construction_control_behaviour_navmesh_rebake():
 	rebake.emit()
