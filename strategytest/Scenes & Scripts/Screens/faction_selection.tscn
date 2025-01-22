@@ -63,6 +63,7 @@ offset_left = 996.0
 offset_top = 587.0
 offset_right = 1503.0
 offset_bottom = 1054.0
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 25
 
 [node name="FactionDescriptionNL" type="RichTextLabel" parent="."]
@@ -71,6 +72,7 @@ offset_left = 449.0
 offset_top = 595.0
 offset_right = 956.0
 offset_bottom = 1062.0
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 25
 
 [node name="NlLogoGold" type="Sprite2D" parent="."]
