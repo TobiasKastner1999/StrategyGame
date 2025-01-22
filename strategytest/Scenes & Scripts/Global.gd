@@ -16,8 +16,8 @@ var upgrade_queued = [false, false] # are the factions currently researching an 
 var player_building_count : int = 0 # how many building's has the player constructed?
 var cam = null
 
-var known_player_units = []
-var known_player_buildings = []
+var known_player_units = [] # a list of the player's units known to the AI
+var known_player_buildings = [] # a list of the player's buildings known to the AI
 
 @onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_data.json")) # a dictionary of the different unit types and their properties
 @onready var language_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/language_data.json")) # a dictionary of the different translation of texts in different languages
@@ -140,39 +140,43 @@ func updateBuildingCount(constructed):
 func getBuildingCount():
 	return player_building_count
 
+# returns the current list of the AI's known player-controlled units
 func getKnownPlayerUnits():
 	return known_player_units
 
+# returns the current list of the AI's known player-controlled units
 func getKnownPlayerBuildings():
 	return known_player_buildings
 
+# adds a target to the AI's knowledge
 func addKnownTarget(target):
 	match target.getType():
 		"building":
-			known_player_buildings.append(target)
+			known_player_buildings.append(target) # if the target is a building, adds it to the building list
 		"forge":
-			known_player_buildings.append(target)
+			known_player_buildings.append(target) # if the target is a forge, adds it to the building list
 		
 		"combat":
-			known_player_units.append(target)
+			known_player_units.append(target) # if the target is a combat unit, adds it to the unit list
 		"worker":
-			known_player_units.append(target)
+			known_player_units.append(target) # if the target is a worker, adds it to the unit list
 
+# attempts to remove a target from the AI's knowledge
 func removeKnownTarget(target):
 	match target.getType():
 		"building":
 			if known_player_buildings.has(target):
-				known_player_buildings.erase(target)
+				known_player_buildings.erase(target) # if the target is a building known to the AI, removes it from the building list
 		"forge":
 			if known_player_buildings.has(target):
-				known_player_buildings.erase(target)
+				known_player_buildings.erase(target) # if the target is a forge known to the AI, removes it from the building list
 		
 		"combat":
 			if known_player_units.has(target) and !target.hasNearbyAI():
-				known_player_units.erase(target)
+				known_player_units.erase(target) # if the target is a combat unit known to the AI, which has no nearby AI units, removes it from the unit list
 		"worker":
 			if known_player_units.has(target) and !target.hasNearbyAI():
-				known_player_units.erase(target)
+				known_player_units.erase(target) # if the target is a worker known to the AI, which has no nearby AI units, removes it from the unit list
 
 # add a new entry into a free slot in the dictionary
 func add_to_list(positionX, positionY, faction, id, dot, worker):

@@ -310,12 +310,13 @@ func isNearBody(node):
 	else:
 		return false
 
+# checks if there are any AI-controlled targets near the node
 func hasNearbyAI():
 	var nearby_objects = $RangeArea.get_overlapping_bodies()
 	for object in nearby_objects:
 		if object.has_method("getFaction") and object.getFaction() != faction:
-			return true
-	return false
+			return true # returns true on the first enemy object found
+	return false # returns false instead if none are found
 
 # called when the unit comes into view of a player-controlled unit
 func fowEnter(node):
@@ -345,7 +346,7 @@ func _on_area_3d_body_entered(body):
 			priority_movement = false
 			setAttackTarget(body)
 		if faction != Global.player_faction:
-			Global.addKnownTarget(body)
+			Global.addKnownTarget(body) # adds the body to the AI's list of known targets
 
 # rotates the model to face in the right direction
 func unit_rotation():
@@ -358,7 +359,8 @@ func unit_rotation():
 	$OutlawGunVehicleBaked.rotate_object_local(Vector3.UP, PI) # flips the model 
 	$NL_Heavy.look_at(nav) # looks at the next position
 	$NL_Heavy.rotation.x = rad_to_deg(0) # locks the rotation of x
-	$NL_Heavy.rotate_object_local(Vector3.UP, PI) # flips the model 
+	$NL_Heavy.rotate_object_local(Vector3.UP, PI) # flips the model
+ 
 # plays the correct animation based on the unit's state
 func animationControl():
 	if !attacking:
@@ -410,7 +412,7 @@ func _on_area_3d_body_exited(body):
 	if nearby_enemies.has(body):
 		nearby_enemies.erase(body) # removes the object from the list of nearby enemies if it was in the list
 		if faction != Global.player_faction and (body.getType() == "worker" or body.getType() == "combat"):
-			Global.removeKnownTarget(body)
+			Global.removeKnownTarget(body) # attempts to remove the body from the AI's list of known targets
 
 # re-enables attack when the attack cooldown ends
 func _on_timer_timeout():

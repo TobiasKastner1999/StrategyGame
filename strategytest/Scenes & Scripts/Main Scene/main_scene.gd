@@ -18,7 +18,6 @@ func _process(_delta):
 	Global.cam = $CameraBody.position
 	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second()))
 
-
 # adds a unit to the fog of war system
 func addUnitToFog(unit_node):
 	fog_of_war.addUnit(unit_node)

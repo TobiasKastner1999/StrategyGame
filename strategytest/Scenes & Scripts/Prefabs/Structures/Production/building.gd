@@ -92,7 +92,7 @@ func takeDamage(damage, _attacker):
 		Sound.play_sound("res://Sounds/DestroyBuildingSound.mp3", $".")
 		await get_tree().create_timer(0.5).timeout
 		if faction == Global.player_faction:
-			Global.removeKnownTarget(self)
+			Global.removeKnownTarget(self) # attempts to remove the building from the AI's list of known buildings
 			Global.updateBuildingCount(false)
 			Global.updateUnitLimit(faction, -UNIT_CAPACITY)
 			
