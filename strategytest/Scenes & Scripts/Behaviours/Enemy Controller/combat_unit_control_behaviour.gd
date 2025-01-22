@@ -6,17 +6,23 @@ var controlled_faction : int
 func runBehaviour():
 	for unit in controller.getUnits():
 		if !unit.isActive():
-			if !targetKnownUnit():
-				if !targetKnownBuilding():
-					targetHQ()
+			if !returnForUpgrade(unit):
+				if !targetKnownUnit(unit):
+					if !targetKnownBuilding(unit):
+						targetHQ(unit)
 
-func targetKnownUnit():
+func returnForUpgrade(unit):
+	if Balance.upgrade1[controlled_faction]:
+		return true
 	return false
 
-func targetKnownBuilding():
+func targetKnownUnit(unit):
 	return false
 
-func targetHQ():
+func targetKnownBuilding(unit):
+	return false
+
+func targetHQ(unit):
 	pass
 
 func setControlled(node):

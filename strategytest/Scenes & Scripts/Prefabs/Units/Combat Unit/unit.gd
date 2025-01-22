@@ -30,10 +30,7 @@ var attack_range : float # the distance at which the unit can attack enemy targe
 var attack_speed : float # the rate at which the unit attacks
 var detection_range : float # the distance at which the unit can detect other units
 var speed : float # the unit's movement speed
-
-
-
-
+var upgrade_received = false # has the unit received an upgrade?
 
 @onready var hp = max_hp # the unit's current hp, starting as its maximum hp
 @onready var navi : NavigationAgent3D = $NavAgent # the navigation agent controlling the unit's movement
@@ -170,15 +167,19 @@ func setUp(type):
 	await get_tree().physics_frame
 	destination = global_position # sets the initial navigation target to the unit's own position
 
+# returns the unit's upgrade state
+func getUpgradeState():
+	return upgrade_received
 
 func update_stats(): # function to upgrade units
-	if Balance.upgrade1[faction] == true: # if global var is active
+	if Balance.upgrade1[faction] == true and !upgrade_received: # if global var is active, and the unit hasn't been upgraded yet
 		setUp(0) # runs the setUp function again
 		max_hp = Balance.u_ranged_hp # switches the stats to upgraded ones
 		damage_value = Balance.u_ranged_damage # switches the stats to upgraded ones
 		hp = max_hp # switches the stats to upgraded ones
 		$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
 		$HealthbarContainer/HealthBar.value = hp # resets value
+		upgrade_received = true # sets the upgrade as received
 
 # sets the unit's faction to a given value
 func setFaction(f : int):
