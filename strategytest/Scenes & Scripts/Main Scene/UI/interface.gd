@@ -42,8 +42,8 @@ func _ready():
 	
 	#setTexts()
 
-func _physics_process(_delta):
-	var remaining_time = $"../DoomTimer".time_left
+func _physics_process(_delta): #
+	var remaining_time = $"../DoomTimer".time_left # displays the time on a label 
 	var minutes = int(remaining_time) / 60
 	var seconds = int(remaining_time) % 60
 	$"../DoomTimer/TimeLeft".text = "%02d:%02d" % [minutes, seconds]
@@ -76,7 +76,7 @@ func _physics_process(_delta):
 		building_placer_location = Vector3.ZERO
 
 
-func _unhandled_input(event):
+func _unhandled_input(event): # manages the zoom
 	if event is InputEventMouseButton:
 		if event.is_pressed() and interface_input_mode != 0:
 			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
@@ -200,6 +200,6 @@ func _on_wall_button_mouse_exited():
 	$ConstructionTooltip.updateTooltip(false, 3)
 
 
-func _on_doom_timer_timeout():
+func _on_doom_timer_timeout(): # when doom timer rns out the doom end is played
 	$"../HQBlue".doom()
 	gameEnd(4)

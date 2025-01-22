@@ -228,11 +228,10 @@ func _on_button_abort_pressed():
 	current_selected.abortAction()
 
 
+# displays the upgrade cost and resource icon
 func _on_button_upgrade_mouse_entered():
-	
 	$ButtonUpgrade/UpgradeCost.show()
 	$ButtonUpgrade/ResourceIcon.show()
-
 
 func _on_button_upgrade_mouse_exited():
 	$ButtonUpgrade/UpgradeCost.hide()

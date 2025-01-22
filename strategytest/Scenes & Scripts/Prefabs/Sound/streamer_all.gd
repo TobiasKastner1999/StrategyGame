@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	volume_db = Sound.sound_volume
+	volume_db = Sound.sound_volume # sets the volume to value of sound script
