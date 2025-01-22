@@ -34,11 +34,6 @@ func _physics_process(_delta):
 	$BuildingControlBehaviour.runBehaviour()
 	$WorkerControlBehaviour.runBehaviour()
 	$CombatUnitControlBehaviour.runBehaviour()
-	
-	# checks if any combat units need new instructions
-	for unit in unit_storage.get_children():
-		if unit.getFaction() == controlled_faction and !unit.isActive():
-			issueUnitCommand(unit) # issues new commands to units that currently don't have a target
 
 # called once the player has selected a faction
 func setUp():
@@ -111,13 +106,6 @@ func getKnownUnits():
 
 func getKnownBuildings():
 	return known_buildings
-
-# issues new commands to a combat unit
-func issueUnitCommand(unit):
-	if unit.isNearBody(enemy_hq):
-		unit.setAttackTarget(enemy_hq) # instructs the unit to attack the enemy HQ if it is near
-	else:
-		unit.setTargetPosition(enemy_hq.global_position) # otherwise instructs the unit to move towards the HQ
 
 # calls to rebake the navmesh when the construction behaviour has constructed a new building
 func _on_construction_control_behaviour_navmesh_rebake():
