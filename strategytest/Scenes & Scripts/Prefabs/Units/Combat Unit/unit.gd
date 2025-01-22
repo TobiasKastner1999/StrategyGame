@@ -117,6 +117,8 @@ func startAttackCooldown():
 			Sound.play_sound("res://Sounds/GunShot_Ashfolk.mp3",$"." )
 		3:
 			Sound.play_sound("res://Sounds/GunShot_Ashfolk.mp3",$"." )
+			$OutlawGunVehicleBaked/OL_GunVehicleWheels2/Gunfire.shoot()
+			$OutlawGunVehicleBaked/OL_GunVehicleWheels2/Gunfire2.shoot()
 	$AttackAnim/AnimationPlayer.play("attack")
 	attacking = true
 	await $NL_Heavy/HeavyAnim.animation_finished
