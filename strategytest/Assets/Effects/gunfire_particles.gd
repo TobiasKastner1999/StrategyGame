@@ -13,8 +13,8 @@ func _process(delta):
 
 
 func shoot():
-	$GPUParticles3D.emitting = true
-	$GPUParticles3D2.emitting = true
+	$Smoke.emitting = true
+	$Blast.emitting = true
 	await  get_tree().create_timer(0.1).timeout
-	$GPUParticles3D.emitting = false
-	$GPUParticles3D2.emitting = false
+	$Smoke.emitting = false
+	$Blast.emitting = false
