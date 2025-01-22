@@ -135,35 +135,36 @@ func newInfoText(info):
 
 # updates the dynamic interface components
 func updateSelectedInterface():
-	$SelectedName.text = "[b]" + Global.getText(current_selected.getDisplayName()) + "[/b]" # displays the name
-	$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.getHP()) + "/" + str(current_selected.getMaxHP()) # displays the object's current hp out of its maximum hp
-	
+	if current_selected != null:
+		$SelectedName.text = "[b]" + Global.getText(current_selected.getDisplayName()) + "[/b]" # displays the name
+		$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.getHP()) + "/" + str(current_selected.getMaxHP()) # displays the object's current hp out of its maximum hp
+		$ButtonUpgrade/UpgradeCost.text = Global.getText("@inspect_text_cost") + ": " + str(Balance.upgrade_cost)
 	# updates each special info text
-	for info_text in $InfoContainer.get_children():
-		info_text.text = Global.getText("@inspect_text_" + info_text.getInfo()) + ": " + Global.getText("@inspect_text_" + info_text.getInfo() + "_" + current_selected.getInspectInfo(info_text.getInfo()))
+		for info_text in $InfoContainer.get_children():
+			info_text.text = Global.getText("@inspect_text_" + info_text.getInfo()) + ": " + Global.getText("@inspect_text_" + info_text.getInfo() + "_" + current_selected.getInspectInfo(info_text.getInfo()))
 	
 	# updates additional elements based on object type
-	match current_selected.getType():
-		"building":
-			for button in $ButtonContainer.get_children():
-				if button.getType() == current_selected.getProduction():
-					button.grab_focus() # focus-outlines the button of the currently selected production type
-		"forge":
-			if current_selected.inResearch():
-				$ButtonAbort.visible = true
-				$ButtonUpgrade.visible = false
-			elif !Balance.upgrade1[Global.player_faction]:
-				$ButtonUpgrade.visible = true # displays the upgrade button if the upgrade has not yet been purchased
-				$ButtonAbort.visible = false
-			else:
-				$ButtonUpgrade.visible = false
-				$ButtonAbort.visible = false
+		match current_selected.getType():
+			"building":
+				for button in $ButtonContainer.get_children():
+					if button.getType() == current_selected.getProduction():
+						button.grab_focus() # focus-outlines the button of the currently selected production type
+			"forge":
+				if current_selected.inResearch():
+					$ButtonAbort.visible = true
+					$ButtonUpgrade.visible = false
+				elif !Balance.upgrade1[Global.player_faction]:
+					$ButtonUpgrade.visible = true # displays the upgrade button if the upgrade has not yet been purchased
+					$ButtonAbort.visible = false
+				else:
+					$ButtonUpgrade.visible = false
+					$ButtonAbort.visible = false
 		
-		"worker":
-			if current_selected.getResourceState() == 1:
-				$ButtonDrop.visible = true
-			else:
-				$ButtonDrop.visible = false
+			"worker":
+				if current_selected.getResourceState() == 1:
+					$ButtonDrop.visible = true
+				else:
+					$ButtonDrop.visible = false
 
 # calls to toggle the selected object's status when the button is pressed
 func _on_button_toggle_pressed():
@@ -225,3 +226,14 @@ func _on_button_upgrade_pressed():
 func _on_button_abort_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	current_selected.abortAction()
+
+
+func _on_button_upgrade_mouse_entered():
+	
+	$ButtonUpgrade/UpgradeCost.show()
+	$ButtonUpgrade/ResourceIcon.show()
+
+
+func _on_button_upgrade_mouse_exited():
+	$ButtonUpgrade/UpgradeCost.hide()
+	$ButtonUpgrade/ResourceIcon.hide()
