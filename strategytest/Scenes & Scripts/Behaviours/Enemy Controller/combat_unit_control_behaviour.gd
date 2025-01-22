@@ -23,6 +23,7 @@ func targetKnownUnit(unit):
 	var targets = controller.getKnownUnits()
 	var closest
 	var closest_distance
+	
 	if targets.size() > 0:
 		for target in targets:
 			var target_distance = unit.global_position.distance_to(target.global_position)
@@ -57,7 +58,11 @@ func targetKnownBuilding(unit):
 	return false
 
 func targetHQ(unit):
-	pass
+	var hq = controller.getEnemyHQ()
+	if unit.isNearBody(hq):
+		unit.setAttackTarget(hq)
+	else:
+		unit.setDestination(hq.global_position)
 
 func setControlled(node):
 	controller = node
