@@ -84,8 +84,8 @@ var upgrade1 = [false, false]
 @export var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 @export var unit_max = [4, 4] # how many units can a faction currently have at max?
 @export var resource = 1000 # how many resources can be mined
-@export var faction_zero_resource_limits = [0, 0] # faction 0's maximum capacity of the different resources
-@export var faction_one_resource_limits = [0, 0] # faction 1's maximum capacity of the different resources
+@export var faction_zero_resource_limits = [1000, 0] # faction 0's maximum capacity of the different resources
+@export var faction_one_resource_limits = [1000, 0] # faction 1's maximum capacity of the different resources
 @export var upgrade_cost = 400
 
 @export var building_hp = 110 # health for building
