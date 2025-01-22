@@ -4,19 +4,20 @@ extends Node3D
 var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 
-
 var player_faction : int # the faction the player has chosen for the current game
 var list = {} # dictionary to store units and building to project on the minimap
 var list_counter = 1 # sets the start value of the dictionary to 1 instead of 0 
 
 var selected_language : String = "en" # the language currently selected by the player
 
-
 var unit_count = [0, 0] # how many units does each faction currently have?
 var units_queued = [0, 0] # how many units does each faction currently have in active production?
 var upgrade_queued = [false, false] # are the factions currently researching an upgrade?
 var player_building_count : int = 0 # how many building's has the player constructed?
 var cam = null
+
+var known_player_units = []
+var known_player_buildings = []
 
 @onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_data.json")) # a dictionary of the different unit types and their properties
 @onready var language_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/language_data.json")) # a dictionary of the different translation of texts in different languages
@@ -138,6 +139,40 @@ func updateBuildingCount(constructed):
 # returns the number of the player's current buildings
 func getBuildingCount():
 	return player_building_count
+
+func getKnownPlayerUnits():
+	return known_player_units
+
+func getKnownPlayerBuildings():
+	return known_player_buildings
+
+func addKnownTarget(target):
+	match target.getType():
+		"building":
+			known_player_buildings.append(target)
+		"forge":
+			known_player_buildings.append(target)
+		
+		"combat":
+			known_player_units.append(target)
+		"worker":
+			known_player_units.append(target)
+
+func removeKnownTarget(target):
+	match target.getType():
+		"building":
+			if known_player_buildings.has(target):
+				known_player_buildings.erase(target)
+		"forge":
+			if known_player_buildings.has(target):
+				known_player_buildings.erase(target)
+		
+		"combat":
+			if known_player_units.has(target) and !target.hasNearbyAI():
+				known_player_units.erase(target)
+		"worker":
+			if known_player_units.has(target) and !target.hasNearbyAI():
+				known_player_units.erase(target)
 
 # add a new entry into a free slot in the dictionary
 func add_to_list(positionX, positionY, faction, id, dot, worker):

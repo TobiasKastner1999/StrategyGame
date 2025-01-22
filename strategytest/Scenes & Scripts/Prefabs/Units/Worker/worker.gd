@@ -421,6 +421,13 @@ func select():
 func deselect():
 	pass
 
+func hasNearbyAI():
+	var nearby_objects = $RangeArea.get_overlapping_bodies()
+	for object in nearby_objects:
+		if object.has_method("getFaction") and object.getFaction() != faction:
+			return true
+	return false
+
 # called when the worker comes into view of a player-controlled unit
 func fowEnter(node):
 	fowReveal(true) # makes the worker visible
@@ -451,6 +458,8 @@ func _on_range_area_body_entered(body):
 		if priority_movement:
 			priority_movement = false
 			setAttackTarget(body)
+		if faction != Global.player_faction:
+			Global.addKnownTarget(body)
 
 # when an object leaves the worker's detection range
 func _on_range_area_body_exited(body):
@@ -458,6 +467,8 @@ func _on_range_area_body_exited(body):
 		body.fowExit(self) # updates the object's fow detection
 	if nearby_enemies.has(body):
 		nearby_enemies.erase(body) # removes the object from the list of nearby enemies if it was in the list
+		if faction != Global.player_faction and (body.getType() == "worker" or body.getType() == "combat"):
+			Global.removeKnownTarget(body)
 
 # advances the worker's interaction state once it has finished mining
 func _on_mining_timer_timeout():

@@ -35,6 +35,7 @@ func takeDamage(damage, _attacker):
 		Sound.play_sound("res://Sounds/DestroyBuildingSound.mp3", $".")
 		await get_tree().create_timer(0.5).timeout
 		if faction == Global.player_faction:
+			Global.removeKnownTarget(self)
 			Global.updateResourceCapacity(faction, -Balance.housing_resource_cap_a, -Balance.housing_resource_cap_b)
 			Global.updateBuildingCount(false)
 		queue_free() # then deletes the forge

@@ -8,9 +8,6 @@ var hq  # the AI's HQ building
 var enemy_hq  # the player's HQ building
 var worker_storage # the AI's workers
 
-var known_units = []
-var known_buildings = []
-
 @export var controlled_faction : int # the AI-controlled faction
 
 @onready var unit_storage = $".."/Units # the combat units
@@ -100,12 +97,6 @@ func getRequiredResource():
 		return 1 # returns resource 1 if the controlled faction can produce more units
 	else:
 		return 2 # returns an empty state otherwise
-
-func getKnownUnits():
-	return known_units
-
-func getKnownBuildings():
-	return known_buildings
 
 # calls to rebake the navmesh when the construction behaviour has constructed a new building
 func _on_construction_control_behaviour_navmesh_rebake():

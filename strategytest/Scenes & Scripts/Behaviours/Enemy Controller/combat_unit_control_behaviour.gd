@@ -20,7 +20,7 @@ func returnForUpgrade(unit):
 	return false
 
 func targetKnownUnit(unit):
-	var targets = controller.getKnownUnits()
+	var targets = Global.getKnownPlayerUnits()
 	var closest
 	var closest_distance
 	
@@ -39,7 +39,7 @@ func targetKnownUnit(unit):
 	return false
 
 func targetKnownBuilding(unit):
-	var targets = controller.getKnownBuildings()
+	var targets = Global.getKnownPlayerBuildings()
 	var closest
 	var closest_distance
 	
