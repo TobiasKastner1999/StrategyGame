@@ -4,14 +4,14 @@ var text = ""
 func _ready():
 	setTexts()
 
-func setTexts():
+func setTexts(): # sets the text for the quit button
 	$Button.text = Global.getText("@interface_button_quit_game")
 
 
 func setText():
 	$GameOverText.text = text # sets text to given value
 
-func setScreen(screen):
+func setScreen(screen): # sets the correct screen based on what ending you achieved
 	match screen:
 		0:
 			$DomeFallen.visible = true
@@ -25,6 +25,6 @@ func setScreen(screen):
 			$OlStarved.visible = true
 
 func _on_button_pressed(): # ends the game
-	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
-	await get_tree().create_timer(0.5).timeout
-	get_tree().quit()
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." ) # plays the button sound
+	await get_tree().create_timer(0.5).timeout # stalls the scene for button sound
+	get_tree().quit() # ends the game

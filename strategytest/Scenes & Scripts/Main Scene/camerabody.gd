@@ -27,7 +27,6 @@ func _physics_process(delta):
 	elif mouse_pos.y > window_size.y - 10 and $".".position.z < 212: # bottom border
 		direction = $Camera.transform.basis * Vector3(0,0,1).normalized()
 	# moves the body
-	#if $".".position.x < 140 and $".".position.x > -210 and $".".position.z > -100 and $".".position.z < 210:
 	if direction:
 		velocity.x = direction.x * speed
 		velocity.z = direction.z * speed

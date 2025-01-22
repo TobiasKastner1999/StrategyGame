@@ -70,11 +70,6 @@ func _physics_process(_delta):
 
 # zoom in or out with mousewheel
 func _unhandled_input(event):
-	#if Input.is_action_pressed("Rightclick"):
-		#if event is InputEventMouseMotion:
-			#$".".rotate_y(-event.relative.x * 0.02)
-
-
 	if $Camera.fov > Balance.camera_zoom_down_limit and $"../../Interface".interface_input_mode == 0:
 		if event is InputEventMouseButton:
 			if event.is_pressed():

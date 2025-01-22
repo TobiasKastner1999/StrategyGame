@@ -12,7 +12,7 @@ func _process(delta):
 
 
 
-func shoot():
+func shoot(): # starts the gundire animation
 	$Smoke.emitting = true
 	$Blast.emitting = true
 	await  get_tree().create_timer(0.1).timeout

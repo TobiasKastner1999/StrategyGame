@@ -14,7 +14,7 @@ var unit_count = [0, 0] # how many units does each faction currently have?
 var units_queued = [0, 0] # how many units does each faction currently have in active production?
 var upgrade_queued = [false, false] # are the factions currently researching an upgrade?
 var player_building_count : int = 0 # how many building's has the player constructed?
-var cam = null
+var cam = null # stores mainscene camera
 
 var known_player_units = [] # a list of the player's units known to the AI
 var known_player_buildings = [] # a list of the player's buildings known to the AI
@@ -183,6 +183,6 @@ func add_to_list(positionX, positionY, faction, id, dot, worker):
 	Global.list[list_counter] = {"positionX" : positionX, "positionY" : positionY, "faction" : faction , "id" : id, "dot": dot, "worker" : worker}
 	list_counter += 1
 
-func healthbar_rotation(healthbar):
+func healthbar_rotation(healthbar): # funtion to let the health/progressbars face the main camera
 	healthbar.look_at(cam)
 

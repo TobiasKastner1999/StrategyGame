@@ -264,6 +264,6 @@ func _on_spawn_timer_timeout():
 	$SpawnTimer.stop()
 	interface_update.emit()
 
-func doom():
+func doom(): # funtion to kill the hq for the doom ending
 	takeDamage(9999, $Workers)
 	

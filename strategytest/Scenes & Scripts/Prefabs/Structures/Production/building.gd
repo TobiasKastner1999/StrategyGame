@@ -135,7 +135,7 @@ func setStatus(status):
 			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
 			Global.updateQueuedUnitCount(faction, -1)
 
-func toggleStatus_on(): # turns the building on onldy
+func toggleStatus_on(): # turns the building on only
 	spawn_active = !spawn_active
 
 # starts the production of a new unit
@@ -188,8 +188,8 @@ func setFaction(f : int):
 		$OLBarracksCollFence6.disabled = true
 		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 		
-		if faction != Global.player_faction:
-			toggleStatus_on()
+	if faction != Global.player_faction:
+		toggleStatus_on()
 	# sets up the correct initial unit production type
 	Global.updateUnitLimit(faction, UNIT_CAPACITY)
 	for unit_id in Global.unit_dict.keys():

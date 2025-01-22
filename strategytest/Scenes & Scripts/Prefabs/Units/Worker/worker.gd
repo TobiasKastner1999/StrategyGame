@@ -85,19 +85,18 @@ func animationControl():
 		elif velocity != Vector3.ZERO: # when worker is moving
 			worker_anim.play("OutlawWorkerJog") # plays the walk animation if they are moving
 			worker_anim_nl.play("LightSoldierRun") # plays the walk animation if they are moving
-			if is_walking == false and $".".visible == true:
-				is_walking = true
-				if faction == 0:
+			if is_walking == false and $".".visible == true: #  # sets the walking sound for the ashfolk worker
+				is_walking = true # sets the var to is walking
+				if faction == 0: # sets the correct sound 
 					$WalkStreamer.stream = load("res://Sounds/Walk_Ashfolk.mp3")
 				elif faction == 1:
 					$WalkStreamer.stream = load("res://Sounds/Walk_Ashfolk.mp3")
 				$WalkStreamer.play()
-			
-		else:
+		else: #stops the walk sound when worker is standing still
 			is_walking = false
 			$WalkStreamer.stop()
 			worker_anim.play("OutlawWorkerIdle") # plays the idle animation otherwise
-			worker_anim_nl.play("LightSoldierIdle")
+			worker_anim_nl.play("LightSoldierIdle") # plays the idle animation otherwise
 	
 	if worker_anim.current_animation == "OutlawWorkerJog": # when the worker is playing the walk animation the particles are emitted
 		$OutlawWorker/OutlawWorker/Skeleton3D/BoneAttachment3D2/GPUParticles3D.emitting = true # starts particles
@@ -288,7 +287,7 @@ func startAttackCooldown():
 	can_attack = false # disables the worker's attack
 	$AttackTimer.start(attack_speed) # starts the attack cooldown
 	worker_anim.play("OutlawWorkerAttack") # plays the attack animation if the worker is mining
-	worker_anim_nl.play("LightSoldierAttack")
+	worker_anim_nl.play("LightSoldierAttack")# plays the attack animation 
 
 	attacking = true
 
