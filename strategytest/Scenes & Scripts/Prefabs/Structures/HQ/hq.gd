@@ -266,3 +266,4 @@ func _on_spawn_timer_timeout():
 
 func doom():
 	takeDamage(9999, $Workers)
+	

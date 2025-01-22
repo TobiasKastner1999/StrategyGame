@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ut6cde7ie7n"]
+[gd_scene load_steps=8 format=3 uid="uid://ut6cde7ie7n"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/end_screen.gd" id="1_d6x33"]
 [ext_resource type="Texture2D" uid="uid://d2bytqu8fom6r" path="res://Assets/UI/OL_VictoryScreen.png" id="2_2oxbw"]
@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://bychxe1rrbgvf" path="res://Assets/UI/button_normal_style_box.tres" id="2_vqowr"]
 [ext_resource type="StyleBox" uid="uid://txvbonrq1j7c" path="res://Assets/UI/button_pressed_style_box.tres" id="3_hgbg6"]
 [ext_resource type="Texture2D" uid="uid://dctyemnicg6gs" path="res://Assets/UI/NL_VictoryScreen.png" id="6_5dgfo"]
+[ext_resource type="Texture2D" uid="uid://bbo83o7qcynr7" path="res://Assets/UI/OL_starved.png" id="7_tf044"]
 
 [node name="EndScreen" type="Control"]
 process_mode = 3
@@ -28,6 +29,12 @@ visible = false
 position = Vector2(958.5, 541)
 scale = Vector2(0.748047, 0.75)
 texture = ExtResource("6_5dgfo")
+
+[node name="OlStarved" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(961.5, 539.86)
+scale = Vector2(0.748828, 0.749806)
+texture = ExtResource("7_tf044")
 
 [node name="Background" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0.380392)

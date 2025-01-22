@@ -103,6 +103,10 @@
 	"en": "[center][color=red]You have failed! \n The Dome has fallen![/color][/center]",
 	"de": "[center][color=red]Du hast versagt! \n Die Kuppel wurde eingenommen![/color][/center]"
   },
+  "@game_over_doom": {
+	"en": "[center][color=red]You have failed! \n Your people starved to death![/color][/center]",
+	"de": "[center][color=red]Du hast versagt! \n Dein Volk ist verhungert![/color][/center]"
+  },
   "@state_info_units": {
 	"en": "Combat Units",
 	"de": "Kampfeinheiten"

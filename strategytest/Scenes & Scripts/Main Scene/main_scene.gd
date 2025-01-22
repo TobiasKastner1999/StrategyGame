@@ -147,3 +147,4 @@ func _on_camera_multi_select_interface(units):
 # calls to clear the selection when the player presses a construction button
 func _on_placer_clear_selection():
 	$CameraBody/Camera.clearSelection()
+	

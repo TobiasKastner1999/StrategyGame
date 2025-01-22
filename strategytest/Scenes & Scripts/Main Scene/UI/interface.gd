@@ -148,6 +148,7 @@ func updateGamestateInfo():
 func gameEnd(faction):
 	for c in get_children():
 		c.visible = false # hides all UI elements
+
 	if faction == Global.player_faction:
 		if Global.player_faction == 0:
 			$EndScreen.text = Global.getText("@game_over_loss_OL") # sets end screen text if the player was defeated
@@ -162,6 +163,9 @@ func gameEnd(faction):
 		else:
 			$EndScreen.text = Global.getText("@game_over_win_OL") # sets end screen text if the player won the game
 			$EndScreen.setScreen(0)
+	if faction == 4:
+		$EndScreen.text = Global.getText("@game_over_doom") # sets end screen text if the player was defeated
+		$EndScreen.setScreen(3)
 	$EndScreen.visible = true # enables end screen visibility
 	$EndScreen.setText()
 
@@ -198,3 +202,4 @@ func _on_wall_button_mouse_exited():
 
 func _on_doom_timer_timeout():
 	$"../HQBlue".doom()
+	gameEnd(4)

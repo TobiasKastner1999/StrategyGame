@@ -19,6 +19,10 @@ func setScreen(screen):
 		1:
 			$RebelsCrushed.visible = true
 			$DomeFallen.visible = false
+		3:
+			$RebelsCrushed.visible = false
+			$DomeFallen.visible = false
+			$OlStarved.visible = true
 
 func _on_button_pressed(): # ends the game
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
