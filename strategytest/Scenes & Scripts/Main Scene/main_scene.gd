@@ -12,12 +12,12 @@ var ui = [load("res://Assets/UI/OL_UI.png"),load("res://Assets/UI/NL_UI.png") ] 
 # called at the start of the game
 func _ready():
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
-	Global.cam = $CameraBody.position
+	Global.cam = $CameraBody.position # sets the starting position of the cam
 	
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
 	Global.cam = $CameraBody.position
-	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second()))
+	$Counter.set_text("FPS: " + str(Engine.get_frames_per_second())) # displays the fps on label
 
 # adds a unit to the fog of war system
 func addUnitToFog(unit_node):
@@ -57,7 +57,7 @@ func _on_interface_start_game(faction):
 	# then toggles the visibility of various UI elements
 	$Options.visible = true
 	$DoomTimer/TimeLeft.visible = true
-	$DoomTimer.start()
+	$DoomTimer.start() # starts the timer for the doom end
 	$Interface/FactionSelection.visible = false
 	$MiniMap/UIFrame.visible = true
 	$Interface/BuildingButton.visible = true
@@ -74,16 +74,16 @@ func _on_interface_start_game(faction):
 	$FactionRedController.setUp()
 	$CameraBody.global_position = camera_positions[faction] # warps the camera to the chosen HQ's location
 	$MiniMap/UIFrame.texture = ui[faction]
-	$CameraBody.position.y = 60
+	$CameraBody.position.y = 60 # sets the camera starting height
 
 	if Global.player_faction == 0: # sets asseets for ui based on faction 0
 		Sound.play_music("res://Sounds/BackgroundMusicVariante1.mp3",$CameraBody )
-		$Interface/ResourceTab/NlUiRes.visible = false
+		$Interface/ResourceTab/NlUiRes.visible = false # hide the resources of NL when OL is on
 		$Interface/BuildingButton.texture_normal = load("res://Assets/UI/OL_Kaserne_UI.png") # baracks button normal
 		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/OL_Kaserne_UI_pressed.png") # barracks button pressed
 		$Interface/HousingButton.texture_normal = load("res://Assets/UI/OL_Forge_UI.png") # forge button normal
 		$Interface/HousingButton.texture_pressed = load("res://Assets/UI/OL_Forge_UI_pressed.png") # forge button pressed
-		$Interface/ResourceTab/Icon1.texture = load("res://Assets/Models/Map/Scrap.png")
+		$Interface/ResourceTab/Icon1.texture = load("res://Assets/Models/Map/Scrap.png") # sets the scrap asset when faction is OL 
 		
 		
 	elif Global.player_faction == 1: # sets asseets for ui based on faction 1
@@ -92,9 +92,9 @@ func _on_interface_start_game(faction):
 		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/NL_barracks_UI_pressed.png") # barracks button pressed
 		$Interface/HousingButton.texture_normal = load("res://Assets/UI/NL_Forge_UI.png") # forge button normal
 		$Interface/HousingButton.texture_pressed = load("res://Assets/UI/NL_Forge_UI_pressed.png") # forge button pressed
-		$Interface/WallButton.visible = true
-		$Interface/ResourceTab/Icon1.texture = load("res://Assets/UI/zenecium.png")
-		$Interface/ResourceTab/NlUiRes.visible = true
+		$Interface/WallButton.visible = true # enables the wall placing button 
+		$Interface/ResourceTab/Icon1.texture = load("res://Assets/UI/zenecium.png") # sets crystal as asset when faction is NL
+		$Interface/ResourceTab/NlUiRes.visible = true # sets the resource asset to NL
 
 	for hq in get_tree().get_nodes_in_group("HQ"):
 		if hq.getFaction() == faction:

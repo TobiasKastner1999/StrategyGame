@@ -16,13 +16,13 @@ var unit_cost : int # how many crystals does each unit from this building cost t
 var spawn_rate : float # how often can the building produce new units?
 var nearby_observers = [] # the nearby enemy units currently observing the building
 
-@onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
+@onready var greystate = preload("res://Assets/Materials/material_grey_out.tres") # greystate material for fow
 @onready var hp = Balance.building_hp # the building's current hit points, initially set to the maximum hit points
 @onready var unit_storage = $"../Units" # the main system node for units
 
 # prepares to spawn a new unit when first built
 func _ready():
-	toggleStatus()
+	toggleStatus() # disables the barracks at the start of the game
 	$HealthbarContainer/HealthBar.max_value = Balance.building_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	$SpawnTimer.stop()
@@ -135,7 +135,7 @@ func setStatus(status):
 			Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2)))
 			Global.updateQueuedUnitCount(faction, -1)
 
-func toggleStatus_on():
+func toggleStatus_on(): # turns the building on onldy
 	spawn_active = !spawn_active
 
 # starts the production of a new unit
@@ -160,7 +160,7 @@ func setProductionType(type):
 	
 	production_type = type
 	unit_cost = Global.unit_dict[str(type)]["resource_cost"] # sets the production variables
-	spawn_rate = Global.unit_dict[str(type)]["production_speed"]
+	spawn_rate = Global.unit_dict[str(type)]["production_speed"] # sets the time it takes to produce the unit
 
 # sets the building's faction to a given value
 func setFaction(f : int):

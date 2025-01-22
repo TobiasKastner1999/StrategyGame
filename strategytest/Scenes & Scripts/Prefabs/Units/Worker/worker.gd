@@ -29,7 +29,7 @@ var hp : float # the worker's current hit points
 var can_attack = true # can the worker currently attack (is its attack not on cooldown)?
 var attacking = false # is the worker playing its attack animation?
 var is_awake = true # is the worker currently actively acting?
-var is_walking = false
+var is_walking = false # checks if the worker is currently walking
 
 var unit_type : String # the worker's type
 var faction : int # which faction does this worker belong to?
@@ -63,9 +63,11 @@ func _physics_process(delta):
 # rotates the model to face in the right direction
 func worker_rotation():
 	var nav = $NavAgent.get_next_path_position() # position where the worker moves next on his path to the final destination
+	# Ashfolk worker rotation
 	$OutlawWorker/OutlawWorker.look_at(nav) # looks at the next position
 	$OutlawWorker/OutlawWorker.rotation.x = rad_to_deg(90) # locks the rotation of x
 	$OutlawWorker/OutlawWorker.rotate_object_local(Vector3.UP, PI) # flips the model 
+	# New Lights worker rotation
 	$NewLightsWorker/Armature.look_at(nav) # looks at the next position
 	$NewLightsWorker/Armature.rotation.x = rad_to_deg(90) # locks the rotation of x
 	$NewLightsWorker/Armature.rotate_object_local(Vector3.UP, PI) # flips the model 
@@ -76,13 +78,13 @@ func animationControl():
 	if !attacking:
 		if interaction_state == 1:
 			worker_anim.play("OutlawWorkerHarvest") # plays the attack animation if the worker is mining
-			worker_anim_nl.play("LightSoldierHarvest")
-			$NewLightsWorker/Armature/Skeleton3D/BoneAttachment3D/NL_Pickaxe.visible = true
-			$NewLightsWorker/Armature/Skeleton3D/BoneAttachment3D/NL_rifle.visible = false
+			worker_anim_nl.play("LightSoldierHarvest") # plays the harvest animation if the worker is mining
+			$NewLightsWorker/Armature/Skeleton3D/BoneAttachment3D/NL_Pickaxe.visible = true # swaps the gun to pickaxe
+			$NewLightsWorker/Armature/Skeleton3D/BoneAttachment3D/NL_rifle.visible = false # swaps the gun to pickaxe
 			
-		elif velocity != Vector3.ZERO:
+		elif velocity != Vector3.ZERO: # when worker is moving
 			worker_anim.play("OutlawWorkerJog") # plays the walk animation if they are moving
-			worker_anim_nl.play("LightSoldierRun")
+			worker_anim_nl.play("LightSoldierRun") # plays the walk animation if they are moving
 			if is_walking == false and $".".visible == true:
 				is_walking = true
 				if faction == 0:

@@ -56,7 +56,7 @@ var upgrade1 = [false, false]
 @export var sentinel_cost = 130
 @export var sentinel_production = 30
 
-# worker stats
+# Ashfolk worker stats
 @export var worker_hp = 50
 @export var worker_damage = 5
 @export var worker_range = 5
@@ -78,7 +78,7 @@ var upgrade1 = [false, false]
 
 
 
-@export var resources_mined = 100
+@export var resources_mined = 100 # amount a harvest action gives the worker
 @export var construction_costs = [0, 400, 500, 150] # the construction costs for different types of buildings
 @export var faction_zero_resources = [1000,0] # faction 0's balances in the different resources
 @export var faction_one_resources = [1000,0] # faction 1's balances in the different resources
@@ -86,17 +86,17 @@ var upgrade1 = [false, false]
 @export var resource = 1000 # how many resources can be mined
 @export var faction_zero_resource_limits = [1000, 0] # faction 0's maximum capacity of the different resources
 @export var faction_one_resource_limits = [1000, 0] # faction 1's maximum capacity of the different resources
-@export var upgrade_cost = 400
+@export var upgrade_cost = 400 # cost to by the upgrade
 
 @export var building_hp = 110 # health for building
 @export var building_spawn_delay = 1 # delay when units are spawned
-@export var building_unit_capacity = 4
+@export var building_unit_capacity = 4 # limit for units on barrack
 
 @export var housing_hp = 130
-@export var housing_resource_cap_a = 500
-@export var housing_resource_cap_b = 500
+@export var housing_resource_cap_a = 500 # limit for resouce 0
+@export var housing_resource_cap_b = 500 # limit for resouce 1
 
-@export var wall_hp = 100
+@export var wall_hp = 100 # hp for wall
 
 
 @export var hq_spawn_delay = 10.0 # how often will new workers spawn?
