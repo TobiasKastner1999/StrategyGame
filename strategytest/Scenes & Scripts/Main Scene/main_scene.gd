@@ -13,6 +13,7 @@ var ui = [load("res://Assets/UI/OL_UI.png"),load("res://Assets/UI/NL_UI.png") ] 
 func _ready():
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
 	Global.cam = $CameraBody.position
+	
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
 	Global.cam = $CameraBody.position
@@ -53,7 +54,6 @@ func gameEnd(faction):
 # once the player chooses a faction at the start of the game
 func _on_interface_start_game(faction):
 	$Controls.visible = true
-	
 	# then toggles the visibility of various UI elements
 	$Options.visible = true
 	$DoomTimer/TimeLeft.visible = true

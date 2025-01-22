@@ -8,12 +8,12 @@ var unit_type : int # the unit type this button represents
 func _ready():
 	Global.unit_dict["0"]["texture_normal"] = load("res://Assets/UI/OL_Fighter_UI.png") # NL light png
 	Global.unit_dict["0"]["texture_pressed"] = load("res://Assets/UI/OL_Fighter_UI_pressed.png")
-	Global.unit_dict["1"]["texture_normal"] = load("res://Assets/UI/OL_Fighter_UI.png") # NL heavy png
-	Global.unit_dict["1"]["texture_pressed"] = load("res://Assets/UI/OL_Fighter_UI_pressed.png")
+	Global.unit_dict["1"]["texture_normal"] = load("res://Assets/UI/NL_HeavyUnit_UI.png") # NL heavy png
+	Global.unit_dict["1"]["texture_pressed"] = load("res://Assets/UI/NL_HeavyUnit_UI.png")
 	Global.unit_dict["2"]["texture_normal"] = load("res://Assets/UI/OL_Fighter_UI.png") # OL light png
 	Global.unit_dict["2"]["texture_pressed"] = load("res://Assets/UI/OL_Fighter_UI_pressed.png")
 	Global.unit_dict["3"]["texture_normal"] = load("res://Assets/UI/OL_GunVehicle_UI.png") # OL heavy png
-	Global.unit_dict["3"]["texture_pressed"] = load("res://Assets/UI/OL_Fighter_UI_pressed.png")
+	Global.unit_dict["3"]["texture_pressed"] = load("res://Assets/UI/OL_GunVehicle_UI.png")
 
 
 
