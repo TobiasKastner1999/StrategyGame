@@ -12,14 +12,48 @@ func runBehaviour():
 						targetHQ(unit)
 
 func returnForUpgrade(unit):
-	if Balance.upgrade1[controlled_faction]:
-		return true
+	if Balance.upgrade1[controlled_faction] and !unit.getUpgradeState():
+		for building in controller.getBuildings():
+			if building.getType() == "building":
+				unit.setDestination(building.global_position)
+				return true
 	return false
 
 func targetKnownUnit(unit):
+	var targets = controller.getKnownUnits()
+	var closest
+	var closest_distance
+	if targets.size() > 0:
+		for target in targets:
+			var target_distance = unit.global_position.distance_to(target.global_position)
+			if closest == null or target_distance < closest_distance:
+				closest = target
+				closest_distance = target_distance
+	
+		if unit.isNearBody(closest):
+			unit.setAttackTarget(closest)
+		else:
+			unit.setDestination(closest.global_position)
+		return true
 	return false
 
 func targetKnownBuilding(unit):
+	var targets = controller.getKnownBuildings()
+	var closest
+	var closest_distance
+	
+	if targets.size() > 0:
+		for target in targets:
+			var target_distance = unit.global_position.distance_to(target.global_position)
+			if closest == null or target_distance < closest_distance:
+				closest = target
+				closest_distance = target_distance
+		
+		if unit.isNearBody(closest):
+			unit.setAttackTarget(closest)
+		else:
+			unit.setDestination(closest.global_position)
+		return true
 	return false
 
 func targetHQ(unit):
