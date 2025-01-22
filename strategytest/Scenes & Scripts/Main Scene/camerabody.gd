@@ -41,7 +41,7 @@ func _physics_process(delta):
 
 # while rightclick is pressed the cam can spin through mouse movement
 func _input(event):
-	if Input.is_action_pressed("mousewheel"):
+	if Input.is_action_pressed("test_mouse"):
 		if event is InputEventMouseMotion:
 			$Camera.rotate_y(-event.relative.x * 0.002)
 

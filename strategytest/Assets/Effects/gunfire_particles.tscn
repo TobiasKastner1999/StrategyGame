@@ -1,0 +1,128 @@
+[gd_scene load_steps=12 format=3 uid="uid://dyvoktle7rvi3"]
+
+[ext_resource type="Script" path="res://Assets/Effects/gunfire_particles.gd" id="1_7lbmn"]
+[ext_resource type="Texture2D" uid="uid://dr4idtxtfbe6r" path="res://Assets/Effects/Smoke.png" id="1_tson7"]
+[ext_resource type="Texture2D" uid="uid://cwkogcdmd6by4" path="res://Assets/Effects/MuzzleFlash.png" id="2_7nxwn"]
+[ext_resource type="Material" uid="uid://ckdcjom0grgfw" path="res://Assets/Effects/smoke_particles_process_material.tres" id="3_13sep"]
+[ext_resource type="Material" uid="uid://cfkfliyx2gv2c" path="res://Assets/Effects/gunfire_particles_process_material.tres" id="4_hw3hp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hfo2m"]
+transparency = 1
+shading_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_tson7")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_iov3x"]
+size = Vector2(5, 5)
+
+[sub_resource type="Shader" id="Shader_djyrn"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_add,depth_draw_opaque,cull_disabled,diffuse_toon,specular_disabled,unshaded,ambient_light_disabled,fog_disabled;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform int particles_anim_h_frames;
+uniform int particles_anim_v_frames;
+uniform bool particles_anim_loop;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+
+	float h_frames = float(particles_anim_h_frames);
+	float v_frames = float(particles_anim_v_frames);
+	float particle_total_frames = float(particles_anim_h_frames * particles_anim_v_frames);
+	float particle_frame = floor(INSTANCE_CUSTOM.z * float(particle_total_frames));
+	if (!particles_anim_loop) {
+		particle_frame = clamp(particle_frame, 0.0, particle_total_frames - 1.0);
+	} else {
+		particle_frame = mod(particle_frame, particle_total_frames);
+	}
+	UV /= vec2(h_frames, v_frames);
+	UV += vec2(mod(particle_frame, h_frames) / h_frames, floor((particle_frame + 0.5) / h_frames) / v_frames);
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	albedo_tex *= COLOR;
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	ALPHA *= albedo.a * albedo_tex.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q8ogo"]
+render_priority = 0
+shader = SubResource("Shader_djyrn")
+shader_parameter/albedo = Color(1, 0.729412, 0.243137, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/particles_anim_h_frames = 2
+shader_parameter/particles_anim_v_frames = 2
+shader_parameter/particles_anim_loop = false
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = ExtResource("2_7nxwn")
+
+[sub_resource type="QuadMesh" id="QuadMesh_541np"]
+flip_faces = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_nl7jq"]
+
+[node name="Gunfire" type="Node3D"]
+script = ExtResource("1_7lbmn")
+
+[node name="Smoke" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_hfo2m")
+emitting = false
+amount = 5
+process_material = ExtResource("3_13sep")
+draw_pass_1 = SubResource("QuadMesh_iov3x")
+
+[node name="Blast" type="GPUParticles3D" parent="."]
+transform = Transform3D(-0.149207, 0.988806, 0, -0.988806, -0.149207, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_q8ogo")
+emitting = false
+amount = 50
+interp_to_end = 0.99
+process_material = ExtResource("4_hw3hp")
+draw_passes = 2
+draw_pass_1 = SubResource("QuadMesh_541np")
+draw_pass_2 = SubResource("QuadMesh_nl7jq")

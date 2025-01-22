@@ -21,6 +21,7 @@ var nearby_observers = [] # a list of enemy units near the HQ
 @onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")
 @onready var unit_manager = $".."/Units # the parent node managing the game's combat units
 @onready var hp = Balance.hq_hp # the hq's current hp, initially set to the maximum
+@onready var max_hp = Balance.hq_hp # the hq´s max hp
 
 @export var faction = 0 # the hq's faction
 
@@ -34,7 +35,7 @@ func _ready():
 		$OLBaseBody.visible = false
 		$OLHQColl.disabled = true
 	$HqBody.set_surface_override_material(3, load(Global.getFactionColor(faction))) 
-	$HealthbarContainer/HealthBar.max_value = MAX_HP # adjusts the health bar display to this unit's maximum hp
+	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	
 	# grabs the worker spawning parameters from the Global data and starts the spawn timer
@@ -118,7 +119,7 @@ func getHP():
 
 # returns the HQ's maximum HP
 func getMaxHP():
-	return MAX_HP
+	return max_hp
 
 # returns the HQ's name id
 func getDisplayName():
