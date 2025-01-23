@@ -494,6 +494,6 @@ func _on_animation_player_animation_finished(anim_name):
 			
 func getIcon():
 	if Global.player_faction == 0:
-		return load("res://Assets/UI/CursorHarvest.png")
+		return load("res://Assets/UI/OL_Worker_UI.png")
 	else:
-		return load("res://Assets/UI/CursorBuilding.png")
+		return load("res://Assets/UI/NL_lightsoldier_UI.png")
