@@ -274,5 +274,57 @@
   "@tutorial_text_final_nl": {
     "en": "Defend the Dome. You can construct defensive walls, upgrade your troops in the Forge or construct additional buildings to store additional resources or train more troops.",
     "de": "Verteidige die Kuppel. Du kannst Verteidigunsmauern bauen, in der Schmiede deine Truppen verbessern, oder weitere Gebäude bauen, um mehr Ressourcen zu lagern und Truppen auszubilden."
+  },
+  "@interface_button_skip_video": {
+    "en": "skip",
+    "de": "überspringen"
+  },
+  "@game_over_win_OL": {
+    "en": "[center][color=green]Victory! \\nYou have captured the Dome![/color][/center]",
+    "de": "[center][color=green]Du hast gewonnen!\\n Die Kuppel wurde eingenommen![/color][/center]"
+  },
+  "@game_over_win_NL": {
+    "en": "[center][color=green]Victory!\\n The Dome stands![/color][/center]",
+    "de": "[center][color=green]Du hast gewonnen!\\n Die Kuppel wurde verteidigt![/color][/center]"
+  },
+  "@game_over_loss_OL": {
+    "en": "[center][color=red]You have failed! \\n The Ashfolk has perished![/color][/center]",
+    "de": "[center][color=red]Du hast versagt! \\n Das Aschenvvolk[/color][/center]"
+  },
+  "@game_over_loss_NL": {
+    "en": "[center][color=red]You have failed! \\n The Dome has fallen![/color][/center]",
+    "de": "[center][color=red]Du hast versagt! \\n Die Kuppel wurde eingenommen![/color][/center]"
+  },
+  "@game_over_doom": {
+    "en": "[center][color=red]You have failed! \\n Your people starved to death![/color][/center]",
+    "de": "[center][color=red]Du hast versagt! \\n Dein Volk ist verhungert![/color][/center]"
+  },
+  "@name_building_wall": {
+    "en": "Wall",
+    "de": "Mauer"
+  },
+  "@name_controls": {
+    "en": "[center] [font_size= 35]Controls[/font_size] [/center] \\n\\n-Right-click on units to select them. \\n-Selected units can be given commands.\\n-Right-click on a unit to give it a move command. \\n-Right-click on the enemy to order the selected unit to attack. \\n-Right-click on a resource to give it a mine command. \\n-Hold down the left mouse pointer and drag to mark all selected units",
+    "de": "[center] [font_size= 35]Controls[/font_size] [/center] \\n\\n-Klicken Sie mit der rechten Maustaste auf die Einheiten, um sie auszuwählen. \\n-Den ausgewählten Einheiten können Befehle erteilt werden. \\n-Klicken Sie mit der rechten Maustaste auf den Boden, um ihm einen Bewegungsbefehl zu geben. \\n-Klicken Sie mit der rechten Maustaste auf den Gegner, um der ausgewählten Einheit einen Angriffsbefehl zu erteilen. \\n-Klicken Sie mit der rechten Maustaste auf eine Ressource, um ihr einen Abbaubefehl zu geben. \\n-Halten Sie den linken Mauszeiger gedrückt und ziehen Sie, um alle ausgewählten Einheiten zu markieren."
+  },
+  "@name_faction_NL": {
+    "en": "Join the Newlights - the future of warfare! With an army of advanced robots, they are ready to defend the dome at all costs. Implement your strategy with precise resource calculation and face any threat. Defend the dome, ensure your survival and experience the power of an unstoppable robot army!",
+    "de": "Treten Sie den Newlights bei - der Zukunft der Kriegsführung! Mit einer Armee von hochentwickelten Robotern sind sie bereit, die Kuppel um jeden Preis zu verteidigen. Setzen Sie Ihre Strategie mit präziser Ressourcenkalkulation um und stellen Sie sich jeder Bedrohung. Verteidigen Sie die Kuppel, sichern Sie Ihr Überleben und erleben Sie die Macht einer unaufhaltsamen Roboterarmee!"
+  },
+  "@name_faction_OL": {
+    "en": "Join the Ashfolk - the rebels fighting for their freedom! As a human being in a world of destruction, you need adaptability, courage and solidarity. Your goal: overthrow the dome and bring down the system! Fight with the Ashfolk for a better future and join the resistance!",
+    "de": "Schließe dich den Ashfolk an - den Rebellen, die für ihre Freiheit kämpfen! Als Mensch in einer Welt der Zerstörung brauchst du Anpassungsfähigkeit, Mut und Solidarität. Dein Ziel: Die Kuppel stürzen und das System zu Fall bringen! Kämpfe mit den Ashfolk für eine bessere Zukunft und schließe dich dem Widerstand an!"
+  },
+  "@interface_text_controls_done": {
+    "en": "Continue",
+    "de": "Fortfahren"
+  },
+  "@interface_text_mission_description_NL": {
+    "en": "[center] [font_size= 35]Mission[/font_size] [/center] \\n\\nWith powerful robot units that make no mistakes and an additional wall to defend the dome, you are ideally equipped. Use the valuable resource Zenezium to make your faction even more powerful and secure the dome!",
+    "de": "[center] [font_size= 35]Auftrag[/font_size] [/center] \\n\\nMit starken Roboter-Einheiten, die keine Fehler machen, und einer zusätzlichen Mauer zur Verteidigung der Kuppel bist du bestens gerüstet. Nutze die wertvolle Ressource Zenezium, um deine Fraktion noch mächtiger zu machen und die Kuppel zu sichern!"
+  },
+  "@interface_text_mission_description_OL": {
+    "en": "[center] [font_size= 35]Mission[/font_size] [/center] \\n\\nWith strong human units and additional vehicles for aggressive attacks, you can fight the system from the outside. Use the fast movement of your troops and seize the initiative. Fight for freedom and lead the resistance to victory!",
+    "de": "[center] [font_size= 35]Auftrag[/font_size] [/center] \\n\\nMit starken menschlichen Einheiten und zusätzlichen Fahrzeugen für aggressive Angriffe kannst du das System von außen bekämpfen. Nutze die schnelle Bewegung deiner Truppen und ergreife die Initiative. Kämpfe für die Freiheit und führe den Widerstand zum Sieg!"
   }
 }
