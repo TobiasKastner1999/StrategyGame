@@ -1,6 +1,5 @@
 extends Node3D
 
-
 var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
 var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 
@@ -15,7 +14,7 @@ var units_queued = [0, 0] # how many units does each faction currently have in a
 var upgrade_queued = [false, false] # are the factions currently researching an upgrade?
 var player_building_count : int = 0 # how many building's has the player constructed?
 var cam = null # stores mainscene camera
-var tree = null
+var tree = null # the scene tree of the game's main scene
 
 var known_player_units = [] # a list of the player's units known to the AI
 var known_player_buildings = [] # a list of the player's buildings known to the AI
@@ -141,13 +140,14 @@ func updateBuildingCount(constructed):
 func getBuildingCount():
 	return player_building_count
 
+# returns the number of buildings the player has constructed of a given type
 func getPlayerBuildings(type):
 	var buildings_temp = tree.get_nodes_in_group("Building")
-	var buildings = buildings_temp.duplicate()
+	var buildings = buildings_temp.duplicate() # creates & duplicates a list of all buildings
 	for building in buildings_temp:
 		if building.getFaction() != Global.player_faction or building.getType() != type:
-			buildings.erase(building)
-	return buildings.size()
+			buildings.erase(building) # removes any buildings that don't belong to the player or aren't of the specified type
+	return buildings.size() # then returns the size of the list
 
 # returns the current list of the AI's known player-controlled units
 func getKnownPlayerUnits():
