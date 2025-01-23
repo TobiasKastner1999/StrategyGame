@@ -22,7 +22,8 @@ func newResourceTarget(node, target):
 	if resource_list.size() == 0:
 		resource_list = controller.getResources().get_children() # if there are no resources left near the HQ, gets all resources on the map instead
 	if resource_list.size() > 0:
-		for resource in resource_list:
+		var resources_temp = resource_list.duplicate()
+		for resource in resources_temp:
 			if resource.getFaction(controlled_faction) != controlled_faction or resource.getResourceType() != target:
 				resource_list.erase(resource) # removes all resources the controlled faction cannot use or that aren't currently required from the list
 		if resource_list.size() > 0:
