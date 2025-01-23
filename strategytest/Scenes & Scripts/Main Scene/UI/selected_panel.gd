@@ -142,7 +142,10 @@ func updateSelectedInterface():
 		$SelectedIcon.texture = current_selected.getIcon()
 	# updates each special info text
 		for info_text in $InfoContainer.get_children():
-			info_text.text = Global.getText("@inspect_text_" + info_text.getInfo()) + ": " + Global.getText("@inspect_text_" + info_text.getInfo() + "_" + current_selected.getInspectInfo(info_text.getInfo()))
+			var info = info_text.getInfo()
+			var select_info = current_selected.getInspectInfo(info)
+			if info != null and select_info != null:
+				info_text.text = Global.getText("@inspect_text_" + info) + ": " + Global.getText("@inspect_text_" + info + "_" + select_info)
 	
 	# updates additional elements based on object type
 		match current_selected.getType():
