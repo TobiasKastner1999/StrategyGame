@@ -491,3 +491,9 @@ func _on_animation_player_animation_finished(anim_name):
 			attacking = false # lets the worker play other animations again once their attack animation has run
 		"LightSoldierDeath":
 			queue_free() # deletes the worker once their death animation has finished
+			
+func getIcon():
+	if Global.player_faction == 0:
+		return load("res://Assets/UI/CursorHarvest.png")
+	else:
+		return load("res://Assets/UI/CursorBuilding.png")

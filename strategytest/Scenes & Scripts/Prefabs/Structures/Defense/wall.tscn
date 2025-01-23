@@ -62,7 +62,7 @@ bg_color = Color(0, 0.713726, 0.443137, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_hvpai"]
 viewport_path = NodePath("HealthbarContainer")
 
-[node name="Wall" type="StaticBody3D"]
+[node name="Wall" type="StaticBody3D" groups=["Building", "CombatTarget", "FowObject", "MouseRaycast", "Structure"]]
 script = ExtResource("1_feoyo")
 
 [node name="WallBody" type="MeshInstance3D" parent="."]

@@ -139,6 +139,7 @@ func updateSelectedInterface():
 		$SelectedName.text = "[b]" + Global.getText(current_selected.getDisplayName()) + "[/b]" # displays the name
 		$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.getHP()) + "/" + str(current_selected.getMaxHP()) # displays the object's current hp out of its maximum hp
 		$ButtonUpgrade/UpgradeCost.text = Global.getText("@inspect_text_cost") + ": " + str(Balance.upgrade_cost)
+		$SelectedIcon.texture = current_selected.getIcon()
 	# updates each special info text
 		for info_text in $InfoContainer.get_children():
 			info_text.text = Global.getText("@inspect_text_" + info_text.getInfo()) + ": " + Global.getText("@inspect_text_" + info_text.getInfo() + "_" + current_selected.getInspectInfo(info_text.getInfo()))

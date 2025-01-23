@@ -14,3 +14,5 @@ func setType(type):
 	$TooltipSpeed.text = "[b]" + Global.getText("@inspect_text_speed") + ":[/b] " + str(Global.unit_dict[str(current_type)]["speed"])
 	$TooltipCost.text = "[b]" + Global.getText("@inspect_text_cost") + ":[/b] " + str(Global.unit_dict[str(current_type)]["resource_cost"])
 	$TooltipProduction.text = "[b]" + Global.getText("@inspect_text_production") + ":[/b] " + str(Global.unit_dict[str(current_type)]["production_speed"])
+
+
