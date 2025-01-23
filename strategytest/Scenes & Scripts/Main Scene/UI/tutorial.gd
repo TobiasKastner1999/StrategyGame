@@ -162,7 +162,9 @@ func advanceTutorial():
 	openTutorial()
 
 func _on_mouse_entered():
+	$".".texture = load("res://Assets/UI/questionmark_UI_pressed.png")
 	openTutorial()
 
 func _on_mouse_exited():
+	$".".texture = load("res://Assets/UI/questionmark_UI.png")
 	closeTutorial()
