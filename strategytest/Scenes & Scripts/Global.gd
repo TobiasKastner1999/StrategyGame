@@ -142,8 +142,9 @@ func getBuildingCount():
 	return player_building_count
 
 func getPlayerBuildings(type):
-	var buildings = tree.get_nodes_in_group("Building")
-	for building in buildings:
+	var buildings_temp = tree.get_nodes_in_group("Building")
+	var buildings = buildings_temp.duplicate()
+	for building in buildings_temp:
 		if building.getFaction() != Global.player_faction or building.getType() != type:
 			buildings.erase(building)
 	return buildings.size()
