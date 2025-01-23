@@ -46,6 +46,7 @@ func clearMultiSelection():
 
 # sets up the interface for a multi-selection
 func multiSelection(units):
+	$SelectedIcon.texture = null # clears the icon rect when multiple units are selected
 	multi_selection = units
 
 	unselect()
@@ -135,6 +136,7 @@ func newInfoText(info):
 
 # updates the dynamic interface components
 func updateSelectedInterface():
+	
 	if current_selected != null:
 		$SelectedName.text = "[b]" + Global.getText(current_selected.getDisplayName()) + "[/b]" # displays the name
 		$SelectedHP.text = Global.getText("@inspect_text_hp") + ": " + str(current_selected.getHP()) + "/" + str(current_selected.getMaxHP()) # displays the object's current hp out of its maximum hp

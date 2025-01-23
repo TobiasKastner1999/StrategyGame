@@ -192,8 +192,10 @@ func advanceTutorial():
 
 # opens the panel when the player's mouse enters the button
 func _on_mouse_entered():
+	$".".texture = load("res://Assets/UI/questionmark_UI_pressed.png")
 	openTutorial()
 
 # closes the panel once the mouse leaves the button
 func _on_mouse_exited():
+	$".".texture = load("res://Assets/UI/questionmark_UI.png")
 	closeTutorial()
