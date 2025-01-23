@@ -15,6 +15,7 @@ var units_queued = [0, 0] # how many units does each faction currently have in a
 var upgrade_queued = [false, false] # are the factions currently researching an upgrade?
 var player_building_count : int = 0 # how many building's has the player constructed?
 var cam = null # stores mainscene camera
+var tree = null
 
 var known_player_units = [] # a list of the player's units known to the AI
 var known_player_buildings = [] # a list of the player's buildings known to the AI
@@ -139,6 +140,13 @@ func updateBuildingCount(constructed):
 # returns the number of the player's current buildings
 func getBuildingCount():
 	return player_building_count
+
+func getPlayerBuildings(type):
+	var buildings = tree.get_nodes_in_group("Building")
+	for building in buildings:
+		if building.getFaction() != Global.player_faction or building.getType() != type:
+			buildings.erase(building)
+	return buildings.size()
 
 # returns the current list of the AI's known player-controlled units
 func getKnownPlayerUnits():

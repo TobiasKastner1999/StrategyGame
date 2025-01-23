@@ -13,6 +13,7 @@ var ui = [load("res://Assets/UI/OL_UI.png"),load("res://Assets/UI/NL_UI.png") ] 
 func _ready():
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
 	Global.cam = $CameraBody.position # sets the starting position of the cam
+	Global.tree = get_tree()
 	
 # displays the player's amount of crystals, as well as the current fps
 func _process(_delta):
@@ -65,6 +66,7 @@ func _on_interface_start_game(faction):
 	$MiniMap.visible = true
 	$Counter.visible = true
 	$Interface/ResourceTab.visible = true
+	$Interface/Tutorial.visible = true
 	
 	fog_of_war.newFog(Rect2(Vector2.ZERO, world_size)) # sets up the fog of war
 	Global.player_faction = faction # sets the player's global faction to the faction they chose

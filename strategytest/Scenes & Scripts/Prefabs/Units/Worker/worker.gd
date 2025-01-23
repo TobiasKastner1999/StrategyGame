@@ -426,7 +426,7 @@ func deselect():
 func hasNearbyAI():
 	var nearby_objects = $RangeArea.get_overlapping_bodies()
 	for object in nearby_objects:
-		if object.has_method("getFaction") and object.getFaction() != faction:
+		if object.has_method("getFaction") and !object.has_method("takeResource") and object.getFaction() != faction:
 			return true # returns true on the first enemy object found
 	return false # returns false instead if none are found
 

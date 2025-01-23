@@ -208,6 +208,9 @@ func getWorkers():
 func getWorkerNum():
 	return str(current_workers) + "/" + str(Balance.worker_limit)
 
+func getCurrentWorkers():
+	return current_workers
+
 # called when the hq comes into view of a player-controlled unit
 func fowEnter(node):
 	if node.getFaction() != faction:
