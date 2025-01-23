@@ -106,4 +106,6 @@ func setGreystate(bol):
 	else:
 		$WallBody.material_overlay = null
 
+func getIcon():
+	return load("res://Assets/UI/NL_wall_UI.png")
 

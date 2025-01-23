@@ -153,3 +153,9 @@ func _on_research_timer_timeout():
 	$ProgressSprite.visible = false
 	Balance.upgrade1[faction] = true
 	interface_update.emit()
+
+func getIcon():
+	if Global.player_faction == 0:
+		return load("res://Assets/UI/OL_Forge_UI.png")
+	else:
+		return load("res://Assets/UI/NL_Forge_UI.png")

@@ -270,3 +270,9 @@ func _on_spawn_timer_timeout():
 func _on_area_3d_body_entered(body): # function to upgrade units when entered
 	if body.is_in_group("Fighter") and body.faction == Global.player_faction: # when global var is active and unit is a combatunit
 		body.update_stats() # calls the upgrade function
+
+func getIcon():
+	if Global.player_faction == 0:
+		return load("res://Assets/UI/OL_Kaserne_UI.png")
+	else:
+		return load("res://Assets/UI/NL_barracks_UI.png")

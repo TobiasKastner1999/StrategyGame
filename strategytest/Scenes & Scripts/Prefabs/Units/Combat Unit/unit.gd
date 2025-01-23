@@ -435,3 +435,14 @@ func _on_heavy_anim_animation_finished(anim_name):
 				attacking = false # lets the unit play other animations again once their attack animation has run
 		"HeavyDefenseUnitDeath":
 			queue_free() # deletes the unit once their death animation has finished
+
+func getIcon():
+	match unit_type:
+		0:
+			return load("res://Assets/UI/Cursor Attack.png")
+		1:
+			return load("res://Assets/UI/NL_HeavyUnit_UI.png")
+		2:
+			return load("res://Assets/UI/OL_Fighter_UI.png")
+		3:
+			return load("res://Assets/UI/OL_GunVehicle_UI.png")

@@ -270,3 +270,8 @@ func _on_spawn_timer_timeout():
 func doom(): # funtion to kill the hq for the doom ending
 	takeDamage(9999, $Workers)
 	
+func getIcon():
+	if Global.player_faction == 0:
+		return load("res://Assets/UI/OL_Base_UI.png")
+	else:
+		return load("res://Assets/UI/dome_UI.png")
