@@ -1,330 +1,330 @@
 {
   "@interface_button_start_game": {
-    "en": "Start Game",
-    "de": "Spiel starten"
+	"en": "Start Game",
+	"de": "Spiel starten"
   },
   "@interface_button_quit_game": {
-    "en": "Quit Game",
-    "de": "Spiel verlassen"
+	"en": "Quit Game",
+	"de": "Spiel verlassen"
   },
   "@interface_button_back": {
-    "en": "Back",
-    "de": "Zurück"
+	"en": "Back",
+	"de": "Zurück"
   },
   "@interface_button_continue": {
-    "en": "Back to Game",
-    "de": "Zurück zum Spiel"
+	"en": "Back to Game",
+	"de": "Zurück zum Spiel"
   },
   "@interface_button_main_menu": {
-    "en": "Back to Main Menu",
-    "de": "Zurück zum Hauptmenü"
+	"en": "Back to Main Menu",
+	"de": "Zurück zum Hauptmenü"
   },
   "@interface_button_menu": {
-    "en": "Back to Menu",
-    "de": "Zurück zum Menü"
+	"en": "Back to Menu",
+	"de": "Zurück zum Menü"
   },
   "@interface_button_pause_menu": {
-    "en": "Pause Menu",
-    "de": "Pausenmenü"
+	"en": "Pause Menu",
+	"de": "Pausenmenü"
   },
   "@interface_button_settings": {
-    "en": "Settings",
-    "de": "Einstellungen"
+	"en": "Settings",
+	"de": "Einstellungen"
   },
   "@interface_button_credits": {
-    "en": "Credits",
-    "de": "Credits"
+	"en": "Credits",
+	"de": "Credits"
   },
   "@interface_button_building": {
-    "en": "Barracks",
-    "de": "Kaserne"
+	"en": "Barracks",
+	"de": "Kaserne"
   },
   "@interface_button_forge": {
-    "en": "Forge",
-    "de": "Schmiede"
+	"en": "Forge",
+	"de": "Schmiede"
   },
   "@interface_button_drop": {
-    "en": "Discard",
-    "de": "Abwerfen"
+	"en": "Discard",
+	"de": "Abwerfen"
   },
   "@interface_button_upgrade": {
-    "en": "Upgrade Units",
-    "de": "Kampfeinheiten verbessern"
+	"en": "Upgrade Units",
+	"de": "Kampfeinheiten verbessern"
   },
   "@interface_button_abort_research": {
-    "en": "Abort Research",
-    "de": "Forschung abbrechen"
+	"en": "Abort Research",
+	"de": "Forschung abbrechen"
   },
   "@interface_button_toggle_building": {
-    "en": "Toggle Production",
-    "de": "Produktion umschalten"
+	"en": "Toggle Production",
+	"de": "Produktion umschalten"
   },
   "@interface_text_music_settings": {
-    "en": "Music Volume",
-    "de": "Musiklautstärke"
+	"en": "Music Volume",
+	"de": "Musiklautstärke"
   },
   "@interface_text_sound_settings": {
-    "en": "Sound Volume",
-    "de": "Tonlautstärke"
+	"en": "Sound Volume",
+	"de": "Tonlautstärke"
   },
   "@interface_text_choose_faction": {
-    "en": "Choose your Faction!",
-    "de": "Wähle deine Fraktion!"
+	"en": "Choose your Faction!",
+	"de": "Wähle deine Fraktion!"
   },
   "@interface_text_faction_blue": {
-    "en": "Nova Lumina",
-    "de": "Nova Lumina"
+	"en": "Nova Lumina",
+	"de": "Nova Lumina"
   },
   "@interface_text_faction_red": {
-    "en": "Ashfolk",
-    "de": "Aschenfolk"
+	"en": "Ashfolk",
+	"de": "Aschenfolk"
   },
   "@interface_text_selected": {
-    "en": "Selected",
-    "de": "Ausgewählt"
+	"en": "Selected",
+	"de": "Ausgewählt"
   },
   "@game_over_win": {
-    "en": "Victory!",
-    "de": "Du hast gewonnen!"
+	"en": "Victory!",
+	"de": "Du hast gewonnen!"
   },
   "@game_over_loss": {
-    "en": "Game Over! You lost...",
-    "de": "Du hast verloren..."
+	"en": "Game Over! You lost...",
+	"de": "Du hast verloren..."
   },
   "@state_info_units": {
-    "en": "Combat Units",
-    "de": "Kampfeinheiten"
+	"en": "Combat Units",
+	"de": "Kampfeinheiten"
   },
   "@state_info_workers": {
-    "en": "Workers",
-    "de": "Arbeiter"
+	"en": "Workers",
+	"de": "Arbeiter"
   },
   "@state_info_buildings": {
-    "en": "Buildings",
-    "de": "Gebäude"
+	"en": "Buildings",
+	"de": "Gebäude"
   },
   "@inspect_text_hp": {
-    "en": "HP",
-    "de": "Leben"
+	"en": "HP",
+	"de": "Leben"
   },
   "@inspect_text_damage": {
-    "en": "Damage",
-    "de": "Schaden"
+	"en": "Damage",
+	"de": "Schaden"
   },
   "@inspect_text_range": {
-    "en": "Range",
-    "de": "Reichweite"
+	"en": "Range",
+	"de": "Reichweite"
   },
   "@inspect_text_attack": {
-    "en": "Attack Rate",
-    "de": "Angriffsrate"
+	"en": "Attack Rate",
+	"de": "Angriffsrate"
   },
   "@inspect_text_vision": {
-    "en": "Vision",
-    "de": "Sichtweite"
+	"en": "Vision",
+	"de": "Sichtweite"
   },
   "@inspect_text_speed": {
-    "en": "Speed",
-    "de": "Geschwindigkeit"
+	"en": "Speed",
+	"de": "Geschwindigkeit"
   },
   "@inspect_text_cost": {
-    "en": "Cost",
-    "de": "Kosten"
+	"en": "Cost",
+	"de": "Kosten"
   },
   "@inspect_text_production": {
-    "en": "Production",
-    "de": "Produktion"
+	"en": "Production",
+	"de": "Produktion"
   },
   "@inspect_text_status": {
-    "en": "Status",
-    "de": "Status"
+	"en": "Status",
+	"de": "Status"
   },
   "@inspect_text_status_active": {
-    "en": "Active",
-    "de": "Aktiv"
+	"en": "Active",
+	"de": "Aktiv"
   },
   "@inspect_text_status_inactive": {
-    "en": "Inactive",
-    "de": "Inaktiv"
+	"en": "Inactive",
+	"de": "Inaktiv"
   },
   "@inspect_text_status_moving": {
-    "en": "Moving",
-    "de": "In Bewegung"
+	"en": "Moving",
+	"de": "In Bewegung"
   },
   "@inspect_text_status_fighting": {
-    "en": "Fighting",
-    "de": "Im Kampf"
+	"en": "Fighting",
+	"de": "Im Kampf"
   },
   "@inspect_text_status_working": {
-    "en": "Working",
-    "de": "Arbeitet"
+	"en": "Working",
+	"de": "Arbeitet"
   },
   "@inspect_text_status_research": {
-    "en": "Researching",
-    "de": "In Forschung"
+	"en": "Researching",
+	"de": "In Forschung"
   },
   "@inspect_text_status_production": {
-    "en": "Training",
-    "de": "Training"
+	"en": "Training",
+	"de": "Training"
   },
   "@inspect_text_resource": {
-    "en": "Resource",
-    "de": "Ressource"
+	"en": "Resource",
+	"de": "Ressource"
   },
   "@inspect_text_resource_empty": {
-    "en": "-",
-    "de": "-"
+	"en": "-",
+	"de": "-"
   },
   "@inspect_text_resource_scrap": {
-    "en": "Scrap",
-    "de": "Altmetall"
+	"en": "Scrap",
+	"de": "Altmetall"
   },
   "@inspect_text_resource_zenecium": {
-    "en": "Zenecium",
-    "de": "Zenezium"
+	"en": "Zenecium",
+	"de": "Zenezium"
   },
   "@inspect_text_resource_ferronite": {
-    "en": "Ferronite",
-    "de": "Ferronit"
+	"en": "Ferronite",
+	"de": "Ferronit"
   },
   "@inspect_text_description_guard": {
-    "en": "The [b]Dome Guards[/b] specialise in quick and simple defensive tactics. The unit is designed to quickly strike at defensive weaknesses and deal heavy damage.",
-    "de": "Die [b]Kuppelwächter[/b] sind auf eine schnelle und einfache Verteidigungs-Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und großen Schaden anzurichten."
+	"en": "The [b]Dome Guards[/b] specialise in quick and simple defensive tactics. The unit is designed to quickly strike at defensive weaknesses and deal heavy damage.",
+	"de": "Die [b]Kuppelwächter[/b] sind auf eine schnelle und einfache Verteidigungs-Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und großen Schaden anzurichten."
   },
   "@inspect_text_description_titan": {
-    "en": "The [b]Dome Titans[/b] specialise in slow and accurate defence. The unit is designed to identify and eliminate weaknesses in the defence.",
-    "de": "Die [b]Kuppeltitanen[/b] sind auf eine langsame und genaue Verteidigung spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung zu erkennen und auszubessern"
+	"en": "The [b]Dome Titans[/b] specialise in slow and accurate defence. The unit is designed to identify and eliminate weaknesses in the defence.",
+	"de": "Die [b]Kuppeltitanen[/b] sind auf eine langsame und genaue Verteidigung spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung zu erkennen und auszubessern"
   },
   "@inspect_text_description_runner": {
-    "en": "The [b]Dust Runners[/b] specialise in fast and aggressive tactics. The unit is designed to quickly exploit weak points in the defence and deal damage.",
-    "de": "Die [b]Wüstenläufer[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und Schaden anzurichten."
+	"en": "The [b]Dust Runners[/b] specialise in fast and aggressive tactics. The unit is designed to quickly exploit weak points in the defence and deal damage.",
+	"de": "Die [b]Wüstenläufer[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung schnell auszunutzen und Schaden anzurichten."
   },
   "@inspect_text_description_sentinel": {
-    "en": "The [b]Ash Sentinels[/b] specialise in fast and aggressive tactics. The unit is designed to exploit weak points in the defence and deal major damage.",
-    "de": "Die [b]Aschenwächter[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung auszunutzen und großen Schaden anzurichten."
+	"en": "The [b]Ash Sentinels[/b] specialise in fast and aggressive tactics. The unit is designed to exploit weak points in the defence and deal major damage.",
+	"de": "Die [b]Aschenwächter[/b] sind auf eine schnelle und aggressive Taktik spezialisiert. Die Einheit ist darauf ausgelegt, Schwachstellen in der Verteidigung auszunutzen und großen Schaden anzurichten."
   },
   "@inspect_text_description_barracks": {
-    "en": "The barracks are used for the production of all units and increase the unit capacity.",
-    "de": "Über die Kaserne können Kampfeinheiten trainiert werden. Die Anzahl der Kasernen bestimmt auch die maximale Anzahl an Kampfeinheiten."
+	"en": "The barracks are used for the production of all units and increase the unit capacity.",
+	"de": "Über die Kaserne können Kampfeinheiten trainiert werden. Die Anzahl der Kasernen bestimmt auch die maximale Anzahl an Kampfeinheiten."
   },
   "@inspect_text_description_forge": {
-    "en": "The forge can be used to upgrade units with Ferronite. It also increases the capacity of collectable resources.",
-    "de": "Über die Schmiede können Kampfeinheiten mit Ferronit verbessert werden. Sie erhöht außerdem die Kapazitäten für alle Ressourcen."
+	"en": "The forge can be used to upgrade units with Ferronite. It also increases the capacity of collectable resources.",
+	"de": "Über die Schmiede können Kampfeinheiten mit Ferronit verbessert werden. Sie erhöht außerdem die Kapazitäten für alle Ressourcen."
   },
   "@name_building_hq": {
-    "en": "Main Base",
-    "de": "Basis"
+	"en": "Main Base",
+	"de": "Basis"
   },
   "@name_building_barracks": {
-    "en": "Barracks",
-    "de": "Kaserne"
+	"en": "Barracks",
+	"de": "Kaserne"
   },
   "@name_building_forge": {
-    "en": "Forge",
-    "de": "Schmiede"
+	"en": "Forge",
+	"de": "Schmiede"
   },
   "@name_unit_guard": {
-    "en": "Dome Guard",
-    "de": "Kuppelwächter"
+	"en": "Dome Guard",
+	"de": "Kuppelwächter"
   },
   "@name_unit_titan": {
-    "en": "Dome Titan",
-    "de": "Kuppeltitan"
+	"en": "Dome Titan",
+	"de": "Kuppeltitan"
   },
   "@name_unit_runner": {
-    "en": "Dust Runner",
-    "de": "Wüstenläufer"
+	"en": "Dust Runner",
+	"de": "Wüstenläufer"
   },
   "@name_unit_sentinel": {
-    "en": "Ash Sentinel",
-    "de": "Aschenwächter"
+	"en": "Ash Sentinel",
+	"de": "Aschenwächter"
   },
   "@name_unit_worker": {
-    "en": "Worker",
-    "de": "Arbeiter"
+	"en": "Worker",
+	"de": "Arbeiter"
   },
   "@tutorial_text_start": {
-    "en": "Use your workers to gather resources.",
-    "de": "Nutze deine Arbeiter, um Ressourcen abzubauen."
+	"en": "Use your workers to gather resources.",
+	"de": "Nutze deine Arbeiter, um Ressourcen abzubauen."
   },
   "@tutorial_text_workers": {
-    "en": "Train new workers in your base.",
-    "de": "Bilde neue Arbeiter in deiner Basis aus."
+	"en": "Train new workers in your base.",
+	"de": "Bilde neue Arbeiter in deiner Basis aus."
   },
   "@tutorial_text_resources": {
-    "en": "Gather additional resources.",
-    "de": "Sammle weitere Ressourcen."
+	"en": "Gather additional resources.",
+	"de": "Sammle weitere Ressourcen."
   },
   "@tutorial_text_forge": {
-    "en": "Construct a Forge.",
-    "de": "Baue eine Schmiede."
+	"en": "Construct a Forge.",
+	"de": "Baue eine Schmiede."
   },
   "@tutorial_text_barracks": {
-    "en": "Build a Barracks.",
-    "de": "Baue eine Kaserne."
+	"en": "Build a Barracks.",
+	"de": "Baue eine Kaserne."
   },
   "@tutorial_text_troops": {
-    "en": "Train your troops.",
-    "de": "Bilde deine Truppen aus."
+	"en": "Train your troops.",
+	"de": "Bilde deine Truppen aus."
   },
   "@tutorial_text_final_ol": {
-    "en": "Capture the Dome before time runs out. You can upgrade your troops in the Forge or construct additional buildings to store additional resources or train more troops.",
-    "de": "Nehme die Kuppel ein, bevor die Zeit ausläuft. Du kannst in der Schmiede deine Truppen verbessern, oder weitere Gebäude bauen, um mehr Ressourcen zu lagern und Truppen auszubilden."
+	"en": "Capture the Dome before time runs out. You can upgrade your troops in the Forge or construct additional buildings to store additional resources or train more troops.",
+	"de": "Nehme die Kuppel ein, bevor die Zeit ausläuft. Du kannst in der Schmiede deine Truppen verbessern, oder weitere Gebäude bauen, um mehr Ressourcen zu lagern und Truppen auszubilden."
   },
   "@tutorial_text_final_nl": {
-    "en": "Defend the Dome. You can construct defensive walls, upgrade your troops in the Forge or construct additional buildings to store additional resources or train more troops.",
-    "de": "Verteidige die Kuppel. Du kannst Verteidigunsmauern bauen, in der Schmiede deine Truppen verbessern, oder weitere Gebäude bauen, um mehr Ressourcen zu lagern und Truppen auszubilden."
+	"en": "Defend the Dome. You can construct defensive walls, upgrade your troops in the Forge or construct additional buildings to store additional resources or train more troops.",
+	"de": "Verteidige die Kuppel. Du kannst Verteidigunsmauern bauen, in der Schmiede deine Truppen verbessern, oder weitere Gebäude bauen, um mehr Ressourcen zu lagern und Truppen auszubilden."
   },
   "@interface_button_skip_video": {
-    "en": "skip",
-    "de": "überspringen"
+	"en": "skip",
+	"de": "überspringen"
   },
   "@game_over_win_OL": {
-    "en": "[center][color=green]Victory! \\nYou have captured the Dome![/color][/center]",
-    "de": "[center][color=green]Du hast gewonnen!\\n Die Kuppel wurde eingenommen![/color][/center]"
+	"en": "[center][color=green]Victory! \\nYou have captured the Dome![/color][/center]",
+	"de": "[center][color=green]Du hast gewonnen!\\n Die Kuppel wurde eingenommen![/color][/center]"
   },
   "@game_over_win_NL": {
-    "en": "[center][color=green]Victory!\\n The Dome stands![/color][/center]",
-    "de": "[center][color=green]Du hast gewonnen!\\n Die Kuppel wurde verteidigt![/color][/center]"
+	"en": "[center][color=green]Victory!\\n The Dome stands![/color][/center]",
+	"de": "[center][color=green]Du hast gewonnen!\\n Die Kuppel wurde verteidigt![/color][/center]"
   },
   "@game_over_loss_OL": {
-    "en": "[center][color=red]You have failed! \\n The Ashfolk has perished![/color][/center]",
-    "de": "[center][color=red]Du hast versagt! \\n Das Aschenvvolk[/color][/center]"
+	"en": "[center][color=red]You have failed! \\n The Ashfolk has perished![/color][/center]",
+	"de": "[center][color=red]Du hast versagt! \\n Das Aschenvvolk[/color][/center]"
   },
   "@game_over_loss_NL": {
-    "en": "[center][color=red]You have failed! \\n The Dome has fallen![/color][/center]",
-    "de": "[center][color=red]Du hast versagt! \\n Die Kuppel wurde eingenommen![/color][/center]"
+	"en": "[center][color=red]You have failed! \\n The Dome has fallen![/color][/center]",
+	"de": "[center][color=red]Du hast versagt! \\n Die Kuppel wurde eingenommen![/color][/center]"
   },
   "@game_over_doom": {
-    "en": "[center][color=red]You have failed! \\n Your people starved to death![/color][/center]",
-    "de": "[center][color=red]Du hast versagt! \\n Dein Volk ist verhungert![/color][/center]"
+	"en": "[center][color=red]You have failed! \\n Your people starved to death![/color][/center]",
+	"de": "[center][color=red]Du hast versagt! \\n Dein Volk ist verhungert![/color][/center]"
   },
   "@name_building_wall": {
-    "en": "Wall",
-    "de": "Mauer"
+	"en": "Wall",
+	"de": "Mauer"
   },
   "@name_controls": {
-    "en": "[center] [font_size= 35]Controls[/font_size] [/center] \\n\\n-Right-click on units to select them. \\n-Selected units can be given commands.\\n-Right-click on a unit to give it a move command. \\n-Right-click on the enemy to order the selected unit to attack. \\n-Right-click on a resource to give it a mine command. \\n-Hold down the left mouse pointer and drag to mark all selected units",
-    "de": "[center] [font_size= 35]Controls[/font_size] [/center] \\n\\n-Klicken Sie mit der rechten Maustaste auf die Einheiten, um sie auszuwählen. \\n-Den ausgewählten Einheiten können Befehle erteilt werden. \\n-Klicken Sie mit der rechten Maustaste auf den Boden, um ihm einen Bewegungsbefehl zu geben. \\n-Klicken Sie mit der rechten Maustaste auf den Gegner, um der ausgewählten Einheit einen Angriffsbefehl zu erteilen. \\n-Klicken Sie mit der rechten Maustaste auf eine Ressource, um ihr einen Abbaubefehl zu geben. \\n-Halten Sie den linken Mauszeiger gedrückt und ziehen Sie, um alle ausgewählten Einheiten zu markieren."
+	"en": "[center] [font_size= 35]Controls[/font_size] [/center] \\n\\n-Right-click on units to select them. \\n-Selected units can be given commands.\\n-Right-click on a unit to give it a move command. \\n-Right-click on the enemy to order the selected unit to attack. \\n-Right-click on a resource to give it a mine command. \\n-Hold down the left mouse pointer and drag to mark all selected units",
+	"de": "[center] [font_size= 35]Controls[/font_size] [/center] \\n\\n-Klicken Sie mit der rechten Maustaste auf die Einheiten, um sie auszuwählen. \\n-Den ausgewählten Einheiten können Befehle erteilt werden. \\n-Klicken Sie mit der rechten Maustaste auf den Boden, um ihm einen Bewegungsbefehl zu geben. \\n-Klicken Sie mit der rechten Maustaste auf den Gegner, um der ausgewählten Einheit einen Angriffsbefehl zu erteilen. \\n-Klicken Sie mit der rechten Maustaste auf eine Ressource, um ihr einen Abbaubefehl zu geben. \\n-Halten Sie den linken Mauszeiger gedrückt und ziehen Sie, um alle ausgewählten Einheiten zu markieren."
   },
   "@name_faction_NL": {
-    "en": "Join the Newlights - the future of warfare! With an army of advanced robots, they are ready to defend the dome at all costs. Implement your strategy with precise resource calculation and face any threat. Defend the dome, ensure your survival and experience the power of an unstoppable robot army!",
-    "de": "Treten Sie den Newlights bei - der Zukunft der Kriegsführung! Mit einer Armee von hochentwickelten Robotern sind sie bereit, die Kuppel um jeden Preis zu verteidigen. Setzen Sie Ihre Strategie mit präziser Ressourcenkalkulation um und stellen Sie sich jeder Bedrohung. Verteidigen Sie die Kuppel, sichern Sie Ihr Überleben und erleben Sie die Macht einer unaufhaltsamen Roboterarmee!"
+	"en": "Join the Newlights - the future of warfare! With an army of advanced robots, they are ready to defend the dome at all costs. Implement your strategy with precise resource calculation and face any threat. Defend the dome, ensure your survival and experience the power of an unstoppable robot army!",
+	"de": "Treten Sie den Newlights bei - der Zukunft der Kriegsführung! Mit einer Armee von hochentwickelten Robotern sind sie bereit, die Kuppel um jeden Preis zu verteidigen. Setzen Sie Ihre Strategie mit präziser Ressourcenkalkulation um und stellen Sie sich jeder Bedrohung. Verteidigen Sie die Kuppel, sichern Sie Ihr Überleben und erleben Sie die Macht einer unaufhaltsamen Roboterarmee!"
   },
   "@name_faction_OL": {
-    "en": "Join the Ashfolk - the rebels fighting for their freedom! As a human being in a world of destruction, you need adaptability, courage and solidarity. Your goal: overthrow the dome and bring down the system! Fight with the Ashfolk for a better future and join the resistance!",
-    "de": "Schließe dich den Ashfolk an - den Rebellen, die für ihre Freiheit kämpfen! Als Mensch in einer Welt der Zerstörung brauchst du Anpassungsfähigkeit, Mut und Solidarität. Dein Ziel: Die Kuppel stürzen und das System zu Fall bringen! Kämpfe mit den Ashfolk für eine bessere Zukunft und schließe dich dem Widerstand an!"
+	"en": "Join the Ashfolk - the rebels fighting for their freedom! As a human being in a world of destruction, you need adaptability, courage and solidarity. Your goal: overthrow the dome and bring down the system! Fight with the Ashfolk for a better future and join the resistance!",
+	"de": "Schließe dich den Ashfolk an - den Rebellen, die für ihre Freiheit kämpfen! Als Mensch in einer Welt der Zerstörung brauchst du Anpassungsfähigkeit, Mut und Solidarität. Dein Ziel: Die Kuppel stürzen und das System zu Fall bringen! Kämpfe mit den Ashfolk für eine bessere Zukunft und schließe dich dem Widerstand an!"
   },
   "@interface_text_controls_done": {
-    "en": "Continue",
-    "de": "Fortfahren"
+	"en": "Continue",
+	"de": "Fortfahren"
   },
   "@interface_text_mission_description_NL": {
-    "en": "[center] [font_size= 35]Mission[/font_size] [/center] \\n\\nWith powerful robot units that make no mistakes and an additional wall to defend the dome, you are ideally equipped. Use the valuable resource Zenezium to make your faction even more powerful and secure the dome!",
-    "de": "[center] [font_size= 35]Auftrag[/font_size] [/center] \\n\\nMit starken Roboter-Einheiten, die keine Fehler machen, und einer zusätzlichen Mauer zur Verteidigung der Kuppel bist du bestens gerüstet. Nutze die wertvolle Ressource Zenezium, um deine Fraktion noch mächtiger zu machen und die Kuppel zu sichern!"
+	"en": "[center] [font_size= 35]Mission[/font_size] [/center] \\n\\nWith powerful robot units that make no mistakes and an additional wall to defend the dome, you are ideally equipped. Use the valuable resource Zenezium to make your faction even more powerful and secure the dome!",
+	"de": "[center] [font_size= 35]Auftrag[/font_size] [/center] \\n\\nMit starken Roboter-Einheiten, die keine Fehler machen, und einer zusätzlichen Mauer zur Verteidigung der Kuppel bist du bestens gerüstet. Nutze die wertvolle Ressource Zenezium, um deine Fraktion noch mächtiger zu machen und die Kuppel zu sichern!"
   },
   "@interface_text_mission_description_OL": {
-    "en": "[center] [font_size= 35]Mission[/font_size] [/center] \\n\\nWith strong human units and additional vehicles for aggressive attacks, you can fight the system from the outside. Use the fast movement of your troops and seize the initiative. Fight for freedom and lead the resistance to victory!",
-    "de": "[center] [font_size= 35]Auftrag[/font_size] [/center] \\n\\nMit starken menschlichen Einheiten und zusätzlichen Fahrzeugen für aggressive Angriffe kannst du das System von außen bekämpfen. Nutze die schnelle Bewegung deiner Truppen und ergreife die Initiative. Kämpfe für die Freiheit und führe den Widerstand zum Sieg!"
+	"en": "[center] [font_size= 35]Mission[/font_size] [/center] \\n\\nWith strong human units and additional vehicles for aggressive attacks, you can fight the system from the outside. Use the fast movement of your troops and seize the initiative. Fight for freedom and lead the resistance to victory!",
+	"de": "[center] [font_size= 35]Auftrag[/font_size] [/center] \\n\\nMit starken menschlichen Einheiten und zusätzlichen Fahrzeugen für aggressive Angriffe kannst du das System von außen bekämpfen. Nutze die schnelle Bewegung deiner Truppen und ergreife die Initiative. Kämpfe für die Freiheit und führe den Widerstand zum Sieg!"
   }
 }
