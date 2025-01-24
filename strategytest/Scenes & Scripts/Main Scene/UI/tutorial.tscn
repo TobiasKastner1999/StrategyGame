@@ -13,6 +13,7 @@ expand_mode = 1
 script = ExtResource("1_721tv")
 
 [node name="TutorialPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 6.0
 offset_top = 145.0

@@ -41,6 +41,7 @@ func _on_quit_buttons_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	await get_tree().create_timer(0.5).timeout
 	get_tree().paused = false # upause the game so that the startscreen isnt frozen
+	Balance.reset()
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/start_screen.tscn") # changes scene to startscreen
 
 

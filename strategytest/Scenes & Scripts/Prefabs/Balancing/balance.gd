@@ -80,7 +80,7 @@ var upgrade1 = [false, false]
 
 @export var resources_mined = 100 # amount a harvest action gives the worker
 @export var construction_costs = [0, 400, 500, 150] # the construction costs for different types of buildings
-@export var faction_zero_resources = [0,0] # faction 0's balances in the different resources
+@export var faction_zero_resources = [1000,0] # faction 0's balances in the different resources
 @export var faction_one_resources = [0,0] # faction 1's balances in the different resources
 @export var unit_max = [4, 4] # how many units can a faction currently have at max?
 @export var resource = 1000 # how many resources can be mined
@@ -122,6 +122,9 @@ func _ready():
 	#var json_string = JSON.stringify(Global.unit_dict)
 	#save.store_line(json_string)
 
+func reset():
+	faction_one_resources = [0,0]
+	faction_zero_resources = [0,0]
 
 # sets the values of the dictionary to be the same as balance editor
 func setValues():
