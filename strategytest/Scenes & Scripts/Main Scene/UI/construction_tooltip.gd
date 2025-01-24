@@ -4,6 +4,10 @@ var current_tooltip : int # the current structure represented by the tooltip
 
 # updates the tooltip
 func updateTooltip(active, type):
+	if Global.player_faction == 0:
+		$TextCost/CostIcon.texture = load("res://Assets/Models/Map/Scrap.png")
+	else:
+		$TextCost/CostIcon.texture = load("res://Assets/UI/zenecium.png")
 	# if the tooltip is being activated
 	if active:
 		current_tooltip = type # saves the represented structure
@@ -23,6 +27,8 @@ func updateTooltip(active, type):
 		$TextCost.text = "[b]" + Global.getText("@inspect_text_cost") + ":[/b] " + str(Global.getConstructionCost(type))
 		visible = true
 	
+	
+
 	# if the tooltip is being deactivated
 	else:
 		if current_tooltip != null and type == current_tooltip:
