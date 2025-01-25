@@ -34,16 +34,19 @@ func targetKnownUnit(unit):
 	if targets.size() > 0:
 		# checks for each known unit
 		for target in targets:
-			var target_distance = unit.global_position.distance_to(target.global_position)
-			if closest == null or target_distance < closest_distance:
-				closest = target # sets as new priority target if it is closer than any other
-				closest_distance = target_distance
-	
-		if unit.isNearBody(closest):
-			unit.setAttackTarget(closest) # sets closest as attack target if the target is in attack range
-		else:
-			unit.setDestination(closest.global_position) # otherwise, sets as movement destination instead
-		return true
+			if is_instance_id_valid(target):
+				var target_distance = unit.global_position.distance_to(target.global_position)
+				if closest == null or target_distance < closest_distance:
+					closest = target # sets as new priority target if it is closer than any other
+					closest_distance = target_distance
+			else:
+				Global.known_player_units.erase(target)
+		if closest != null:
+			if unit.isNearBody(closest):
+				unit.setAttackTarget(closest) # sets closest as attack target if the target is in attack range
+			else:
+				unit.setDestination(closest.global_position) # otherwise, sets as movement destination instead
+			return true
 	return false # otherwise, returns false
 
 # attempts to have a given unit target a known player-controlled building
@@ -56,16 +59,20 @@ func targetKnownBuilding(unit):
 	if targets.size() > 0:
 		# checks for each known building
 		for target in targets:
-			var target_distance = unit.global_position.distance_to(target.global_position)
-			if closest == null or target_distance < closest_distance:
-				closest = target # sets as new priority target if it is closer than any other
-				closest_distance = target_distance
+			if is_instance_id_valid(target):
+				var target_distance = unit.global_position.distance_to(target.global_position)
+				if closest == null or target_distance < closest_distance:
+					closest = target # sets as new priority target if it is closer than any other
+					closest_distance = target_distance
+			else:
+				Global.known_player_buildings.erase(target)
 		
-		if unit.isNearBody(closest):
-			unit.setAttackTarget(closest) # sets closest as attack target if the target is in attack range
-		else:
-			unit.setDestination(closest.global_position) # otherwise, sets as movement destination instead
-		return true
+		if closest != null:
+			if unit.isNearBody(closest):
+				unit.setAttackTarget(closest) # sets closest as attack target if the target is in attack range
+			else:
+				unit.setDestination(closest.global_position) # otherwise, sets as movement destination instead
+			return true
 	return false # otherwise, returns false
 
 # has a given unit target the player's HQ
