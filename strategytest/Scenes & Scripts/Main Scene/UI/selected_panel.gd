@@ -53,6 +53,7 @@ func multiSelection(units):
 	updateTexts()
 	
 	$SelectedName.text = "[b]" + str(units.size()) + " " + Global.getText("@interface_text_selected") + "[/b]" # displays the total number of selected units
+	$SelectedName.visible = true
 	$SelectedHP.visible = false
 	$ButtonToggle.visible = false
 	$ButtonBack.visible = false

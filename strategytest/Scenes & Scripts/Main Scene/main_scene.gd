@@ -65,7 +65,7 @@ func _on_interface_start_game(faction):
 	$Interface/BuildingButton.visible = true
 	$Interface/HousingButton.visible = true
 	$MiniMap.visible = true
-	$Counter.visible = true
+	$Counter.visible = true 
 	$Interface/ResourceTab.visible = true
 	$Interface/Tutorial.visible = true
 	
