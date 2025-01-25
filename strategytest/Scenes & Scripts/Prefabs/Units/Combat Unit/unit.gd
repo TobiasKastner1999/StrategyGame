@@ -434,11 +434,11 @@ func _on_heavy_anim_animation_finished(anim_name):
 
 func getIcon():
 	match unit_type:
-		0:
+		4:
 			return load("res://Assets/UI/Cursor Attack.png")
-		1:
+		0:
 			return load("res://Assets/UI/NL_HeavyUnit_UI.png")
-		2:
+		1:
 			return load("res://Assets/UI/OL_Fighter_UI.png")
-		3:
+		2:
 			return load("res://Assets/UI/OL_GunVehicle_UI.png")
