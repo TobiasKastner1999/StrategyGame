@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Sound/streamer_all_music.gd" id="1_eka0v"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
 script = ExtResource("1_eka0v")

@@ -24,4 +24,6 @@ func _ready():
 
 
 func _on_button_pressed():
+	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$".") # plays button sound
+	await get_tree().create_timer(0.5).timeout # delays the stream start for button sound
 	get_tree().change_scene_to_file("res://Scenes & Scripts/Screens/start_screen.tscn") # change scene back to startingmenu

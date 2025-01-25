@@ -11,6 +11,7 @@ var ui = [load("res://Assets/UI/OL_UI.png"),load("res://Assets/UI/NL_UI.png") ] 
 
 # called at the start of the game
 func _ready():
+	Sound.play_music("res://Sounds/Hauptmenü.mp3", $".")
 	get_tree().paused = true # immediately freezes the game (except for the faction selection UI)
 	Global.cam = $CameraBody.position # sets the starting position of the cam
 	Global.tree = get_tree()
@@ -79,6 +80,7 @@ func _on_interface_start_game(faction):
 	$CameraBody.position.y = 60 # sets the camera starting height
 
 	if Global.player_faction == 0: # sets asseets for ui based on faction 0
+		Sound.cease_music()
 		Sound.play_music("res://Sounds/BackgroundMusicVariante1.mp3",$CameraBody )
 		$Interface/ResourceTab/NlUiRes.visible = false # hide the resources of NL when OL is on
 		$Interface/BuildingButton.texture_normal = load("res://Assets/UI/OL_Kaserne_UI.png") # baracks button normal
@@ -89,6 +91,7 @@ func _on_interface_start_game(faction):
 		
 		
 	elif Global.player_faction == 1: # sets asseets for ui based on faction 1
+		Sound.cease_music()
 		Sound.play_music("res://Sounds/BackgroundMusicVariante3.mp3", $CameraBody)
 		$Interface/BuildingButton.texture_normal = load("res://Assets/UI/NL_barracks_UI.png") # baracks button normal
 		$Interface/BuildingButton.texture_pressed = load("res://Assets/UI/NL_barracks_UI_pressed.png") # barracks button pressed

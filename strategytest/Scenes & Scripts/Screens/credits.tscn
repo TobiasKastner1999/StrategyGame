@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctwbapr2v8x1c"]
+[gd_scene load_steps=4 format=3 uid="uid://ctwbapr2v8x1c"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Screens/credits.gd" id="1_7oij2"]
+[ext_resource type="StyleBox" uid="uid://bychxe1rrbgvf" path="res://Assets/UI/button_normal_style_box.tres" id="2_5fmq8"]
+[ext_resource type="StyleBox" uid="uid://txvbonrq1j7c" path="res://Assets/UI/button_pressed_style_box.tres" id="3_x3dot"]
 
 [node name="Credits" type="Node2D"]
 script = ExtResource("1_7oij2")
@@ -19,7 +21,10 @@ offset_left = 930.0
 offset_top = 930.0
 offset_right = 1143.0
 offset_bottom = 1045.0
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = ExtResource("2_5fmq8")
+theme_override_styles/hover = ExtResource("2_5fmq8")
+theme_override_styles/pressed = ExtResource("3_x3dot")
 text = "@interface_button_menu"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
