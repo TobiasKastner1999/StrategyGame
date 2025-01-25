@@ -93,7 +93,6 @@ func abortAction():
 func setFaction(f : int):
 	faction = f # sets the faction
 	Global.updateResourceCapacity(faction, Balance.housing_resource_cap_a, Balance.housing_resource_cap_b)
-	#$HousingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct forge color
 	if faction == 0: # when faction is 0
 		$OLHousingBody.visible = true # outlaw asset becomes visible
 		$OLHousingColl.disabled = false

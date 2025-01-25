@@ -165,7 +165,6 @@ func setProductionType(type):
 # sets the building's faction to a given value
 func setFaction(f : int):
 	faction = f # sets the faction
-	$BuildingBody.material_override = load(Global.getFactionColor(faction)) # sets the correct building color
 	if faction == 0: # when faction is 0
 		$OLBarracks.visible = true # outlaw asset becomes visible
 		$BuildingColl.disabled = true
