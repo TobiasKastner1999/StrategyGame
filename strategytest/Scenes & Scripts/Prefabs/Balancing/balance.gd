@@ -80,8 +80,8 @@ var upgrade1 = [false, false]
 
 @export var resources_mined = 100 # amount a harvest action gives the worker
 @export var construction_costs = [0, 400, 500, 150] # the construction costs for different types of buildings
-@export var faction_zero_resources = [1000,0] # faction 0's balances in the different resources
-@export var faction_one_resources = [0,0] # faction 1's balances in the different resources
+@export var faction_zero_resources = [0, 0] # faction 0's balances in the different resources
+@export var faction_one_resources = [0, 0] # faction 1's balances in the different resources
 @export var unit_max = [4, 4] # how many units can a faction currently have at max?
 @export var resource = 1000 # how many resources can be mined
 @export var faction_zero_resource_limits = [1000, 0] # faction 0's maximum capacity of the different resources
@@ -126,41 +126,32 @@ func reset():
 
 # sets the values of the dictionary to be the same as balance editor
 func setValues():
-	Global.unit_dict["0"]["max_hp"] = Guard_hp
-	Global.unit_dict["0"]["damage_value"] =  Guard_damage
-	Global.unit_dict["0"]["attack_range"] =  Guard_range
-	Global.unit_dict["0"]["attack_speed"] =  Guard_attack_speed
-	Global.unit_dict["0"]["detection_range"] = Guard_detection
-	Global.unit_dict["0"]["speed"] =  Guard_speed
-	Global.unit_dict["0"]["resource_cost"] =  Guard_cost
-	Global.unit_dict["0"]["production_speed"] =  Guard_production
+	Global.unit_dict["0"]["max_hp"] = titan_hp
+	Global.unit_dict["0"]["damage_value"] = titan_damage
+	Global.unit_dict["0"]["attack_range"] = titan_range
+	Global.unit_dict["0"]["attack_speed"] = titan_attack_speed
+	Global.unit_dict["0"]["detection_range"] = titan_detection
+	Global.unit_dict["0"]["speed"] = titan_speed
+	Global.unit_dict["0"]["resource_cost"] = titan_cost
+	Global.unit_dict["0"]["production_speed"] = titan_production
 	
-	Global.unit_dict["1"]["max_hp"] = titan_hp
-	Global.unit_dict["1"]["damage_value"] = titan_damage
-	Global.unit_dict["1"]["attack_range"] = titan_range
-	Global.unit_dict["1"]["attack_speed"] = titan_attack_speed
-	Global.unit_dict["1"]["detection_range"] = titan_detection
-	Global.unit_dict["1"]["speed"] = titan_speed
-	Global.unit_dict["1"]["resource_cost"] = titan_cost
-	Global.unit_dict["1"]["production_speed"] = titan_production
+	Global.unit_dict["1"]["max_hp"] = runner_hp
+	Global.unit_dict["1"]["damage_value"] = runner_damage
+	Global.unit_dict["1"]["attack_range"] = runner_range
+	Global.unit_dict["1"]["attack_speed"] = runner_attack_speed
+	Global.unit_dict["1"]["detection_range"] = runner_detection
+	Global.unit_dict["1"]["speed"] = runner_speed
+	Global.unit_dict["1"]["resource_cost"] = runner_cost
+	Global.unit_dict["1"]["production_speed"] = runner_production
 	
-	Global.unit_dict["2"]["max_hp"] = runner_hp
-	Global.unit_dict["2"]["damage_value"] = runner_damage
-	Global.unit_dict["2"]["attack_range"] = runner_range
-	Global.unit_dict["2"]["attack_speed"] = runner_attack_speed
-	Global.unit_dict["2"]["detection_range"] = runner_detection
-	Global.unit_dict["2"]["speed"] = runner_speed
-	Global.unit_dict["2"]["resource_cost"] = runner_cost
-	Global.unit_dict["2"]["production_speed"] = runner_production
-	
-	Global.unit_dict["3"]["max_hp"] = sentinel_hp
-	Global.unit_dict["3"]["damage_value"] = sentinel_damage
-	Global.unit_dict["3"]["attack_range"] = sentinel_range
-	Global.unit_dict["3"]["attack_speed"] = sentinel_attack_speed
-	Global.unit_dict["3"]["detection_range"] = sentinel_detection
-	Global.unit_dict["3"]["speed"] = sentinel_speed
-	Global.unit_dict["3"]["resource_cost"] = sentinel_cost
-	Global.unit_dict["3"]["production_speed"] = sentinel_production
+	Global.unit_dict["2"]["max_hp"] = sentinel_hp
+	Global.unit_dict["2"]["damage_value"] = sentinel_damage
+	Global.unit_dict["2"]["attack_range"] = sentinel_range
+	Global.unit_dict["2"]["attack_speed"] = sentinel_attack_speed
+	Global.unit_dict["2"]["detection_range"] = sentinel_detection
+	Global.unit_dict["2"]["speed"] = sentinel_speed
+	Global.unit_dict["2"]["resource_cost"] = sentinel_cost
+	Global.unit_dict["2"]["production_speed"] = sentinel_production
 	
 	Global.unit_dict["worker"]["max_hp"] = worker_hp
 	Global.unit_dict["worker"]["damage_value"] = worker_damage

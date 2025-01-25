@@ -112,10 +112,8 @@ func startAttackCooldown():
 	$NL_Heavy/HeavyAnim.play("HeavyDefenseUnitAttack")
 	match unit_type:
 		1:
-			Sound.play_sound("res://Sounds/GunShot_NewLights.mp3",$"." )
-		2:
 			Sound.play_sound("res://Sounds/GunShot_Ashfolk.mp3",$"." )
-		3:
+		2:
 			Sound.play_sound("res://Sounds/GunShot_Ashfolk.mp3",$"." )
 			$OutlawGunVehicleBaked/OL_GunVehicleWheels2/Gunfire.shoot()
 			$OutlawGunVehicleBaked/OL_GunVehicleWheels2/Gunfire2.shoot()
@@ -146,15 +144,13 @@ func setUp(type):
 	# placeholder display for differentiating different unit types
 	match type:
 		0:
-			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_yellow.tres"))
-		1:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
 			$NL_Heavy.visible = true
 			$UnitBody.visible = false
 			$HealthBarSprite.position.y = 3
-		2:
+		1:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_purple.tres"))
-		3:
+		2:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_orange.tres"))
 			$OutlawGunVehicleBaked.visible = true
 			$UnitBody.visible = false
