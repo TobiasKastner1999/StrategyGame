@@ -109,13 +109,6 @@ var upgrade1 = [false, false]
 @export var camera_zoom_up_limit = 75 # upper limit for cam zoom
 @export var camera_zoom_down_limit = 30 # lower limit for cam zoom
 
-
-
-
-
-
-
-
 func _ready():
 	setValues()
 	#var save = FileAccess.open(FILE, FileAccess.WRITE)
@@ -125,6 +118,11 @@ func _ready():
 func reset():
 	faction_one_resources = [0,0]
 	faction_zero_resources = [0,0]
+	upgrade1 = [false, false]
+	unit_max = [4, 4]
+	faction_zero_resource_limits = [1000, 0]
+	faction_one_resource_limits = [1000, 0]
+	Global.resetVariables()
 
 # sets the values of the dictionary to be the same as balance editor
 func setValues():

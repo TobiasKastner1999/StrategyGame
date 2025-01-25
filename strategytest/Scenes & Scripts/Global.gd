@@ -22,6 +22,14 @@ var known_player_buildings = [] # a list of the player's buildings known to the 
 @onready var unit_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/unit_data.json")) # a dictionary of the different unit types and their properties
 @onready var language_dict = JSON.parse_string(FileAccess.get_file_as_string("res://Data/language_data.json")) # a dictionary of the different translation of texts in different languages
 
+func resetVariables():
+	unit_count = [0, 0]
+	units_queued = [0, 0]
+	upgrade_queued = [false, false]
+	player_building_count = 0
+	known_player_units = []
+	known_player_buildings = []
+
 # returns the correct color for a given faction
 func getFactionColor(faction):
 	match faction:
