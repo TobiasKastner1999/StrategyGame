@@ -146,6 +146,8 @@ func setUp(type):
 		0:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_green.tres"))
 			$NL_Heavy.visible = true
+			$HeavyColl.disabled = false
+			$UnitColl.disabled = true
 			$UnitBody.visible = false
 			$HealthBarSprite.position.y = 3
 		1:
@@ -153,6 +155,8 @@ func setUp(type):
 		2:
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_orange.tres"))
 			$OutlawGunVehicleBaked.visible = true
+			$CarColl.disabled = false
+			$UnitColl.disabled = true
 			$UnitBody.visible = false
 
 

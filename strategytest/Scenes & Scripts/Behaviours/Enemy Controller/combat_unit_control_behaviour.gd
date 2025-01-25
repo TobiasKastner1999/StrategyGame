@@ -34,7 +34,7 @@ func targetKnownUnit(unit):
 	if targets.size() > 0:
 		# checks for each known unit
 		for target in targets:
-			if is_instance_id_valid(target):
+			if is_instance_valid(target):
 				var target_distance = unit.global_position.distance_to(target.global_position)
 				if closest == null or target_distance < closest_distance:
 					closest = target # sets as new priority target if it is closer than any other
@@ -59,7 +59,7 @@ func targetKnownBuilding(unit):
 	if targets.size() > 0:
 		# checks for each known building
 		for target in targets:
-			if is_instance_id_valid(target):
+			if is_instance_valid(target):
 				var target_distance = unit.global_position.distance_to(target.global_position)
 				if closest == null or target_distance < closest_distance:
 					closest = target # sets as new priority target if it is closer than any other
