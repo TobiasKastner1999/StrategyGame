@@ -4,6 +4,7 @@ var main = preload("res://Scenes & Scripts/Main Scene/main_scene.tscn")
 signal video_over()
 
 func _ready():
+	Sound.play_music("res://Sounds/Hauptmenü.mp3", $".")
 	setTexts() #  sets the starting language
 
 
@@ -26,6 +27,7 @@ func setTexts():
 func _on_start_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$".") # plays button sound
 	await get_tree().create_timer(0.5).timeout # delays the stream start for button sound
+	Sound.cease_music()
 	$VideoStreamPlayer.visible = true #  make the video player visible
 	$VideoStreamPlayer.play() # starts the video
 	$Skip.visible = true # enables the skip button
