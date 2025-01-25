@@ -250,9 +250,11 @@ func fowReveal(bol):
 # sets the greystate of the building
 func setGreystate(bol):
 	if bol:
-		$BuildingBody.material_overlay = greystate
+		$OLBarracks.material_overlay = greystate
+		$NLBarracks.material_overlay = greystate
 	else:
-		$BuildingBody.material_overlay = null
+		$OLBarracks.material_overlay = null
+		$NLBarracks.material_overlay = null
 
 # attempts to spawn a new unit once the timer expires
 func _on_spawn_timer_timeout():

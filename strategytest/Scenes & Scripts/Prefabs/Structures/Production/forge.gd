@@ -142,9 +142,11 @@ func fowReveal(bol):
 # sets the greystate of the forge
 func setGreystate(bol):
 	if bol:
-		$HousingBody.material_overlay = greystate
+		$NLHousingBody.material_overlay = greystate
+		$OLHousingBody.material_overlay = greystate
 	else:
-		$HousingBody.material_overlay = null
+		$NLHousingBody.material_overlay = null
+		$OLHousingBody.material_overlay = null
 
 # applies the research once the timer expires
 func _on_research_timer_timeout():
