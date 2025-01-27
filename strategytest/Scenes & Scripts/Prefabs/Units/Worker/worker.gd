@@ -123,7 +123,7 @@ func setUp(type):
 	$HealthbarContainer/HealthBar.max_value = max_hp # adjusts the health bar display to this unit's maximum hp
 	$HealthbarContainer/HealthBar.value = hp
 	$RangeArea/RangeColl.shape = $RangeArea/RangeColl.shape.duplicate()
-	$RangeArea/RangeColl.shape.radius = detection_range
+	$RangeArea/RangeColl.shape.set_radius(detection_range)
 	
 	await get_tree().physics_frame
 	destination = global_position # sets the initial navigation target to the unit's own position

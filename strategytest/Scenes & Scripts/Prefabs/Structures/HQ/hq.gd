@@ -15,7 +15,7 @@ var spawn_active = true # is the HQ's worker production toggled on?
 var spawn_queued = false # is a worker currently queued to be spawned?
 var spawn_delay : float # the workers' spawn timer
 var spawn_cost : int # the workers' resource cost
-var detection_range = 50.0 # the range at which the HQ can detect enemy units
+var detection_range = 25.0 # the range at which the HQ can detect enemy units
 var nearby_observers = [] # a list of enemy units near the HQ
 
 @onready var greystate = preload("res://Assets/Materials/material_grey_out.tres")

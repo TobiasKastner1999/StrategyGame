@@ -76,7 +76,7 @@ func getNewDissolveSize(new_size):
 # adds a new tracked unit
 func addUnit(unit_node):
 	var new_sprite = Sprite2D.new() # sets up a new sprite
-	new_sprite.set_texture(getNewDissolveSize(unit_node.detection_range)) # scales the sprite size with the unit's detection radius
+	new_sprite.set_texture(getNewDissolveSize(unit_node.detection_range * 2)) # scales the sprite size with the unit's detection radius
 	units.add_child(new_sprite)
 	units_data[unit_node.get_instance_id()] = [unit_node, new_sprite] # stores the unit's data
 	var pos_to_2D = fog_sprite.get_rect().get_center() + Vector2(unit_node.global_position.x, unit_node.global_position.z) / 2
