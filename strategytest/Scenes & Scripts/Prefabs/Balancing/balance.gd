@@ -29,7 +29,7 @@ var upgrade1 = [false, false]
 # titan stats
 @export var titan_hp = 150
 @export var titan_damage = 8
-@export var titan_range = 5
+@export var titan_range = 10
 @export var titan_attack_speed = 4
 @export var titan_detection = 15
 @export var titan_speed = 8.5
@@ -59,7 +59,7 @@ var upgrade1 = [false, false]
 # Ashfolk worker stats
 @export var worker_hp = 50
 @export var worker_damage = 5
-@export var worker_range = 5
+@export var worker_range = 10
 @export var worker_attack_speed = 2
 @export var worker_detection = 15
 @export var worker_speed = 10
