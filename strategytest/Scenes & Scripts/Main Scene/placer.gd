@@ -79,7 +79,7 @@ func _on_building_button_pressed():
 		$Preview.rotation_degrees = Vector3(0, -90, 0)
 	if Global.player_faction == 1:
 		$Preview.mesh = AssetLibrary.nl_barracks_mesh
-		$Preview.position = Vector3(0,0.479, 0)
+		$Preview.position = Vector3(-3.797,0.479,9.755 )
 		$Preview.scale = Vector3(-4.03, -4.89, -4.03)
 		$Preview.rotation_degrees = Vector3(0, -87.9, -90)
 
@@ -90,8 +90,8 @@ func _on_housing_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	clearSelection.emit() # calls to clear the player's current selection
 	$Preview.mesh = AssetLibrary.nl_housing_mesh
-	$Preview.scale = Vector3(0.2, 0.3, 0.208)
-	$Preview.position = Vector3(0,0,0)
+	$Preview.scale = Vector3(0.2, 0.3, 0.2)
+	$Preview.position = Vector3(0,2.029,0)
 	$Preview.rotation_degrees = Vector3(0, 0, 0)
 	#$Preview.mesh.size = Vector3(15,7,12) # sets the previewbox size
 
