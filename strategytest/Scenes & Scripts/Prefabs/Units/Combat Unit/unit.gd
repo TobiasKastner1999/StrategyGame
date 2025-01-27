@@ -155,7 +155,7 @@ func setUp(type):
 			$TypeIdentifier.set_surface_override_material(0, load("res://Assets/Materials/material_orange.tres"))
 			$OutlawGunVehicleBaked.visible = true
 			$CarColl.disabled = false
-			$UnitColl.disabled = true
+			$UnitColl.disabled = false
 			$UnitBody.visible = false
 
 
