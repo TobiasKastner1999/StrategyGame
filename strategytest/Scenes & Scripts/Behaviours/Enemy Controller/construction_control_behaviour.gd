@@ -11,7 +11,7 @@ var constructed_buildings = [] # the list of already constructed buildings
 
 # the locations at which various buildings can be constructed, based on faction
 var construction_locations = [[0, [Vector3(-105.0, -3.2, 105.0), Vector3(-90.0, -3.2, 145.0), Vector3(-60.0, -3.2, 115.0)], [Vector3(-130.0, -4.2, 140.0), Vector3(-140.0, -4.2, 100.0), Vector3(-50.0, -4.2, 140.0)], 3], \
-							  [0, [Vector3(110.0, -2.1, -145.0), Vector3(160.0, -2.1, -110.0), Vector3(100.0, -2.1, -185.0)], [Vector3(182.0, 0.0, -120.0), Vector3(200.0, 0.0, -110.0), Vector3(200.0, 0.0, -130.0)], [Vector3(179.29, -1.1, -88.52), Vector3(122.65, -1.1, -98.5), Vector3(69.673, -1.1, -191.89)] ] ]
+							  [0, [Vector3(100.0, -2.1, -155.0), Vector3(150.0, -2.1, -115.0), Vector3(95.0, -2.1, -195.0)], [Vector3(182.0, -4.0, -125.0), Vector3(200.0, -4.0, -115.0), Vector3(200.0, -4.0, -135.0)], [Vector3(179.29, -1.1, -88.52), Vector3(122.65, -1.1, -98.5), Vector3(69.673, -1.1, -191.89)] ] ]
 var wall_rotations = [Vector3(0, -95.7, 0), Vector3(0, -139.6, 0), Vector3(0, 158.6, 0)] # the rotations for constructed walls
 var unit_types = [] # a list of the unit types this faction can train
 var type_index = 0 # the index of the next trained unit type
