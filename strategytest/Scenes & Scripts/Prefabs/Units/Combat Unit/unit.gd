@@ -61,8 +61,7 @@ func takeDamage(damage, attacker):
 	interface_update.emit()
 	if hp <= 0: # removes the unit if it's remaining hp is 0 or less
 		startDeathState()
-	elif active_target == null or TARGET_PRIORITY.find(active_target.getType()) > TARGET_PRIORITY.find(attacker.getType()):
-		priority_movement = false
+	elif active_target == null or TARGET_PRIORITY.find(active_target.getType()) > TARGET_PRIORITY.find(attacker.getType()) and !priority_movement:
 		active_target = attacker # causes the unit to fight back if it does not yet have a target
 
 
@@ -223,6 +222,8 @@ func getPosition():
 # attempts to set a given target as the unit's target
 func setAttackTarget(target):
 	if target.is_in_group("CombatTarget") and target.getFaction() != faction:
+		clearAttackTarget()
+		priority_movement = true
 		active_target = target # sets the target if the given entity is a valid target and belongs to an enemy faction
 
 # clears references to a defeated unit from this unit

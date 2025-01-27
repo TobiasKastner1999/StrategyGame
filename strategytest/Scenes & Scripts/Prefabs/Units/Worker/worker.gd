@@ -216,8 +216,7 @@ func takeDamage(damage, attacker):
 	interface_update.emit()
 	if hp <= 0: # calls the worker's death function if its remaining hp is 0 or less
 		startDeathState()
-	elif target_node == null or target_node.getType() != "combat":
-		priority_movement = false
+	elif target_node == null or target_node.getType() != "combat" and !priority_movement:
 		target_node = attacker # causes the worker to fight back if it does not yet have a target
 		setTargetMode(1)
 
@@ -279,6 +278,8 @@ func startDeathState():
 # sets attack target (has no effect for the worker)
 func setAttackTarget(target):
 	if target.is_in_group("CombatTarget") and target.getFaction() != faction:
+		clearAttackTarget()
+		priority_movement = true
 		target_node = target # sets the target if the given entity is a valid target and belongs to an enemy faction
 		setTargetMode(1)
 
