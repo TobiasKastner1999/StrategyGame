@@ -65,11 +65,12 @@ func getWorkers():
 
 # returns all units belonging to the controlled factionw
 func getUnits():
-	var temp_units = unit_storage.get_children() # grabs all combat units
+	var units = unit_storage.get_children() # grabs all combat units
+	var temp_units = units.duplicate()
 	for unit in temp_units:
 		if unit.getFaction() != controlled_faction:
-			temp_units.erase(unit) # then removes all units not of the controlled faction
-	return temp_units # returns the trimmed list
+			units.erase(unit) # then removes all units not of the controlled faction
+	return units # returns the trimmed list
 
 func getBuildings():
 	var buildings_temp = get_tree().get_nodes_in_group("Building") # grabs all buildings
