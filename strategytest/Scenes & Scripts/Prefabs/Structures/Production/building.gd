@@ -2,12 +2,14 @@ extends Node3D
 
 signal building_menu(building) # to activate the interface when the building is clicked
 signal interface_update() # to update the building's interface display
+signal destroyed(building)
 
 const DISPLAY_NAME = "@name_building_barracks" # the building's displayed name
 const TARGET_TYPE = "building" # the building's combat type
 const MAX_HP = 8.0 # the building's maximum hit points
 const UNIT_CAPACITY = 4 # how many units does this building allow for the player to train in total?
 
+var detection_range = 25.0
 var spawn_queued = false # is a combat unit currently queued to be spawned?
 var spawn_active = true # is the building's unit production toggled on?
 var faction : int # the faction the building belongs to
@@ -95,7 +97,7 @@ func takeDamage(damage, _attacker):
 			Global.removeKnownTarget(self) # attempts to remove the building from the AI's list of known buildings
 			Global.updateBuildingCount(false)
 			Global.updateUnitLimit(faction, -UNIT_CAPACITY)
-			
+			destroyed.emit(self)
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
 
@@ -277,3 +279,13 @@ func getIcon():
 		return load("res://Assets/UI/OL_Kaserne_UI.png")
 	else:
 		return load("res://Assets/UI/NL_barracks_UI.png")
+
+# when a body enters the building's detection area
+func _on_range_area_body_entered(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowEnter(self) # triggers the object's fow detection
+
+# when a body exits the building's detection area
+func _on_range_area_body_exited(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowExit(self) # updates the object's fow detection

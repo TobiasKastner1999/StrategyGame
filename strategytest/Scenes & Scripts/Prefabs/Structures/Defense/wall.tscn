@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ci8s8hk1sixls"]
+[gd_scene load_steps=13 format=3 uid="uid://ci8s8hk1sixls"]
 
 [ext_resource type="Script" path="res://Scenes & Scripts/Prefabs/Structures/Defense/wall.gd" id="1_feoyo"]
 [ext_resource type="Texture2D" uid="uid://b4uk5lmpp4jgx" path="res://Assets/Models/HQ/Wall_metalProb_color.png" id="2_qhf23"]
@@ -62,6 +62,9 @@ bg_color = Color(0, 0.713726, 0.443137, 1)
 [sub_resource type="ViewportTexture" id="ViewportTexture_hvpai"]
 viewport_path = NodePath("HealthbarContainer")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_up23t"]
+radius = 50.0
+
 [node name="Wall" type="StaticBody3D" groups=["Building", "CombatTarget", "FowObject", "MouseRaycast", "Structure"]]
 script = ExtResource("1_feoyo")
 
@@ -94,3 +97,11 @@ visible = false
 texture = SubResource("ViewportTexture_hvpai")
 region_enabled = true
 region_rect = Rect2(0, 0, 354.095, 512)
+
+[node name="RangeArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RangeArea"]
+shape = SubResource("SphereShape3D_up23t")
+
+[connection signal="body_entered" from="RangeArea" to="." method="_on_range_area_body_entered"]
+[connection signal="body_exited" from="RangeArea" to="." method="_on_range_area_body_exited"]

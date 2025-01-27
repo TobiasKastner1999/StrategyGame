@@ -2,11 +2,13 @@ extends Node3D
 
 signal building_menu(building) # to activate the interface when the forge is clicked
 signal interface_update() # to update the forge's interface display
+signal destroyed(forge)
 
 const DISPLAY_NAME = "@name_building_forge" # the forge's displayed name
 const TARGET_TYPE = "forge" # the forge's combat type
 const RESEARCH_DURATION = 30.0 # how long does it take for the forge to research an upgrade?
 
+var detection_range = 15.0
 var researching = false # is the forge currently researching an upgrade?
 var faction : int # the faction the forge belongs to
 var nearby_observers = [] # a list of enemy units near the forge
@@ -38,6 +40,7 @@ func takeDamage(damage, _attacker):
 			Global.removeKnownTarget(self)
 			Global.updateResourceCapacity(faction, -Balance.housing_resource_cap_a, -Balance.housing_resource_cap_b)
 			Global.updateBuildingCount(false)
+			destroyed.emit(self)
 		queue_free() # then deletes the forge
 	interface_update.emit() # calls to update the interface with the new health value
 
@@ -160,3 +163,13 @@ func getIcon():
 		return load("res://Assets/UI/OL_Forge_UI.png")
 	else:
 		return load("res://Assets/UI/NL_Forge_UI.png")
+
+# when a body enters the building's detection area
+func _on_range_area_body_entered(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowEnter(self) # triggers the object's fow detection
+
+# when a body exits the building's detection area
+func _on_range_area_body_exited(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowExit(self) # updates the object's fow detection

@@ -2,12 +2,12 @@ extends StaticBody3D
 
 signal building_menu(building) # to activate the interface when the forge is clicked
 signal interface_update() # to update the wall's interface display
+signal destroyed(wall)
 
 const DISPLAY_NAME = "@name_building_wall" # the wall's displayed name
 const TARGET_TYPE = "wall" # the forge's combat type
 
-
-
+var detection_range = 25.0
 var faction : int # the faction the forge belongs to
 var nearby_observers = [] # a list of enemy units near the wall
 
@@ -35,6 +35,7 @@ func takeDamage(damage, _attacker):
 		if faction == Global.player_faction:
 			await get_tree().create_timer(0.5).timeout
 			Global.updateBuildingCount(false)
+			destroyed.emit(self)
 		queue_free() # then deletes the forge
 	interface_update.emit() # calls to update the interface with the new health value
 
@@ -109,3 +110,12 @@ func setGreystate(bol):
 func getIcon():
 	return load("res://Assets/UI/NL_wall_UI.png")
 
+# when a body enters the building's detection area
+func _on_range_area_body_entered(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowEnter(self) # triggers the object's fow detection
+
+# when a body exits the building's detection area
+func _on_range_area_body_exited(body):
+	if body.is_in_group("FowObject") and faction == Global.player_faction:
+		body.fowExit(self) # updates the object's fow detection

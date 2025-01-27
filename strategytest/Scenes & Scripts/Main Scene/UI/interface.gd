@@ -1,6 +1,7 @@
 extends Control
 
 signal rebake() # calls to rebake the navmesh
+signal new_building(building)
 signal start_game(faction) # tells the game the player has chosen a faction
 
 var hq : Node3D
@@ -116,9 +117,11 @@ func _input(_event):
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
 				building_node.setFaction(Global.player_faction)
 				building_node.building_menu.connect(get_parent()._on_building_menu)
+				building_node.destroyed.connect(get_parent()._on_building_destroyed)
 				rebake.emit()
 				Global.updateResource(Global.player_faction, 0, -Global.getConstructionCost(interface_input_mode))
 				Global.updateBuildingCount(true)
+				new_building.emit(building_node)
 				Global.add_to_list(building_node.position.x, building_node.position.z, Global.player_faction, building_node.get_instance_id(), null, building_node)
 				building_placer_can_place = false
 				$Placer.model_red()

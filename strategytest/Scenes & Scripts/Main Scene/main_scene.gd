@@ -113,6 +113,9 @@ func _on_interface_start_game(faction):
 func _on_building_menu(building):
 	$Interface/SelectedPanel.activatePanel(building)
 
+func _on_building_destroyed(building):
+	fog_of_war.attemptRemoveUnit(building)
+
 # activates the HQ's shortly after the game start
 func _on_timer_timeout():
 	$HQBlue.process_mode = Node.PROCESS_MODE_INHERIT # activates the blue hq
@@ -125,6 +128,9 @@ func _on_timer_timeout():
 func _on_new_unit(unit):
 	addUnitToFog(unit) # has the unit tracked by the fog of war
 	unit.unit_menu.connect(_on_building_menu) # connects the unit to the inspect UI
+
+func _on_new_building(building):
+	addUnitToFog(building)
 
 # re-sets the interface texts when the game's language is changed
 func _on_language_changed():
