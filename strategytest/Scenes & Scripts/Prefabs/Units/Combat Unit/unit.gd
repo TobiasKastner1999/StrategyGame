@@ -67,6 +67,7 @@ func takeDamage(damage, attacker):
 
 func startDeathState():
 	is_awake = false
+	Global.updateUnitCount(faction, -1)
 	deleted.emit(self) # tells the system to clear remaining references to the worker
 	for group in get_groups():
 		remove_from_group(group) # removes the worker from all groups
