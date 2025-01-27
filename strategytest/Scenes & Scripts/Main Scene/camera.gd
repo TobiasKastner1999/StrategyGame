@@ -23,10 +23,6 @@ var on_ui = false
 func _physics_process(_delta):
 	checkUnderMouse($Camera)
 	
-
-
-
-	
 	if !on_ui:
 # deselects the units on click that are not in dragged box
 		mouse_position = get_viewport().get_mouse_position()
@@ -126,7 +122,7 @@ func selectType():
 	
 	if selection.size() == 1:
 		selection[0].accessUnit()
-	else:
+	elif selection.size() != 0:
 		multi_select_interface.emit(selection)
 
 # call the units that are under the mouse that are selectable
