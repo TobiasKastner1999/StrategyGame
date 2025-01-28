@@ -34,13 +34,16 @@ func takeDamage(damage, _attacker):
 	$HealthbarContainer/HealthBar.value = hp # updates the health bar display
 	Sound.under_Attack()
 	if hp <= 0: # removes the forge if it's remaining hp is 0 or less
+		if researching:
+			$ResearchTimer.stop()
+			Global.setResearchQueue(faction, false)
 		Sound.play_sound("res://Sounds/DestroyBuildingSound.mp3", $".")
 		await get_tree().create_timer(0.5).timeout
 		if faction == Global.player_faction:
 			Global.removeKnownTarget(self)
 			Global.updateResourceCapacity(faction, -Balance.housing_resource_cap_a, -Balance.housing_resource_cap_b)
 			Global.updateBuildingCount(false)
-			destroyed.emit(self)
+		destroyed.emit(self)
 		queue_free() # then deletes the forge
 	interface_update.emit() # calls to update the interface with the new health value
 
@@ -99,11 +102,9 @@ func setFaction(f : int):
 	if faction == 0: # when faction is 0
 		$OLHousingBody.visible = true # outlaw asset becomes visible
 		$OLHousingColl.disabled = false
-		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	elif faction == 1: # when faction is 1
 		$NLHousingBody.visible = true # new lights asset becomse visible 
 		$ForgeColl.disabled = false
-		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 
 # returns the forge's current faction
 func getFaction():

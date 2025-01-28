@@ -6,6 +6,7 @@ var housing = preload("res://Scenes & Scripts/Prefabs/Structures/Production/forg
 var camera_positions = [Vector3(-155.0, 0.0, 200.0), Vector3(100.0, 0.0, -55.0)] # hq positions for the camerea to spawn at
 var ui = [load("res://Assets/UI/OL_UI.png"),load("res://Assets/UI/NL_UI.png") ] # ui assets for bot factions
 var is_baking = false
+var bake_queued = false
 
 @onready var world_size = Vector2i($Map/Map/MapSize.mesh.size.x, $Map/Map/MapSize.mesh.size.y) # the size of the level's world environment
 @onready var fog_of_war = $Interface/FogOfWar # the node handling the game's fog of war
@@ -45,9 +46,15 @@ func _on_interface_rebake():
 	if !is_baking:
 		is_baking = true
 		bake_navigation_mesh()
+	else:
+		bake_queued = true
 
 func _on_bake_finished():
 	is_baking = false
+	if bake_queued:
+		bake_queued = false
+		is_baking = true
+		bake_navigation_mesh()
 
 # calls for the game to end once either hq is destroyed
 func _on_hq_destruction(faction):
@@ -120,7 +127,11 @@ func _on_building_menu(building):
 	$Interface/SelectedPanel.activatePanel(building)
 
 func _on_building_destroyed(building):
-	fog_of_war.attemptRemoveUnit(building)
+	_on_interface_rebake()
+	if building.getFaction() == Global.player_faction:
+		fog_of_war.attemptRemoveUnit(building)
+	else:
+		get_tree().get_first_node_in_group("FactionController").addBuildingPosition(building.global_position, building.rotation_degrees, building.getType())
 
 # activates the HQ's shortly after the game start
 func _on_timer_timeout():

@@ -35,7 +35,7 @@ func takeDamage(damage, _attacker):
 		if faction == Global.player_faction:
 			await get_tree().create_timer(0.5).timeout
 			Global.updateBuildingCount(false)
-			destroyed.emit(self)
+		destroyed.emit(self)
 		queue_free() # then deletes the forge
 	interface_update.emit() # calls to update the interface with the new health value
 
@@ -59,10 +59,6 @@ func getDisplayName():
 func setFaction(f : int):
 	faction = f # sets the faction
 	#Global.updateResourceCapacity(faction, Balance.housing_resource_cap_a, Balance.housing_resource_cap_b)
-	if faction == 0: # when faction is 0
-		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
-	elif faction == 1: # when faction is 1
-		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 
 # returns the forge's current faction
 func getFaction():

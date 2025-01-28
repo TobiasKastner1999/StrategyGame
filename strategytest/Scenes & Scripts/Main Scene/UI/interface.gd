@@ -111,11 +111,9 @@ func _input(_event):
 				get_parent().add_child(building_node)
 				Sound.play_sound("res://Sounds/PlaceBuildingSound.mp3", $Placer/Preview)
 				$Placer.rotation = Vector3(0,0,0)
-				
 
-				
 				building_node.transform.origin = building_placer_location + Vector3(0, 1.0, 0)
-				building_node.setFaction(Global.player_faction)
+				await building_node.setFaction(Global.player_faction)
 				building_node.building_menu.connect(get_parent()._on_building_menu)
 				building_node.destroyed.connect(get_parent()._on_building_destroyed)
 				rebake.emit()

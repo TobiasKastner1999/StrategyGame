@@ -63,9 +63,10 @@ func constructNext():
 	construction_locations[controlled_faction][construct].remove_at(0)
 	main.add_child(building)
 	Global.updateResource(controlled_faction, 0, -Global.getConstructionCost(construct)) # removes the resource cost
-	building.setFaction(controlled_faction) # assigns the building's faction
+	await building.setFaction(controlled_faction) # assigns the building's faction
 	building.visible = false
 	navmesh_rebake.emit() # calls the re-bake the navmesh
+	building.destroyed.connect(get_parent().get_parent()._on_building_destroyed)
 	Global.add_to_list(building.position.x, building.position.z, controlled_faction, building.get_instance_id(), null, building)
 	constructed_buildings.append(construct)
 
@@ -97,6 +98,19 @@ func getBuildingNumbers(list):
 func setUpConstructionQueue():
 	construction_queue.append(2)
 	construction_queue.append(1)
+
+func addBuildingPosition(pos, rot, type):
+	var num_type : int
+	match type:
+		"building":
+			num_type = 1
+		"forge":
+			num_type = 2
+		"wall":
+			num_type = 3
+			wall_rotations.append(rot)
+	construction_locations[controlled_faction][num_type].append(pos)
+	constructed_buildings.erase(num_type)
 
 # sets up the node
 func setControlled(node):

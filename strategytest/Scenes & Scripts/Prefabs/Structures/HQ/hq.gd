@@ -88,8 +88,8 @@ func spawnWorker(spawn_point):
 	Global.add_to_list(worker.global_position.x, worker.global_position.z, faction, worker.get_instance_id(), null, worker)
 	if faction == Global.player_faction:
 		new_worker.emit(worker)
-	else:
-		worker.visible = false
+	#else:
+		#worker.visible = false
 
 # clears references to a given unit from the HQ and its workers
 func clearUnitReferences(unit):

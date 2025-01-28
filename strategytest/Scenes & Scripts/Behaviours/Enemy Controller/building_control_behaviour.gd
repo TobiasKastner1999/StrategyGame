@@ -5,7 +5,6 @@ const UPGRADE_TRESHOLD = 4 # the threshold of trained units above which the AI w
 var controller : Node3D # the faction controller this node belongs to
 var controlled_faction : int # the faction controlled by this node
 var pursuing_upgrade = false # is the node currently pursuing an upgrade for its faction?
-var researching = false # is the controlled faction currently researching an upgrade?
 
 # runs the sub-behaviours
 func runBehaviour():
@@ -15,7 +14,7 @@ func runBehaviour():
 
 # checks if the conditions for pursuing an upgrade are met
 func upgradeConditionsFulfilled():
-	if Global.getUnitCount(controlled_faction) >= UPGRADE_TRESHOLD and !Balance.upgrade1[controlled_faction] and !researching:
+	if Global.getUnitCount(controlled_faction) >= UPGRADE_TRESHOLD and !Balance.upgrade1[controlled_faction] and !Global.getResearchQueue(controlled_faction):
 		return true # returns true if the controlled faction meets the unit threshold, and hasn't acquired an upgrade yet
 	return false
 
@@ -39,7 +38,6 @@ func controlForge():
 				building.startResearch() # starts research on that forge
 				Global.updateResource(controlled_faction, 1, -Global.getUpgradeCost()) # removes the upgrade cost
 				pursuing_upgrade = false
-				researching = true
 				setUnitProduction(true) # re-enables unit production on all controlled barracks
 				return # then exits the search loop
 

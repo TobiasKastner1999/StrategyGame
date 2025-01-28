@@ -9,7 +9,6 @@ var enemy_hq  # the player's HQ building
 var worker_storage # the AI's workers
 
 @export var controlled_faction : int # the AI-controlled faction
-
 @onready var unit_storage = $".."/Units # the combat units
 @onready var resources = $".."/Resources # the resources
 
@@ -99,6 +98,9 @@ func getRequiredResource():
 		return 0 # returns resource 0 if the faction has not yet reached the building threshold
 	else:
 		return 2 # returns an empty state otherwise
+
+func addBuildingPosition(pos, rot, type):
+	$ConstructionControlBehaviour.addBuildingPosition(pos, rot, type)
 
 # calls to rebake the navmesh when the construction behaviour has constructed a new building
 func _on_construction_control_behaviour_navmesh_rebake():

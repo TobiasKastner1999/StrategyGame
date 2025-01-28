@@ -97,7 +97,7 @@ func takeDamage(damage, _attacker):
 			Global.removeKnownTarget(self) # attempts to remove the building from the AI's list of known buildings
 			Global.updateBuildingCount(false)
 			Global.updateUnitLimit(faction, -UNIT_CAPACITY)
-			destroyed.emit(self)
+		destroyed.emit(self)
 		queue_free() # then deletes the building
 	interface_update.emit() # calls to update the interface with the new health value
 
@@ -176,7 +176,6 @@ func setFaction(f : int):
 		#$NLBarracksFence3.disabled = true
 		#$NLBarracksFence4.disabled = true
 		#$NLBarracksFence5.disabled = true
-		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 	elif faction == 1: # when faction is 1
 		$NLBarracks.visible = true # new lights assets becomes visible
 		$OLBarracksCollMain.disabled = true
@@ -186,7 +185,6 @@ func setFaction(f : int):
 		#$OLBarracksCollFence4.disabled = true
 		#$OLBarracksCollFence5.disabled = true
 		#$OLBarracksCollFence6.disabled = true
-		get_parent().bake_navigation_mesh() # rebakes the navmesh when spawned
 		
 	if faction != Global.player_faction:
 		toggleStatus_on()
