@@ -73,12 +73,13 @@ func getUnits():
 	return units # returns the trimmed list
 
 func getBuildings():
-	var buildings_temp = get_tree().get_nodes_in_group("Building") # grabs all buildings
+	var buildings = get_tree().get_nodes_in_group("Building") # grabs all buildings
+	var buildings_temp = buildings.duplicate()
 	for building in buildings_temp:
 		if building.getFaction() != controlled_faction:
-			buildings_temp.erase(building) # then removes all buildings not of the controlled faction
-	buildings_temp.append(hq)
-	return buildings_temp # returns the trimmed list
+			buildings.erase(building) # then removes all buildings not of the controlled faction
+	buildings.append(hq)
+	return buildings # returns the trimmed list
 
 # returns all resources
 func getResources():
@@ -92,13 +93,20 @@ func getRequiredResource():
 		return 1 # returns resource 1 if only resource 0 is capped
 	elif Global.getResource(controlled_faction, 1) >= Global.getMaxResource(controlled_faction, 1):
 		return 0 # returns resource 0 if only resource 1 is capped
-	elif getBuildings().size() < BUILDINGS_THRESHOLD:
-		return 0 # returns resource 0 if the faction has not yet reached the building threshold
 	elif Global.getFullUnitCount(controlled_faction) < Global.getUnitLimit(controlled_faction):
 		return 1 # returns resource 1 if the controlled faction can produce more units
+	elif getBuildings().size() < BUILDINGS_THRESHOLD:
+		return 0 # returns resource 0 if the faction has not yet reached the building threshold
 	else:
 		return 2 # returns an empty state otherwise
 
 # calls to rebake the navmesh when the construction behaviour has constructed a new building
 func _on_construction_control_behaviour_navmesh_rebake():
 	rebake.emit()
+	if getBuildings().size() == 3:
+		var redirected = 0
+		for worker in worker_storage.get_children():
+			worker.clearKnowledge()
+			redirected += 1
+			if redirected >= 2:
+				return

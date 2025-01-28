@@ -386,6 +386,12 @@ func removeResourceKnowledge(removed_resource):
 		target_node = null
 		destination = global_position
 
+func clearKnowledge():
+	target_node = null
+	previous_target = null
+	destination = global_position
+	known_resources.clear()
+
 # returns the worker's HQ
 func getHQ():
 	return hq
