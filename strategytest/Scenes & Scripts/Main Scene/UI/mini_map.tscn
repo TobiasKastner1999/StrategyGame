@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://8fp5r7lvixka" path="res://Assets/texture_fow.png" id="9_eerus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_186kj"]
-size = Vector2(298.667, 268.667)
+size = Vector2(265.333, 254.667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1leb5"]
 size = Vector2(10, 10)
@@ -54,7 +54,7 @@ texture = ExtResource("5_oa4x0")
 metadata/_edit_lock_ = true
 
 [node name="MinimapColl" type="CollisionShape2D" parent="MarginContainer/MinimapRegion"]
-position = Vector2(-11, -6.5)
+position = Vector2(-1, -6.99999)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_186kj")
 metadata/_edit_lock_ = true

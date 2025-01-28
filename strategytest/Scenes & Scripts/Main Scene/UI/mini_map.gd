@@ -123,7 +123,7 @@ func minimap_clickable():
 	# when the mouse enters the area of minimap the var turns true and if you click the camera moves to the position given
 	# via a characterbody2d that is constantly following the mouse and
 	# limit the minimap clickrange
-	if mouse.position.x >= -330 and  mouse.position.x <= 330 and mouse.position.y >= -330 and mouse.position.y <= 330:
+	if mouse.position.x >= -200 and  mouse.position.x <= 200 and mouse.position.y >= -200 and mouse.position.y <= 200:
 		mouse_over_map = true
 	else:
 		mouse_over_map = false
