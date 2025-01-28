@@ -5,6 +5,7 @@ var baracks = preload("res://Scenes & Scripts/Prefabs/Structures/Production/buil
 var housing = preload("res://Scenes & Scripts/Prefabs/Structures/Production/forge.tscn") # preloads scene to avoid lagspikes
 var camera_positions = [Vector3(-155.0, 0.0, 200.0), Vector3(100.0, 0.0, -55.0)] # hq positions for the camerea to spawn at
 var ui = [load("res://Assets/UI/OL_UI.png"),load("res://Assets/UI/NL_UI.png") ] # ui assets for bot factions
+var is_baking = false
 
 @onready var world_size = Vector2i($Map/Map/MapSize.mesh.size.x, $Map/Map/MapSize.mesh.size.y) # the size of the level's world environment
 @onready var fog_of_war = $Interface/FogOfWar # the node handling the game's fog of war
@@ -41,7 +42,12 @@ func _on_units_delete_selection(unit):
 
 # rebakes the navmesh
 func _on_interface_rebake():
-	bake_navigation_mesh()
+	if !is_baking:
+		is_baking = true
+		bake_navigation_mesh()
+
+func _on_bake_finished():
+	is_baking = false
 
 # calls for the game to end once either hq is destroyed
 func _on_hq_destruction(faction):
@@ -65,7 +71,7 @@ func _on_interface_start_game(faction):
 	$Interface/BuildingButton.visible = true
 	$Interface/HousingButton.visible = true
 	$MiniMap.visible = true
-	$Counter.visible = true 
+	$Counter.visible = true
 	$Interface/ResourceTab.visible = true
 	$Interface/Tutorial.visible = true
 	
