@@ -118,8 +118,8 @@ func startAttackCooldown():
 			$OutlawGunVehicleBaked/OL_GunVehicleWheels2/Gunfire.shoot()
 			$OutlawGunVehicleBaked/OL_GunVehicleWheels2/Gunfire2.shoot()
 	$AttackAnim/AnimationPlayer.play("attack")
-	attacking = true
-	await $NL_Heavy/HeavyAnim.animation_finished
+
+
 	
 	
 # sets the target's position as the movement destination

@@ -29,7 +29,7 @@ var upgrade1 = [false, false]
 # titan stats
 @export var titan_hp = 150
 @export var titan_damage = 8
-@export var titan_range = 10
+@export var titan_range = 18
 @export var titan_attack_speed = 4
 @export var titan_detection = 15
 @export var titan_speed = 8.5

@@ -290,6 +290,8 @@ func startAttackCooldown():
 	$AttackTimer.start(attack_speed) # starts the attack cooldown
 	worker_anim.play("OutlawWorkerAttack") # plays the attack animation if the worker is mining
 	worker_anim_nl.play("LightSoldierAttack")# plays the attack animation 
+	if $NewLightsWorker.visible == true:
+		Sound.play_sound("res://Sounds/GunShot_Ashfolk.mp3",$"." )
 
 	attacking = true
 
