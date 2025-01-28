@@ -169,6 +169,7 @@ func setTargetPosition(target):
 	if nearby_enemies.size() != 0 or target_node != null:
 		target_node = null
 		priority_movement = true
+	previous_target = null
 	destination = target
 
 # sets the worker's target node
