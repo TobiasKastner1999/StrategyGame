@@ -14,7 +14,7 @@ func runBehaviour(node):
 func hasNearbyEnemies():
 	if run_node.getTargetMode() == 1:
 		var target_node = run_node.getActiveTarget()
-		if target_node == null or !is_instance_valid(target_node) or target_node.getType() == "hq" or target_node.getType() == "resource":
+		if target_node == null or !is_instance_valid(target_node) or (target_node.getType() == "hq" and target_node.getFaction() == run_node.getFaction()) or target_node.getType() == "resource":
 			run_node.leaveCombatMode()
 			return false
 		return true
