@@ -8,17 +8,22 @@ extends Node2D
 func _ready():
 	$Button.text = Global.getText($Button.text)
 	
-	text.add_text("Dominik-Niklas Fuchs")
+	text.add_text("Producer: Dominik-Niklas Fuchs")
 	text.newline()
-	text.add_text("Tobias Kastner")
+	text.add_text("Tools Programmer: Tobias Kastner")
 	text.newline()
-	text.add_text("Jakob Keber")
+	text.add_text("System Programmer: Jakob Keber")
 	text.newline()
-	text.add_text("Yunus Halavart")
+	text.add_text("Game Designer: Yunus Halavart")
 	text.newline()
-	text.add_text("Simon Hübsch")
+	text.add_text("Artist: Simon Hübsch")
 	text.newline()
-	text.add_text("Jürgen Siebert")
+	text.add_text("Artist: Jürgen Siebert")
+	text.newline()
+	text.add_text("Sound and Music: Pixabay.com")
+	text.newline()
+	text.add_text("Publisher: HNU")
+
 	
 
 
