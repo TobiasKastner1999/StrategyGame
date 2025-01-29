@@ -60,7 +60,7 @@ func setProximityDistance():
 				return (5.0) # proximity is set to half the unit's attack range otherwise
 		"worker":
 			if run_node.getActiveTarget() == null:
-				return 3.0
+				return 4.0
 			match run_node.getActiveTarget().getType():
 				"resource":
 					return (run_node.getProximity() / 2.0)
