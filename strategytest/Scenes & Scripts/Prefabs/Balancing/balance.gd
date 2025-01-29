@@ -43,8 +43,8 @@ var upgrade1 = [false, false]
 @export var runner_attack_speed = 2
 @export var runner_detection = 20
 @export var runner_speed = 15
-@export var runner_cost = 40
-@export var runner_production = 20
+@export var runner_cost = 50
+@export var runner_production = 25
 
 # ash sentinel
 @export var sentinel_hp = 120

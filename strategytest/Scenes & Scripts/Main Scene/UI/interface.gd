@@ -168,6 +168,7 @@ func gameEnd(faction):
 		$EndScreen.text = Global.getText("@game_over_doom") # sets end screen text if the player was defeated
 		$EndScreen.setScreen(3)
 	$EndScreen.visible = true # enables end screen visibility
+	Global.defaultCursor()
 	$EndScreen.setText()
 
 # returns the interface's current input mode
