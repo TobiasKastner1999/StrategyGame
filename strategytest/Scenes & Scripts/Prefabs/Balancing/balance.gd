@@ -33,8 +33,8 @@ var upgrade1 = [false, false]
 @export var titan_attack_speed = 4
 @export var titan_detection = 15
 @export var titan_speed = 8.5
-@export var titan_cost = 150
-@export var titan_production = 40
+@export var titan_cost = 100
+@export var titan_production = 30
 
 # dust runner
 @export var runner_hp = 80
