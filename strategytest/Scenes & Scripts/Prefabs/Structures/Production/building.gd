@@ -161,9 +161,9 @@ func setProductionType(type):
 				Global.updateResource(faction, 1, int(ceil(float(unit_cost) / 2))) # refunds half the production cost, rounded up
 				Global.updateQueuedUnitCount(faction, -1) # removes the unit from the queue
 	
-		production_type = type
-		unit_cost = Global.unit_dict[str(type)]["resource_cost"] # sets the production variables
-		spawn_rate = Global.unit_dict[str(type)]["production_speed"] # sets the time it takes to produce the unit
+	production_type = type
+	unit_cost = Global.unit_dict[str(type)]["resource_cost"] # sets the production variables
+	spawn_rate = Global.unit_dict[str(type)]["production_speed"] # sets the time it takes to produce the unit
 
 # sets the building's faction to a given value
 func setFaction(f : int):
