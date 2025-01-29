@@ -13,8 +13,6 @@ var constructed_buildings = [] # the list of already constructed buildings
 var construction_locations = [[0, [Vector3(-105.0, -3.2, 105.0), Vector3(-90.0, -3.2, 145.0), Vector3(-60.0, -3.2, 115.0)], [Vector3(-130.0, -4.2, 140.0), Vector3(-140.0, -4.2, 100.0), Vector3(-50.0, -4.2, 140.0)], 3], \
 							  [0, [Vector3(95.0, -3.3, -162.5), Vector3(150.0, -3.3, -115.0), Vector3(95.0, -3.3, -195.0)], [Vector3(182.0, -4.0, -125.0), Vector3(200.0, -4.0, -115.0), Vector3(200.0, -4.0, -135.0)], [Vector3(179.29, -1.1, -88.52), Vector3(122.65, -1.1, -98.5), Vector3(69.673, -1.1, -191.89)] ] ]
 var wall_rotations = [Vector3(0, -95.7, 0), Vector3(0, -139.6, 0), Vector3(0, 158.6, 0)] # the rotations for constructed walls
-var unit_types = [] # a list of the unit types this faction can train
-var type_index = 0 # the index of the next trained unit type
 
 # runs this behaviour's sub-behaviours
 func runBehaviour():
@@ -43,11 +41,11 @@ func constructNext():
 		# constructs a new barracks
 		1:
 			building = load("res://Scenes & Scripts/Prefabs/Structures/Production/building.tscn").instantiate()
-			building.setProductionType(int(unit_types[type_index])) # sets up the production type
-			if type_index < (unit_types.size() - 1):
-				type_index += 1 # then cycles the index to the next available unit type
-			else:
-				type_index = 0 # resets the index if its max value has been reached
+			match controlled_faction:
+				0:
+					building.setProductionType(1)
+				1:
+					building.setProductionType(0)
 		
 		# constructs a new forge
 		2:
@@ -119,8 +117,3 @@ func setControlled(node):
 	controlled_faction = controller.getFaction()
 	
 	setUpConstructionQueue() # sets up the initial construction queue
-	
-	# grabs the non-worker units available to the faction from the global list
-	for unit in Global.unit_dict.keys():
-		if !(unit.begins_with("worker")) and Global.unit_dict[unit]["faction"] == controlled_faction:
-			unit_types.append(unit)
