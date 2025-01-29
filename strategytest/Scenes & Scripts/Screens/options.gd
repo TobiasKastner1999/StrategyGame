@@ -61,14 +61,14 @@ func _on_music_plus_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if music_slider_counter <= 10: # limits the slider
 		music_slider_counter += 1 # increases the slider counter that hide/unhide the sliders
-		Sound.music_volume -= 10
+		Sound.music_volume -= 7
 	checkMusic() # updates the visual sliders of music settings
 
 func _on_music_minus_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
 	if music_slider_counter >= 0: # limits the slider
 		music_slider_counter -= 1 # decreases the slider counter that hide/unhide the sliders
-		Sound.music_volume += 10
+		Sound.music_volume += 7
 	checkMusic() # updates the visual sliders of music settings
 
 func checkMusic(): # function to update the sliders on the menu
