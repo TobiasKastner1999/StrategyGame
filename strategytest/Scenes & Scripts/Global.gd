@@ -15,6 +15,8 @@ var upgrade_queued = [false, false] # are the factions currently researching an 
 var player_building_count : int = 0 # how many building's has the player constructed?
 var cam = null # stores mainscene camera
 var tree = null # the scene tree of the game's main scene
+var music_slider_counter = 6
+var sound_slider_counter = 6
 
 var known_player_units = [] # a list of the player's units known to the AI
 var known_player_buildings = [] # a list of the player's buildings known to the AI

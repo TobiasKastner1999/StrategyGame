@@ -3,8 +3,8 @@ extends Control
 signal close
 signal language_changed()
 
-var music_slider_counter = 6 # slidercounter to visualize the music settings
-var sound_slider_counter = 6 # slidercounter to visualize the sound settings
+var music_slider_counter = Global.music_slider_counter # slidercounter to visualize the music settings
+var sound_slider_counter = Global.sound_slider_counter # slidercounter to visualize the sound settings
 var language = 0 # languagecounter that indicates the current language selected
 
 func _ready():
@@ -59,15 +59,15 @@ func _on_menu_button_pressed():
 
 func _on_music_plus_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
-	if music_slider_counter <= 10: # limits the slider
-		music_slider_counter += 1 # increases the slider counter that hide/unhide the sliders
+	if Global.music_slider_counter <= 10: # limits the slider
+		Global.music_slider_counter += 1 # increases the slider counter that hide/unhide the sliders
 		Sound.music_volume -= 7
 	checkMusic() # updates the visual sliders of music settings
 
 func _on_music_minus_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
-	if music_slider_counter >= 0: # limits the slider
-		music_slider_counter -= 1 # decreases the slider counter that hide/unhide the sliders
+	if Global.music_slider_counter >= 0: # limits the slider
+		Global.music_slider_counter -= 1 # decreases the slider counter that hide/unhide the sliders
 		Sound.music_volume += 7
 	checkMusic() # updates the visual sliders of music settings
 
@@ -75,22 +75,22 @@ func checkMusic(): # function to update the sliders on the menu
 	var button_container = $Panel/MusicContainer # gets the slider container
 	for i in range(button_container.get_child_count()): # iterates through the container
 		var button = button_container.get_child(i) # gets the current iterated child
-		if i > music_slider_counter: # checks which sliders are withing range of the slidercounter
+		if i > Global.music_slider_counter: # checks which sliders are withing range of the slidercounter
 			button.visible = true # unhides the sliders within range
 		else:
 			button.visible = false # hides the sliders outside range
 
 func _on_sound_minus_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
-	if sound_slider_counter <= 10: # limits the slider
-		sound_slider_counter += 1 # increases the slider counter that hide/unhide the sliders
+	if Global.sound_slider_counter <= 10: # limits the slider
+		Global.sound_slider_counter += 1 # increases the slider counter that hide/unhide the sliders
 		Sound.sound_volume -= 10
 	checkSound() # updates the visual sliders of music settings
 
 func _on_sound_plus_button_pressed():
 	Sound.play_sound_all("res://Sounds/Button Sound Variante 1.mp3",$"." )
-	if sound_slider_counter <= 10: # limits the slider
-		sound_slider_counter -= 1 # increases the slider counter that hide/unhide the sliders
+	if Global.sound_slider_counter <= 10: # limits the slider
+		Global.sound_slider_counter -= 1 # increases the slider counter that hide/unhide the sliders
 		Sound.sound_volume += 10
 	checkSound() # updates the visual sliders of music settings
 
@@ -99,7 +99,7 @@ func checkSound(): # function to update the sliders on the menu
 	var button_container = $Panel/SoundContainer # gets the slider container
 	for i in range(button_container.get_child_count()): # iterates through the container
 		var button = button_container.get_child(i) # gets the current iterated child
-		if i > sound_slider_counter: # checks which sliders are withing range of the slidercounter
+		if i > Global.sound_slider_counter: # checks which sliders are withing range of the slidercounter
 			button.visible = true # unhides the sliders within range
 		else:
 			button.visible = false # hides the sliders outside range
